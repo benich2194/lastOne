@@ -24,6 +24,7 @@ public class SysData {
 	private HashMap<String, Customer> customers;
 	private HashMap<Integer, Match> matches;
 	private HashSet<Trophy> trophies;
+	
         
         private HashMap<String,String> admins;
 
