@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 
-public class SampleController {
+public class SampleController extends Main{
 
 
     @FXML
@@ -37,13 +37,25 @@ public class SampleController {
 
     @FXML
     void GoToMenu(ActionEvent event) throws Exception {
-    	login.getScene().getWindow().hide();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/application/menu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	String user=email.getText();
+    	String pass=password.getText();
+    	if(sysData.getAdmins().containsKey(user)) {
+    		if(sysData.getAdmins().get(user).equals(pass)) {
+    			login.getScene().getWindow().hide();
+    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
+    	    	Stage primaryStage=new Stage();
+    	    	Parent root=load.load();
+    	    	Scene scene=new Scene(root);
+    	    	primaryStage.setScene(scene);
+    	    	primaryStage.show();
+    		}
+    	}
+    	else {
+    		login.getScene().getWindow().hide();
+    		login.setVisible(false);
+    		System.out.println("wrong password");
+    	}
+    	
     }
 
 }

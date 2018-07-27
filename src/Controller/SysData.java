@@ -17,6 +17,18 @@ import java.util.*;
 public class SysData implements Serializable{
 	// -------------------------------Class Members------------------------------
 	private static SysData instance;
+	public HashMap<String, String> getRecep() {
+		return recep;
+	}
+
+	public HashMap<String, String> getCoach() {
+		return coach;
+	}
+
+	public HashMap<String, String> getCustomer() {
+		return customer;
+	}
+
 	private HashMap<Integer, Coach> coaches;
 	private HashMap<Integer, Receptionist> receptionists;
 	private HashMap<Integer, Player> players;

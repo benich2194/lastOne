@@ -19,7 +19,7 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
-	private static SysData sysData;
+	protected static SysData sysData;
 	
 	public void start(Stage primaryStage) {
 		try {
