@@ -24,7 +24,7 @@
                   <Font name="Tahoma Bold" size="21.0" />
                </font>
             </Label>
-            <PasswordField blendMode="MULTIPLY" layoutX="196.0" layoutY="242.0" prefHeight="38.0" prefWidth="310.0" />
+            <PasswordField fx:id="password" blendMode="MULTIPLY" layoutX="196.0" layoutY="242.0" prefHeight="38.0" prefWidth="310.0" />
             <TextField fx:id="email" blendMode="MULTIPLY" layoutX="196.0" layoutY="155.0" prefHeight="38.0" prefWidth="310.0" />
             <Button fx:id="SignIn" blendMode="MULTIPLY" layoutX="196.0" layoutY="322.0" mnemonicParsing="false" onAction="#GoToMenu" prefHeight="38.0" prefWidth="310.0" />
          </children>

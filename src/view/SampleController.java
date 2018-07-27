@@ -1,4 +1,4 @@
-package application;
+package view;
 
 
 
@@ -17,12 +17,17 @@ import javafx.scene.control.TextField;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 
 public class SampleController {
 
+
     @FXML
     private AnchorPane login;
+
+    @FXML
+    private PasswordField password;
 
     @FXML
     private TextField email;
