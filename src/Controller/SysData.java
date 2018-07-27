@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import utils.*;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 
@@ -13,7 +14,7 @@ import java.util.*;
  * @author University Of Haifa - Israel
  */
 @SuppressWarnings("rawtypes")
-public class SysData {
+public class SysData implements Serializable{
 	// -------------------------------Class Members------------------------------
 	private static SysData instance;
 	private HashMap<Integer, Coach> coaches;
@@ -27,6 +28,9 @@ public class SysData {
 	
         
         private HashMap<String,String> admins;
+        private HashMap<String,String> recep;
+        private HashMap<String,String> coach;
+        private HashMap<String,String> customer;
 
 	// -------------------------------Constructors------------------------------
 	private SysData() {
@@ -40,6 +44,10 @@ public class SysData {
 		trophies = new HashSet<>();
                 
                 admins=new HashMap<>();
+                recep=new HashMap<>();
+                coach=new HashMap<>();
+                customer=new HashMap<>();
+                admins.put("admin","admin");
 	}
 
 	// -----------------------------------------Getters--------------------------------------
