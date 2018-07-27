@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SampleController">
+<AnchorPane fx:id="adminMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminController">
    <children>
       <ImageView fitHeight="550.0" fitWidth="701.0">
          <image>
@@ -15,7 +15,7 @@
       <Button layoutX="106.0" layoutY="59.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Administration" />
       <Button blendMode="COLOR_BURN" layoutX="106.0" layoutY="205.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Player" />
       <Button layoutX="528.0" layoutY="59.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Team" />
-      <Button layoutX="300.0" layoutY="59.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Coach" />
+      <Button fx:id="coachButton" layoutX="300.0" layoutY="59.0" mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="43.0" prefWidth="102.0" text="Coach" />
       <Button layoutX="300.0" layoutY="174.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Customer" />
       <Button layoutX="528.0" layoutY="174.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Receptionist" />
       <Button layoutX="300.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Connection" />

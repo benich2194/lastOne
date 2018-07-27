@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 
-public class SampleController extends Main{
+public class LoginController extends Main{
 
 
     @FXML
