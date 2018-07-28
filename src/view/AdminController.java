@@ -21,6 +21,9 @@ public class AdminController {
     
     @FXML
     private AnchorPane coachModif;
+    
+    @FXML
+    private Button logout;
 
 
     @FXML
@@ -28,6 +31,17 @@ public class AdminController {
     	Stage stage=(Stage)adminMenu.getScene().getWindow();
 		stage.close();
     	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
+    @FXML
+    void backToLogin(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/login.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);

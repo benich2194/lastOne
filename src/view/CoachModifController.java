@@ -23,7 +23,12 @@ public class CoachModifController {
     private Button addCoach;
     
     @FXML
-    private Button logout;
+    private Button modCoach;
+    
+    @FXML
+    private Button removeCoachButton;
+
+    
     
     @FXML
     void goBack(ActionEvent event) throws IOException {
@@ -49,10 +54,21 @@ public class CoachModifController {
     }
     
     @FXML
-    void backToLogin(ActionEvent event) throws IOException {
+    void goToModifyCoach(ActionEvent event) throws IOException {
     	Stage stage=(Stage)coachModif.getScene().getWindow();
 		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/login.fxml"));
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/modifyCoach.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
+    @FXML
+    void goToRemoveCoach(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)coachModif.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/removeCoach.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
