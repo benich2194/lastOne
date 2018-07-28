@@ -41,7 +41,8 @@ public class LoginController extends Main{
     	String pass=password.getText();
     	if(sysData.getAdmins().containsKey(user)) {
     		if(sysData.getAdmins().get(user).equals(pass)) {
-    			login.getScene().getWindow().hide();
+    			Stage stage=(Stage)login.getScene().getWindow();
+    			stage.close();
     	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
     	    	Stage primaryStage=new Stage();
     	    	Parent root=load.load();
@@ -51,8 +52,8 @@ public class LoginController extends Main{
     		}
     	}
     	else {
-    		login.getScene().getWindow().hide();
-    		login.setVisible(false);
+    		Stage stage=(Stage)login.getScene().getWindow();
+			stage.close();
     		System.out.println("wrong password");
     	}
     	

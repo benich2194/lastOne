@@ -11,21 +11,17 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AdminController {
+public class addCoachController {
 
     @FXML
-    private AnchorPane adminMenu;
+    private AnchorPane addCoachModif;
 
     @FXML
-    private Button coachButton;
-    
-    @FXML
-    private AnchorPane coachModif;
-
+    private Button back;
 
     @FXML
-    void GoToCoachPage(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+    void goBack(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)addCoachModif.getScene().getWindow();
 		stage.close();
     	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
     	Stage primaryStage=new Stage();
@@ -34,7 +30,5 @@ public class AdminController {
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
-    
 
 }
-
