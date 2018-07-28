@@ -125,8 +125,15 @@ public class AdminController {
     }
     
     @FXML
-    void goToMatchMenu(ActionEvent event) {
-
+    void goToMatchMenu(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/matchMenu.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
     
     @FXML
