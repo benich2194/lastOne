@@ -152,8 +152,15 @@ public class AdminController {
     	primaryStage.show();
     }
     @FXML
-    void goToTrophyMenu(ActionEvent event) {
-
+    void goToTrophyMenu(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/trophyMenu.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
 }
 
