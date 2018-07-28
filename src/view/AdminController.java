@@ -18,12 +18,13 @@ public class AdminController {
 
     @FXML
     private Button coachButton;
-    
-    @FXML
-    private AnchorPane coachModif;
+   
     
     @FXML
     private Button logout;
+    
+    @FXML
+    private Button teamMenuButton;
 
 
     @FXML
@@ -49,6 +50,16 @@ public class AdminController {
     	primaryStage.show();
     }
     
-
+    @FXML
+    void goToTeamPage(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/teamMenu.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
 }
 
