@@ -29,6 +29,8 @@ public class AdminController {
     @FXML
     private Button playerMenuButton;
 
+    @FXML
+    private Button customerButton;
 
     @FXML
     void GoToCoachPage(ActionEvent event) throws IOException {
@@ -70,6 +72,18 @@ public class AdminController {
     	Stage stage=(Stage)adminMenu.getScene().getWindow();
 		stage.close();
     	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerMenu.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
+    
+    @FXML
+    void goToCustomerMenu(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/customerMenuAdmin.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
