@@ -13,8 +13,8 @@
          </image>
       </ImageView>
       <Button fx:id="addTeam" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddTeam" prefHeight="54.0" prefWidth="131.0" text="Add Team" />
-      <Button fx:id="removeTeamButton" layoutX="285.0" layoutY="387.0" mnemonicParsing="false" onAction="#goToRemoveTeam" prefHeight="54.0" prefWidth="131.0" text="Remove Coach" />
-      <Button fx:id="modTeam" layoutX="285.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToModifyTeam" prefHeight="54.0" prefWidth="131.0" text="Modify Coach" />
+      <Button fx:id="removeTeamButton" layoutX="285.0" layoutY="387.0" mnemonicParsing="false" onAction="#goToRemoveTeam" prefHeight="54.0" prefWidth="131.0" text="Remove Team" />
+      <Button fx:id="modTeam" layoutX="285.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToModifyTeam" prefHeight="54.0" prefWidth="131.0" text="Modify Team" />
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

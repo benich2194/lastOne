@@ -11,70 +11,69 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AdminController {
+public class playerMenuController {
 
     @FXML
-    private AnchorPane adminMenu;
+    private AnchorPane playerMenu;
 
     @FXML
-    private Button coachButton;
-   
-    
-    @FXML
-    private Button logout;
-    
-    @FXML
-    private Button teamMenuButton;
-    
-    @FXML
-    private Button playerMenuButton;
-
+    private Button addPlayer;
 
     @FXML
-    void GoToCoachPage(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+    private Button removePlayer;
+
+    @FXML
+    private Button modPlayer;
+
+    @FXML
+    private Button back;
+
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)playerMenu.getScene().getWindow();
 		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
+
     @FXML
-    void backToLogin(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+    void goToAddPlayer(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)playerMenu.getScene().getWindow();
 		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/login.fxml"));
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/addPlayer.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
-    
+
     @FXML
-    void goToTeamPage(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+    void goToModifyPlayer(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)playerMenu.getScene().getWindow();
 		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/teamMenu.fxml"));
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/modifyPlayer.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
-    
+
     @FXML
-    void goToPlayerMenu(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+    void goToRemovePlayer(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)playerMenu.getScene().getWindow();
 		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerMenu.fxml"));
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/removePlayer.fxml"));
     	Stage primaryStage=new Stage();
     	Parent root=load.load();
     	Scene scene=new Scene(root);
     	primaryStage.setScene(scene);
     	primaryStage.show();
     }
+
 }
-

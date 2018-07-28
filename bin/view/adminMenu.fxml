@@ -13,7 +13,7 @@
          </image>
       </ImageView>
       <Button layoutX="106.0" layoutY="59.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Administration" />
-      <Button blendMode="COLOR_BURN" layoutX="106.0" layoutY="205.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Player" />
+      <Button fx:id="playerMenuButton" blendMode="COLOR_BURN" layoutX="106.0" layoutY="205.0" mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="43.0" prefWidth="102.0" text="Player" />
       <Button fx:id="teamMenuButton" layoutX="528.0" layoutY="59.0" mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="43.0" prefWidth="102.0" text="Team" />
       <Button fx:id="coachButton" layoutX="300.0" layoutY="59.0" mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="43.0" prefWidth="102.0" text="Coach" />
       <Button layoutX="300.0" layoutY="174.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Customer" />
