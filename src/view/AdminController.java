@@ -13,27 +13,41 @@ import javafx.stage.Stage;
 
 public class AdminController {
 
-    @FXML
-    private AnchorPane adminMenu;
+	 @FXML
+	    private AnchorPane adminMenu;
 
-    @FXML
-    private Button coachButton;
-   
-    
-    @FXML
-    private Button logout;
-    
-    @FXML
-    private Button recepMenu;
-    
-    @FXML
-    private Button teamMenuButton;
-    
-    @FXML
-    private Button playerMenuButton;
+	    @FXML
+	    private Button playerMenuButton;
 
-    @FXML
-    private Button customerButton;
+	    @FXML
+	    private Button teamMenuButton;
+
+	    @FXML
+	    private Button coachButton;
+
+	    @FXML
+	    private Button customerButton;
+
+	    @FXML
+	    private Button recepMenu;
+
+	    @FXML
+	    private Button connectionButton;
+
+	    @FXML
+	    private Button logout;
+
+	    @FXML
+	    private Button stadiumButton;
+
+	    @FXML
+	    private Button subscriptionButton;
+
+	    @FXML
+	    private Button trophyButton;
+
+	    @FXML
+	    private Button matchButton;
 
     @FXML
     void GoToCoachPage(ActionEvent event) throws IOException {
@@ -104,6 +118,35 @@ public class AdminController {
     	Scene scene=new Scene(root);
     	primaryStage.setScene(scene);
     	primaryStage.show();
+    }
+    @FXML
+    void goToConnectionMenu(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void goToMatchMenu(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void goToStadiumMenu(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)adminMenu.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/stadiumMenu.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
+    @FXML
+    void goToSubscriptionButton(ActionEvent event) {
+
+    }
+    @FXML
+    void goToTrophyMenu(ActionEvent event) {
+
     }
 }
 

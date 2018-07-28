@@ -13,12 +13,16 @@
          </image>
       </ImageView>
       <Button layoutX="106.0" layoutY="59.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Administration" />
-      <Button fx:id="playerMenuButton" blendMode="COLOR_BURN" layoutX="106.0" layoutY="205.0" mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="43.0" prefWidth="102.0" text="Player" />
-      <Button fx:id="teamMenuButton" layoutX="528.0" layoutY="59.0" mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="43.0" prefWidth="102.0" text="Team" />
+      <Button fx:id="playerMenuButton" blendMode="COLOR_BURN" layoutX="106.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="43.0" prefWidth="102.0" text="Player" />
+      <Button fx:id="teamMenuButton" layoutX="489.0" layoutY="59.0" mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="43.0" prefWidth="102.0" text="Team" />
       <Button fx:id="coachButton" layoutX="300.0" layoutY="59.0" mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="43.0" prefWidth="102.0" text="Coach" />
       <Button fx:id="customerButton" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToCustomerMenu" prefHeight="43.0" prefWidth="102.0" text="Customer" />
-      <Button fx:id="recepMenu" layoutX="528.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToRecepMenu" prefHeight="43.0" prefWidth="102.0" text="Receptionist" />
-      <Button layoutX="300.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Connection" />
+      <Button fx:id="recepMenu" layoutX="489.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToRecepMenu" prefHeight="43.0" prefWidth="102.0" text="Receptionist" />
+      <Button fx:id="connectionButton" layoutX="300.0" layoutY="431.0" mnemonicParsing="false" onAction="#goToConnectionMenu" prefHeight="43.0" prefWidth="102.0" text="Connection" />
       <Button fx:id="logout" layoutX="617.0" layoutY="494.0" mnemonicParsing="false" onAction="#backToLogin" text="Log Out" />
+      <Button fx:id="stadiumButton" layoutX="106.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToStadiumMenu" prefHeight="43.0" prefWidth="102.0" text="Stadium" />
+      <Button fx:id="subscriptionButton" layoutX="300.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToSubscriptionButton" prefHeight="43.0" prefWidth="102.0" text="Subscription" />
+      <Button fx:id="trophyButton" layoutX="489.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToTrophyMenu" prefHeight="43.0" prefWidth="102.0" text="Trophy" />
+      <Button fx:id="matchButton" layoutX="106.0" layoutY="431.0" mnemonicParsing="false" onAction="#goToMatchMenu" prefHeight="43.0" prefWidth="102.0" text="Match" />
    </children>
 </AnchorPane>
