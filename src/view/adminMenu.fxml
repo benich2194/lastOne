@@ -17,7 +17,7 @@
       <Button fx:id="teamMenuButton" layoutX="528.0" layoutY="59.0" mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="43.0" prefWidth="102.0" text="Team" />
       <Button fx:id="coachButton" layoutX="300.0" layoutY="59.0" mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="43.0" prefWidth="102.0" text="Coach" />
       <Button fx:id="customerButton" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToCustomerMenu" prefHeight="43.0" prefWidth="102.0" text="Customer" />
-      <Button layoutX="528.0" layoutY="174.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Receptionist" />
+      <Button fx:id="recepMenu" layoutX="528.0" layoutY="174.0" mnemonicParsing="false" onAction="#goToRecepMenu" prefHeight="43.0" prefWidth="102.0" text="Receptionist" />
       <Button layoutX="300.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="102.0" text="Connection" />
       <Button fx:id="logout" layoutX="617.0" layoutY="494.0" mnemonicParsing="false" onAction="#backToLogin" text="Log Out" />
    </children>
