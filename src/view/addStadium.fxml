@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -29,6 +29,6 @@
       <TextField fx:id="capacity" alignment="CENTER" layoutX="524.0" layoutY="190.0" promptText="Capacity" />
       <TextField fx:id="houseNumber" alignment="CENTER" layoutX="276.0" layoutY="190.0" promptText="House Number" />
       <Button fx:id="submit" layoutX="276.0" layoutY="471.0" mnemonicParsing="false" onAction="#addStadium" prefHeight="55.0" prefWidth="149.0" text="Submit" />
-      <ChoiceBox fx:id="cityList" layoutX="276.0" layoutY="263.0" prefWidth="150.0" />
+      <ComboBox fx:id="cityList" layoutX="276.0" layoutY="310.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
