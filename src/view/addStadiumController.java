@@ -74,13 +74,14 @@ public class addStadiumController extends Main {
     	primaryStage.show();
     }
     public void initialize() {
-    	System.out.println("Im here");
     	cityList.getItems().addAll(E_Cities.values());
     }
     
     @FXML
     void addStadium(ActionEvent event) {
-
+    	String ID=id.getText();
+    	
+    	
     }
 
 }

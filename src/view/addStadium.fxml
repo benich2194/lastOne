@@ -23,7 +23,7 @@
          </font>
       </Label>
       <TextField fx:id="id" alignment="CENTER" layoutX="24.0" layoutY="84.0" promptText="id" />
-      <TextField fx:id="name" alignment="CENTER" layoutX="276.0" layoutY="84.0" promptText="Name" />
+      <TextField fx:id="name" alignment="CENTER" layoutX="213.0" layoutY="84.0" promptText="First Name" />
       <TextField fx:id="phone" alignment="CENTER" layoutX="524.0" layoutY="84.0" promptText="Phone Number" />
       <TextField fx:id="street" alignment="CENTER" layoutX="24.0" layoutY="190.0" promptText="Street" />
       <TextField fx:id="capacity" alignment="CENTER" layoutX="524.0" layoutY="190.0" promptText="Capacity" />
