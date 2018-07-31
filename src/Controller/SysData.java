@@ -48,7 +48,6 @@ public class SysData implements Serializable{
 	private HashSet<Trophy> trophies;
 	
         
-        private HashMap<String,String> admins;
         private HashMap<String,String> recep;
         private HashMap<String,String> coach;
         private HashMap<String,String> customer;
@@ -64,11 +63,10 @@ public class SysData implements Serializable{
 		matches = new HashMap<>();
 		trophies = new HashSet<>();
                 
-                admins=new HashMap<>();
                 recep=new HashMap<>();
                 coach=new HashMap<>();
                 customer=new HashMap<>();
-                admins.put("admin","admin");
+                
 	}
 
 	// -----------------------------------------Getters--------------------------------------
@@ -100,9 +98,6 @@ public class SysData implements Serializable{
 		return matches;
 	}
         
-        public HashMap<String, String> getAdmins() {
-		return admins;
-	}
 
 	public static SysData getInstance() {
 		if (instance == null) 
@@ -183,13 +178,7 @@ public class SysData implements Serializable{
 		return false;
 	} // ~ END OF addStadium
         
-        	/**
-	 * This method adds a new Admin to the admins hashmap
-	 *
-         */
-        public void addAdmin(String email, String password){
-            admins.put(email, password);
-        }
+      
         
 	/**
 	 * This method adds a new team to the JavaLeague
