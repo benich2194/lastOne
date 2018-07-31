@@ -19,7 +19,7 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
-	protected static SysData sysData;
+	
 	
 	public void start(Stage primaryStage) {
 		try {
@@ -36,33 +36,10 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		sysData = SysData.getInstance();
-		deserialize("sysData.ser");
+		SysData.deserialize();
 		launch(args);
+		SysData.getInstance().serialize();
 	}
 
-	private static void serialize(String string, SysData sysData2) throws Exception{
-		try{
-			FileOutputStream fileOut = new FileOutputStream(string);
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(sysData);
-			out.close();
-			fileOut.close();
-		}
-	catch (Exception e) {
-		e.printStackTrace();
-	}
 	
-	}
-	private static void deserialize(String fileName) {
-		
-		try {
-			FileInputStream fileIn = new FileInputStream(fileName);
-		    ObjectInputStream in = new ObjectInputStream(fileIn);
-		    in.close();
-		    fileIn.close();
-		} catch(IOException i) {
-		    i.printStackTrace();
-		}
-	}
 }

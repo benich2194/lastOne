@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import utils.E_Cities;
@@ -10,7 +11,11 @@ import utils.E_Cities;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Address {
+public class Address implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6498902946694776310L;
 	// -------------------------------Class Members------------------------------
 	private E_Cities city;
 	private String country;

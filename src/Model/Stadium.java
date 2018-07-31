@@ -2,6 +2,7 @@ package Model;
 
 import utils.Constants;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,11 @@ import java.util.Set;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Stadium {
+public class Stadium implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5245134861511867239L;
 	// -------------------------------Class Members------------------------------
 	private int id;
 	private String name;

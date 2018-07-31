@@ -3,6 +3,11 @@ package Controller;
 import Model.*;
 import utils.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
@@ -15,6 +20,10 @@ import java.util.*;
  */
 @SuppressWarnings("rawtypes")
 public class SysData implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5666565707963024903L;
 	// -------------------------------Class Members------------------------------
 	private static SysData instance;
 	public HashMap<String, String> getRecep() {
@@ -100,7 +109,54 @@ public class SysData implements Serializable{
 			instance = new SysData();
 		return instance;
 	}
-
+	public boolean serialize() throws IOException{
+	FileOutputStream fileOut=null;
+	ObjectOutputStream out=null;
+	try {
+		fileOut=new FileOutputStream("SysData.ser");
+		out=new ObjectOutputStream(fileOut);
+		out.writeObject(instance);
+		System.out.println("Serialized data is saved in the project folder as SysData.ser");
+		return true;
+	}catch(IOException e) {
+		e.printStackTrace();
+		return false;
+	}finally {
+		if(out!=null) {
+			out.close();
+		}
+		if(fileOut!=null) {
+			fileOut.close();
+		}
+	}
+	}
+	public static SysData deserialize() throws IOException {
+		
+			SysData recovered=null;
+			FileInputStream fileIn=null;
+			ObjectInputStream in=null;
+			try {
+				fileIn=new FileInputStream("SysData.ser");
+				in=new ObjectInputStream(fileIn);
+				instance=(SysData) in.readObject();
+				return instance;
+			
+			}catch(IOException E) {
+				System.out.println("The file SysData.ser was not found");
+				return null;
+			}
+		    catch(ClassNotFoundException e) {
+		    	e.printStackTrace();
+		    	return null;
+		    }finally {
+		    	if(in!=null){
+		    		in.close();
+		    	}
+		    	if(fileIn!=null) {
+		    		fileIn.close();
+		    	}
+		    }
+	}
 	// -------------------------------Add && Remove Methods------------------------------
 	/**
 	 * This method adds a new stadium to the JavaLeague

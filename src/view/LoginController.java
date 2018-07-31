@@ -4,6 +4,8 @@ package view;
 
 import java.io.IOException;
 
+import Controller.SysData;
+import Model.Stadium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,8 +41,7 @@ public class LoginController extends Main{
     void GoToMenu(ActionEvent event) throws Exception {
     	String user=email.getText();
     	String pass=password.getText();
-    	if(sysData.getAdmins().containsKey(user)) {
-    		if(sysData.getAdmins().get(user).equals(pass)) {
+    		if(user.equals("admin")&&pass.equals("admin")) {
     			Stage stage=(Stage)login.getScene().getWindow();
     			stage.close();
     	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
@@ -50,7 +51,6 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
-    	}
     	else {
     		Stage stage=(Stage)login.getScene().getWindow();
 			stage.close();

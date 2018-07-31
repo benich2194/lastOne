@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 import org.omg.CORBA.INITIALIZE;
 
+import Controller.SysData;
+import Model.Stadium;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,9 +80,17 @@ public class addStadiumController extends Main {
     }
     
     @FXML
-    void addStadium(ActionEvent event) {
-    	String ID=id.getText();
-    	
+    void addStadium(ActionEvent event) throws Exception {
+    	Integer ID=Integer.parseInt(id.getText());
+    	String NAME=name.getText();
+    	Integer HOUSENUM=Integer.parseInt(houseNumber.getText());
+    	Integer CAPACITY=Integer.parseInt(capacity.getText());
+    	String PHONE=phone.getText();
+    	E_Cities c=cityList.getSelectionModel().getSelectedItem();
+    	String STREET=street.getText();
+    	String[] phoneArr=new String[1];
+    	phoneArr[0]=PHONE;
+    	SysData.getInstance().addStadium(ID, NAME, CAPACITY, c, STREET, HOUSENUM, phoneArr);
     	
     }
 
