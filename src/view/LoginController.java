@@ -40,7 +40,7 @@ public class LoginController extends Main{
     		if(user.equals("admin")&&pass.equals("admin")) {
     			Stage stage=(Stage)login.getScene().getWindow();
     			stage.close();
-    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
+    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
     	    	Stage primaryStage=new Stage();
     	    	Parent root=load.load();
     	    	Scene scene=new Scene(root);

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminMenuController">
+   <children>
+      <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../main.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Administration">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToCoachPage" onMouseClicked="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Coach">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToTeamPage" onMouseClicked="#goToTeamPage" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Team">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToTeamPage" onMouseClicked="#goToPlayerMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Player">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToCustomerMenu" onMouseClicked="#goToCustomerMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Customer">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToRecepMenu" onMouseClicked="#goToRecepMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Receptionist">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToStadiumMenu" onMouseClicked="#goToStadiumMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Stadium">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToSubscriptionButton" onMouseClicked="#goToSubscriptionButton" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Subscription">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToTrophyMenu" onMouseClicked="#goToTrophyMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Trophy">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#goToMatchMenu" onMouseClicked="#goToMatchMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Match">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#goToConnectionMenu" onMouseClicked="#goToConnectionMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Connection">
+               <effect>
+                  <Glow />
+               </effect></Button>
+         </children>
+      </VBox>
+      <FlowPane fx:id="menupane" layoutX="240.0" layoutY="43.0" prefHeight="582.0" prefWidth="700.0" />
+   </children>
+</AnchorPane>
