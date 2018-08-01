@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -12,7 +13,11 @@ import utils.E_Levels;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Coach extends Employee {
+public class Coach extends Employee implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8942513137021909081L;
 	// -------------------------------Class Members------------------------------
 	private Team currentTeam;
 	private E_Levels level;
