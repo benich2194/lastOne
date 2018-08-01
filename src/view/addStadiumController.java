@@ -17,12 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -81,6 +83,11 @@ public class addStadiumController extends Main {
     
     @FXML
     void addStadium(ActionEvent event) throws Exception {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		
+		alert.setTitle("Add Stadium");
+	
+		alert.setHeaderText("");
     	Integer ID=Integer.parseInt(id.getText());
     	String NAME=name.getText();
     	Integer HOUSENUM=Integer.parseInt(houseNumber.getText());
@@ -90,7 +97,24 @@ public class addStadiumController extends Main {
     	String STREET=street.getText();
     	String[] phoneArr=new String[1];
     	phoneArr[0]=PHONE;
-    	SysData.getInstance().addStadium(ID, NAME, CAPACITY, c, STREET, HOUSENUM, phoneArr);
+    	if(SysData.getInstance().getStadiums().containsKey(ID)) {
+    		alert.setHeaderText("Unable to add stadium");
+    		alert.setContentText("Stadium with the same ID already exists.");
+    		alert.show();
+    	}
+    	else {
+    		SysData.getInstance().addStadium(ID, NAME, CAPACITY, c, STREET, HOUSENUM, phoneArr);
+        	if(SysData.getInstance().getStadiums().containsKey(ID)) {
+        		alert.setHeaderText("Added Stadium");
+        		alert.setContentText("Stadium was added succesfully");
+        		alert.show();
+        	}
+        	else {
+        		alert.setHeaderText("Unable to add stadium");
+        		alert.setContentText("Stadium wasn't added to stadiums.");
+        		alert.show();
+        	}
+    	}
     	
     }
 
