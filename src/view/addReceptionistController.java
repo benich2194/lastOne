@@ -61,7 +61,7 @@ public class addReceptionistController {
     @FXML
     void addRecep(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Add Coach");
+		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
     	Integer id=Integer.parseInt(recepId.getText());
     	String first=firstName.getText();

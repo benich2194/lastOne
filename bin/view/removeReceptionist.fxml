@@ -22,6 +22,6 @@
          </font>
       </Label>
       <ComboBox fx:id="recepList" layoutX="165.0" layoutY="93.0" prefHeight="25.0" prefWidth="405.0" promptText="Choose receptionist to remove:" />
-      <Button fx:id="removeButton" layoutX="285.0" layoutY="437.0" mnemonicParsing="false" onAction="#removeReceptionist" prefHeight="50.0" prefWidth="151.0" text="Remove Coach" />
+      <Button fx:id="removeButton" layoutX="285.0" layoutY="437.0" mnemonicParsing="false" onAction="#removeReceptionist" prefHeight="50.0" prefWidth="151.0" text="Remove Receptionist" />
    </children>
 </AnchorPane>
