@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import utils.Constants;
@@ -11,7 +12,11 @@ import utils.E_Levels;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Team {
+public class Team implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7216260411613046779L;
 	// -------------------------------Class Members------------------------------
 	private int id;
 	private String name;
