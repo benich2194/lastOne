@@ -61,6 +61,9 @@ public class removeCoachController {
     	}
     }
     public void initialize() {
-    		coachList.getItems().addAll(SysData.getInstance().getCoachs().values());
+    		if(SysData.getInstance().getCoachs().size()>0) {
+    			coachList.getItems().addAll(SysData.getInstance().getCoachs().values());
+    		}
+    		
     }
 }

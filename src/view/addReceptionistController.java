@@ -92,6 +92,10 @@ public class addReceptionistController {
 	    	}
     	}
     }
+    public void initialize() {
+  		recepCity.getItems().addAll(E_Cities.values());
+  		
+  }
     @FXML
     void goBack(ActionEvent event) throws IOException {
     	Stage stage=(Stage)addReceptionist.getScene().getWindow();
