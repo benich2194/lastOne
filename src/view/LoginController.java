@@ -1,26 +1,19 @@
 package view;
 
 
-
 import java.io.IOException;
-
 import Controller.SysData;
-import Model.Stadium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-
-
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.AnchorPane;
+
 
 public class LoginController extends Main{
 
@@ -36,6 +29,9 @@ public class LoginController extends Main{
 
     @FXML
     private Button SignIn;
+    
+    @FXML
+    private Button SignUp;
 
     @FXML
     void GoToMenu(ActionEvent event) throws Exception {
@@ -51,11 +47,11 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
-    	else {
-    		Stage stage=(Stage)login.getScene().getWindow();
-			stage.close();
-    		System.out.println("wrong password");
-    	}
+    		else {
+    			Stage stage=(Stage)login.getScene().getWindow();
+    			stage.close();
+    			System.out.println("wrong password");
+    		}
     	
     }
 

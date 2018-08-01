@@ -36,6 +36,7 @@
                   <Reflection />
                </effect></TextField>
             <Button fx:id="SignIn" blendMode="MULTIPLY" layoutX="196.0" layoutY="322.0" mnemonicParsing="false" onAction="#GoToMenu" prefHeight="38.0" prefWidth="310.0" />
+            <Button fx:id="SignUp" blendMode="MULTIPLY" layoutX="196.0" layoutY="430.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="310.0" textFill="#ebe4e417" />
          </children>
       </Pane>
    </children>
