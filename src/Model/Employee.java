@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +11,11 @@ import java.util.Date;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public abstract class Employee implements Comparable<Employee> {
+public abstract class Employee implements Comparable<Employee>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2420355903838936935L;
 	// -------------------------------Class  Members------------------------------
 	private int id;
 	private String firstName;

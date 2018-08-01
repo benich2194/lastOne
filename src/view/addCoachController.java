@@ -62,7 +62,7 @@ public class addCoachController {
 	    private Button addButton;
 
 	    @FXML
-	    void addCoach(ActionEvent event) {
+	    void addCoach(ActionEvent event) throws IOException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
