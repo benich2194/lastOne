@@ -1,16 +1,21 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property 
 AnchorPane{
 	-fx-background-image: url("https://ak5.picdn.net/shutterstock/videos/12319925/thumb/1.jpg") 
-	
 }
-Buutton{
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
+* */
+.menuButton{
     -fx-background-color: transparent;
-    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 1em; /* 12 */
-    -fx-text-fill: #828282;
+	-fx-text-fill: white;
+	-fx-pref-width: 195;
+	-fx-pref-height: 26;
+}
+.menuButton:hover{
+	 -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-opacity: 50%;
+    -fx-background-insets: 0;
+    -fx-text-fill: #2196f3;
+    
 }
 TextField{
 	-fx-background-color: transparent;

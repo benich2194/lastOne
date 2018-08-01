@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 
 import Controller.SysData;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -25,10 +26,14 @@ public class Main extends Application {
 		try {
 			
 			Pane root = (Pane)FXMLLoader.load(getClass().getResource("login.fxml"));
-			Scene scene = new Scene(root,640,480);
+			Scene scene = new Scene(root,800,600);
+			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
+			
+			scene.getWindow().centerOnScreen();
 			primaryStage.setResizable(false);
 		} catch(Exception e) {
 			e.printStackTrace();

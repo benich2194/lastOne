@@ -2,6 +2,7 @@ package view;
 
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,12 +29,18 @@ public class AdminMenuController implements Initializable{
     {
     	Parent root = null;
     	try {
+    		System.out.println("Attempting to open " + ui + ".fxml");
+    		System.out.println(getClass().getResource(ui+".fxml").toURI().toString());
         	root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
-    	} catch (IOException ex) {
-    		Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+    	} catch (IOException | URISyntaxException ex) {
+    		System.out.println("Catch caught");
+    		ex.printStackTrace();
+//    		Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
     	}
+    	
     	menupane.getChildren().removeAll();
     	menupane.getChildren().setAll(root);
+    	System.out.println("Finished loadUI");
     }
     
     @FXML

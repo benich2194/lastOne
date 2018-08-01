@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminMenuController">
+
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminMenuController">
+
    <children>
       <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,7 +20,7 @@
       </ImageView>
       <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Administration">
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Administration">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -26,7 +28,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToCoachPage" onMouseClicked="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Coach">
+            <Button mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Coach">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -34,7 +36,8 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToTeamPage" onMouseClicked="#goToTeamPage" prefHeight="11.0" prefWidth="182.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Team">
+
+            <Button mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Team">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -42,7 +45,8 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToPlayerMenu" onMouseClicked="#goToPlayerMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Player">
+
+            <Button mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Player">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -50,7 +54,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToCustomerMenu" onMouseClicked="#goToCustomerMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Customer">
+            <Button mnemonicParsing="false" onAction="#goToCustomerMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Customer">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -58,7 +62,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToRecepMenu" onMouseClicked="#goToRecepMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Receptionist">
+            <Button mnemonicParsing="false" onAction="#goToRecepMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Receptionist">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -66,7 +70,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToStadiumMenu" onMouseClicked="#goToStadiumMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Stadium">
+            <Button mnemonicParsing="false" onAction="#goToStadiumMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Stadium">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -74,7 +78,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToSubscriptionButton" onMouseClicked="#goToSubscriptionButton" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Subscription">
+            <Button mnemonicParsing="false" onAction="#goToSubscriptionButton" styleClass="menuButton" text="Subscription">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -82,15 +86,15 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToTrophyMenu" onMouseClicked="#goToTrophyMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Trophy">
+            <Button mnemonicParsing="false" onAction="#goToTrophyMenu" styleClass="menuButton" text="Trophy">
                <effect>
                   <Glow />
                </effect></Button>
-            <Button mnemonicParsing="false" onAction="#goToMatchMenu" onMouseClicked="#goToMatchMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Match">
+            <Button mnemonicParsing="false" onAction="#goToMatchMenu" styleClass="menuButton" text="Match">
                <effect>
                   <Glow />
                </effect></Button>
-            <Button mnemonicParsing="false" onAction="#goToConnectionMenu" onMouseClicked="#goToConnectionMenu" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Connection">
+            <Button mnemonicParsing="false" onAction="#goToConnectionMenu" styleClass="menuButton" text="Connection">
                <effect>
                   <Glow />
                </effect></Button>

@@ -2,6 +2,7 @@ package view;
 
 
 import java.io.IOException;
+
 import Controller.SysData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +11,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 
 
 public class LoginController extends Main{
 
+	public static Boolean override = true;
 
     @FXML
     private AnchorPane login;
@@ -33,17 +40,47 @@ public class LoginController extends Main{
     @FXML
     private Button SignUp;
 
+    @FXML // fx:id="exitImage"
+    private ImageView exitImage; // Value injected by FXMLLoader
+
+    @FXML
+    void ExitProgram(MouseEvent event) {
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    	alert.showAndWait();
+
+    	if (alert.getResult() == ButtonType.YES) {
+        	System.exit(0);
+    	}
+    	else
+    	{
+    		alert = new Alert(AlertType.INFORMATION, "Good choice!");
+        	alert.showAndWait();
+    	}
+    }
+    
     @FXML
     void GoToMenu(ActionEvent event) throws Exception {
     	String user=email.getText();
     	String pass=password.getText();
+    	
+    	if(override)
+    	{
+    		user = "admin";
+    		pass = "admin";
+    	}
     		if(user.equals("admin")&&pass.equals("admin")) {
     			Stage stage=(Stage)login.getScene().getWindow();
     			stage.close();
     	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
+    	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+    	    	
     	    	Stage primaryStage=new Stage();
     	    	Parent root=load.load();
     	    	Scene scene=new Scene(root);
+    	    	
+    			scene.getStylesheets()
+    					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
