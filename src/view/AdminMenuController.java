@@ -40,6 +40,12 @@ public class AdminMenuController implements Initializable{
 		return menupane;
 	}
 
+
+    @FXML
+    private void goToAdminControl(ActionEvent event) {
+        loadUI("administratorMenu");
+    }
+    
 	@FXML
     private void GoToCoachPage(ActionEvent event) {
     	loadUI("coachModif");
