@@ -11,13 +11,13 @@
 
 <AnchorPane fx:id="recepMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.receptionistMenuAdminController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0" style="-fx-opacity: 0;">
+      <ImageView fitHeight="550.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="addRecep" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddRecep" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Receptionist" />
-      <Button fx:id="removeRecep" layoutX="285.0" layoutY="260.0" mnemonicParsing="false" onAction="#goToRemoveRecep" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Receptionist" />
+      <Button fx:id="removeRecep" layoutX="285.0" layoutY="264.0" mnemonicParsing="false" onAction="#goToRemoveRecep" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Receptionist" />
       <Button fx:id="modRecep" layoutX="285.0" layoutY="177.0" mnemonicParsing="false" onAction="#goToModifyRecep" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Receptionist" />
    </children>
 </AnchorPane>
