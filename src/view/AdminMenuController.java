@@ -90,7 +90,7 @@ public class AdminMenuController implements Initializable{
 
     @FXML
     private void goToConnectionMenu(ActionEvent event) {
-    	//loadUI("teamMenu");
+    	loadUI("connectionMenu");
     }
    
 

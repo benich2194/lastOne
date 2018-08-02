@@ -41,8 +41,15 @@ public class connectionMenuController {
     private Button cusMatch;
 
     @FXML
-    void addCoachToTeam(ActionEvent event) {
-    	
+    void addCoachToTeam(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)cusMatch.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachToTeam.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
 
     @FXML
