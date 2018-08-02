@@ -1,8 +1,6 @@
 package view;
 
-
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,14 +23,13 @@ public class AdminMenuController implements Initializable{
 		
 	}
 	
-    private void loadUI(String ui)
+    public void loadUI(String ui)
     {
     	Parent root = null;
     	try {
     		System.out.println("Attempting to open " + ui + ".fxml");
-    		System.out.println(getClass().getResource(ui+".fxml").toURI().toString());
         	root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
-    	} catch (IOException | URISyntaxException ex) {
+    	} catch (Exception ex) {
     		System.out.println("Catch caught");
     		ex.printStackTrace();
 //    		Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
@@ -40,10 +37,13 @@ public class AdminMenuController implements Initializable{
     	
     	menupane.getChildren().removeAll();
     	menupane.getChildren().setAll(root);
-    	System.out.println("Finished loadUI");
     }
     
-    @FXML
+    public FlowPane getMenupane() {
+		return menupane;
+	}
+
+	@FXML
     private void GoToCoachPage(ActionEvent event) {
     	loadUI("coachModif");
     }

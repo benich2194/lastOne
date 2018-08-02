@@ -1,3 +1,6 @@
+body{
+	-fx-background-color: transparent;
+}
 Button {
     -fx-background-color: 
         #c3c4c4,
