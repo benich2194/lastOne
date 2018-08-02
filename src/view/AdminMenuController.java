@@ -27,18 +27,12 @@ public class AdminMenuController implements Initializable{
     {
     	Parent root = null;
     	try {
-    		System.out.println("Attempting to open " + ui + ".fxml");
         	root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
+    		menupane.getChildren().removeAll();
+    		menupane.getChildren().setAll(root);
     	} catch (Exception ex) {
     		System.out.println("Catch caught");
     		ex.printStackTrace();
-//    		Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
-    	}
-    	if(menupane.getChildren()!=null) {
-    		menupane.getChildren().removeAll();
-    	}
-    	if(menupane.getChildren()!=null) {
-    		menupane.getChildren().setAll(root);
     	}
     }
     
