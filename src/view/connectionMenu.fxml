@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="connectionMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.connectionMenuController">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="701.0">
+         <image>
+            <Image url="@../../Soccer-Stadium.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="coachTeam" layoutX="106.0" layoutY="59.0" mnemonicParsing="false" onAction="#addCoachToTeam" prefHeight="43.0" prefWidth="102.0" text="Coach to Team" />
+      <Button fx:id="playerMenuButton" blendMode="SRC_ATOP" layoutX="67.0" layoutY="174.0" mnemonicParsing="false" onAction="#addReceptionistToStadium" prefHeight="43.0" prefWidth="157.0" text="Receptionist To Stadium" />
+      <Button fx:id="playerFirst" layoutX="489.0" layoutY="59.0" mnemonicParsing="false" onAction="#addPlayerToFirstTeamPlayers" prefHeight="43.0" prefWidth="178.0" text="Player to First Team Players" />
+      <Button fx:id="playerTeam" layoutX="300.0" layoutY="59.0" mnemonicParsing="false" onAction="#addPlayerToTeam" prefHeight="43.0" prefWidth="102.0" text="Player to Team" />
+      <Button fx:id="cusSub" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onAction="#addSubscriptionToCustomer" prefHeight="43.0" prefWidth="164.0" text="Subscription To Customer" />
+      <Button fx:id="addMatch" layoutX="489.0" layoutY="174.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="43.0" prefWidth="102.0" text="add Match" />
+      <Button fx:id="logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="back" />
+      <Button fx:id="cusMatch" layoutX="300.0" layoutY="289.0" mnemonicParsing="false" onAction="#addCustomerToMatch" prefHeight="43.0" prefWidth="157.0" text="Customer to Match" />
+   </children>
+</AnchorPane>
