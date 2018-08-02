@@ -343,8 +343,10 @@ public class SysData implements Serializable{
 				Team team = teams.get(teamId);
 
 				if (coach.getCurrentTeam() != null) {
-					if (coach.getCurrentTeam().equals(team))
-						return false;
+					
+					if (coach.getCurrentTeam().equals(team)) {
+					}
+						
 					
 					if (team.registerCoach(coach)) {
 						return coach.transferTo(team);
@@ -357,6 +359,7 @@ public class SysData implements Serializable{
 				}
 			}
 		}
+
 		return false;
 	}// ~ END OF addCoachToTeam
 

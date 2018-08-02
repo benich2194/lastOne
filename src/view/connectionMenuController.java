@@ -68,8 +68,15 @@ public class connectionMenuController {
     }
 
     @FXML
-    void addPlayerToTeam(ActionEvent event) {
-
+    void addPlayerToTeam(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)cusMatch.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerToTeam.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
 
     @FXML

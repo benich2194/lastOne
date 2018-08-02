@@ -37,12 +37,12 @@ public class CoachModifController {
     	primaryStage.setScene(scene);
     	primaryStage.show();
     	
-//    	try {
-//			AdminMenuController ad = new AdminMenuController();
-//			ad.loadUI("/view/addCoach");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+    	/*try {
+			AdminMenuController ad = new AdminMenuController();
+			ad.loadUI("/view/addCoach");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
     }
     
     @FXML

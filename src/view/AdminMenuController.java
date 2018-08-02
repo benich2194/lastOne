@@ -34,9 +34,12 @@ public class AdminMenuController implements Initializable{
     		ex.printStackTrace();
 //    		Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
     	}
-    	
-    	menupane.getChildren().removeAll();
-    	menupane.getChildren().setAll(root);
+    	if(menupane.getChildren()!=null) {
+    		menupane.getChildren().removeAll();
+    	}
+    	if(menupane.getChildren()!=null) {
+    		menupane.getChildren().setAll(root);
+    	}
     }
     
     public FlowPane getMenupane() {
