@@ -95,7 +95,10 @@ public class AdminMenuController implements Initializable{
     private void goToConnectionMenu(ActionEvent event) {
     	loadUI("connectionMenu");
     }
-   
+    @FXML
+    void goToQueries(ActionEvent event) {
+    	loadUI("queries");
+    }
 
 }
 
