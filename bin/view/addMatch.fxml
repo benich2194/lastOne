@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="addMatch" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addMatchController">
+<AnchorPane fx:id="addMatch" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addMatchController">
    <children>
       <ImageView fitHeight="550.0" fitWidth="701.0">
          <image>
@@ -13,5 +16,13 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <TextField fx:id="matchId" alignment="CENTER" layoutX="276.0" layoutY="70.0" promptText="Match ID" />
+      <DatePicker layoutX="264.0" layoutY="106.0" promptText="Match Date" />
+      <TextField fx:id="Extra" alignment="CENTER" layoutX="277.0" layoutY="149.0" promptText="Extra Time" />
+      <ComboBox fx:id="Home" layoutX="276.0" layoutY="190.0" prefWidth="150.0" promptText="Home Team:" />
+      <ComboBox fx:id="Away" layoutX="277.0" layoutY="233.0" prefWidth="150.0" promptText="Away Team:" />
+      <TextField fx:id="homeS" alignment="CENTER" layoutX="276.0" layoutY="275.0" promptText="Home Score" />
+      <TextField fx:id="awayS" alignment="CENTER" layoutX="276.0" layoutY="315.0" promptText="Away Score" />
+      <Button fx:id="addButton" layoutX="291.0" layoutY="438.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="46.0" prefWidth="115.0" text="Add Match" />
    </children>
 </AnchorPane>
