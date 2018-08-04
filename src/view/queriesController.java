@@ -8,5 +8,4 @@ public class queriesController {
     @FXML
     private AnchorPane queries;
 
-
 }
