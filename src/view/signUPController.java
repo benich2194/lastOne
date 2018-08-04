@@ -65,34 +65,13 @@ public class signUPController {
     	else {
     		switch(typeList.getSelectionModel().getSelectedItem()) {
         	case "Coach":
-        		if(!SysData.getInstance().getPending().containsKey("Coach")) {
-        			HashMap<String,String> c=new HashMap<String,String>();
-        			c.put(user, password);
-        			SysData.getInstance().getPending().put("Coach", c);
-        		}
-        		else {
-        			SysData.getInstance().getPending().get("Coach").put(user, password);
-        		}
+        		SysData.getInstance().getCoach().put(user, password);
         		break;
         	case "Receptionist":
-        		if(!SysData.getInstance().getPending().containsKey("Receptionist")) {
-        			HashMap<String,String> c=new HashMap<String,String>();
-        			c.put(user, password);
-        			SysData.getInstance().getPending().put("Receptionist", c);
-        		}
-        		else {
-        			SysData.getInstance().getPending().get("Receptionist").put(user, password);
-        		}
+        		SysData.getInstance().getRecep().put(user, password);
         		break;
         	case "Customer":
-        		if(!SysData.getInstance().getPending().containsKey("Customer")) {
-        			HashMap<String,String> c=new HashMap<String,String>();
-        			c.put(user, password);
-        			SysData.getInstance().getPending().put("Customer", c);
-        		}
-        		else {
-        			SysData.getInstance().getPending().get("Customer").put(user, password);
-        		}
+        		SysData.getInstance().getCustomer().put(user, password);
         		break;
     	}
     	

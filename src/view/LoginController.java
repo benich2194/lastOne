@@ -60,6 +60,9 @@ public class LoginController extends Main{
     
     @FXML
     void GoToMenu(ActionEvent event) throws Exception {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Login");
+		alert.setHeaderText("");
     	String user=email.getText();
     	String pass=password.getText();
     	
@@ -69,6 +72,7 @@ public class LoginController extends Main{
     		pass = "admin";
     	}
     		if(user.equals("admin")&&pass.equals("admin")) {
+    			
     			Stage stage=(Stage)login.getScene().getWindow();
     			stage.close();
     	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
@@ -84,10 +88,85 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
+    		else if(SysData.getInstance().getCoach().containsKey(user)) {
+    			if(SysData.getInstance().getCoach().get(user).equals(pass)) {
+    				Stage stage=(Stage)login.getScene().getWindow();
+        			stage.close();
+        	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
+        	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+        	    	
+        	    	Stage primaryStage=new Stage();
+        	    	Parent root=load.load();
+        	    	Scene scene=new Scene(root);
+        	    	
+        			scene.getStylesheets()
+        					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+        	    	primaryStage.setScene(scene);
+        	    	primaryStage.show();
+    				
+    			}
+    			else {
+    				alert.setHeaderText("failed to logim.");
+            		alert.setContentText("wrong username/password");
+            		alert.show();
+    			}
+    			
+    		}
+    		else if(SysData.getInstance().getRecep().containsKey(user)) {
+    			if(SysData.getInstance().getRecep().get(user).equals(pass)) {
+    				Stage stage=(Stage)login.getScene().getWindow();
+        			stage.close();
+        	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
+        	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+        	    	
+        	    	Stage primaryStage=new Stage();
+        	    	Parent root=load.load();
+        	    	Scene scene=new Scene(root);
+        	    	
+        			scene.getStylesheets()
+        					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+        	    	primaryStage.setScene(scene);
+        	    	primaryStage.show();
+    				
+    			}
+    			else {
+    				alert.setHeaderText("failed to logim.");
+            		alert.setContentText("wrong username/password");
+            		alert.show();
+    			}
+    			
+    		}
+    		else if(SysData.getInstance().getCustomer().containsKey(user)) {
+    			if(SysData.getInstance().getCustomer().get(user).equals(pass)) {
+    				Stage stage=(Stage)login.getScene().getWindow();
+        			stage.close();
+        	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/AdminMenuSidebar.fxml"));
+        	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+        	    	
+        	    	Stage primaryStage=new Stage();
+        	    	Parent root=load.load();
+        	    	Scene scene=new Scene(root);
+        	    	
+        			scene.getStylesheets()
+        					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+        	    	primaryStage.setScene(scene);
+        	    	primaryStage.show();
+    				
+    			}
+    			else {
+    				alert.setHeaderText("failed to logim.");
+            		alert.setContentText("wrong username/password");
+            		alert.show();
+    			}
+    			
+    		}
     		else {
-    			Stage stage=(Stage)login.getScene().getWindow();
-    			stage.close();
-    			System.out.println("wrong password");
+    			alert.setHeaderText("failed to logim.");
+        		alert.setContentText("wrong username/password");
+        		alert.show();
     		}
     	
     }
