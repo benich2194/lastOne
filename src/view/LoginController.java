@@ -91,6 +91,17 @@ public class LoginController extends Main{
     		}
     	
     }
+    @FXML
+    void register(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)SignIn.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/signUP.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
 
 }
 

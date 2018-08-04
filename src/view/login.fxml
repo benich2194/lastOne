@@ -25,7 +25,7 @@
             </TextField>
             <PasswordField fx:id="password" blendMode="MULTIPLY" layoutX="227.0" layoutY="262.0" prefHeight="48.0" prefWidth="353.0" />
             <Button fx:id="SignIn" blendMode="MULTIPLY" layoutX="225.0" layoutY="353.0" mnemonicParsing="false" onAction="#GoToMenu" prefHeight="38.0" prefWidth="353.0" />
-            <Button fx:id="SignUp" blendMode="MULTIPLY" layoutX="227.0" layoutY="469.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="353.0" textFill="#ebe4e417" />
+            <Button fx:id="SignUp" blendMode="MULTIPLY" layoutX="227.0" layoutY="469.0" mnemonicParsing="false" onAction="#register" prefHeight="38.0" prefWidth="353.0" textFill="#ebe4e417" />
             <ImageView fx:id="exitImage" fitHeight="48.0" fitWidth="44.0" layoutX="742.0" layoutY="14.0" onMouseClicked="#ExitProgram" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/exit.png" />

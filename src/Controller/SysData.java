@@ -51,6 +51,7 @@ public class SysData implements Serializable{
         private HashMap<String,String> recep;
         private HashMap<String,String> coach;
         private HashMap<String,String> customer;
+        private HashMap<String,HashMap<String,String>> pending;
 
 	// -------------------------------Constructors------------------------------
 	private SysData() {
@@ -66,14 +67,19 @@ public class SysData implements Serializable{
                 recep=new HashMap<>();
                 coach=new HashMap<>();
                 customer=new HashMap<>();
+                pending=new HashMap<>();
+                
                 
 	}
 
+	
 	// -----------------------------------------Getters--------------------------------------
 	public HashMap<Integer, Coach> getCoachs() {
 		return coaches;
 	}
-
+	public HashMap<String, HashMap<String, String>> getPending() {
+		return pending;
+	}
 	public HashMap<Integer, Receptionist> getReceptionists() {
 		return receptionists;
 	}
