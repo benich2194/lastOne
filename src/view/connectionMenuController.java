@@ -53,8 +53,15 @@ public class connectionMenuController {
     }
 
     @FXML
-    void addCustomerToMatch(ActionEvent event) {
-
+    void addCustomerToMatch(ActionEvent event) throws IOException {
+    	Stage stage=(Stage)cusMatch.getScene().getWindow();
+		stage.close();
+    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/cusToMatch.fxml"));
+    	Stage primaryStage=new Stage();
+    	Parent root=load.load();
+    	Scene scene=new Scene(root);
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
 
     @FXML
