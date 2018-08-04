@@ -17,21 +17,22 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TableView fx:id="playerTableView" editable="true" layoutX="24.0" layoutY="76.0" prefHeight="379.0" prefWidth="658.0" style="-fx-opacity: 0.9;">
+      <TableView fx:id="playerTableView" editable="true" layoutX="4.0" layoutY="77.0" prefHeight="393.0" prefWidth="689.0" style="-fx-opacity: 0.9;">
         <columns>
-          <TableColumn editable="false" prefWidth="30.0" text="ID" />
-          <TableColumn prefWidth="79.0" text="First Name" />
-            <TableColumn prefWidth="81.0" text="Last Name" />
-            <TableColumn prefWidth="70.0" text="Birthdate" />
-            <TableColumn prefWidth="84.0" text="Start Work" />
-            <TableColumn prefWidth="63.0" text="Level" />
-            <TableColumn minWidth="0.0" prefWidth="51.0" text="City" />
-            <TableColumn prefWidth="66.0" text="Street" />
-            <TableColumn prefWidth="81.0" text="Phone" />
-            <TableColumn prefWidth="94.0" text="Right Leg Kicker" />
-            <TableColumn prefWidth="75.0" text="Value" />
-            <TableColumn prefWidth="75.0" text="Position" />
+          <TableColumn fx:id="playerID" editable="false" prefWidth="30.0" text="ID" />
+          <TableColumn fx:id="playerFN" prefWidth="33.0" text="First Name" />
+            <TableColumn fx:id="playerLN" prefWidth="64.0" text="Last Name" />
+            <TableColumn fx:id="playerBday" prefWidth="62.0" text="Birthdate" />
+            <TableColumn fx:id="playerSW" prefWidth="75.0" text="Start Work" />
+            <TableColumn fx:id="playerLvl" prefWidth="79.0" text="Level" />
+            <TableColumn fx:id="playerAddress" minWidth="0.0" prefWidth="88.0" text="Address" />
+            <TableColumn fx:id="playerRLK" prefWidth="37.0" text="Right Leg Kicker" />
+            <TableColumn fx:id="playerVal" prefWidth="211.0" text="Value" />
+            <TableColumn fx:id="playerPosition" prefWidth="75.0" text="Position" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>
