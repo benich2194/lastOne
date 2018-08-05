@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
@@ -100,7 +102,7 @@ public class modifyPlayerController {
     }// End of modifyPlayer Constructor
         
     private void MakeEditable() {
-    	
+    	// Make changes by double clicking the Cell and pressing enter after editing
     	// === On Cell edit commit (for FirstName column) ===
     	playerFN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	playerFN.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
@@ -128,9 +130,67 @@ public class modifyPlayerController {
  
             pl.setLastName(newLastName);
         });
+    	
+    	// === On Cell edit commit (for Birthdate column) =====================
+    	playerBday.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+    	playerBday.setCellFactory(column -> {
+    	    TableCell<Player, Date> cell = new TableCell<Player, Date>() {
+    	        private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+    	        @Override
+    	        protected void updateItem(Date item, boolean empty) {
+    	            super.updateItem(item, empty);
+    	            if(empty) {
+    	                setText(null);
+    	            }
+    	            else {
+    	                setText(format.format(item));
+    	            }
+    	        }
+    	    };
+
+    	    return cell;
+    	});
+    	playerBday.setOnEditCommit((CellEditEvent<Player, Date> event) -> {
+            TablePosition<Player, Date> pos = event.getTablePosition();
+ 
+            Date newDate = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+ 
+            pl.setBirthdate(newDate);
+        });
+    	
+    	// === On Cell edit commit (for Value column) ============
+    	playerVal.setCellValueFactory(new PropertyValueFactory<>("value"));
+    	playerVal.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Long>(){
+
+            @Override
+            public String toString(Long object) {
+                return object.toString();
+            }
+
+            @Override
+            public Long fromString(String string) {
+                return Long.parseLong(string);
+            }
+
+        }));
+    	
+    	playerVal.setOnEditCommit((CellEditEvent<Player, Long> event) -> {
+            TablePosition<Player, Long> pos = event.getTablePosition();
+ 
+            Long newValue = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+ 
+            pl.setValue(newValue);
+        });
  
         // ==== Player Position (COMBO BOX) ===
- 
+    	 
         ObservableList<E_Position> positionList = FXCollections.observableArrayList(E_Position.values());
  
         playerPosition.setCellValueFactory(new Callback<CellDataFeatures<Player, E_Position>, ObservableValue<E_Position>>() {
@@ -155,6 +215,34 @@ public class modifyPlayerController {
             Player pl = event.getTableView().getItems().get(row);
  
             pl.setPosition(newPos);
+        });
+        
+        // ==== Player Level (COMBO BOX) ===
+        
+        ObservableList<E_Levels> levelList = FXCollections.observableArrayList(E_Levels.values());
+ 
+        playerLvl.setCellValueFactory(new Callback<CellDataFeatures<Player, E_Levels>, ObservableValue<E_Levels>>() {
+ 
+            @Override
+            public ObservableValue<E_Levels> call(CellDataFeatures<Player, E_Levels> param) {
+                Player pl = param.getValue();
+
+                E_Levels lvl = pl.getLevel();
+                return new SimpleObjectProperty<E_Levels>(lvl);
+            }
+        });
+ 
+        playerLvl.setCellFactory(ComboBoxTableCell.forTableColumn(levelList));
+ 
+        playerLvl.setOnEditCommit((CellEditEvent<Player, E_Levels> event) -> {
+            TablePosition<Player, E_Levels> pos = event.getTablePosition();
+ 
+            E_Levels newPos = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+ 
+            pl.setLevel(newPos);
         });
  
         // ==== RIGHT LEG KICKER? (CHECH BOX) ===
