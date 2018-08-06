@@ -14,15 +14,89 @@
 
 <AnchorPane fx:id="queries" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.queriesController">
    <children>
+      <ScrollPane prefHeight="550.0" prefWidth="701.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
       <ImageView fitHeight="550.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="312.0" layoutY="37.0" prefHeight="32.0" prefWidth="164.0" text="Queries" textFill="WHITE">
+      <Label layoutX="312.0" layoutY="12.0" prefHeight="32.0" prefWidth="164.0" text="Queries" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <Label layoutY="49.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  Get Super Player Maker" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="85.0" prefHeight="32.0" prefWidth="110.0" text="Choose Team:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxChooseTeam" layoutX="183.0" layoutY="88.0" prefWidth="150.0" />
+      <Label layoutX="353.0" layoutY="85.0" prefHeight="32.0" prefWidth="58.0" text="Player:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSuperPlayerResult" editable="false" layoutX="406.0" layoutY="88.0" prefHeight="26.0" prefWidth="266.0" />
+      <Label layoutY="128.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  Get All Super Player Makers" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonGetAllSP" layoutX="59.0" layoutY="168.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Get All" />
+      <ListView fx:id="listPlayerMakers" layoutX="186.0" layoutY="168.0" prefHeight="47.0" prefWidth="486.0" />
+      <Label layoutY="227.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  Most Popular Position Among Players" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="getPositionButton" layoutX="301.0" layoutY="227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Get Position" />
+      <TextField fx:id="textFeildPopularPostion" editable="false" layoutX="438.0" layoutY="227.0" prefHeight="26.0" prefWidth="235.0" />
+      <Label layoutY="262.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  The Most Favored Team" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="getFavTeamButton" layoutX="203.0" layoutY="262.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Get Team" />
+      <TextField fx:id="textFieldFavoriteTeam" editable="false" layoutX="341.0" layoutY="262.0" prefHeight="26.0" prefWidth="332.0" />
+      <Label layoutY="299.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  The Most Active City in Chosen Stadium" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="373.0" layoutY="325.0" prefHeight="32.0" prefWidth="31.0" text="City:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxChooseStadium" layoutX="192.0" layoutY="328.0" prefHeight="26.0" prefWidth="164.0" />
+      <Label layoutX="66.0" layoutY="325.0" prefHeight="32.0" prefWidth="126.0" text="Choose Stadium:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="mostactiveCityResult" editable="false" layoutX="418.0" layoutY="328.0" prefHeight="26.0" prefWidth="256.0" />
+      <Label layoutY="362.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text=" Entity With Most Trophies" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="getEntityButton" layoutX="205.0" layoutY="362.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Get Entity" />
+      <TextField fx:id="textFeildPopuEntity" editable="false" layoutX="321.0" layoutY="362.0" prefHeight="26.0" prefWidth="352.0" />
+      <Label layoutY="402.0" prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #5aacbc; -fx-opacity: 0.4;" text="  Team With Largest Home Crowd" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldLHCT" editable="false" layoutX="417.0" layoutY="402.0" prefHeight="26.0" prefWidth="256.0" />
+      <Button fx:id="getLHCTeam" layoutX="286.0" layoutY="402.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Get Team" />
    </children>
 </AnchorPane>
