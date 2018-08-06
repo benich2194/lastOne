@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import Controller.SysData;
 import Model.Stadium;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -52,7 +53,7 @@ public class modifyStadiumController {
     private TableColumn<Stadium, Integer> stadiumHouseNum;
 
     @FXML
-    private TableColumn<Stadium, String[]> stadiumPhoneNum;
+    private TableColumn<Stadium, String> stadiumPhoneNum;
 
     @FXML
     private TableColumn<Stadium, String> stadiumStreet;
@@ -67,7 +68,7 @@ public class modifyStadiumController {
     	stadiumName.setCellValueFactory(new PropertyValueFactory<>("name"));
         stadiumCapacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         stadiumCity.setCellValueFactory(new PropertyValueFactory<>("city"));
-        stadiumPhoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        stadiumPhoneNum.setCellValueFactory(new PropertyValueFactory<>("primaryPhoneNumber"));
         stadiumHouseNum.setCellValueFactory(new PropertyValueFactory<>("houseNumber"));
         stadiumStreet.setCellValueFactory(new PropertyValueFactory<>("street"));
         
@@ -92,28 +93,28 @@ public class modifyStadiumController {
  
             st.setName(newName);
         });
-    	
     	// === On Cell edit commit (for Phone Number column) ===
-    	stadiumPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Stadium , String[]>, ObservableValue<String[]>>() {
+        stadiumPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Stadium , String>, ObservableValue<String>>() {
 
     	    @Override
-    	    public ObservableValue<String[]> call(TableColumn.CellDataFeatures<Stadium , String[]> param) {
-    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPhoneNumber());
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Stadium , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
 
     	    }
     	});
-    	//stadiumPhoneNum.setCellFactory(TextFieldTableCell.<Stadium> forTableColumn());
-    	stadiumPhoneNum.setOnEditCommit((CellEditEvent<Stadium, String[]> event) -> {
-            TablePosition<Stadium, String[]> pos = event.getTablePosition();
+    	stadiumPhoneNum.setCellFactory(TextFieldTableCell.<Stadium> forTableColumn());
+    	stadiumPhoneNum.setOnEditCommit((CellEditEvent<Stadium, String> event) -> {
+            TablePosition<Stadium, String> pos = event.getTablePosition();
  
-            String[] newPhone = event.getNewValue();
+            String newPhoneNumber = event.getNewValue();
  
             int row = pos.getRow();
             Stadium st = event.getTableView().getItems().get(row);
- 
-            st.getAddress().setPhoneNumber(newPhone);
+            String[] newPhoneArray = {newPhoneNumber};
+            st.getAddress().setPhoneNumber(newPhoneArray);
+            System.out.println("The phone number is " + st.getAddress().getPrimaryNumber());
+            
         });
-    	
     	// === On Cell edit commit (for Stadium Street column) ===
     	stadiumStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Stadium , String>, ObservableValue<String>>() {
 

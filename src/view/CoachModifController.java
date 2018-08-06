@@ -28,36 +28,15 @@ public class CoachModifController {
 
     @FXML
     void goToAddCoach(ActionEvent event) throws IOException {
-
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/addCoach.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
-    	
+    	WindowManager.openWindow("addCoach");
     }
     
     @FXML
     void goToModifyCoach(ActionEvent event) throws IOException {
-//    	Stage stage=(Stage)coachModif.getScene().getWindow();
-//		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/modifyCoach.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("modifyCoach");
     }
     @FXML
     void goToRemoveCoach(ActionEvent event) throws IOException {
- //   	Stage stage=(Stage)coachModif.getScene().getWindow();
-//		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/removeCoach.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("removeCoach");
     }
 }

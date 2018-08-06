@@ -22,6 +22,7 @@ public class Address implements Serializable {
 	private int houseNumber;
 	private String[] phoneNumber;
 	private String street;
+	private String primaryNumber;
 
 	// -------------------------------Constructors-----------------------------
 	public Address(E_Cities city, String street, int houseNumber, String[] phoneNumber) {
@@ -31,6 +32,7 @@ public class Address implements Serializable {
 		this.houseNumber = houseNumber;
 		this.phoneNumber = new String[1];
 		this.phoneNumber = phoneNumber;
+		this.setPrimaryNumber(this.phoneNumber[0]);
 		this.street = street;
 	}
 
@@ -60,11 +62,13 @@ public class Address implements Serializable {
 	}
 
 	public String[] getPhoneNumber() {
+		this.primaryNumber = phoneNumber[0];
 		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String[] phoneNumber) {
 		this.phoneNumber = phoneNumber;
+		this.setPrimaryNumber(phoneNumber[0]);
 	}
 
 	public String getStreet() {
@@ -120,5 +124,14 @@ public class Address implements Serializable {
 	@Override
 	public String toString() {
 		return street + " " + houseNumber + ", " + city + ", " + country + ", phones: " + Arrays.toString(phoneNumber).replace("[", "{").replace("]", "}");
+	}
+
+	public String getPrimaryNumber() {
+		System.out.println("Attempting to retreive primary phone number");
+		return primaryNumber;
+	}
+
+	public void setPrimaryNumber(String primaryNumber) {
+		this.primaryNumber = primaryNumber;
 	}
 } // ~ END OF Class Address

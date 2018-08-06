@@ -26,6 +26,11 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import utils.E_Cities;
@@ -63,22 +68,20 @@ public class addStadiumController extends Main {
 	    @FXML
 	    private Button submit;
 	    
+	    private static Integer stadiumCounter = 1; 
+	    
 
 	    
 	   
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)addStadium.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/stadiumMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
     public void initialize() {
     	cityList.getItems().addAll(E_Cities.values());
+    	id.setEditable(false);
+    	id.setDisable(true);
+    	id.setText(stadiumCounter.toString());
     }
     
     @FXML
@@ -88,7 +91,7 @@ public class addStadiumController extends Main {
 		alert.setTitle("Add Stadium");
 	
 		alert.setHeaderText("");
-    	Integer ID=Integer.parseInt(id.getText());
+    	Integer ID=addStadiumController.stadiumCounter;
     	String NAME=name.getText();
     	Integer HOUSENUM=Integer.parseInt(houseNumber.getText());
     	Integer CAPACITY=Integer.parseInt(capacity.getText());
@@ -108,6 +111,7 @@ public class addStadiumController extends Main {
         		alert.setHeaderText("Added Stadium");
         		alert.setContentText("Stadium was added succesfully");
         		alert.show();
+        		stadiumCounter++;
         	}
         	else {
         		alert.setHeaderText("Unable to add stadium");

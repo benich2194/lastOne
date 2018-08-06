@@ -98,14 +98,16 @@ public class addCoachController {
 	    }
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)addCoachModif.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+//    	Stage stage=(Stage)addCoachModif.getScene().getWindow();
+//		stage.close();
+//    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
+//    	Stage primaryStage=new Stage();
+//    	Parent root=load.load();
+//    	Scene scene=new Scene(root);
+//    	primaryStage.setScene(scene);
+//    	primaryStage.show();
+    	
+    	WindowManager.openWindow("coachModif");
     }
     public void initialize() {
     	coachCity.getItems().addAll(E_Cities.values());

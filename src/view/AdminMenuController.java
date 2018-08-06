@@ -20,20 +20,13 @@ public class AdminMenuController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		WindowManager.setContentPane(this.menupane);
 		
 	}
 	
     public void loadUI(String ui)
     {
-    	Parent root = null;
-    	try {
-        	root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
-    		menupane.getChildren().removeAll();
-    		menupane.getChildren().setAll(root);
-    	} catch (Exception ex) {
-    		System.out.println("Catch caught");
-    		ex.printStackTrace();
-    	}
+    	WindowManager.openWindow(ui);
     }
     
     public FlowPane getMenupane() {
