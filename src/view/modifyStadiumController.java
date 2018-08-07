@@ -88,6 +88,7 @@ public class modifyStadiumController {
  
             st.setName(newName);
         });
+    	
     	// === On Cell edit commit (for Phone Number column) ===
         stadiumPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Stadium , String>, ObservableValue<String>>() {
 
@@ -110,6 +111,7 @@ public class modifyStadiumController {
             System.out.println("The phone number is " + st.getAddress().getPrimaryNumber());
             
         });
+    	
     	// === On Cell edit commit (for Stadium Street column) ===
     	stadiumStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Stadium , String>, ObservableValue<String>>() {
 

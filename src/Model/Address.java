@@ -127,7 +127,6 @@ public class Address implements Serializable {
 	}
 
 	public String getPrimaryNumber() {
-		System.out.println("Attempting to retreive primary phone number");
 		return primaryNumber;
 	}
 

@@ -1,7 +1,6 @@
 package view;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -13,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -27,11 +25,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
 import Controller.SysData;
 import Model.Player;
-import Model.Address;
 
 public class modifyPlayerController {
 
@@ -60,9 +58,6 @@ public class modifyPlayerController {
         private TableColumn<Player, E_Levels> playerLvl;
 
         @FXML
-        private TableColumn<Player, Address> playerAddress;
-
-        @FXML
         private TableColumn<Player, Date> playerBday;
 
         @FXML
@@ -73,7 +68,19 @@ public class modifyPlayerController {
 
         @FXML
         private TableColumn<Player, Integer> playerID;
-        
+
+        @FXML
+        private TableColumn<Player, String> playerPhoneNum;
+
+        @FXML
+        private TableColumn<Player, String> playerStreet;
+
+        @FXML
+        private TableColumn<Player, E_Cities> playerCity;
+
+        @FXML
+        private TableColumn<Player, Integer> playerHouseNum;
+
         
     public void initialize() {
         // Defines how to fill data for each cell.
@@ -86,7 +93,10 @@ public class modifyPlayerController {
         playerBday.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
         playerLvl.setCellValueFactory(new PropertyValueFactory<>("playerLvl"));
         playerVal.setCellValueFactory(new PropertyValueFactory<>("value"));
-        playerAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        playerCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        playerPhoneNum.setCellValueFactory(new PropertyValueFactory<>("primaryPhoneNumber"));
+        playerHouseNum.setCellValueFactory(new PropertyValueFactory<>("houseNumber"));
+        playerStreet.setCellValueFactory(new PropertyValueFactory<>("street"));
         playerSW.setCellValueFactory(new PropertyValueFactory<>("startWorkingDate"));
         
         // Display row data
@@ -123,37 +133,6 @@ public class modifyPlayerController {
             Player pl = event.getTableView().getItems().get(row);
  
             pl.setLastName(newLastName);
-        });
-    	
-    	// === On Cell edit commit (for Birthdate column) =====================
-    	playerBday.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
-    	playerBday.setCellFactory(column -> {
-    	    TableCell<Player, Date> cell = new TableCell<Player, Date>() {
-    	        private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
-    	        @Override
-    	        protected void updateItem(Date item, boolean empty) {
-    	            super.updateItem(item, empty);
-    	            if(empty) {
-    	                setText(null);
-    	            }
-    	            else {
-    	                setText(format.format(item));
-    	            }
-    	        }
-    	    };
-
-    	    return cell;
-    	});
-    	playerBday.setOnEditCommit((CellEditEvent<Player, Date> event) -> {
-            TablePosition<Player, Date> pos = event.getTablePosition();
- 
-            Date newDate = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
- 
-            pl.setBirthdate(newDate);
         });
     	
     	// === On Cell edit commit (for Value column) ============
@@ -269,6 +248,112 @@ public class modifyPlayerController {
                 cell.setAlignment(Pos.CENTER);
                 return cell;
             }
+        });
+        
+    	// === On Cell edit commit (for Phone Number column) ===
+        playerPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Player , String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Player , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
+
+    	    }
+    	});
+        playerPhoneNum.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
+        playerPhoneNum.setOnEditCommit((CellEditEvent<Player, String> event) -> {
+            TablePosition<Player, String> pos = event.getTablePosition();
+ 
+            String newPhoneNumber = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+            String[] newPhoneArray = {newPhoneNumber};
+            pl.getAddress().setPhoneNumber(newPhoneArray);
+            
+        });
+    	
+    	// === On Cell edit commit (for Player's Street column) ===
+    	playerStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Player , String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Player , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getStreet());
+
+    	    }
+    	});
+    	
+    	playerStreet.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
+    	playerStreet.setOnEditCommit((CellEditEvent<Player, String> event) -> {
+            TablePosition<Player, String> pos = event.getTablePosition();
+ 
+            String newStreet = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+ 
+            pl.getAddress().setStreet(newStreet);
+        });
+    	
+    	// === On Cell edit commit (for HouseNum column) ============
+    	//TO DO
+    	playerHouseNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Player , Integer>, ObservableValue<Integer>>() {
+
+    	    @Override
+    	    public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Player , Integer> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getHouseNumber());
+
+    	    }
+    	});
+    	playerHouseNum.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Integer>(){
+
+            @Override
+            public String toString(Integer object) {
+                return object.toString();
+            }
+
+            @Override
+            public Integer fromString(String string) {
+                return Integer.parseInt(string);
+            }
+
+        }));
+    	
+    	playerHouseNum.setOnEditCommit((CellEditEvent<Player, Integer> event) -> {
+            TablePosition<Player, Integer> pos = event.getTablePosition();
+ 
+            Integer newValue = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+            pl.getAddress().setHouseNumber(newValue);
+        });
+        
+        // ==== Stadium City (COMBO BOX) ===
+        
+        ObservableList<E_Cities> cityList = FXCollections.observableArrayList(E_Cities.values());
+ 
+        playerCity.setCellValueFactory(new Callback<CellDataFeatures<Player, E_Cities>, ObservableValue<E_Cities>>() {
+ 
+            @Override
+            public ObservableValue<E_Cities> call(CellDataFeatures<Player, E_Cities> param) {
+            	Player pl = param.getValue();
+
+            	E_Cities ct = pl.getAddress().getCity();
+                return new SimpleObjectProperty<E_Cities>(ct);
+            }
+        });
+ 
+        playerCity.setCellFactory(ComboBoxTableCell.forTableColumn(cityList));
+ 
+        playerCity.setOnEditCommit((CellEditEvent<Player, E_Cities> event) -> {
+            TablePosition<Player, E_Cities> pos = event.getTablePosition();
+ 
+            E_Cities newCity = event.getNewValue();
+ 
+            int row = pos.getRow();
+            Player pl = event.getTableView().getItems().get(row);
+ 
+            pl.getAddress().setCity(newCity);
         });
     }//End of Method MAKEEDITABLE
     
