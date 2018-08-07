@@ -328,7 +328,7 @@ public class modifyPlayerController {
             pl.getAddress().setHouseNumber(newValue);
         });
         
-        // ==== Stadium City (COMBO BOX) ===
+        // ==== Player City (COMBO BOX) ===
         
         ObservableList<E_Cities> cityList = FXCollections.observableArrayList(E_Cities.values());
  
