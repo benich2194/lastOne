@@ -1,14 +1,10 @@
 package view;
 
 import java.io.IOException;
-
 import Controller.SysData;
 import Model.Address;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,7 +12,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.E_Levels;
 import utils.E_Cities;
 
@@ -60,13 +55,15 @@ public class addCoachController {
 
 	    @FXML
 	    private Button addButton;
+	    
+	    private static Integer coachCounter = 1; 
 
 	    @FXML
 	    void addCoach(ActionEvent event) throws IOException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
-	    	Integer id=Integer.parseInt(coachId.getText());
+	    	Integer id = addCoachController.coachCounter;
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -86,6 +83,7 @@ public class addCoachController {
 		    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 		    		alert.setHeaderText("Added coach");
 		    		alert.setContentText("Coach added successfully.");
+		    		coachCounter++;
 		    		alert.show();
 		    	}
 		    	else {
@@ -96,21 +94,18 @@ public class addCoachController {
 	    	}
 	    	
 	    }
+
+
     @FXML
     void goBack(ActionEvent event) throws IOException {
-//    	Stage stage=(Stage)addCoachModif.getScene().getWindow();
-//		stage.close();
-//    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachModif.fxml"));
-//    	Stage primaryStage=new Stage();
-//    	Parent root=load.load();
-//    	Scene scene=new Scene(root);
-//    	primaryStage.setScene(scene);
-//    	primaryStage.show();
-    	
-    	WindowManager.openWindow("coachModif");
+    	WindowManager.goBack();
     }
+    
     public void initialize() {
     	coachCity.getItems().addAll(E_Cities.values());
     	levelCoach.getItems().addAll(E_Levels.values());
+    	coachId.setEditable(false);
+    	coachId.setDisable(true);
+    	coachId.setText(coachCounter.toString());
     }
 }

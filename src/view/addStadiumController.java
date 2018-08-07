@@ -1,38 +1,16 @@
 package view;
 
-import java.awt.List;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.omg.CORBA.INITIALIZE;
-
 import Controller.SysData;
-import Model.Stadium;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
-import javafx.util.Callback;
 import utils.E_Cities;
 
 public class addStadiumController extends Main {
@@ -52,7 +30,6 @@ public class addStadiumController extends Main {
 	    @FXML
 	    private ComboBox<E_Cities> cityList;
 	    
-
 	    @FXML
 	    private TextField phone;
 
@@ -77,6 +54,7 @@ public class addStadiumController extends Main {
     void goBack(ActionEvent event) throws IOException {
     	WindowManager.goBack();
     }
+    
     public void initialize() {
     	cityList.getItems().addAll(E_Cities.values());
     	id.setEditable(false);
