@@ -7,15 +7,15 @@ AnchorPane{
 PasswordField{
 	-fx-background-color: transparent;
 }
-Button, TextField, ComboBox, DatePicker {
+Button, TextField, ComboBox {
     -fx-background-color: 
         #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),
         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
-    -fx-background-radius: 30;
+    -fx-background-radius: 25;
     -fx-background-insets: 0,1,1;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 3, 0.0 , 0 , 1 );
 }
 Button:hover{
     -fx-background-color: 
@@ -27,6 +27,12 @@ Button:hover{
     -fx-text-fill: #c3c4c4;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.7) , 3, 0.0 , 0 , 5 );
 }
+
+.loginTextField{
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
 .menuButton{
     -fx-background-color: transparent;
 	-fx-text-fill: white;

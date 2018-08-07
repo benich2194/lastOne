@@ -18,7 +18,7 @@
       </ImageView>
       <Pane prefHeight="600.0" prefWidth="800.0" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="email" blendMode="MULTIPLY" layoutX="227.0" layoutY="169.0" prefHeight="38.0" prefWidth="353.0">
+            <TextField fx:id="email" blendMode="MULTIPLY" layoutX="227.0" layoutY="169.0" prefHeight="38.0" prefWidth="353.0" styleClass="loginTextField" stylesheets="@application.css">
                <effect>
                   <Reflection />
                </effect>
