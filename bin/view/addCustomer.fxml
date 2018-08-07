@@ -28,12 +28,12 @@
       <TextField fx:id="lastName" alignment="CENTER" layoutX="272.0" layoutY="148.0" prefHeight="25.0" prefWidth="174.0" promptText="Last Name" />
       <DatePicker fx:id="birthDate" layoutX="274.0" layoutY="181.0" promptText="Birth Date" />
       <ComboBox fx:id="levelCustomer" layoutX="273.0" layoutY="215.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's level:" />
+      <ComboBox fx:id="cusCity" layoutX="272.0" layoutY="250.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's city:" />
+      <TextField fx:id="favTeam" alignment="CENTER" layoutX="273.0" layoutY="285.0" prefHeight="25.0" prefWidth="174.0" promptText="Favorite team id" />
       <TextField fx:id="houseNumber" alignment="CENTER" layoutX="274.0" layoutY="318.0" prefHeight="25.0" prefWidth="174.0" promptText="House Number" />
       <TextField fx:id="cusStreet" alignment="CENTER" layoutX="273.0" layoutY="351.0" prefHeight="25.0" prefWidth="174.0" promptText="street" />
       <TextField fx:id="cusPhone" alignment="CENTER" layoutX="274.0" layoutY="388.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
-      <Button fx:id="addButton" layoutX="272.0" layoutY="489.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="39.0" prefWidth="174.0" text="Add Customer" />
-      <TextField fx:id="favTeam" alignment="CENTER" layoutX="273.0" layoutY="285.0" prefHeight="25.0" prefWidth="174.0" promptText="Favorite team id" />
       <TextField fx:id="cusMail" alignment="CENTER" layoutX="273.0" layoutY="423.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's e-mail" />
-      <ComboBox fx:id="cusCity" layoutX="272.0" layoutY="250.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's city:" />
+      <Button fx:id="addButton" layoutX="272.0" layoutY="489.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="39.0" prefWidth="174.0" text="Add Customer" />
    </children>
 </AnchorPane>

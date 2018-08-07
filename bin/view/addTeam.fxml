@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addTeamController">
+<AnchorPane fx:id="addTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addTeamController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
@@ -27,6 +27,6 @@
       <TextField fx:id="teamValue" alignment="CENTER" layoutX="276.0" layoutY="165.0" promptText="Team's value" />
       <TextField fx:id="teamStadiumId" alignment="CENTER" layoutX="276.0" layoutY="202.0" promptText="Team's stadium id" />
       <ComboBox fx:id="teamLevel" layoutX="276.0" layoutY="240.0" prefHeight="25.0" prefWidth="149.0" promptText="choose team's level:" />
-      <Button fx:id="pushToAdd" layoutX="299.0" layoutY="380.0" mnemonicParsing="false" onAction="#addTeam" prefHeight="49.0" prefWidth="104.0" text="Add Team" />
+      <Button fx:id="pushToAdd" layoutX="274.0" layoutY="338.0" mnemonicParsing="false" onAction="#addTeam" prefHeight="33.0" prefWidth="149.0" text="Add Team" />
    </children>
 </AnchorPane>

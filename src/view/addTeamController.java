@@ -5,17 +5,12 @@ import java.io.IOException;
 import Controller.SysData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import utils.E_Cities;
 import utils.E_Levels;
 
 public class addTeamController {
@@ -43,6 +38,8 @@ public class addTeamController {
 
 	    @FXML
 	    private Button pushToAdd;
+	    
+	    private static Integer teamCounter = 1; 
 
 	    @FXML
 	    void addTeam(ActionEvent event) {
@@ -55,7 +52,7 @@ public class addTeamController {
 	    		alert.show();
 			}
 			else {
-				Integer id=Integer.parseInt(teamId.getText());
+				Integer id=addTeamController.teamCounter;
 		    	String name=teamName.getText();
 		    	Integer value=Integer.parseInt(teamValue.getText());
 		    	Integer stadium=Integer.parseInt(teamStadiumId.getText());
@@ -75,6 +72,7 @@ public class addTeamController {
 			    		if(SysData.getInstance().getTeams().containsKey(id)) {
 			        		alert.setHeaderText("Added Team");
 			        		alert.setContentText("Team was added succesfully");
+			        		teamCounter++;
 			        		alert.show();
 			        	}
 			        	else {
@@ -93,19 +91,14 @@ public class addTeamController {
 	    }
 	    public void initialize() {
 	    	teamLevel.getItems().addAll(E_Levels.values());
-	    
+	    	teamId.setEditable(false);
+	    	teamId.setDisable(true);
+	    	teamId.setText(teamCounter.toString());
 	    }
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)addTeam.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/teamMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
 
 }

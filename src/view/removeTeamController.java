@@ -6,16 +6,11 @@ import Controller.SysData;
 import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import utils.E_Cities;
 
 public class removeTeamController {
 
@@ -34,15 +29,9 @@ public class removeTeamController {
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)removeTeam.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/teamMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
+    
     @FXML
     void removeTeam(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
@@ -61,6 +50,7 @@ public class removeTeamController {
     		alert.show();
     	}
     }
+    
     public void initialize() {
     	if(SysData.getInstance().getTeams().size()>0) {
     		teamList.getItems().addAll(SysData.getInstance().getTeams().values());

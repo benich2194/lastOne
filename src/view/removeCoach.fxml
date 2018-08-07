@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="removeCoach" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.removeCoachController">
+<AnchorPane fx:id="removeCoach" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.removeCoachController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
@@ -22,6 +22,6 @@
          </font>
       </Label>
       <ComboBox fx:id="coachList" layoutX="155.0" layoutY="83.0" prefHeight="25.0" prefWidth="405.0" promptText="Choose coach to remove:" />
-      <Button fx:id="removeButton" layoutX="275.0" layoutY="427.0" mnemonicParsing="false" onAction="#removeCoach" prefHeight="50.0" prefWidth="151.0" text="Remove Coach" />
+      <Button fx:id="removeButton" layoutX="275.0" layoutY="323.0" mnemonicParsing="false" onAction="#removeCoach" prefHeight="50.0" prefWidth="151.0" text="Remove Coach" />
    </children>
 </AnchorPane>

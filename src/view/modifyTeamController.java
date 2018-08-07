@@ -9,9 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -22,7 +19,6 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import utils.E_Levels;
@@ -170,14 +166,7 @@ public class modifyTeamController {
     
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)modifyTeam.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/teamMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
 
 }
