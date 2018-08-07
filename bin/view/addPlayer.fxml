@@ -10,28 +10,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addPlayer" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addPlayerController">
+<AnchorPane fx:id="addPlayer" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.addPlayerController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TextField fx:id="playerId" alignment="CENTER" layoutX="286.0" layoutY="57.0" promptText="Player's id" />
-      <TextField fx:id="firstName" alignment="CENTER" layoutX="286.0" layoutY="89.0" promptText="First Name" />
-      <TextField fx:id="lastName" alignment="CENTER" layoutX="286.0" layoutY="121.0" promptText="Last Name" />
+      <TextField fx:id="playerId" alignment="CENTER" layoutX="273.0" layoutY="57.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's id" />
+      <TextField fx:id="firstName" alignment="CENTER" layoutX="272.0" layoutY="89.0" prefHeight="25.0" prefWidth="174.0" promptText="First Name" />
+      <TextField fx:id="lastName" alignment="CENTER" layoutX="273.0" layoutY="121.0" prefHeight="25.0" prefWidth="174.0" promptText="Last Name" />
       <DatePicker fx:id="birthDate" layoutX="274.0" layoutY="153.0" promptText="Birth Date" />
       <DatePicker fx:id="startWorkingDate" layoutX="274.0" layoutY="185.0" promptText="Start Working Date" />
-      <ComboBox fx:id="playerLevel" layoutX="286.0" layoutY="218.0" prefWidth="150.0" promptText="Player's level:" />
-      <ComboBox fx:id="playerCity" layoutX="286.0" layoutY="250.0" prefWidth="150.0" promptText="Player's city:" />
-      <TextField fx:id="houseNumber" alignment="CENTER" layoutX="286.0" layoutY="282.0" promptText="House Number" />
-      <TextField fx:id="playerStreet" alignment="CENTER" layoutX="286.0" layoutY="314.0" promptText="street" />
-      <TextField fx:id="playerPhone" alignment="CENTER" layoutX="286.0" layoutY="346.0" promptText="Phone Number" />
-      <Button fx:id="addButton" layoutX="290.0" layoutY="482.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="47.0" prefWidth="121.0" text="Add Player" />
-      <ComboBox fx:id="rightLeg" layoutX="286.0" layoutY="382.0" prefWidth="150.0" promptText="Right leg Kicker?" />
-      <TextField fx:id="playerValue" alignment="CENTER" layoutX="287.0" layoutY="416.0" promptText="Player's value" />
-      <ComboBox fx:id="playerPosition" layoutX="286.0" layoutY="444.0" prefWidth="150.0" promptText="Player's position" />
+      <ComboBox fx:id="playerLevel" layoutX="274.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's level:" />
+      <ComboBox fx:id="playerCity" layoutX="273.0" layoutY="250.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's city:" />
+      <TextField fx:id="houseNumber" alignment="CENTER" layoutX="272.0" layoutY="282.0" prefHeight="25.0" prefWidth="174.0" promptText="House Number" />
+      <TextField fx:id="playerStreet" alignment="CENTER" layoutX="272.0" layoutY="314.0" prefHeight="25.0" prefWidth="174.0" promptText="street" />
+      <TextField fx:id="playerPhone" alignment="CENTER" layoutX="272.0" layoutY="346.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
+      <Button fx:id="addButton" layoutX="272.0" layoutY="515.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="35.0" prefWidth="174.0" text="Add Player" />
+      <ComboBox fx:id="rightLeg" layoutX="273.0" layoutY="382.0" prefHeight="25.0" prefWidth="174.0" promptText="Right leg Kicker?" />
+      <TextField fx:id="playerValue" alignment="CENTER" layoutX="273.0" layoutY="416.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's value" />
+      <ComboBox fx:id="playerPosition" layoutX="274.0" layoutY="447.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's position" />
       <Label layoutX="300.0" layoutY="19.0" text="Add Player" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
