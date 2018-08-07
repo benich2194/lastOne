@@ -15,6 +15,5 @@
       <Button fx:id="addSub" layoutX="282.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddSub" prefHeight="54.0" prefWidth="146.0" stylesheets="@Design.css" text="Add Subscription" />
       <Button fx:id="removeSub" layoutX="282.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToRemoveSub" prefHeight="54.0" prefWidth="146.0" stylesheets="@Design.css" text="Remove Subscription" />
       <Button fx:id="modSub" layoutX="282.0" layoutY="179.0" mnemonicParsing="false" onAction="#goToModSub" prefHeight="54.0" prefWidth="146.0" stylesheets="@Design.css" text="Modify Subscription" />
-      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

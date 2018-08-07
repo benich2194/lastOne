@@ -46,9 +46,7 @@ public class addStadiumController extends Main {
 	    private Button submit;
 	    
 	    private static Integer stadiumCounter = 1; 
-	    
 
-	    
 	   
     @FXML
     void goBack(ActionEvent event) throws IOException {

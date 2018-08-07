@@ -21,7 +21,7 @@ public class modifyCoachController {
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("coachModif");
+    	WindowManager.goBack();
     }
 
 }

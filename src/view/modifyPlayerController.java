@@ -11,10 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
@@ -28,16 +25,13 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
 import Controller.SysData;
 import Model.Player;
 import Model.Address;
-import Model.Employee;
 
 public class modifyPlayerController {
 
@@ -281,14 +275,7 @@ public class modifyPlayerController {
 	@FXML
     void goBack(ActionEvent event)  throws IOException{
 		//Go back to menu button Event
-    	Stage stage=(Stage)modifyPlayer.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
 
 }

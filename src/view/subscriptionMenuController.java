@@ -21,13 +21,6 @@ public class subscriptionMenuController {
     @FXML
     private Button modSub;
 
-    @FXML
-    private Button back;
-
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
-       	WindowManager.goBack();
-    }
 
     @FXML
     void goToAddSub(ActionEvent event) throws IOException {

@@ -1,15 +1,10 @@
 package view;
 
 import java.io.IOException;
-
 import Controller.SysData;
 import Model.Address;
-import Model.Receptionist;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -17,7 +12,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.E_Cities;
 
 public class addReceptionistController {
@@ -58,12 +52,14 @@ public class addReceptionistController {
     @FXML
     private Button addButton;
 
+    private static Integer recepCounter = 1; 
+    
     @FXML
     void addRecep(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
-    	Integer id=Integer.parseInt(recepId.getText());
+    	Integer id= addReceptionistController.recepCounter;
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -83,6 +79,7 @@ public class addReceptionistController {
 	    	if(SysData.getInstance().getReceptionists().containsKey(id)) {
 	    		alert.setHeaderText("Added Receptionist");
 	    		alert.setContentText("Receptionist added successfully.");
+	    		recepCounter++;
 	    		alert.show();
 	    	}
 	    	else {
@@ -94,18 +91,14 @@ public class addReceptionistController {
     }
     public void initialize() {
   		recepCity.getItems().addAll(E_Cities.values());
+    	recepId.setEditable(false);
+    	recepId.setDisable(true);
+    	recepId.setText(recepCounter.toString());
   		
   }
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)addReceptionist.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/receptionistMenuAdmin.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();	
+    	WindowManager.goBack();
     }
 
 }

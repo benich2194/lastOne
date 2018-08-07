@@ -4,12 +4,9 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+
 
 public class connectionMenuController {
 
@@ -35,98 +32,41 @@ public class connectionMenuController {
     private Button addMatch;
 
     @FXML
-    private Button logout;
-
-    @FXML
     private Button cusMatch;
 
     @FXML
     void addCoachToTeam(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/coachToTeam.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("coachToTeam");
     }
 
     @FXML
     void addCustomerToMatch(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/cusToMatch.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("cusToMatch");
     }
 
     @FXML
     void addMatch(ActionEvent event) {
-
+    	WindowManager.openWindow("addMatch");
     }
 
     @FXML
     void addPlayerToFirstTeamPlayers(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerToFirstTeam.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("playerToFirstTeam");
     }
 
     @FXML
     void addPlayerToTeam(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerToTeam.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("playerToTeam");
     }
 
     @FXML
     void addReceptionistToStadium(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/recepToStadium.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("recepToStadium");
     }
 
     @FXML
     void addSubscriptionToCustomer(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/SubToCustomer.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
-    }
-
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)cusMatch.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/adminMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.openWindow("SubToCustomer");
     }
 
 }

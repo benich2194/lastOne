@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="matchMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.matchMenuController">
+<AnchorPane fx:id="matchMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.matchMenuController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
@@ -19,6 +15,5 @@
       <Button fx:id="addMatch" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddMatch" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Match" />
       <Button fx:id="removeMatch" layoutX="285.0" layoutY="262.0" mnemonicParsing="false" onAction="#goToRemoveMatch" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Match" />
       <Button fx:id="modMatch" layoutX="285.0" layoutY="172.0" mnemonicParsing="false" onAction="#goToModifyMatch" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Match" />
-      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

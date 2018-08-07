@@ -6,9 +6,6 @@ import Controller.SysData;
 import Model.Address;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,7 +13,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
@@ -70,13 +66,15 @@ public class addPlayerController {
 
     @FXML
     private ComboBox<E_Position> playerPosition;
+    
+    private static Integer playerCounter = 1; 
 
     @FXML
     void addPlayer(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player");
 		alert.setHeaderText("");
-    	Integer id=Integer.parseInt(playerId.getText());
+    	Integer id = addPlayerController.playerCounter;
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -97,6 +95,7 @@ public class addPlayerController {
 	    	if(SysData.getInstance().getPlayers().containsKey(id)) {
 	    		alert.setHeaderText("Added Player");
 	    		alert.setContentText("Player added successfully.");
+	    		playerCounter++;
 	    		alert.show();
 	    	}
 	    	else {
@@ -106,23 +105,21 @@ public class addPlayerController {
 	    	}
     	}
     }
+    
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)addPlayer.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/playerMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
+    
     public void initialize() {
     	playerPosition.getItems().addAll(E_Position.values());
     	rightLeg.getItems().add(true);
     	rightLeg.getItems().add(false);
     	playerCity.getItems().addAll(E_Cities.values());
     	playerLevel.getItems().addAll(E_Levels.values());
+    	playerId.setEditable(false);
+    	playerId.setDisable(true);
+    	playerId.setText(playerCounter.toString());
     }
 
 }

@@ -7,15 +7,11 @@ import Model.Customer;
 import Model.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class cusToMatchController {
 
@@ -68,14 +64,7 @@ public class cusToMatchController {
     }
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	    	Stage stage=(Stage)matchList.getScene().getWindow();
-    			stage.close();
-    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/connectionMenu.fxml"));
-    	    	Stage primaryStage=new Stage();
-    	    	Parent root=load.load();
-    	    	Scene scene=new Scene(root);
-    	    	primaryStage.setScene(scene);
-    	    	primaryStage.show();
+    	WindowManager.goBack();
     }
 
 }
