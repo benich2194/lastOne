@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -19,5 +20,10 @@
       <Button fx:id="addRecep" layoutX="270.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddRecep" prefHeight="54.0" prefWidth="157.0" stylesheets="@Design.css" text="Add Receptionist" />
       <Button fx:id="removeRecep" layoutX="275.0" layoutY="271.0" mnemonicParsing="false" onAction="#goToRemoveRecep" prefHeight="54.0" prefWidth="149.0" stylesheets="@Design.css" text="Remove Receptionist" />
       <Button fx:id="modRecep" layoutX="275.0" layoutY="177.0" mnemonicParsing="false" onAction="#goToModifyRecep" prefHeight="54.0" prefWidth="149.0" stylesheets="@Design.css" text="Modify Receptionist" />
+      <Label layoutX="253.0" layoutY="28.0" prefHeight="44.0" prefWidth="228.0" style="-fx-opacity: 0.7;" text="Receptionist Menu" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
