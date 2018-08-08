@@ -55,7 +55,8 @@ public class addCoachController {
 
 	    @FXML
 	    private Button addButton;
-	    
+	    @FXML
+	    private TextField coachPassword;
 
 	    @FXML
 	    void addCoach(ActionEvent event) throws IOException {
@@ -75,13 +76,15 @@ public class addCoachController {
 	    	String street=coachStreet.getText();
 	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
 	    	Address ad=new Address(coachCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
+	    	String password=coachPassword.getText();
 	    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 	    		alert.setHeaderText("Unable to added coach.");
 	    		alert.setContentText("Coach already exists.");
 	    		alert.show();
 	    	}
 	    	else {
-	    		SysData.getInstance().addCoach(id, first, last, bday, work, levelCoach.getSelectionModel().getSelectedItem(), ad);
+	    		SysData.getInstance().addCoach(id,password, first, last, bday, work, levelCoach.getSelectionModel().getSelectedItem(), ad);
+	    		
 		    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 		    		alert.setHeaderText("Added coach");
 		    		alert.setContentText("Coach added successfully.");

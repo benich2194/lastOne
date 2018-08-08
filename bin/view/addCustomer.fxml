@@ -35,5 +35,6 @@
       <TextField fx:id="cusPhone" alignment="CENTER" layoutX="274.0" layoutY="388.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
       <TextField fx:id="cusMail" alignment="CENTER" layoutX="273.0" layoutY="423.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's e-mail" />
       <Button fx:id="addButton" layoutX="272.0" layoutY="489.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="39.0" prefWidth="174.0" text="Add Customer" />
+      <TextField fx:id="cusPassword" alignment="CENTER" layoutX="272.0" layoutY="456.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
    </children>
 </AnchorPane>

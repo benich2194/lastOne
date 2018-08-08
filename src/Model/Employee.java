@@ -23,24 +23,35 @@ public abstract class Employee implements Comparable<Employee>, Serializable {
 	private Date birthdate;
 	private Date startWorkingDate;
 	private Address address;
+	private String password;
 
 	// -------------------------------Constructors------------------------------
-	public Employee(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address) {
+	public Employee(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
 		this.startWorkingDate = startWorkingDate;
 		this.address = address;
+		this.password=password;
 	}
 
-	public Employee(int empNum) {
-		this.id = empNum;
-	}
+
 
 	// -------------------------------Getters And Setters------------------------------
 	public int getId() {
 		return id;
+	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Employee(int empNum) {
+		this.id = empNum;
 	}
 
 	public void setId(int id) {

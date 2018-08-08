@@ -32,9 +32,11 @@ public class Customer implements Comparable<Customer>, Serializable{
 	private Address address;
 	private Team favoriteTeam;
 	private Set<Subscription> subscriptions;
+	private String password;
+
 
 	// -------------------------------Constructors------------------------------
-	public Customer(String id, String firstName, String lastName, Date birthdate, E_Levels level,
+	public Customer(String id,String password, String firstName, String lastName, Date birthdate, E_Levels level,
 			URL email, Address address, Team favoriteTeam, Subscription subscription) {
 		this.id = checkId(id);
 		this.firstName = firstName;
@@ -45,10 +47,11 @@ public class Customer implements Comparable<Customer>, Serializable{
 		this.address = address;
 		this.favoriteTeam = favoriteTeam;
 		this.subscriptions = new HashSet<>();
+		this.password=password;
 		addSubscription(subscription);
 	}
 
-	public Customer(String id, String firstName, String lastName, Date birthdate, E_Levels level,
+	public Customer(String id,String password, String firstName, String lastName, Date birthdate, E_Levels level,
 			URL email, Address address, Team favoriteTeam) {
 		this.id = id;
 		this.firstName = firstName;
@@ -58,6 +61,7 @@ public class Customer implements Comparable<Customer>, Serializable{
 		this.email = email;
 		this.address = address;
 		this.favoriteTeam = favoriteTeam;
+		this.password=password;
 		this.subscriptions = new HashSet<>();
 	}
 
@@ -68,6 +72,14 @@ public class Customer implements Comparable<Customer>, Serializable{
 	// -------------------------------Getters And Setters------------------------------
 	public String getId() {
 		return id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setId(String id) {

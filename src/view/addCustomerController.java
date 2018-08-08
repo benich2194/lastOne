@@ -61,6 +61,8 @@ public class addCustomerController {
 
 	    @FXML
 	    private TextField cusMail;
+	    @FXML
+	    private TextField cusPassword;
 
 	    @FXML
 	    void addCustomer(ActionEvent event) throws MalformedURLException {
@@ -78,13 +80,15 @@ public class addCustomerController {
 	    	Address ad=new Address(cusCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 	    	URL mail=new URL("http:\\"+cusMail.getText());
 	    	Integer fav=Integer.parseInt(favTeam.getText());
+	    	String password=cusPassword.getText();
+	    	System.out.println(password);
 	    	if(SysData.getInstance().getCustomers().containsKey(id)) {
 	    		alert.setHeaderText("Unable to added Customer.");
 	    		alert.setContentText("Customer already exists.");
 	    		alert.show();
 	    	}
 	    	else {
-	    		SysData.getInstance().addCustomer(id, first, last, bday, levelCustomer.getSelectionModel().getSelectedItem(), mail, fav, ad);
+	    		SysData.getInstance().addCustomer(id,password, first, last, bday, levelCustomer.getSelectionModel().getSelectedItem(), mail, fav, ad);
 		    	if(SysData.getInstance().getCustomers().containsKey(id)) {
 		    		alert.setHeaderText("Added Customer");
 		    		alert.setContentText("Customer added successfully.");

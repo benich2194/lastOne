@@ -26,17 +26,7 @@ public class SysData implements Serializable{
 	private static final long serialVersionUID = -5666565707963024903L;
 	// -------------------------------Class Members------------------------------
 	private static SysData instance;
-	public HashMap<String, String> getRecep() {
-		return recep;
-	}
 
-	public HashMap<String, String> getCoach() {
-		return coach;
-	}
-
-	public HashMap<String, String> getCustomer() {
-		return customer;
-	}
 
 	private HashMap<Integer, Coach> coaches;
 	private HashMap<Integer, Receptionist> receptionists;
@@ -46,12 +36,10 @@ public class SysData implements Serializable{
 	private HashMap<String, Customer> customers;
 	private HashMap<Integer, Match> matches;
 	private HashSet<Trophy> trophies;
-	
-        
-        private HashMap<String,String> recep;
-        private HashMap<String,String> coach;
-        private HashMap<String,String> customer;
-        private HashMap<String,HashMap<String,String>> pending;
+	private String userCoach;
+	private String userRecep;
+	private String userCustomer;
+
 
 	// -------------------------------Constructors------------------------------
 	private SysData() {
@@ -63,11 +51,7 @@ public class SysData implements Serializable{
 		customers = new HashMap<>();
 		matches = new HashMap<>();
 		trophies = new HashSet<>();
-                
-                recep=new HashMap<>();
-                coach=new HashMap<>();
-                customer=new HashMap<>();
-                pending=new HashMap<>();
+		
                 
                 
 	}
@@ -76,9 +60,6 @@ public class SysData implements Serializable{
 	// -----------------------------------------Getters--------------------------------------
 	public HashMap<Integer, Coach> getCoachs() {
 		return coaches;
-	}
-	public HashMap<String, HashMap<String, String>> getPending() {
-		return pending;
 	}
 	public HashMap<Integer, Receptionist> getReceptionists() {
 		return receptionists;
@@ -98,6 +79,30 @@ public class SysData implements Serializable{
 
 	public HashMap<String, Customer> getCustomers() {
 		return customers;
+	}
+
+	public String getUserCoach() {
+		return userCoach;
+	}
+
+	public void setUserCoach(String userCoach) {
+		this.userCoach = userCoach;
+	}
+
+	public String getUserRecep() {
+		return userRecep;
+	}
+
+	public void setUserRecep(String userRecep) {
+		this.userRecep = userRecep;
+	}
+
+	public String getUserCustomer() {
+		return userCustomer;
+	}
+
+	public void setUserCustomer(String userCustomer) {
+		this.userCustomer = userCustomer;
 	}
 
 	public HashMap<Integer, Match> getMatchs() {
@@ -233,14 +238,14 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the coach was added successfully, false otherwise
 	 */
-	public boolean addCoach(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate,
+	public boolean addCoach(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate,
 			E_Levels level, Address address) {
 		Date today = new Date();
 		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null &&
 				level != null && address != null && birthdate.before(today) && startWorkingDate.before(today) &&
 				birthdate.before(startWorkingDate)) {
 			if (!coaches.containsKey(id)) {
-				if (coaches.put(id, new Coach(id, firstName, lastName, birthdate, startWorkingDate, address, level)) == null) {
+				if (coaches.put(id, new Coach(id,password, firstName, lastName, birthdate, startWorkingDate, address, level)) == null) {
 					return true;
 				}
 			}
@@ -264,14 +269,14 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the player was added successfully, false otherwise
 	 */
-	public boolean addPlayer(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate,
+	public boolean addPlayer(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate,
 			E_Levels level, long value, Boolean isRightLegKicker, E_Position position, Address address) {
 		Date today = new Date();
 		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null &&
 				level != null && address != null && value > 0 && birthdate.before(today) && startWorkingDate.before(today) &&
 				birthdate.before(startWorkingDate)) {
 			if (!players.containsKey(id)) {
-				if (players.put(id, new Player(id, firstName, lastName, birthdate, startWorkingDate, address, level, value, isRightLegKicker, position)) == null) {
+				if (players.put(id, new Player(id,password, firstName, lastName, birthdate, startWorkingDate, address, level, value, isRightLegKicker, position)) == null) {
 					return true;
 				}
 			}
@@ -292,10 +297,10 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the receptionist was added successfully, false otherwise
 	 */
-	public boolean addReceptionist(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address) {
+	public boolean addReceptionist(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address) {
 		if (id > 0 && !firstName.equals("") && !lastName.equals("") && birthdate != null && startWorkingDate != null && address != null) {
 			if (!receptionists.containsKey(id)) {
-				if (receptionists.put(id, new Receptionist(id, firstName, lastName, birthdate, startWorkingDate, address)) == null) {
+				if (receptionists.put(id, new Receptionist(id,password, firstName, lastName, birthdate, startWorkingDate, address)) == null) {
 					return true;
 				}
 			}
@@ -319,13 +324,14 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the customer was added successfully, false otherwise
 	 */
-	public boolean addCustomer(String id, String firstName, String lastName, Date birthDate, E_Levels level, URL email, int favoriteTeamId, Address address) {
-		if (id != null && firstName != null && lastName != null && birthDate != null && favoriteTeamId > 0 &&
+	public boolean addCustomer(String id,String password, String firstName, String lastName, Date birthDate, E_Levels level, URL email, int favoriteTeamId, Address address) {
+		if (id != null &&password!=null&& firstName != null && lastName != null && birthDate != null && favoriteTeamId > 0 &&
 			level != null && email != null && address != null) {
+			System.out.println(password);
 			if (!Customer.checkId(id).equals("0")) {
 				if (!customers.containsKey(id) && teams.containsKey(favoriteTeamId)) {
 					Team favoriteTeam = teams.get(favoriteTeamId);
-					if (customers.put(id, new Customer(id, firstName, lastName, birthDate, level, email, address, favoriteTeam)) == null) {
+					if (customers.put(id, new Customer(id,password, firstName, lastName, birthDate, level, email, address, favoriteTeam)) == null) {
 						return true;
 					}
 				}

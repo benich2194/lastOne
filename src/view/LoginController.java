@@ -65,12 +65,6 @@ public class LoginController extends Main{
 		alert.setHeaderText("");
     	String user=email.getText();
     	String pass=password.getText();
-    	
-    	if(override)
-    	{
-    		user = "admin";
-    		pass = "admin";
-    	}
     		if(user.equals("admin")&&pass.equals("admin")) {
     			
     			Stage stage=(Stage)login.getScene().getWindow();
@@ -88,8 +82,33 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
+    		else if(SysData.getInstance().getCustomers()!=null) {
+    			if(SysData.getInstance().getCustomers().get(user)!=null) {
+    				System.out.println(SysData.getInstance().getCustomers().get(user).getPassword());
+    				if(SysData.getInstance().getCustomers().get(user).getPassword()!=null) {	
+    					if(SysData.getInstance().getCustomers().get(user).getPassword().equals(pass)){
+    						SysData.getInstance().setUserCustomer(user);
+    		    			Stage stage=(Stage)login.getScene().getWindow();
+    		    			stage.close();
+    		    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/CustomerMenuSidebar.fxml"));
+    		    	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+    		    	    	
+    		    	    	Stage primaryStage=new Stage();
+    		    	    	Parent root=load.load();
+    		    	    	Scene scene=new Scene(root);
+    		    	    	
+    		    			scene.getStylesheets()
+    		    					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+    		    	    	primaryStage.setScene(scene);
+    		    	    	primaryStage.show();
+    				}
+    			}
+    		}
+    			
+    		}
     		else {
-    			alert.setHeaderText("failed to logim.");
+    			alert.setHeaderText("failed to login.");
         		alert.setContentText("wrong username/password");
         		alert.show();
     		}

@@ -34,5 +34,6 @@
       <TextField fx:id="coachStreet" alignment="CENTER" layoutX="267.0" layoutY="341.0" prefHeight="25.0" prefWidth="181.0" promptText="street" />
       <TextField fx:id="coachPhone" alignment="CENTER" layoutX="267.0" layoutY="378.0" prefHeight="25.0" prefWidth="181.0" promptText="Phone Number" />
       <Button fx:id="addButton" layoutX="264.0" layoutY="459.0" mnemonicParsing="false" onAction="#addCoach" prefHeight="43.0" prefWidth="181.0" text="Add Coach" />
+      <TextField fx:id="coachPassword" alignment="CENTER" layoutX="264.0" layoutY="413.0" prefHeight="25.0" prefWidth="181.0" promptText="Password:" />
    </children>
 </AnchorPane>

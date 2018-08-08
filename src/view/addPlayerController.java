@@ -93,7 +93,7 @@ public class addPlayerController {
     		alert.show();
     	}
     	else {
-    		SysData.getInstance().addPlayer(id,first,last,bday,work,playerLevel.getSelectionModel().getSelectedItem(),val,rightLeg.getSelectionModel().getSelectedItem(),playerPosition.getSelectionModel().getSelectedItem(),ad);
+    		SysData.getInstance().addPlayer(id,"0",first,last,bday,work,playerLevel.getSelectionModel().getSelectedItem(),val,rightLeg.getSelectionModel().getSelectedItem(),playerPosition.getSelectionModel().getSelectedItem(),ad);
 	    	if(SysData.getInstance().getPlayers().containsKey(id)) {
 	    		alert.setHeaderText("Added Player");
 	    		alert.setContentText("Player added successfully.");

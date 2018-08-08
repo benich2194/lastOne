@@ -26,9 +26,9 @@ public class Player extends Coach implements Serializable {
 	private HashSet<Match> matches;
 
 	// -------------------------------Constructors------------------------------
-	public Player(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address,
+	public Player(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address,
 			E_Levels level, long value, boolean isRightLegKicker, E_Position position) {
-		super(id, firstName, lastName, birthdate, startWorkingDate, address, level);
+		super(id,password, firstName, lastName, birthdate, startWorkingDate, address, level);
 		this.value = value;
 		this.isRightLegKicker = isRightLegKicker;
 		this.position = position;

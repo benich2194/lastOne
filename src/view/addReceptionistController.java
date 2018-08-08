@@ -53,6 +53,9 @@ public class addReceptionistController {
     private Button addButton;
 
     @FXML
+    private TextField recepPassword;
+
+    @FXML
     void addRecep(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Receptionist");
@@ -69,6 +72,7 @@ public class addReceptionistController {
     	phones[0]=recepPhone.getText();
     	String street=recepStreet.getText();
     	Integer houseNum=Integer.parseInt(houseNumber.getText());
+    	String password=recepPassword.getText();
     	Address ad=new Address(recepCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
     	if(SysData.getInstance().getReceptionists().containsKey(id)) {
     		alert.setHeaderText("Unable to added Receptionist.");
@@ -76,7 +80,7 @@ public class addReceptionistController {
     		alert.show();
     	}
     	else {
-    		SysData.getInstance().addReceptionist(id, first, last, bday, work, ad);
+    		SysData.getInstance().addReceptionist(id,password, first, last, bday, work, ad);
 	    	if(SysData.getInstance().getReceptionists().containsKey(id)) {
 	    		alert.setHeaderText("Added Receptionist");
 	    		alert.setContentText("Receptionist added successfully.");

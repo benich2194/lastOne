@@ -21,9 +21,9 @@ public class Receptionist extends Employee implements Serializable{
 	private HashSet<Subscription> subscriptions;
 
 	// -------------------------------Constructors------------------------------
-	public Receptionist(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate, 
+	public Receptionist(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, 
 			Address address) {
-		super(id, firstName, lastName, birthdate, startWorkingDate, address);
+		super(id,password, firstName, lastName, birthdate, startWorkingDate, address);
 		this.subscriptions = new HashSet<>();
 	}
 

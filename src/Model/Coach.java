@@ -24,9 +24,9 @@ public class Coach extends Employee implements Serializable{
 	private HashSet<Team> teams;
 
 	// -------------------------------Constructors------------------------------
-	public Coach(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address,
+	public Coach(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address,
 			E_Levels level) {
-		super(id, firstName, lastName, birthdate, startWorkingDate, address);
+		super(id,password, firstName, lastName, birthdate, startWorkingDate, address);
 		this.level = level;
 		this.teams = new HashSet<>();
 	}
