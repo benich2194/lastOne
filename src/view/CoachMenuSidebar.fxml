@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CoachMenuSiderbarController">
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CoachMenuSidebarController">
 
    <children>
       <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">

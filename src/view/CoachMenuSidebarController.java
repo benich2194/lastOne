@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
 
-public class CoachMenuSiderbarController implements Initializable {
+public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	private FlowPane menupane;

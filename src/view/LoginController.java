@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utils.Constants;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -82,9 +83,8 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
-    		else if(SysData.getInstance().getCustomers()!=null) {
+    		else if(SysData.getInstance().getCustomers()!=null&&user.length()==Constants.ID_NUMBER_SIZE) {
     			if(SysData.getInstance().getCustomers().get(user)!=null) {
-    				System.out.println(SysData.getInstance().getCustomers().get(user).getPassword());
     				if(SysData.getInstance().getCustomers().get(user).getPassword()!=null) {	
     					if(SysData.getInstance().getCustomers().get(user).getPassword().equals(pass)){
     						SysData.getInstance().setUserCustomer(user);
@@ -106,6 +106,23 @@ public class LoginController extends Main{
     			}
     		}
     			
+    		}
+    		else if(SysData.getInstance().getCoachs()!=null&&SysData.getInstance().getCoachs().get(Integer.parseInt(user))!=null&&SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword()!=null&&SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword().equals(pass)) {
+    			SysData.getInstance().setUserCoach(user);
+    			Stage stage=(Stage)login.getScene().getWindow();
+    			stage.close();
+    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/CoachMenuSidebar.fxml"));
+    	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+    	    	
+    	    	Stage primaryStage=new Stage();
+    	    	Parent root=load.load();
+    	    	Scene scene=new Scene(root);
+    	    	
+    			scene.getStylesheets()
+    					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+    	    	primaryStage.setScene(scene);
+    	    	primaryStage.show();
     		}
     		else {
     			alert.setHeaderText("failed to login.");
