@@ -43,6 +43,9 @@ public class Main extends Application {
 	public static void main(String[] args) throws Exception {
 		SysData.deserialize();
 		launch(args);
+		SysData.getInstance().setUserCoach(null);
+		SysData.getInstance().setUserCustomer(null);
+		SysData.getInstance().setUserRecep(null);
 		SysData.getInstance().serialize();
 	}
 
