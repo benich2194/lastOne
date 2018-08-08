@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Controller.SysData;
 import Model.Customer;
+import Model.Subscription;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -37,6 +38,9 @@ public class removeCustomerController {
 		alert.setTitle("Remove Customer");
 		alert.setHeaderText("");
     	Customer c=cusList.getSelectionModel().getSelectedItem();
+    	for(Subscription s:c.getSubscriptions()) {
+    		SysData.getInstance().removeSubscription(s.getId());
+    	}
     	SysData.getInstance().getCustomers().remove(c.getId());
     	if(!SysData.getInstance().getCustomers().containsKey(c.getId())) {
     		alert.setHeaderText("Removed Customer");

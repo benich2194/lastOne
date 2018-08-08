@@ -81,35 +81,58 @@ public class Player extends Coach implements Serializable {
 	 * @return true if the player was added successfully to team, false otherwise
 	 */
 	public boolean transferTo(Team team) {
-		//TODO
-		return false;
+		if (team == null) {// if team is null, return false
+			return false;
+		}
+		if (getCurrentTeam() == null) {// if current team of player is null, cannot transfer(has no team)
+			return false;
+		}
+		if (getCurrentTeam().equals(team)) {// if he is already in this team, return false
+			return false;
+		}
+		for(Player p:team.getPlayers().keySet()) {//if player exists in this team, return false
+			if(p!=null&&p.getId()==this.getId()) {
+				return false;
+			}
+		}
+		getCurrentTeam().removePlayer(this);// remove player from his current team
+		this.setCurrentTeam(null);// set his current team to null
+		if (!team.addPlayer(this)) {// if cannot add player, return false
+			return false;
+		}
+		setCurrentTeam(team);// set player current team to the new team and return true
+		return true;
 	}
+
 	/**
-	 * This method adds a new match to the matches array
-	 * only iF the match doesn't already exists in the Player's matches array and 
-	 * the time doesn't overlap with any other match in the array
+	 * This method adds a new match to the matches array only iF the match doesn't
+	 * already exists in the Player's matches array and the time doesn't overlap
+	 * with any other match in the array
 	 * 
 	 * @param match
 	 * @return true if the match was added successfully, false otherwise
 	 */
 	public boolean addMatch(Match match) {
-		if (match != null && !matches.contains(match)) {
-			Date start = match.getStartDateTime();
-			Date end = match.getFinishDateTime();
-			for (Match m : matches) {
-				if (m == null) continue;
-				if (start.before(m.getStartDateTime()) && end.after(m.getStartDateTime()))
-					return false;
-				if (start.before(m.getFinishDateTime()) && end.after(m.getFinishDateTime()))
-					return false;
-				if (start.equals(m.getStartDateTime())) 
-					return false;
-			}
-			return matches.add(match);
+		if (match == null) {// if match is null,return false
+			return false;
 		}
-		return false;
+		if (matches.contains(match)) {// if match already exists, return false
+			return false;
+		}
+		for (Match m : matches) {
+			if ((m.getStartDateTime().before(match.getFinishDateTime())
+					|| m.getStartDateTime().equals(match.getFinishDateTime()))
+					&& (match.getFinishDateTime().before(m.getFinishDateTime())
+							|| match.getFinishDateTime().equals(m.getFinishDateTime()))) {
+				return false;// if match overlaps with other matches,return false
+			}
+		}
+		if (!matches.add(match)) {// if unable to add match, return false
+			return false;
+		}
+		return true;// return true
 	}
-	
+
 	/**
 	 * This method removes a given match from the matches array.
 	 * 
@@ -117,9 +140,15 @@ public class Player extends Coach implements Serializable {
 	 * @return true if match was removed successfully, false otherwise
 	 */
 	public boolean removeMatch(Match match) {
-		if (match != null && matches.contains(match)) 
-			return matches.remove(match);
-		return false;
+		if (match == null) {// if match is null, return false
+			return false;
+		}
+		if (!matches.contains(match)) {// if matches does not exist, return false
+			return false;
+		}
+		if (!matches.remove(match)) {// if unable to remove match, return false
+			return false;
+		}
+		return true;// return true
 	}
-	
 }

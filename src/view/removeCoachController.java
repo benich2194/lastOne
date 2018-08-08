@@ -36,6 +36,9 @@ public class removeCoachController {
 		alert.setTitle("Remove Coach");
 		alert.setHeaderText("");
     	Coach c=coachList.getSelectionModel().getSelectedItem();
+    	if(c.getCurrentTeam()!=null) {
+    		c.getCurrentTeam().setCoach(null);
+    	}
     	SysData.getInstance().getCoachs().remove(c.getId());
     	if(!SysData.getInstance().getCoachs().containsKey(c.getId())) {
     		alert.setHeaderText("Removed coach");
