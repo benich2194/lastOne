@@ -3,7 +3,10 @@ package view;
 import java.io.IOException;
 
 import Controller.SysData;
+import Model.Match;
+import Model.Receptionist;
 import Model.Stadium;
+import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -42,7 +45,6 @@ public class removeStadiumController {
 		alert.setTitle("Remove Stadium");
 	
 		alert.setHeaderText("");
-	
     	if(stadiumList.getSelectionModel()==null){
     			alert.setHeaderText("Unable to remove stadium");
     			alert.setContentText("No stadium to remove");
@@ -51,6 +53,30 @@ public class removeStadiumController {
     	}
     	else {
     		Stadium s=stadiumList.getSelectionModel().getSelectedItem();
+    		if(s.getReceptionists()!=null) {
+    			for(Receptionist r:s.getReceptionists()) {
+    				if(r!=null) {
+    					r.setWorkingStadium(null);
+    				}
+    			}
+    		}
+    		if(s.getTeams()!=null) {
+    			for(Team t:s.getTeams()) {
+    				if(t!=null) {
+    					t.setStadium(null);
+    				}
+    			}
+    		}
+    		if(s.getMatches()!=null) {
+    			for(Match m:s.getMatches()) {
+    				SysData.getInstance().getMatchs().remove(m.getId());
+    				for(Team t:SysData.getInstance().getTeams().values()) {
+    					if(t!=null) {
+    						t.removeMatch(m);
+    					}
+    				}
+    			}
+    		}
         	if(s!=null) {
         		if(SysData.getInstance().getStadiums().remove(s.getId()) != null) {
         			alert.setHeaderText("Stadium added");

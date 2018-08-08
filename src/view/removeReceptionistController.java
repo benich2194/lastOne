@@ -37,6 +37,16 @@ public class removeReceptionistController {
 		alert.setTitle("Remove Receptionist");
 		alert.setHeaderText("");
     	Receptionist c=recepList.getSelectionModel().getSelectedItem();
+    	//remove receptionist from its working stadium
+    	if(c!=null) {
+    		if(c.getWorkingStadium()!=null) {
+    			if(c.getWorkingStadium().getReceptionists()!=null) {
+    				if(c.getWorkingStadium().getReceptionists().contains(c)) {
+    					c.getWorkingStadium().getReceptionists().remove(c);
+    				}
+    			}
+    		}
+    	}
     	SysData.getInstance().getReceptionists().remove(c.getId());
     	if(!SysData.getInstance().getReceptionists().containsKey(c.getId())) {
     		alert.setHeaderText("Removed Receptionist");

@@ -5,6 +5,7 @@ import java.io.IOException;
 import Controller.SysData;
 import Model.Coach;
 import Model.Player;
+import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -45,6 +46,12 @@ public class removePlayerController {
     		alert.setTitle("Remove Player");
     		alert.setHeaderText("");
         	Coach c=playerList.getSelectionModel().getSelectedItem();
+        	//remove player from a team he is in..
+        	if(c.getCurrentTeam()!=null) {
+        		if(c.getCurrentTeam().getPlayers().containsKey(c)) {
+        			c.getCurrentTeam().removePlayer((Player)c);
+        		}
+        	}
         	SysData.getInstance().getPlayers().remove(c.getId());
         	if(!SysData.getInstance().getPlayers().containsKey(c.getId())) {
         		alert.setHeaderText("Removed Player");
