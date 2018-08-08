@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 
 import Controller.SysData;
+import Model.Player;
 import Model.Stadium;
 import Model.Team;
 import javafx.event.ActionEvent;
@@ -43,6 +44,16 @@ public class removeTeamController {
     	//Remove team from it's current Stadium
     	if(toRemoveTeamFrom!=null)
     		toRemoveTeamFrom.removeTeam(t);
+    	//remove team from its players
+    	for(Player p:SysData.getInstance().getPlayers().values()) {
+    		if(p!=null) {
+    			if(p.getCurrentTeam()!=null) {
+    				if(p.getCurrentTeam().equals(t)) {
+    					p.setCurrentTeam(null);
+    				}
+    			}
+    		}
+    	}
     	SysData.getInstance().getTeams().remove(t.getId());
     	if(SysData.getInstance().getTeams().containsKey(t.getId())) {
     		alert.setHeaderText("Team wasn't removed");
