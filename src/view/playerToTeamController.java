@@ -54,8 +54,9 @@ public class playerToTeamController {
 
     @FXML
     void goBack(ActionEvent event) {
-
+    	WindowManager.goBack();
     }
+    
     public void initialize() {
     	if(SysData.getInstance().getTeams().values().size()>0) {
     		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
