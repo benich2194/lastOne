@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +15,11 @@ import utils.E_Periods;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Subscription {
+public class Subscription implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7714427595251702245L;
 	// -------------------------------Class Members------------------------------
 	private int id;
 	private Customer customer;

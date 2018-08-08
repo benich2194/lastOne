@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,7 +17,11 @@ import utils.E_Levels;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Customer implements Comparable<Customer>{
+public class Customer implements Comparable<Customer>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -468143693890518202L;
 	// -------------------------------Class Members------------------------------
 	private String id;
 	private String firstName;

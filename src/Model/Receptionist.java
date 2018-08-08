@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -10,7 +11,11 @@ import java.util.HashSet;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Receptionist extends Employee {
+public class Receptionist extends Employee implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8898478405999122128L;
 	// -------------------------------Class Members------------------------------
 	private Stadium workingStadium;
 	private HashSet<Subscription> subscriptions;

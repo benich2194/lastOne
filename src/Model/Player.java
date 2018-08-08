@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -13,7 +14,11 @@ import utils.E_Position;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Player extends Coach {
+public class Player extends Coach implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5491200368814041188L;
 	// -------------------------------Class Members------------------------------
 	private long value;
 	private boolean isRightLegKicker;

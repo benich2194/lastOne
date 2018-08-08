@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +16,11 @@ import utils.E_Levels;
  * @author Java Course Team 2018 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Match {
+public class Match implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -203686949049209767L;
 	// -------------------------------Class Members------------------------------
 	private int id;
 	private Date startDateTime;

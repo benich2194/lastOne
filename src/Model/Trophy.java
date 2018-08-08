@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +14,11 @@ import utils.E_Trophy;
  * @author University Of Haifa - Israel
  * @param <T>
  */
-public class Trophy<T> implements Comparable<Trophy<T>>{
+public class Trophy<T> implements Comparable<Trophy<T>>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1242753639223042990L;
 	// -------------------------------Class Members------------------------------
 	private E_Trophy trophy;
 	private T owner;
