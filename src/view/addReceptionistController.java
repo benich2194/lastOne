@@ -52,14 +52,15 @@ public class addReceptionistController {
     @FXML
     private Button addButton;
 
-    private static Integer recepCounter = 1; 
-    
     @FXML
     void addRecep(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
-    	Integer id= addReceptionistController.recepCounter;
+		//ID is size of the map + 1, if exists, it will keep adding 1
+    	Integer id = SysData.getInstance().getReceptionists().size()+1;
+    	while(SysData.getInstance().getReceptionists().containsKey(id))
+    		id++;
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -79,7 +80,6 @@ public class addReceptionistController {
 	    	if(SysData.getInstance().getReceptionists().containsKey(id)) {
 	    		alert.setHeaderText("Added Receptionist");
 	    		alert.setContentText("Receptionist added successfully.");
-	    		recepCounter++;
 	    		alert.show();
 	    	}
 	    	else {
@@ -93,7 +93,12 @@ public class addReceptionistController {
   		recepCity.getItems().addAll(E_Cities.values());
     	recepId.setEditable(false);
     	recepId.setDisable(true);
-    	recepId.setText(recepCounter.toString());
+    	
+    	Integer idCurrent = SysData.getInstance().getReceptionists().size()+1;
+    	while(SysData.getInstance().getReceptionists().containsKey(idCurrent))
+    		idCurrent++;
+    	recepId.setText(idCurrent.toString());
+
   		
   }
     @FXML

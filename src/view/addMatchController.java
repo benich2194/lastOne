@@ -45,15 +45,17 @@ public class addMatchController {
 
     @FXML
     private DatePicker matchDate;
-    
-    private static Integer matchCounter = 1; 
 
     @FXML
     void addMatch(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Match");
 		alert.setHeaderText("");
-    	Integer id = addMatchController.matchCounter;
+		//ID is size of the map + 1, if exists, it will keep adding 1
+    	Integer id = SysData.getInstance().getMatchs().size()+1;
+    	while(SysData.getInstance().getMatchs().containsKey(id))
+    		id++;
+
     	Integer extra=Integer.parseInt(Extra.getText());
     	java.sql.Date date=java.sql.Date.valueOf(matchDate.getValue());
     	if(SysData.getInstance().getMatchs().containsKey(id)) {
@@ -66,7 +68,6 @@ public class addMatchController {
 	    	if(SysData.getInstance().getMatchs().containsKey(id)) {
 	    		alert.setHeaderText("Added Match");
 	    		alert.setContentText("Match added successfully.");
-	    		matchCounter++;
 	    		alert.show();
 	    	}
 	    	else {
@@ -92,6 +93,11 @@ public class addMatchController {
     
     	matchId.setEditable(false);
     	matchId.setDisable(true);
-    	matchId.setText(matchCounter.toString());
+    	
+    	Integer idCurrent = SysData.getInstance().getMatchs().size()+1;
+    	while(SysData.getInstance().getMatchs().containsKey(idCurrent))
+    		idCurrent++;
+    	matchId.setText(idCurrent.toString());
+    	
     }
 }

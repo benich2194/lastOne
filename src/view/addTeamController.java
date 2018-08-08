@@ -39,7 +39,6 @@ public class addTeamController {
 	    @FXML
 	    private Button pushToAdd;
 	    
-	    private static Integer teamCounter = 1; 
 
 	    @FXML
 	    void addTeam(ActionEvent event) {
@@ -52,7 +51,10 @@ public class addTeamController {
 	    		alert.show();
 			}
 			else {
-				Integer id=addTeamController.teamCounter;
+				//ID is size of the map + 1, if exists, it will keep adding 1
+				Integer id = SysData.getInstance().getTeams().size()+1;
+		    	while(SysData.getInstance().getTeams().containsKey(id))
+		    		id++;
 		    	String name=teamName.getText();
 		    	Integer value=Integer.parseInt(teamValue.getText());
 		    	Integer stadium=Integer.parseInt(teamStadiumId.getText());
@@ -72,7 +74,6 @@ public class addTeamController {
 			    		if(SysData.getInstance().getTeams().containsKey(id)) {
 			        		alert.setHeaderText("Added Team");
 			        		alert.setContentText("Team was added succesfully");
-			        		teamCounter++;
 			        		alert.show();
 			        	}
 			        	else {
@@ -82,18 +83,18 @@ public class addTeamController {
 			        	}
 			    	}
 		    	}
-			}
-			
-	    	
-	    	
-	    	
+			}	
 	    	
 	    }
+	    
 	    public void initialize() {
 	    	teamLevel.getItems().addAll(E_Levels.values());
 	    	teamId.setEditable(false);
 	    	teamId.setDisable(true);
-	    	teamId.setText(teamCounter.toString());
+	    	Integer idCurrent = SysData.getInstance().getTeams().size()+1;
+	    	while(SysData.getInstance().getTeams().containsKey(idCurrent))
+	    		idCurrent++;
+	    	teamId.setText(idCurrent.toString());
 	    }
 
     @FXML

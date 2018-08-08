@@ -66,15 +66,17 @@ public class addPlayerController {
 
     @FXML
     private ComboBox<E_Position> playerPosition;
-    
-    private static Integer playerCounter = 1; 
+
 
     @FXML
     void addPlayer(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player");
 		alert.setHeaderText("");
-    	Integer id = addPlayerController.playerCounter;
+		//ID is size of the map + 1, if exists, it will keep adding 1
+    	Integer id = SysData.getInstance().getPlayers().size()+1;
+    	while(SysData.getInstance().getPlayers().containsKey(id))
+    		id++;
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -95,7 +97,6 @@ public class addPlayerController {
 	    	if(SysData.getInstance().getPlayers().containsKey(id)) {
 	    		alert.setHeaderText("Added Player");
 	    		alert.setContentText("Player added successfully.");
-	    		playerCounter++;
 	    		alert.show();
 	    	}
 	    	else {
@@ -119,7 +120,11 @@ public class addPlayerController {
     	playerLevel.getItems().addAll(E_Levels.values());
     	playerId.setEditable(false);
     	playerId.setDisable(true);
-    	playerId.setText(playerCounter.toString());
+
+    	Integer idCurrent = SysData.getInstance().getPlayers().size()+1;
+    	while(SysData.getInstance().getPlayers().containsKey(idCurrent))
+    		idCurrent++;
+    	playerId.setText(idCurrent.toString());
     }
 
 }

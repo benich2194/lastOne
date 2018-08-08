@@ -45,9 +45,7 @@ public class addStadiumController extends Main {
 	    @FXML
 	    private Button submit;
 	    
-	    private static Integer stadiumCounter = 1; 
 
-	   
     @FXML
     void goBack(ActionEvent event) throws IOException {
     	WindowManager.goBack();
@@ -57,7 +55,11 @@ public class addStadiumController extends Main {
     	cityList.getItems().addAll(E_Cities.values());
     	id.setEditable(false);
     	id.setDisable(true);
-    	id.setText(stadiumCounter.toString());
+
+    	Integer idCurrent = SysData.getInstance().getStadiums().size()+1;
+    	while(SysData.getInstance().getStadiums().containsKey(idCurrent))
+    		idCurrent++;
+    	id.setText(idCurrent.toString());
     }
     
     @FXML
@@ -67,7 +69,10 @@ public class addStadiumController extends Main {
 		alert.setTitle("Add Stadium");
 	
 		alert.setHeaderText("");
-    	Integer ID=addStadiumController.stadiumCounter;
+		//ID is size of the map + 1, if exists, it will keep adding 1
+    	Integer id = SysData.getInstance().getStadiums().size()+1;
+    	while(SysData.getInstance().getStadiums().containsKey(id))
+    		id++;
     	String NAME=name.getText();
     	Integer HOUSENUM=Integer.parseInt(houseNumber.getText());
     	Integer CAPACITY=Integer.parseInt(capacity.getText());
@@ -76,18 +81,17 @@ public class addStadiumController extends Main {
     	String STREET=street.getText();
     	String[] phoneArr=new String[1];
     	phoneArr[0]=PHONE;
-    	if(SysData.getInstance().getStadiums().containsKey(ID)) {
+    	if(SysData.getInstance().getStadiums().containsKey(id)) {
     		alert.setHeaderText("Unable to add stadium");
     		alert.setContentText("Stadium with the same ID already exists.");
     		alert.show();
     	}
     	else {
-    		SysData.getInstance().addStadium(ID, NAME, CAPACITY, c, STREET, HOUSENUM, phoneArr);
-        	if(SysData.getInstance().getStadiums().containsKey(ID)) {
+    		SysData.getInstance().addStadium(id, NAME, CAPACITY, c, STREET, HOUSENUM, phoneArr);
+        	if(SysData.getInstance().getStadiums().containsKey(id)) {
         		alert.setHeaderText("Added Stadium");
         		alert.setContentText("Stadium was added succesfully");
         		alert.show();
-        		stadiumCounter++;
         	}
         	else {
         		alert.setHeaderText("Unable to add stadium");

@@ -56,14 +56,16 @@ public class addCoachController {
 	    @FXML
 	    private Button addButton;
 	    
-	    private static Integer coachCounter = 1; 
 
 	    @FXML
 	    void addCoach(ActionEvent event) throws IOException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
-	    	Integer id = addCoachController.coachCounter;
+			//ID is size of the map + 1, if exists, it will keep adding 1
+	    	Integer id = SysData.getInstance().getCoachs().size()+1;
+	    	while(SysData.getInstance().getCoachs().containsKey(id))
+	    		id++;
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -83,7 +85,6 @@ public class addCoachController {
 		    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 		    		alert.setHeaderText("Added coach");
 		    		alert.setContentText("Coach added successfully.");
-		    		coachCounter++;
 		    		alert.show();
 		    	}
 		    	else {
@@ -106,6 +107,9 @@ public class addCoachController {
     	levelCoach.getItems().addAll(E_Levels.values());
     	coachId.setEditable(false);
     	coachId.setDisable(true);
-    	coachId.setText(coachCounter.toString());
+    	Integer idCurrent = SysData.getInstance().getCoachs().size()+1;
+    	while(SysData.getInstance().getCoachs().containsKey(idCurrent))
+    		idCurrent++;
+    	coachId.setText(idCurrent.toString());
     }
 }
