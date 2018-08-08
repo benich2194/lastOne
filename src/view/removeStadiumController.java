@@ -48,7 +48,6 @@ public class removeStadiumController {
     	if(stadiumList.getSelectionModel()==null){
     			alert.setHeaderText("Unable to remove stadium");
     			alert.setContentText("No stadium to remove");
-    			
     			alert.show();
     	}
     	else {
@@ -90,19 +89,16 @@ public class removeStadiumController {
         			alert.show();;
         		}
         	}
-        	else {
+    	}
     		
         		alert.setHeaderText("Unable to remove stadium");
     			alert.setContentText("No stadium was selected");
-    			alert.show();
-        	}
-        	
-    	}
-    	
-        
+    			alert.show();     
     }
     public void initialize() {
-    	stadiumList.getItems().addAll(SysData.getInstance().getStadiums().values());
+    	if(SysData.getInstance().getStadiums().size()>0) {
+    		stadiumList.getItems().addAll(SysData.getInstance().getStadiums().values());
+    	}
     	success=new Label();
     }
 }

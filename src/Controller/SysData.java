@@ -103,7 +103,9 @@ public class SysData implements Serializable{
 	public HashMap<Integer, Match> getMatchs() {
 		return matches;
 	}
-        
+    public HashSet<Trophy> getTrophies(){
+    	return trophies;
+    }
 
 	public static SysData getInstance() {
 		if (instance == null) 
