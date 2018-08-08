@@ -19,14 +19,13 @@ import java.util.*;
  * @author University Of Haifa - Israel
  */
 @SuppressWarnings("rawtypes")
-public class SysData implements Serializable{
+public class SysData implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5666565707963024903L;
 	// -------------------------------Class Members------------------------------
 	private static SysData instance;
-
 
 	private HashMap<Integer, Coach> coaches;
 	private HashMap<Integer, Receptionist> receptionists;
@@ -40,7 +39,6 @@ public class SysData implements Serializable{
 	private String userRecep;
 	private String userCustomer;
 
-
 	// -------------------------------Constructors------------------------------
 	private SysData() {
 		coaches = new HashMap<>();
@@ -51,16 +49,14 @@ public class SysData implements Serializable{
 		customers = new HashMap<>();
 		matches = new HashMap<>();
 		trophies = new HashSet<>();
-		
-                
-                
+
 	}
 
-	
 	// -----------------------------------------Getters--------------------------------------
 	public HashMap<Integer, Coach> getCoachs() {
 		return coaches;
 	}
+
 	public HashMap<Integer, Receptionist> getReceptionists() {
 		return receptionists;
 	}
@@ -68,7 +64,7 @@ public class SysData implements Serializable{
 	public HashMap<Integer, Player> getPlayers() {
 		return players;
 	}
-	
+
 	public HashMap<Integer, Team> getTeams() {
 		return teams;
 	}
@@ -108,67 +104,71 @@ public class SysData implements Serializable{
 	public HashMap<Integer, Match> getMatchs() {
 		return matches;
 	}
-    public HashSet<Trophy> getTrophies(){
-    	return trophies;
-    }
+
+	public HashSet<Trophy> getTrophies() {
+		return trophies;
+	}
 
 	public static SysData getInstance() {
-		if (instance == null) 
+		if (instance == null)
 			instance = new SysData();
 		return instance;
 	}
-	public boolean serialize() throws IOException{
-	FileOutputStream fileOut=null;
-	ObjectOutputStream out=null;
-	try {
-		fileOut=new FileOutputStream("SysData.ser");
-		out=new ObjectOutputStream(fileOut);
-		out.writeObject(instance);
-		System.out.println("Serialized data is saved in the project folder as SysData.ser");
-		return true;
-	}catch(IOException e) {
-		e.printStackTrace();
-		return false;
-	}finally {
-		if(out!=null) {
-			out.close();
-		}
-		if(fileOut!=null) {
-			fileOut.close();
-		}
-	}
-	}
-	public static SysData deserialize() throws IOException {
-		
-			SysData recovered=null;
-			FileInputStream fileIn=null;
-			ObjectInputStream in=null;
-			try {
-				fileIn=new FileInputStream("SysData.ser");
-				in=new ObjectInputStream(fileIn);
-				instance=(SysData) in.readObject();
-				return instance;
-			
-			}catch(IOException E) {
-				System.out.println("The file SysData.ser was not found");
-				return null;
+
+	public boolean serialize() throws IOException {
+		FileOutputStream fileOut = null;
+		ObjectOutputStream out = null;
+		try {
+			fileOut = new FileOutputStream("SysData.ser");
+			out = new ObjectOutputStream(fileOut);
+			out.writeObject(instance);
+			System.out.println("Serialized data is saved in the project folder as SysData.ser");
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (out != null) {
+				out.close();
 			}
-		    catch(ClassNotFoundException e) {
-		    	e.printStackTrace();
-		    	return null;
-		    }finally {
-		    	if(in!=null){
-		    		in.close();
-		    	}
-		    	if(fileIn!=null) {
-		    		fileIn.close();
-		    	}
-		    }
+			if (fileOut != null) {
+				fileOut.close();
+			}
+		}
 	}
-	// -------------------------------Add && Remove Methods------------------------------
+
+	public static SysData deserialize() throws IOException {
+
+		SysData recovered = null;
+		FileInputStream fileIn = null;
+		ObjectInputStream in = null;
+		try {
+			fileIn = new FileInputStream("SysData.ser");
+			in = new ObjectInputStream(fileIn);
+			instance = (SysData) in.readObject();
+			return instance;
+
+		} catch (IOException E) {
+			System.out.println("The file SysData.ser was not found");
+			return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (fileIn != null) {
+				fileIn.close();
+			}
+		}
+	}
+
+	// -------------------------------Add && Remove
+	// Methods------------------------------
 	/**
-	 * This method adds a new stadium to the JavaLeague
-	 * only if all the parameters are valid and the stadium doesn't already exist in the system
+	 * This method adds a new stadium to the JavaLeague only if all the parameters
+	 * are valid and the stadium doesn't already exist in the system
 	 * 
 	 * @param id
 	 * @param name
@@ -179,26 +179,25 @@ public class SysData implements Serializable{
 	 * @param phoneNumber
 	 * @return true if the stadium was added successfully, false otherwise
 	 */
-	public boolean addStadium(int id, String name, int capacity, E_Cities city, String street, int houseNumber, String[] phoneNumber) {
-		if (id > 0 && name != null && capacity > 0 && city != null && street != null && houseNumber > 0 && phoneNumber != null) {
+	public boolean addStadium(int id, String name, int capacity, E_Cities city, String street, int houseNumber,
+			String[] phoneNumber) {
+		if (id > 0 && name != null && capacity > 0 && city != null && street != null && houseNumber > 0
+				&& phoneNumber != null) {
 			if (!stadiums.containsKey(id)) {
 				Address address = new Address(city, street, houseNumber, phoneNumber);
-				if (stadiums.put(id, new Stadium(id, name, address, capacity)) ==null) {
+				if (stadiums.put(id, new Stadium(id, name, address, capacity)) == null) {
 					return true;
 				}
 			}
 		}
 		return false;
 	} // ~ END OF addStadium
-        
-      
-        
+
 	/**
-	 * This method adds a new team to the JavaLeague
-	 * only if all the parameters are valid and the team doesn't already exist in the system
-	 * IMPORTENT: In order to add a new team, 
-	 * 			  the team must be added to it's stadium first.
-	 * 			  Don't forget to roll-back :)
+	 * This method adds a new team to the JavaLeague only if all the parameters are
+	 * valid and the team doesn't already exist in the system IMPORTENT: In order to
+	 * add a new team, the team must be added to it's stadium first. Don't forget to
+	 * roll-back :)
 	 * 
 	 * @param id
 	 * @param name
@@ -215,7 +214,7 @@ public class SysData implements Serializable{
 				Stadium stadium = stadiums.get(stadiumId);
 				Team team = new Team(id, name, value, level, stadium);
 				if (stadium.addTeam(team)) {
-					if (teams.put(id, team) == null) 
+					if (teams.put(id, team) == null)
 						return true;
 					stadium.removeTeam(team);
 				}
@@ -223,10 +222,10 @@ public class SysData implements Serializable{
 		}
 		return false;
 	} // ~ END OF addTeam
-	
+
 	/**
-	 * This method adds a new coach to the JavaLeague
-	 * only if all the parameters are valid and the coach doesn't already exist in the system
+	 * This method adds a new coach to the JavaLeague only if all the parameters are
+	 * valid and the coach doesn't already exist in the system
 	 * 
 	 * @param id
 	 * @param firstName
@@ -238,24 +237,25 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the coach was added successfully, false otherwise
 	 */
-	public boolean addCoach(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate,
-			E_Levels level, Address address) {
+	public boolean addCoach(int id, String password, String firstName, String lastName, Date birthdate,
+			Date startWorkingDate, E_Levels level, Address address) {
 		Date today = new Date();
-		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null &&
-				level != null && address != null && birthdate.before(today) && startWorkingDate.before(today) &&
-				birthdate.before(startWorkingDate)) {
+		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null
+				&& level != null && address != null && birthdate.before(today) && startWorkingDate.before(today)
+				&& birthdate.before(startWorkingDate)) {
 			if (!coaches.containsKey(id)) {
-				if (coaches.put(id, new Coach(id,password, firstName, lastName, birthdate, startWorkingDate, address, level)) == null) {
+				if (coaches.put(id, new Coach(id, password, firstName, lastName, birthdate, startWorkingDate, address,
+						level)) == null) {
 					return true;
 				}
 			}
 		}
 		return false;
 	} // ~ END OF addCoach
-	
+
 	/**
-	 * This method adds a new player to the JavaLeague
-	 * only if all the parameters are valid and the player doesn't already exist in the system
+	 * This method adds a new player to the JavaLeague only if all the parameters
+	 * are valid and the player doesn't already exist in the system
 	 * 
 	 * @param id
 	 * @param firstName
@@ -269,24 +269,26 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the player was added successfully, false otherwise
 	 */
-	public boolean addPlayer(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate,
-			E_Levels level, long value, Boolean isRightLegKicker, E_Position position, Address address) {
+	public boolean addPlayer(int id, String password, String firstName, String lastName, Date birthdate,
+			Date startWorkingDate, E_Levels level, long value, Boolean isRightLegKicker, E_Position position,
+			Address address) {
 		Date today = new Date();
-		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null &&
-				level != null && address != null && value > 0 && birthdate.before(today) && startWorkingDate.before(today) &&
-				birthdate.before(startWorkingDate)) {
+		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null
+				&& level != null && address != null && value > 0 && birthdate.before(today)
+				&& startWorkingDate.before(today) && birthdate.before(startWorkingDate)) {
 			if (!players.containsKey(id)) {
-				if (players.put(id, new Player(id,password, firstName, lastName, birthdate, startWorkingDate, address, level, value, isRightLegKicker, position)) == null) {
+				if (players.put(id, new Player(id, password, firstName, lastName, birthdate, startWorkingDate, address,
+						level, value, isRightLegKicker, position)) == null) {
 					return true;
 				}
 			}
 		}
 		return false;
 	} // ~ END OF addPlayer
-	
+
 	/**
-	 * This method adds a new receptionist to the JavaLeague
-	 * only if all the parameters are valid and the receptionist doesn't already exist in the system
+	 * This method adds a new receptionist to the JavaLeague only if all the
+	 * parameters are valid and the receptionist doesn't already exist in the system
 	 * 
 	 * @param id
 	 * @param firstName
@@ -297,10 +299,13 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the receptionist was added successfully, false otherwise
 	 */
-	public boolean addReceptionist(int id,String password, String firstName, String lastName, Date birthdate, Date startWorkingDate, Address address) {
-		if (id > 0 && !firstName.equals("") && !lastName.equals("") && birthdate != null && startWorkingDate != null && address != null) {
+	public boolean addReceptionist(int id, String password, String firstName, String lastName, Date birthdate,
+			Date startWorkingDate, Address address) {
+		if (id > 0 && !firstName.equals("") && !lastName.equals("") && birthdate != null && startWorkingDate != null
+				&& address != null) {
 			if (!receptionists.containsKey(id)) {
-				if (receptionists.put(id, new Receptionist(id,password, firstName, lastName, birthdate, startWorkingDate, address)) == null) {
+				if (receptionists.put(id, new Receptionist(id, password, firstName, lastName, birthdate,
+						startWorkingDate, address)) == null) {
 					return true;
 				}
 			}
@@ -309,10 +314,10 @@ public class SysData implements Serializable{
 	} // ~ END OF addReceptionist
 
 	/**
-	 * This method adds a new customer to the JavaLeague
-	 * only if all the parameters are valid and the customer doesn't already exist in the system
-	 * IMPORTENT: Every customer has a favorite team, 
-	 * 			  if the team doesn't exist in the system the customer cannot be added :(
+	 * This method adds a new customer to the JavaLeague only if all the parameters
+	 * are valid and the customer doesn't already exist in the system IMPORTENT:
+	 * Every customer has a favorite team, if the team doesn't exist in the system
+	 * the customer cannot be added :(
 	 * 
 	 * @param id
 	 * @param firstName
@@ -324,14 +329,16 @@ public class SysData implements Serializable{
 	 * @param address
 	 * @return true if the customer was added successfully, false otherwise
 	 */
-	public boolean addCustomer(String id,String password, String firstName, String lastName, Date birthDate, E_Levels level, URL email, int favoriteTeamId, Address address) {
-		if (id != null &&password!=null&& firstName != null && lastName != null && birthDate != null && favoriteTeamId > 0 &&
-			level != null && email != null && address != null) {
+	public boolean addCustomer(String id, String password, String firstName, String lastName, Date birthDate,
+			E_Levels level, URL email, int favoriteTeamId, Address address) {
+		if (id != null && password != null && firstName != null && lastName != null && birthDate != null
+				&& favoriteTeamId > 0 && level != null && email != null && address != null) {
 			System.out.println(password);
 			if (!Customer.checkId(id).equals("0")) {
 				if (!customers.containsKey(id) && teams.containsKey(favoriteTeamId)) {
 					Team favoriteTeam = teams.get(favoriteTeamId);
-					if (customers.put(id, new Customer(id,password, firstName, lastName, birthDate, level, email, address, favoriteTeam)) == null) {
+					if (customers.put(id, new Customer(id, password, firstName, lastName, birthDate, level, email,
+							address, favoriteTeam)) == null) {
 						return true;
 					}
 				}
@@ -341,10 +348,10 @@ public class SysData implements Serializable{
 	}// ~ END OF addCustomer
 
 	/**
-	 * This method adds an existing coach to an existing team of the JavaLeague
-	 * only if all the parameters are valid and the both coach & team already exist in the system
-	 * IMPORTENT: If the given coach already belongs to another team, 
-	 * 			  transfer the coach to the given team. 
+	 * This method adds an existing coach to an existing team of the JavaLeague only
+	 * if all the parameters are valid and the both coach & team already exist in
+	 * the system IMPORTENT: If the given coach already belongs to another team,
+	 * transfer the coach to the given team.
 	 * 
 	 * @param coachId
 	 * @param teamId
@@ -357,16 +364,15 @@ public class SysData implements Serializable{
 				Team team = teams.get(teamId);
 
 				if (coach.getCurrentTeam() != null) {
-					
+
 					if (coach.getCurrentTeam().equals(team)) {
 					}
-						
-					
+
 					if (team.registerCoach(coach)) {
 						return coach.transferTo(team);
 					}
 				}
-				
+
 				if (team.registerCoach(coach)) {
 					coach.setCurrentTeam(team);
 					return true;
@@ -379,9 +385,9 @@ public class SysData implements Serializable{
 
 	/**
 	 * This method adds an existing player to an existing team of the JavaLeague
-	 * only if all the parameters are valid and the both player & team already exist in the system
-	 * IMPORTENT: If the given player already belongs to another team, 
-	 * 			  transfer the player to the given team. 
+	 * only if all the parameters are valid and the both player & team already exist
+	 * in the system IMPORTENT: If the given player already belongs to another team,
+	 * transfer the player to the given team.
 	 * 
 	 * @param playerId
 	 * @param teamId
@@ -392,13 +398,13 @@ public class SysData implements Serializable{
 			if (players.containsKey(playerId) && teams.containsKey(teamId)) {
 				Player player = players.get(playerId);
 				Team team = teams.get(teamId);
-				
+
 				if (player.getCurrentTeam() != null) {
 					if (player.getCurrentTeam().equals(team))
 						return false;
 					player.getCurrentTeam().removePlayer(player);
 				}
-				
+
 				if (team.addPlayer(player)) {
 					player.setCurrentTeam(team);
 					return true;
@@ -409,12 +415,14 @@ public class SysData implements Serializable{
 	}// ~ END OF addCoachToTeam
 
 	/**
-	 * This method adds an existing player to an existing team first players
-	 * only if all the parameters are valid and the both player & team already exist in the system
+	 * This method adds an existing player to an existing team first players only if
+	 * all the parameters are valid and the both player & team already exist in the
+	 * system
 	 * 
 	 * @param playerId
 	 * @param teamId
-	 * @return true if the player was added successfully to team fir players, false otherwise
+	 * @return true if the player was added successfully to team fir players, false
+	 *         otherwise
 	 */
 	public boolean addPlayerToTeamFirstPlayers(int playerId, int teamId) {
 		if (playerId > 0 && teamId > 0) {
@@ -431,14 +439,16 @@ public class SysData implements Serializable{
 		}
 		return false;
 	}// ~ END OF addCoachToTeam
-	
+
 	/**
-	 * This method adds an existing receptionist to an existing stadium of the JavaLeague
-	 * only if all the parameters are valid and the both receptionis & stadium already exist in the system
+	 * This method adds an existing receptionist to an existing stadium of the
+	 * JavaLeague only if all the parameters are valid and the both receptionis &
+	 * stadium already exist in the system
 	 * 
 	 * @param receptionistId
 	 * @param stadiumId
-	 * @return true if the receptionist was added successfully to stadium, false otherwise
+	 * @return true if the receptionist was added successfully to stadium, false
+	 *         otherwise
 	 */
 	public boolean addReceptionistToStadium(int receptionistId, int stadiumId) {
 		if (receptionistId > 0 && stadiumId > 0) {
@@ -446,13 +456,13 @@ public class SysData implements Serializable{
 				Receptionist receptionist = receptionists.get(receptionistId);
 				Stadium stadium = stadiums.get(stadiumId);
 				Stadium s = receptionist.getWorkingStadium();
-				
+
 				if (s != null) {
 					if (s.equals(stadium))
 						return false;
 					s.removeReceptionist(receptionist);
 				}
-				
+
 				if (stadium.addReceptionist(receptionist)) {
 					receptionist.setWorkingStadium(stadium);
 					return true;
@@ -464,28 +474,30 @@ public class SysData implements Serializable{
 
 	/**
 	 * This method adds a new subscription to an existing customer of the JavaLeague
-	 * only if all the parameters are valid and the customer already exist in the system
-	 * IMPORTENT: Every subscription was sold by a receptionist, 
-	 * 			  hence it's very important that the receprionist belongs to a stadium.
-	 * ALSO IMPORTENT: Subscription must be added to all the relevant arrays,
-	 * 				   Don't forget to roll-back :)
+	 * only if all the parameters are valid and the customer already exist in the
+	 * system IMPORTENT: Every subscription was sold by a receptionist, hence it's
+	 * very important that the receprionist belongs to a stadium. ALSO IMPORTENT:
+	 * Subscription must be added to all the relevant arrays, Don't forget to
+	 * roll-back :)
 	 * 
 	 * @param subscriptionId
 	 * @param customerId
 	 * @param receptionistId
 	 * @param period
 	 * @param startDate
-	 * @return true if the suscription was added successfully to customer, false otherwise
+	 * @return true if the suscription was added successfully to customer, false
+	 *         otherwise
 	 */
-	public boolean addSubscriptionToCustomer(int subscriptionId, String customerId, int receptionistId, E_Periods period, Date startDate) {
+	public boolean addSubscriptionToCustomer(int subscriptionId, String customerId, int receptionistId,
+			E_Periods period, Date startDate) {
 		if (subscriptionId > 0 && receptionistId > 0 && !Customer.checkId(customerId).equals("0")) {
 			if (customers.containsKey(customerId) && receptionists.containsKey(receptionistId)) {
 				Customer customer = customers.get(customerId);
 				Receptionist receptionist = receptionists.get(receptionistId);
-				
+
 				if (receptionist.getWorkingStadium() == null)
 					return false;
-				
+
 				Subscription subscription = new Subscription(subscriptionId, customer, receptionist, period, startDate);
 				if (customer.addSubscription(subscription)) {
 					if (receptionist.addSubscription(subscription))
@@ -498,10 +510,9 @@ public class SysData implements Serializable{
 	} // ~ END OF addSubscriptionToCustomer
 
 	/**
-	 * This method adds a new match to the JavaLeague
-	 * only if all the parameters are valid and both teams already exist in the system
-	 * VERY IMPORTENT: Match must be added to all the relevant arrays,
-	 * 				   Don't forget to roll-back :)
+	 * This method adds a new match to the JavaLeague only if all the parameters are
+	 * valid and both teams already exist in the system VERY IMPORTENT: Match must
+	 * be added to all the relevant arrays, Don't forget to roll-back :)
 	 * 
 	 * @param id
 	 * @param dateTime
@@ -512,10 +523,10 @@ public class SysData implements Serializable{
 	 * @param awayTeamScore
 	 * @return true if the match was added successfully, false otherwise
 	 */
-	public boolean addMatch(int id, Date dateTime, int extraTime, int homeTeamId, int awayTeamId, 
-			int homeTeamScore, int awayTeamScore) {
-		if (id > 0 && dateTime != null && extraTime >= 0 && homeTeamId > 0 && awayTeamId > 0 && 
-				homeTeamScore >= 0 && awayTeamScore >= 0) {
+	public boolean addMatch(int id, Date dateTime, int extraTime, int homeTeamId, int awayTeamId, int homeTeamScore,
+			int awayTeamScore) {
+		if (id > 0 && dateTime != null && extraTime >= 0 && homeTeamId > 0 && awayTeamId > 0 && homeTeamScore >= 0
+				&& awayTeamScore >= 0) {
 			if (homeTeamId == awayTeamId)
 				return false;
 			if (teams.containsKey(homeTeamId) && teams.containsKey(awayTeamId) && !matches.containsKey(id)) {
@@ -541,33 +552,38 @@ public class SysData implements Serializable{
 
 	/**
 	 * This method adds an existing customer to an existing match of the JavaLeague
-	 * only if all the parameters are valid and both customer & match already exist in the system
-	 * VERY IMPORTENT: Customer must be added to all the relevant arrays,
-	 * 				   Don't forget to roll-back :)
+	 * only if all the parameters are valid and both customer & match already exist
+	 * in the system VERY IMPORTENT: Customer must be added to all the relevant
+	 * arrays, Don't forget to roll-back :)
 	 * 
 	 * @param customerId
 	 * @param matchId
 	 * @return true if the customer was added successfully to match, false otherwise
 	 */
 	public boolean addCustomerToMatch(String customerId, int matchId) {
-		if (!Customer.checkId(customerId) .equals("0") && matchId > 0) {
-			if (customers.containsKey(customerId) && matches.containsKey(matchId)) {
-				Customer customer = customers.get(customerId);
-				Match match = matches.get(matchId);
-				if (customer.addMatch(match)) {
-					if (match.addFan(customer)) {
-						return true;
-					}
-					customer.removeMatch(match);
-				}
-			}
+		if (Customer.checkId(customerId) == "0" || !matches.containsKey(matchId)) {// if customer id or match doesnt
+			// exist, return false
+			return false;
 		}
-		return false;
+		Customer myCustomer = customers.get(customerId);
+		Match myMatch = matches.get(matchId);
+		if (myMatch == null || myCustomer == null || myMatch.getCrowd() == null) {// if match or customer is null,
+			// return false
+			return false;
+		}
+		if (!myCustomer.addMatch(myMatch)) {// if cannot add match to customer subscription, return false
+			return false;
+		}
+		if (!myMatch.addFan(myCustomer)) {// if cannot add customer to match crowd, rollback previous and return false
+			myCustomer.removeMatch(myMatch);
+			return false;
+		}
+		return true;// return true
 	}
 
 	/**
-	 * This method removes an existing subscription from its customer
-	 * only if all the parameters are valid and the subscription already exist in the system
+	 * This method removes an existing subscription from its customer only if all
+	 * the parameters are valid and the subscription already exist in the system
 	 * 
 	 * @param subscriptionId
 	 * @return
@@ -607,53 +623,57 @@ public class SysData implements Serializable{
 		return false;
 	}// ~ END OF removeSubscription
 //	
+
 	/**
-	 * This method adds a Trophy to the system
-	 * only if all the parameters are valid and the Trophy does not already exist in the system
-	 * @param <T>
+	 * This method adds a Trophy to the system only if all the parameters are valid
+	 * and the Trophy does not already exist in the system
+	 * 
+	 * @param                <T>
 	 * 
 	 * @param subscriptionId
 	 * @return
 	 */
 	public <T> boolean addTrophy(E_Trophy trophy, T owner, Date trophyWinningDate) {
 		if (trophy != null && owner != null && trophyWinningDate != null) {
-			if (owner instanceof Employee && trophyWinningDate.before(((Employee)owner).getStartWorkingDate())) 
+			if (owner instanceof Employee && trophyWinningDate.before(((Employee) owner).getStartWorkingDate()))
 				return false;
 			Trophy<T> trp = new Trophy<T>(trophy, owner, trophyWinningDate);
 			return trophies.add(trp);
 		}
 		return false;
 	}// ~ END OF removeSubscription
-	// -------------------------------Queries------------------------------
-	// ===================================================
-	// HW_2_Queries
-	// ===================================================
-	
+		// -------------------------------Queries------------------------------
+		// ===================================================
+		// HW_2_Queries
+		// ===================================================
+
 	/**
-	 * This query finds the "Super Play Maker" player, 
-	 * a "Super Play Maker" player is the player that has the largest value,
-	 * is a right leg kicker, is in MIDFIELDER position and is in a team's first players. 
-	 * if there are more than one player the method returns the first player
+	 * This query finds the "Super Play Maker" player, a "Super Play Maker" player
+	 * is the player that has the largest value, is a right leg kicker, is in
+	 * MIDFIELDER position and is in a team's first players. if there are more than
+	 * one player the method returns the first player
+	 * 
 	 * @return player object if found, null otherwise
 	 */
 	public Player getSuperPlayerMaker(int teamId) {
 		long count = 0;
 		Player player = null;
 		Team team;
-		
-		if(!teams.containsKey(teamId))
+
+		if (!teams.containsKey(teamId))
 			return null;
 
 		team = teams.get(teamId);
-		
+
 		Player[] players = new Player[team.getPlayers().size()];
 		int index = 0;
 		for (Player p : team.getPlayers().keySet()) {
-			if (p != null && p.isRightLegKicker() && p.getPosition().equals(E_Position.MIDFIELDER) && team.getPlayers().get(p)) 
+			if (p != null && p.isRightLegKicker() && p.getPosition().equals(E_Position.MIDFIELDER)
+					&& team.getPlayers().get(p))
 				players[index++] = p;
 		}
-		for (Player p : players) 
-			if(p != null && p.getValue() > count) {
+		for (Player p : players)
+			if (p != null && p.getValue() > count) {
 				count = p.getValue();
 				player = p;
 			}
@@ -661,16 +681,17 @@ public class SysData implements Serializable{
 	}
 
 	/**
-	 * This query returns an array with the "Super Play Maker" player from all the teams, 
-	 * a "Super Play Maker" player is as defined in the first query.
-	 * the returned ArrayList must be sorted by player's value.
+	 * This query returns an array with the "Super Play Maker" player from all the
+	 * teams, a "Super Play Maker" player is as defined in the first query. the
+	 * returned ArrayList must be sorted by player's value.
+	 * 
 	 * @return player array if found, null otherwise
 	 */
 	public ArrayList<Player> getAllSuperPlayerMakers() {
 		ArrayList<Player> players = new ArrayList<>();
 		for (Team t : teams.values()) {
 			Player p = getSuperPlayerMaker(t.getId());
-			if (p != null) 
+			if (p != null)
 				players.add(p);
 		}
 		players.sort(Comparator.comparing(Player::getValue));
@@ -678,8 +699,8 @@ public class SysData implements Serializable{
 	}
 
 	/**
-	 * This query returns the most popular position. 
-	 * Most popular position is the type that belongs to the highest number of players.
+	 * This query returns the most popular position. Most popular position is the
+	 * type that belongs to the highest number of players.
 	 * 
 	 * @return position object if found, null otherwise
 	 */
@@ -704,12 +725,11 @@ public class SysData implements Serializable{
 			}
 		}
 		return toReturn;
-	} 
+	}
 
 	/**
-	 * This query returns the most favored team. 
-	 * Most favored team is the team that has the highest number of customers 
-	 * that the team is their favorite team.
+	 * This query returns the most favored team. Most favored team is the team that
+	 * has the highest number of customers that the team is their favorite team.
 	 * 
 	 * @return team object if found, null otherwise
 	 */
@@ -734,12 +754,13 @@ public class SysData implements Serializable{
 			}
 		}
 		return toReturn;
-	} 
-	
+	}
+
 	/**
-	 * This query finds the most active city of a given stadium, 
-	 * the most active city is the city with the highest number of employees
-	 * that are working in the given stadium. 
+	 * This query finds the most active city of a given stadium, the most active
+	 * city is the city with the highest number of employees that are working in the
+	 * given stadium.
+	 * 
 	 * @param stadiumId
 	 * @return city object, null otherwise
 	 */
@@ -747,59 +768,60 @@ public class SysData implements Serializable{
 		E_Cities[] cities = E_Cities.values();
 		int[] buckets = new int[cities.length];
 		Stadium stadium = new Stadium(stadiumId);
-		
-		if(!stadiums.containsKey(stadiumId))
+
+		if (!stadiums.containsKey(stadiumId))
 			return null;
 
 		stadium = stadiums.get(stadiumId);
-		
-		for(Receptionist r : stadium.getReceptionists()) 
-			for(int i = 0; i < cities.length; i++) 
-				if(r != null && cities[i].equals(r.getAddress().getCity())) {
+
+		for (Receptionist r : stadium.getReceptionists())
+			for (int i = 0; i < cities.length; i++)
+				if (r != null && cities[i].equals(r.getAddress().getCity())) {
 					buckets[i]++;
 					break;
 				}
-		
-		for(Coach c : coaches.values()) 
-			if(c.getCurrentTeam() != null && c.getCurrentTeam().getStadium().equals(stadium))
-				for(int i = 0; i < cities.length; i++) 
-					if(cities[i] != null && cities[i].equals(c.getAddress().getCity())) {
+
+		for (Coach c : coaches.values())
+			if (c.getCurrentTeam() != null && c.getCurrentTeam().getStadium().equals(stadium))
+				for (int i = 0; i < cities.length; i++)
+					if (cities[i] != null && cities[i].equals(c.getAddress().getCity())) {
 						buckets[i]++;
 						break;
 					}
-		
-		for(Player p : players.values()) 
-			if(p.getCurrentTeam() != null && p.getCurrentTeam().getStadium().equals(stadium))
-				for(int i = 0; i < cities.length; i++)
-					if(cities[i] != null && cities[i].equals(p.getAddress().getCity())) {
+
+		for (Player p : players.values())
+			if (p.getCurrentTeam() != null && p.getCurrentTeam().getStadium().equals(stadium))
+				for (int i = 0; i < cities.length; i++)
+					if (cities[i] != null && cities[i].equals(p.getAddress().getCity())) {
 						buckets[i]++;
 						break;
 					}
-		
+
 		E_Cities city = null;
 		int maxCount = 0;
-		
-		for(int i = 0; i < buckets.length; i++)
-			if(buckets[i] >= maxCount) {
+
+		for (int i = 0; i < buckets.length; i++)
+			if (buckets[i] >= maxCount) {
 				maxCount = buckets[i];
 				city = cities[i];
 			}
-		
+
 		return city;
 	}
 
 	/**
 	 * This query returns the entity that has won the most trophies.
+	 * 
 	 * @return
 	 */
-	public Object getEntityWithMostTrophies(){
-		Map<Object,Integer> counter = new HashMap<>();
+	public Object getEntityWithMostTrophies() {
+		Map<Object, Integer> counter = new HashMap<>();
 
 		int max = 0;
 		Object currentOwner = null;
-		for(Trophy t : trophies){
+		for (Trophy t : trophies) {
 			Object owner = t.getOwner();
-			counter.merge(owner,1,(a,b)-> a + b);
+			counter.merge(owner, 1, (a, b) -> a + b);
 
 			int val = counter.get(owner);
 			if (val > max) {
@@ -815,25 +837,25 @@ public class SysData implements Serializable{
 	 *
 	 * @return
 	 */
-	public Team getTeamWithLargestHomeCrowd(){
+	public Team getTeamWithLargestHomeCrowd() {
 
-		Map<Team,Integer> crowdCounter = new HashMap<>();
-		for(Match m : matches.values()){
+		Map<Team, Integer> crowdCounter = new HashMap<>();
+		for (Match m : matches.values()) {
 			Team t = m.getHomeTeam();
-			int[] counterVal = {0};
+			int[] counterVal = { 0 };
 			m.getCrowd().forEach((customer, isHome) -> {
-				if(isHome)
+				if (isHome)
 					counterVal[0]++;
 
 			});
 
-			crowdCounter.merge(t,counterVal[0],(a,b)-> a+b);
+			crowdCounter.merge(t, counterVal[0], (a, b) -> a + b);
 		}
 
 		int max = 0;
 		Team t = null;
-		for(Map.Entry<Team,Integer> entry : crowdCounter.entrySet()){
-			if (entry.getValue() >= max){
+		for (Map.Entry<Team, Integer> entry : crowdCounter.entrySet()) {
+			if (entry.getValue() >= max) {
 				t = entry.getKey();
 				max = entry.getValue();
 				System.out.println(t.getId());
@@ -843,9 +865,10 @@ public class SysData implements Serializable{
 	}
 
 	/**
-	 * This query returns all the customers that have a subscription 
-	 * to stadiun1 or stadium2 but not to both 
-	 * @return array of customers if customers were found, empty list otherwise  
+	 * This query returns all the customers that have a subscription to stadiun1 or
+	 * stadium2 but not to both
+	 * 
+	 * @return array of customers if customers were found, empty list otherwise
 	 */
 	public ArrayList<Customer> getCustomersStadium1XORStadium2(int stud1, int stud2) {
 		ArrayList<Customer> stud1Customers = new ArrayList<>();
@@ -856,24 +879,27 @@ public class SysData implements Serializable{
 			Stadium s2 = stadiums.get(stud2);
 			for (Customer c : customers.values()) {
 				for (Subscription sub : c.getSubscriptions()) {
-					if (sub.getReceptionist().getWorkingStadium().equals(s1)) 
+					if (sub.getReceptionist().getWorkingStadium().equals(s1))
 						stud1Customers.add(c);
-					if (sub.getReceptionist().getWorkingStadium().equals(s2)) 
+					if (sub.getReceptionist().getWorkingStadium().equals(s2))
 						stud2Customers.add(c);
 				}
 			}
 			stud1UnionStud2.addAll(stud1Customers);
 			stud1UnionStud2.addAll(stud2Customers);
-			stud1UnionStud2.removeIf(c -> { return stud1Customers.contains(c) && stud2Customers.contains(c); });
+			stud1UnionStud2.removeIf(c -> {
+				return stud1Customers.contains(c) && stud2Customers.contains(c);
+			});
 		}
 		return stud1UnionStud2;
 	}
-	
+
 	/**
-	 * This query returns all the first players of the "Best Home Team" 
-	 * "Best Home Team" is the team with the highest Home Away winning rate
-	 * returned players must be sorted by their value. 
-	 * @return array of players if players were found, empty list otherwise  
+	 * This query returns all the first players of the "Best Home Team" "Best Home
+	 * Team" is the team with the highest Home Away winning rate returned players
+	 * must be sorted by their value.
+	 * 
+	 * @return array of players if players were found, empty list otherwise
 	 */
 	public ArrayList<Player> getFirstPlayersOfBestHomeTeam() {
 		ArrayList<Player> fPlayers = new ArrayList<>();
@@ -885,18 +911,17 @@ public class SysData implements Serializable{
 				temp = t;
 			}
 		}
-		
-		if (temp == null) 
+
+		if (temp == null)
 			return fPlayers;
-		
-		temp.getPlayers().forEach((k,v) -> {
-			if (v)  
+
+		temp.getPlayers().forEach((k, v) -> {
+			if (v)
 				fPlayers.add(k);
 		});
-			
+
 		fPlayers.sort(Comparator.comparing(Player::getValue));
 		return fPlayers;
 	}
-	
 
 }// ~ END OF Class SysData
