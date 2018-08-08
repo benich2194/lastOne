@@ -30,7 +30,7 @@ public class removeMatchController {
 
     @FXML
     void goBack(ActionEvent event) {
-
+    	WindowManager.goBack();
     }
 
     @FXML
