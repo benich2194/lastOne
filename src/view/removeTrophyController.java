@@ -51,5 +51,4 @@ public class removeTrophyController {
     		troList.getItems().addAll(SysData.getInstance().getTrophies());
     	}
     }
-
 }
