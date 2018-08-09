@@ -24,7 +24,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 	}
     @FXML
     void goToAddCustomer(ActionEvent event) {
-    	loadUI("coachAddPlayer");
+    	
     }
 
     @FXML
@@ -34,7 +34,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToAddSubscription(ActionEvent event) {
-
+    	loadUI("receptionistAddSubscription");
     }
 
     @FXML
