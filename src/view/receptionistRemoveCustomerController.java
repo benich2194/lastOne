@@ -1,7 +1,5 @@
 package view;
 
-import java.io.IOException;
-
 import Controller.SysData;
 import Model.Customer;
 import Model.Subscription;
@@ -13,26 +11,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class removeCustomerController {
+public class receptionistRemoveCustomerController {
 
-	@FXML
-	private AnchorPane removeCustomer;
+    @FXML
+    private AnchorPane removeCustomer;
 
-	@FXML
-	private Button back;
+    @FXML
+    private ComboBox<Customer> cusList;
 
-	@FXML
-	private ComboBox<Customer> cusList;
+    @FXML
+    private Button removeButton;
 
-	@FXML
-	private Button removeButton;
-
-	@FXML
-	void goBack(ActionEvent event) throws IOException {
-		WindowManager.goBack();
-	}
-
-	@FXML
+    @FXML
 	void removeCustomer(ActionEvent event) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Remove Customer");
@@ -51,6 +41,8 @@ public class removeCustomerController {
 			alert.setContentText("Cannot remove Customer from database.");
 			alert.show();
 		}
+		cusList.getItems().removeAll(cusList.getItems());
+		cusList.getItems().addAll(SysData.getInstance().getCustomers().values());
 	}
 
 	public void initialize() {
@@ -59,4 +51,5 @@ public class removeCustomerController {
 		}
 
 	}
+
 }

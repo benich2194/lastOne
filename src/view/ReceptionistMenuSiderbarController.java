@@ -54,7 +54,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToRemoveCustomer(ActionEvent event) {
-
+    	loadUI("receptionistRemoveCustomer");
     }
 
     @FXML
