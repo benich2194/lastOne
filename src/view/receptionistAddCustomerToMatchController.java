@@ -1,10 +1,9 @@
 package view;
 
-import java.io.IOException;
-
 import Controller.SysData;
 import Model.Customer;
 import Model.Match;
+import Model.Receptionist;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,13 +12,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class cusToMatchController {
+public class receptionistAddCustomerToMatchController {
 
     @FXML
-    private AnchorPane subToCustomer;
-
-    @FXML
-    private Button back;
+    private AnchorPane cusToMatch;
 
     @FXML
     private ListView<Customer> customerList;
@@ -54,17 +50,19 @@ public class cusToMatchController {
     	}
     }
     public void initialize() {
-    	if(SysData.getInstance().getCustomers().values().size()>0) {
+    	if(SysData.getInstance().getCustomers()!=null) {
     		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
     	}
-    	if(SysData.getInstance().getMatchs().values().size()>0) {
-    		matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
+    	Receptionist r=SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
+    	for(Match m:SysData.getInstance().getMatchs().values()) {
+    		if(m!=null) {
+    			if(m.getHomeTeam()!=null&&m.getHomeTeam().getStadium()!=null) {
+    				if(m.getHomeTeam().getStadium().getReceptionists().contains(r)) {
+    					matchList.getItems().add(m);
+    				}
+    			}
+    		}
     	}
-    
-    }
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
-    	WindowManager.goBack();
     }
 
 }

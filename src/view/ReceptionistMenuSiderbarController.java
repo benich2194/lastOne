@@ -29,7 +29,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToAddCustomerToMatch(ActionEvent event) {
-
+    	loadUI("receptionistAddCustomerToMatch");
     }
 
     @FXML
