@@ -41,7 +41,7 @@ public class queriesController {
     //TO DO
     @FXML
     void getSuperPlayerMakerPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow("getSPM");
     }
 
     @FXML
