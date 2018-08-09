@@ -73,10 +73,7 @@ public class addPlayerController {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player");
 		alert.setHeaderText("");
-		//ID is size of the map + 1, if exists, it will keep adding 1
-    	Integer id = SysData.getInstance().getPlayers().size()+1;
-    	while(SysData.getInstance().getPlayers().containsKey(id))
-    		id++;
+    	Integer id = Integer.parseInt(playerId.getText());
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -118,13 +115,6 @@ public class addPlayerController {
     	rightLeg.getItems().add(false);
     	playerCity.getItems().addAll(E_Cities.values());
     	playerLevel.getItems().addAll(E_Levels.values());
-    	playerId.setEditable(false);
-    	playerId.setDisable(true);
-
-    	Integer idCurrent = SysData.getInstance().getPlayers().size()+1;
-    	while(SysData.getInstance().getPlayers().containsKey(idCurrent))
-    		idCurrent++;
-    	playerId.setText(idCurrent.toString());
     }
 
 }
