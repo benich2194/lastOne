@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="playerToTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.playerToTeamController">
+<AnchorPane fx:id="playerToTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.playerToTeamController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
@@ -21,11 +19,12 @@
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
       <ListView fx:id="playerList" blendMode="SCREEN" layoutX="12.0" layoutY="98.0" prefHeight="365.0" prefWidth="333.0" />
       <ListView fx:id="teamList" layoutX="357.0" layoutY="98.0" prefHeight="365.0" prefWidth="333.0" />
-      <Button fx:id="connectThem" layoutX="313.0" layoutY="493.0" mnemonicParsing="false" onAction="#addPlayerToTeam" prefHeight="41.0" prefWidth="84.0" text="Connect" />
+      <Button fx:id="connectThem" layoutX="309.0" layoutY="535.0" mnemonicParsing="false" onAction="#addPlayerToTeam" prefHeight="41.0" prefWidth="84.0" text="Connect" />
       <Label layoutX="247.0" layoutY="50.0" style="-fx-opacity: 0.8;" text="Connect Player To Team" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <ComboBox fx:id="firstList" layoutX="256.0" layoutY="484.0" prefHeight="25.0" prefWidth="200.0" promptText="Add to first Team Players?" />
    </children>
 </AnchorPane>
