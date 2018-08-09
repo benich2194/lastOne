@@ -50,7 +50,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void removePlayerFromTeam(ActionEvent event) {
-
+		loadUI("coachRemovePlayerFromTeam.fxml");
 	}
 
 }
