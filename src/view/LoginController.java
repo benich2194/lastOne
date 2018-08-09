@@ -124,6 +124,23 @@ public class LoginController extends Main{
     	    	primaryStage.setScene(scene);
     	    	primaryStage.show();
     		}
+    		else if(SysData.getInstance().getReceptionists()!=null&&SysData.getInstance().getReceptionists().get(Integer.parseInt(user))!=null&&SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword()!=null&&SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword().equals(pass)) {
+    			SysData.getInstance().setUserRecep(user);
+    			Stage stage=(Stage)login.getScene().getWindow();
+    			stage.close();
+    	    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/ReceptionistMenuSidebar.fxml"));
+    	    	System.out.println("Want to load css -> " + trophyMenuController.class.getResource("/view/application.css").toString());
+    	    	
+    	    	Stage primaryStage=new Stage();
+    	    	Parent root=load.load();
+    	    	Scene scene=new Scene(root);
+    	    	
+    			scene.getStylesheets()
+    					.add(trophyMenuController.class.getResource("/view/application.css").toExternalForm());
+
+    	    	primaryStage.setScene(scene);
+    	    	primaryStage.show();
+    		}
     		else {
     			alert.setHeaderText("failed to login.");
         		alert.setContentText("wrong username/password");
