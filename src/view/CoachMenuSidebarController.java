@@ -25,7 +25,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void goToAddPlayerToTeam(ActionEvent event) {
-		loadUI("coachAddPlayer");
+		loadUI("coachAddPlayerToTeam");
 	}
 
 	@FXML
