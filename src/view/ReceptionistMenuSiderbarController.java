@@ -59,7 +59,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToRemoveSubscription(ActionEvent event) {
-
+    	loadUI("receptionistRemoveSubscription");
     }
 
     @FXML
