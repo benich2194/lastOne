@@ -30,7 +30,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void goToChangeFirstTeam(ActionEvent event) {
-
+		loadUI("coachReplacePlayers");
 	}
 
 	@FXML
