@@ -60,10 +60,7 @@ public class addReceptionistController {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
-		//ID is size of the map + 1, if exists, it will keep adding 1
-    	Integer id = SysData.getInstance().getReceptionists().size()+1;
-    	while(SysData.getInstance().getReceptionists().containsKey(id))
-    		id++;
+    	Integer id = Integer.parseInt(recepId.getText());
     	String first=firstName.getText();
     	String last=lastName.getText();
     	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -93,18 +90,11 @@ public class addReceptionistController {
 	    	}
     	}
     }
+    
     public void initialize() {
-  		recepCity.getItems().addAll(E_Cities.values());
-    	recepId.setEditable(false);
-    	recepId.setDisable(true);
-    	
-    	Integer idCurrent = SysData.getInstance().getReceptionists().size()+1;
-    	while(SysData.getInstance().getReceptionists().containsKey(idCurrent))
-    		idCurrent++;
-    	recepId.setText(idCurrent.toString());
-
-  		
-  }
+  		recepCity.getItems().addAll(E_Cities.values());	
+    }
+    
     @FXML
     void goBack(ActionEvent event) throws IOException {
     	WindowManager.goBack();
