@@ -55,6 +55,7 @@ public class addCoachController {
 
 	    @FXML
 	    private Button addButton;
+	    
 	    @FXML
 	    private TextField coachPassword;
 
@@ -63,10 +64,7 @@ public class addCoachController {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
-			//ID is size of the map + 1, if exists, it will keep adding 1
-	    	Integer id = SysData.getInstance().getCoachs().size()+1;
-	    	while(SysData.getInstance().getCoachs().containsKey(id))
-	    		id++;
+	    	Integer id = Integer.parseInt(coachId.getText());
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
@@ -108,11 +106,5 @@ public class addCoachController {
     public void initialize() {
     	coachCity.getItems().addAll(E_Cities.values());
     	levelCoach.getItems().addAll(E_Levels.values());
-    	coachId.setEditable(false);
-    	coachId.setDisable(true);
-    	Integer idCurrent = SysData.getInstance().getCoachs().size()+1;
-    	while(SysData.getInstance().getCoachs().containsKey(idCurrent))
-    		idCurrent++;
-    	coachId.setText(idCurrent.toString());
     }
 }
