@@ -22,6 +22,9 @@ public class teamMenuController {
     private Button modTeam;
 
     @FXML
+    private Button viewTeams;
+
+    @FXML
     void goToAddTeam(ActionEvent event) throws IOException {
     	WindowManager.openWindow("addTeam");
     }
@@ -34,6 +37,10 @@ public class teamMenuController {
     @FXML
     void goToRemoveTeam(ActionEvent event) throws IOException {
     	WindowManager.openWindow("removeTeam");
+    }
+    @FXML
+    void goToViewTeams(ActionEvent event) {
+    	WindowManager.openWindow("viewTeams");
     }
 
 }
