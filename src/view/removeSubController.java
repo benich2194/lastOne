@@ -2,6 +2,7 @@ package view;
 
 import Controller.SysData;
 import Model.Coach;
+import Model.Customer;
 import Model.Player;
 import Model.Subscription;
 import javafx.event.ActionEvent;
@@ -47,5 +48,18 @@ public class removeSubController {
     		alert.show();
     	}
     	
+    }
+    public void initialize() {
+    	if(SysData.getInstance().getCustomers().values()!=null) {
+    		for(Customer c:SysData.getInstance().getCustomers().values()) {
+    			if(c!=null&&c.getSubscriptions()!=null) {
+    				for(Subscription s:c.getSubscriptions()) {
+    					if(s!=null) {
+    						subList.getItems().add(s);
+    					}
+    				}
+    			}
+    		}
+    	}
     }
 }

@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="removeSub" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.removeSubController">
    <children>
-      <ImageView fitHeight="550.0" fitWidth="701.0">
+      <ImageView fitHeight="550.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
