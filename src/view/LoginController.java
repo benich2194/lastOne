@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Controller.SysData;
 import Exceptions.InvalidInputException;
+import Exceptions.MissingInputException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,13 +59,21 @@ public class LoginController extends Main {
 	}
 
 	@FXML
-	void GoToMenu(ActionEvent event) throws InvalidInputException, IOException {
+	void GoToMenu(ActionEvent event) throws InvalidInputException, IOException, MissingInputException {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Login");
 		alert.setHeaderText("");
 		String user = email.getText();
 		String pass = password.getText();
+		try {
+			if(user.equals("")||pass.equals("")) {
+				throw new MissingInputException();
+			}
+		}catch(MissingInputException e){
+			
+		}
+		
 		try {
 			if (user.equals("admin") && pass.equals("admin")) {
 
@@ -153,8 +162,8 @@ public class LoginController extends Main {
 				alert.setContentText("wrong username/password");
 				alert.show();
 			}
-		} catch (Exception e) {
-			throw new InvalidInputException("Please fill every row in the form");
+		}catch(NumberFormatException e) {
+			new InvalidInputException("Only numbers in user field are valid");
 		}
 
 	}
