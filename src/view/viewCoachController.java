@@ -1,10 +1,11 @@
 package view;
 
 import java.util.Date;
-
 import Controller.SysData;
 import Model.Coach;
 import Model.Team;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,8 +13,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import utils.E_Cities;
 import utils.E_Levels;
 
@@ -57,6 +60,7 @@ public class viewCoachController {
 
     @FXML
     private TableColumn<Coach, Team[]> coachPastTeams;
+    
     @FXML
     private TableColumn<Coach, String> coachFirstName;
 
@@ -85,6 +89,55 @@ public class viewCoachController {
         // Display row data
         ObservableList<Coach> list = FXCollections.observableArrayList(SysData.getInstance().getCoachs().values());
         coachTableView.setItems(list);
+        
+        coachPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
+
+    	    }
+    	});
+        
+        coachStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getStreet());
+
+    	    }
+    	});
+    	
+    	
+      	coachHouseNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , Integer>, ObservableValue<Integer>>() {
+
+    	    @Override
+    	    public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Coach , Integer> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getHouseNumber());
+
+    	    }
+    	});
+
+    	
+        coachCity.setCellValueFactory(new Callback<CellDataFeatures<Coach, E_Cities>, ObservableValue<E_Cities>>() {
+        	 
+            @Override
+            public ObservableValue<E_Cities> call(CellDataFeatures<Coach, E_Cities> param) {
+            	Coach cc = param.getValue();
+
+            	E_Cities ct = cc.getAddress().getCity();
+                return new SimpleObjectProperty<E_Cities>(ct);
+            }
+        });
+        
+      	coachCurrentTeam.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , Team>, ObservableValue<Team>>() {
+
+    	    @Override
+    	    public ObservableValue<Team> call(TableColumn.CellDataFeatures<Coach , Team> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getCurrentTeam());
+
+    	    }
+    	});
     }
 
 }

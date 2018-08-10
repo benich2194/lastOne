@@ -1,8 +1,6 @@
 package view;
 
 import java.io.IOException;
-import java.util.Date;
-
 import Controller.SysData;
 import Model.Team;
 import javafx.event.ActionEvent;
