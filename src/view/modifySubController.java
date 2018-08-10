@@ -21,14 +21,7 @@ public class modifySubController {
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-    	Stage stage=(Stage)modifySub.getScene().getWindow();
-		stage.close();
-    	FXMLLoader load=new FXMLLoader(getClass().getResource("/view/subscriptionMenu.fxml"));
-    	Stage primaryStage=new Stage();
-    	Parent root=load.load();
-    	Scene scene=new Scene(root);
-    	primaryStage.setScene(scene);
-    	primaryStage.show();
+    	WindowManager.goBack();
     }
 
 }

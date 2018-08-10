@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.util.Date;
 
 import Controller.SysData;
 import Model.Team;
@@ -57,7 +58,10 @@ public class addMatchController {
     		id++;
 
     	Integer extra=Integer.parseInt(Extra.getText());
-    	java.sql.Date date=java.sql.Date.valueOf(matchDate.getValue());
+    	java.sql.Date date = null;
+    	if(matchDate!=null) {
+    		date=java.sql.Date.valueOf(matchDate.getValue());
+    	}
     	if(SysData.getInstance().getMatchs().containsKey(id)) {
     		alert.setHeaderText("Unable to add Match.");
     		alert.setContentText("Match already exists.");
@@ -97,7 +101,6 @@ public class addMatchController {
     	Integer idCurrent = SysData.getInstance().getMatchs().size()+1;
     	while(SysData.getInstance().getMatchs().containsKey(idCurrent))
     		idCurrent++;
-    	matchId.setText(idCurrent.toString());
-    	
+    	matchId.setText(idCurrent.toString());	
     }
 }
