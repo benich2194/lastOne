@@ -20,6 +20,9 @@ public class customerMenuAdminController {
 
     @FXML
     private Button modCustomer;
+    
+    @FXML
+    private Button viewCustomer;
 
     @FXML
     void goToAddCustomer(ActionEvent event) throws IOException {
@@ -36,4 +39,8 @@ public class customerMenuAdminController {
     	WindowManager.openWindow("removeCustomer");
     }
 
+    @FXML
+    void goToViewCustomer(ActionEvent event) {
+    	WindowManager.openWindow("viewCustomer");
+    }
 }

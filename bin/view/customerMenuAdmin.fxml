@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="customerMenuAdmin" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customerMenuAdminController">
+<AnchorPane fx:id="customerMenuAdmin" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customerMenuAdminController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
@@ -25,5 +22,6 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <Button fx:id="viewCustomer" layoutX="285.0" layoutY="369.0" mnemonicParsing="false" onAction="#goToViewCustomer" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View Customers" />
    </children>
 </AnchorPane>
