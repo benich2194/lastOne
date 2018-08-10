@@ -24,6 +24,8 @@ public class playerMenuController {
     @FXML
     private Button removeFromTeamButton;
 
+    @FXML
+    private Button viewPlayer;
 
     @FXML
     void goToAddPlayer(ActionEvent event) throws IOException {
@@ -42,6 +44,12 @@ public class playerMenuController {
     	WindowManager.openWindow("removePlayer");
 
     }
+    
+    @FXML
+    void goToViewPlayers(ActionEvent event) {
+    	WindowManager.openWindow("viewPlayer");
+    }
+    
     @FXML
     void goToRemovePlayerFromTeam(ActionEvent event) {
     	WindowManager.openWindow("removePlayerFromTeam");
