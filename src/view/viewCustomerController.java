@@ -6,6 +6,8 @@ import java.util.Date;
 import Controller.SysData;
 import Model.Customer;
 import Model.Team;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +15,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import utils.E_Cities;
 import utils.E_Levels;
 
@@ -81,7 +85,54 @@ public class viewCustomerController {
         ObservableList<Customer> list = FXCollections.observableArrayList(SysData.getInstance().getCustomers().values());
         custTableView.setItems(list);
        
-    }// End of viewPlayer Constructor
+        custFavTeam.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Customer , Team>, ObservableValue<Team>>() {
+
+    	    @Override
+    	    public ObservableValue<Team> call(TableColumn.CellDataFeatures<Customer , Team> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getFavoriteTeam());
+
+    	    }
+    	});
+        
+        custPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Customer , String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Customer , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
+
+    	    }
+    	});
+        
+    	custStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Customer, String>, ObservableValue<String>>() {
+
+    	    @Override
+    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Customer , String> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getStreet());
+
+    	    }
+    	});
+    	
+    	custHouseNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Customer , Integer>, ObservableValue<Integer>>() {
+
+    	    @Override
+    	    public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Customer , Integer> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getHouseNumber());
+
+    	    }
+    	});
+    	
+        custCity.setCellValueFactory(new Callback<CellDataFeatures<Customer, E_Cities>, ObservableValue<E_Cities>>() {
+        	 
+            @Override
+            public ObservableValue<E_Cities> call(CellDataFeatures<Customer, E_Cities> param) {
+            	Customer cc = param.getValue();
+
+            	E_Cities ct = cc.getAddress().getCity();
+                return new SimpleObjectProperty<E_Cities>(ct);
+            }
+        });
+    }// End of viewCustomer Constructor
+    
     @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();
