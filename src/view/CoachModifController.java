@@ -24,6 +24,9 @@ public class CoachModifController {
     @FXML
     private Button viewCoachButton;
     
+    @FXML
+    private Button removeFromTeam;
+    
    /**
     * go to add coach window
     * @param event add coach button is pressed
@@ -55,5 +58,9 @@ public class CoachModifController {
     @FXML
     void goToViewCoach(ActionEvent event) {
     	WindowManager.openWindow("viewCoach");
+    }
+    @FXML
+    void goToRemoveCoachFromTeam(ActionEvent event) {
+    	WindowManager.openWindow("removeCoachFromTeam");
     }
 }

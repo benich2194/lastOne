@@ -14,14 +14,15 @@
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addCoach" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCoach" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Coach" />
-      <Button fx:id="removeCoachButton" layoutX="285.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToRemoveCoach" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Coach" />
-      <Button fx:id="modCoach" layoutX="285.0" layoutY="186.0" mnemonicParsing="false" onAction="#goToModifyCoach" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Coach" />
+      <Button fx:id="addCoach" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCoach" prefHeight="54.0" prefWidth="169.0" stylesheets="@Design.css" text="Add Coach" />
+      <Button fx:id="removeCoachButton" layoutX="285.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToRemoveCoach" prefHeight="54.0" prefWidth="169.0" stylesheets="@Design.css" text="Remove Coach" />
+      <Button fx:id="modCoach" layoutX="285.0" layoutY="186.0" mnemonicParsing="false" onAction="#goToModifyCoach" prefHeight="54.0" prefWidth="169.0" stylesheets="@Design.css" text="Modify Coach" />
       <Label layoutX="285.0" layoutY="37.0" style="-fx-opacity: 0.7;" text="Coach Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewCoachButton" layoutX="281.0" layoutY="378.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View Coaches" />
+      <Button fx:id="viewCoachButton" layoutX="285.0" layoutY="377.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="54.0" prefWidth="169.0" stylesheets="@Design.css" text="View Coaches" />
+      <Button fx:id="removeFromTeam" layoutX="281.0" layoutY="468.0" mnemonicParsing="false" onAction="#goToRemoveCoachFromTeam" prefHeight="54.0" prefWidth="169.0" stylesheets="@Design.css" text="Remove Coach From Team" />
    </children>
 </AnchorPane>
