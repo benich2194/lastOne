@@ -19,14 +19,6 @@
       </ImageView>
       <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#goToAdminControl" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Administration">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <effect>
-                  <Glow />
-               </effect>
-            </Button>
             <Button mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Coach">
                <VBox.margin>
                   <Insets />
