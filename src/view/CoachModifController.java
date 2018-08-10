@@ -1,14 +1,14 @@
 package view;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class CoachModifController {
-
+	/**
+	 * coach choose menu fields
+	 */
     @FXML
     private AnchorPane coachModif;
 
@@ -20,19 +20,40 @@ public class CoachModifController {
     
     @FXML
     private Button removeCoachButton;
-
-
-    @FXML
-    void goToAddCoach(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("addCoach");
-    }
     
     @FXML
-    void goToModifyCoach(ActionEvent event) throws IOException {
+    private Button viewCoachButton;
+    
+   /**
+    * go to add coach window
+    * @param event add coach button is pressed
+    */
+    @FXML
+    void goToAddCoach(ActionEvent event) {
+    	WindowManager.openWindow("addCoach");
+    }
+    /**
+     * go to modify coach window
+     * @param event modify coach button is pressed
+     */
+    @FXML
+    void goToModifyCoach(ActionEvent event){
     	WindowManager.openWindow("modifyCoach");
     }
+    /**
+     * go to remove coach window
+     * @param event remove coach button is pressed
+     */
     @FXML
-    void goToRemoveCoach(ActionEvent event) throws IOException {
+    void goToRemoveCoach(ActionEvent event){
     	WindowManager.openWindow("removeCoach");
+    }
+    /**
+     * go to view coach window
+     * @param event view coach button is pressed
+     */
+    @FXML
+    void goToViewCoach(ActionEvent event) {
+    	WindowManager.openWindow("viewCoach");
     }
 }
