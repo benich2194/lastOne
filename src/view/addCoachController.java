@@ -2,6 +2,8 @@ package view;
 
 import java.io.IOException;
 import Controller.SysData;
+import Exceptions.InvalidInputException;
+import Exceptions.MissingInputException;
 import Model.Address;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,39 +66,54 @@ public class addCoachController {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
-	    	Integer id = Integer.parseInt(coachId.getText());
+			String[] phones=new String[1];
+	    	phones[0]=coachPhone.getText();
+	    	String street=coachStreet.getText();
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
-	    	String[] phones=new String[1];
-	    	phones[0]=coachPhone.getText();
-	    	String street=coachStreet.getText();
-	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
-	    	Address ad=new Address(coachCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 	    	String password=coachPassword.getText();
-	    	if(SysData.getInstance().getCoachs().containsKey(id)) {
-	    		alert.setHeaderText("Unable to added coach.");
-	    		alert.setContentText("Coach already exists.");
-	    		alert.show();
+	    	if(first==""||last==""||bday==null) {
+	    		new MissingInputException();
 	    	}
-	    	else {
-	    		SysData.getInstance().addCoach(id,password, first, last, bday, work, levelCoach.getSelectionModel().getSelectedItem(), ad);
-	    		
-		    	if(SysData.getInstance().getCoachs().containsKey(id)) {
-		    		alert.setHeaderText("Added coach");
-		    		alert.setContentText("Coach added successfully.");
+			if(coachId.getText()=="") {
+				new MissingInputException();
+			}
+			try{
+				Integer id = Integer.parseInt(coachId.getText());
+				Integer houseNum=Integer.parseInt(houseNumber.getText());
+				Address ad=new Address(coachCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
+				if(SysData.getInstance().getCoachs().containsKey(id)) {
+		    		alert.setHeaderText("Unable to added coach.");
+		    		alert.setContentText("Coach already exists.");
 		    		alert.show();
 		    	}
 		    	else {
-		    		alert.setHeaderText("Unable to added coach.");
-		    		alert.setContentText("Coach wasn't added.");
-		    		alert.show();
+		    		SysData.getInstance().addCoach(id,password, first, last, bday, work, levelCoach.getSelectionModel().getSelectedItem(), ad);
+		    		
+			    	if(SysData.getInstance().getCoachs().containsKey(id)) {
+			    		alert.setHeaderText("Added coach");
+			    		alert.setContentText("Coach added successfully.");
+			    		alert.show();
+			    	}
+			    	else {
+			    		alert.setHeaderText("Unable to added coach.");
+			    		alert.setContentText("Coach wasn't added.");
+			    		alert.show();
+			    	}
 		    	}
-	    	}
+			}catch(NumberFormatException e) {
+				new InvalidInputException("Please enter numbers only in coach id and house number");
+			}
 	    	
-	    }
-
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	}
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
