@@ -49,7 +49,8 @@ public class SubToCustomerController {
 		alert.setHeaderText("");
     	Integer id=Integer.parseInt(subId.getText());
     	java.sql.Date work=java.sql.Date.valueOf(startDate.getValue());
-    	if(recepList.getSelectionModel().getSelectedItem()!=null&&customerList.getSelectionModel().getSelectedItem()!=null) {
+    	System.out.println(customerList.getSelectionModel().getSelectedItem().getId());
+    	System.out.println(recepList.getSelectionModel().getSelectedItem().getId());
     		if(SysData.getInstance().addSubscriptionToCustomer(id, customerList.getSelectionModel().getSelectedItem().getId(), recepList.getSelectionModel().getSelectedItem().getId(), periodList.getSelectionModel().getSelectedItem(), work)) {
     			alert.setHeaderText("Added Subscription to Customer.");
         		alert.setContentText("Subscription was added to Customer successfully.");
@@ -60,13 +61,6 @@ public class SubToCustomerController {
         		alert.setContentText("unable to add Subscription to Customer.");
         		alert.show();
     		}
-    	}
-    	else {
-    		alert.setHeaderText("failed to add Subscription to Customer.");
-    		alert.setContentText("unable to add Subscription to Customer.");
-    		alert.show();
-    	}
-    	
     }
 
     @FXML
