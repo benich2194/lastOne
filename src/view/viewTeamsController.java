@@ -2,6 +2,8 @@ package view;
 
 import Controller.SysData;
 import Model.Team;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import utils.E_Levels;
 
 public class viewTeamsController {
@@ -54,6 +58,14 @@ public class viewTeamsController {
     	teamValue.setCellValueFactory(new PropertyValueFactory<>("value"));
     	teamLvl.setCellValueFactory(new PropertyValueFactory<>("level"));
     	teamStadiumID.setCellValueFactory(new PropertyValueFactory<>("stadiumID"));
+        teamStadiumID.setCellValueFactory(new Callback<CellDataFeatures<Team, Integer>, ObservableValue<Integer>>() 
+        {
+            @Override
+            public ObservableValue<Integer> call(CellDataFeatures<Team, Integer> param) {
+                Team num = param.getValue();
+                return new SimpleObjectProperty<Integer>(num.getStadium().getId());
+            }
+        });
     	coach.setCellValueFactory(new PropertyValueFactory<>("coach"));
         
         // Display row data
