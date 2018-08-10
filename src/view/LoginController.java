@@ -23,7 +23,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 
 public class LoginController extends Main {
-
+	/**
+	 * class fields
+	 */
 	public static Boolean override = true;
 
 	@FXML
@@ -45,6 +47,10 @@ public class LoginController extends Main {
 	private ImageView exitImage; // Value injected by FXMLLoader
 
 	@FXML
+	/**
+	 * Confirms that user actually wants to exit program if clicks on x.exists if sure.
+	 * @param event when clicked on x button
+	 */
 	void ExitProgram(MouseEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to exit?", ButtonType.YES, ButtonType.NO,
 				ButtonType.CANCEL);
@@ -59,6 +65,13 @@ public class LoginController extends Main {
 	}
 
 	@FXML
+	/**
+	 * function activated when login button is pressed. checks user and password and opens a menu accordingly.
+	 * @param event login button is pressed
+	 * @throws InvalidInputException thrown if bad input
+	 * @throws IOException
+	 * @throws MissingInputException thrown is didn't input in one of the fields
+	 */
 	void GoToMenu(ActionEvent event) throws InvalidInputException, IOException, MissingInputException {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -66,7 +79,7 @@ public class LoginController extends Main {
 		alert.setHeaderText("");
 		String user = email.getText();
 		String pass = password.getText();
-		try {
+		try {//if one of the fields is empty, throw missing input exception
 			if(user.equals("")||pass.equals("")) {
 				throw new MissingInputException();
 			}
@@ -75,7 +88,7 @@ public class LoginController extends Main {
 		}
 		
 		try {
-			if (user.equals("admin") && pass.equals("admin")) {
+			if (user.equals("admin") && pass.equals("admin")) {//if admin has enterred, open a menu accordingly
 
 				Stage stage = (Stage) login.getScene().getWindow();
 				stage.close();
@@ -92,7 +105,7 @@ public class LoginController extends Main {
 
 				primaryStage.setScene(scene);
 				primaryStage.show();
-			} else if (SysData.getInstance().getCustomers() != null && user.length() == Constants.ID_NUMBER_SIZE) {
+			} else if (SysData.getInstance().getCustomers() != null && user.length() == Constants.ID_NUMBER_SIZE) {//if customer entered, open menu accordingly
 				if (SysData.getInstance().getCustomers().get(user) != null) {
 					if (SysData.getInstance().getCustomers().get(user).getPassword() != null) {
 						if (SysData.getInstance().getCustomers().get(user).getPassword().equals(pass)) {
@@ -119,7 +132,7 @@ public class LoginController extends Main {
 			} else if (SysData.getInstance().getCoachs() != null
 					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)) != null
 					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword() != null
-					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword().equals(pass)) {
+					&& SysData.getInstance().getCoachs().get(Integer.parseInt(user)).getPassword().equals(pass)) {//if coach entered, open menu accordingly
 				SysData.getInstance().setUserCoach(user);
 				Stage stage = (Stage) login.getScene().getWindow();
 				stage.close();
@@ -136,7 +149,7 @@ public class LoginController extends Main {
 
 				primaryStage.setScene(scene);
 				primaryStage.show();
-			} else if (SysData.getInstance().getReceptionists() != null
+			} else if (SysData.getInstance().getReceptionists() != null//if receptionist entered, open menu accordingly
 					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)) != null
 					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword() != null
 					&& SysData.getInstance().getReceptionists().get(Integer.parseInt(user)).getPassword()
@@ -157,12 +170,12 @@ public class LoginController extends Main {
 
 				primaryStage.setScene(scene);
 				primaryStage.show();
-			} else {
+			} else {//if no active user has entered, popup wrong username and password.
 				alert.setHeaderText("failed to login.");
 				alert.setContentText("wrong username/password");
 				alert.show();
 			}
-		}catch(NumberFormatException e) {
+		}catch(NumberFormatException e) {//catch exception if trying to convert string to integer
 			new InvalidInputException("Only numbers in user field are valid");
 		}
 
