@@ -21,7 +21,9 @@ import utils.E_Cities;
 import utils.E_Levels;
 
 public class viewCoachController {
-
+	/**
+	 * fxml fields of this class
+	 */
     @FXML
     private AnchorPane viewCoaches;
 
@@ -66,14 +68,17 @@ public class viewCoachController {
 
     @FXML
     private TableColumn<Coach, String> coachLastName;
-
+    /**
+     * goes back to previous screen	
+     * @param event back button is pressed
+     */
     @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();
     }
     public void initialize() {
     	// Defines how to fill data for each cell.
-        // Get value from property of Player.
+        // Get value from property of Coach.
         coachID.setCellValueFactory(new PropertyValueFactory<>("id"));
         coachFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         coachLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
