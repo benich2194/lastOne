@@ -1,9 +1,6 @@
 package view;
 
 import java.io.IOException;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import Controller.SysData;
 import Model.Match;
 import Model.Receptionist;
@@ -16,12 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import utils.E_Cities;
@@ -54,13 +52,13 @@ public class viewStadiumController {
     private TableColumn<Stadium, E_Cities> stadiumCity;
     
     @FXML
-    private TableColumn<Stadium, Receptionist> stadiumReceps;
+    private ListView<Receptionist> stadiumReceps;
 
     @FXML
-    private TableColumn<Stadium, Match> stadiumMatches;
+    private ListView<Match> stadiumMatches;
 
     @FXML
-    private TableColumn<Stadium, Team> stadiumTeams;
+    private ListView<Team> stadiumTeams;
     
     public void initialize() {
         // Defines how to fill data for each cell.
@@ -70,9 +68,7 @@ public class viewStadiumController {
         stadiumCapacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         stadiumCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         stadiumPhoneNum.setCellValueFactory(new PropertyValueFactory<>("primaryPhoneNumber"));
-        stadiumMatches.setCellValueFactory(new PropertyValueFactory<>("matches"));
-        stadiumTeams.setCellValueFactory(new PropertyValueFactory<>("teams"));
-        stadiumReceps.setCellValueFactory(new PropertyValueFactory<>("receptionists"));
+
         
         // Display row data
         ObservableList<Stadium> list = FXCollections.observableArrayList(SysData.getInstance().getStadiums().values());
@@ -99,32 +95,48 @@ public class viewStadiumController {
         });
         
 
-        TableColumn<Stadium, Set<Team>> thirdCol = new TableColumn<>("Teams");
-        PropertyValueFactory<Stadium, Set<Team>> thirdColFactory = new PropertyValueFactory<>("teams");
-        thirdCol.setCellValueFactory(thirdColFactory);
+//        TableColumn<Stadium, Set<Team>> thirdCol = new TableColumn<>("Teams");
+//        PropertyValueFactory<Stadium, Set<Team>> thirdColFactory = new PropertyValueFactory<>("teams");
+//        thirdCol.setCellValueFactory(thirdColFactory);
+//
+//        thirdCol.setCellFactory(col -> new TableCell<Stadium, Set<Team>>() {
+//            @Override
+//            public void updateItem(Set<Team> friends, boolean empty) {
+//                super.updateItem(friends, empty);
+//                if (empty) {
+//                    setText(null);
+//                } else {
+//                    setText(friends.stream().map(Team::getName)
+//                        .collect(Collectors.joining(", ")));
+//                }
+//            }
+//        });
+  
 
-        thirdCol.setCellFactory(col -> new TableCell<Stadium, Set<Team>>() {
-            @Override
-            public void updateItem(Set<Team> friends, boolean empty) {
-                super.updateItem(friends, empty);
-                if (empty) {
-                    setText(null);
-                } else {
-                    setText(friends.stream().map(Team::getName)
-                        .collect(Collectors.joining(", ")));
+        stadiumTableView.setRowFactory(tv -> {
+            TableRow<Stadium> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+                     && event.getClickCount() == 2) {
+
+                	Stadium clickedRow = row.getItem();
+                    showRowDetails(clickedRow);
                 }
-            }
+            });
+            return row ;
         });
         
-        ObservableList<Receptionist> recepStadium = FXCollections.observableArrayList(SysData.getInstance().getReceptionists().values());
-        stadiumReceps.setCellFactory(ComboBoxTableCell.forTableColumn(recepStadium));
-        
-        ObservableList<Match> matchesStadium = FXCollections.observableArrayList(SysData.getInstance().getMatchs().values());
-        stadiumMatches.setCellFactory(ComboBoxTableCell.forTableColumn(matchesStadium));
-        
-        
     }// End of View stadium Constructor
+    
+    private void showRowDetails(Stadium item) {
+        ObservableList<Receptionist> recepStadium = FXCollections.observableArrayList(item.getReceptionists());
+        ObservableList<Team> teamsStadium = FXCollections.observableArrayList(item.getTeams());
+        ObservableList<Match> matchesStadium = FXCollections.observableArrayList(item.getMatches());
         
+        stadiumReceps.setItems(recepStadium);
+        stadiumMatches.setItems(matchesStadium);
+        stadiumTeams.setItems(teamsStadium);
+    }
     
     @FXML
     void goBack(ActionEvent event) throws IOException {

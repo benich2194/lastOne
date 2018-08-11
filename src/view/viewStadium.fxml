@@ -12,30 +12,46 @@
 
 <AnchorPane fx:id="modifyStadium" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.viewStadiumController">
    <children>
-      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+      <ImageView fitHeight="590.0" fitWidth="701.0" layoutY="-22.0" style="-fx-opacity: 0.2;">
          <image>
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TableView fx:id="stadiumTableView" layoutX="16.0" layoutY="114.0" prefHeight="420.0" prefWidth="670.0" style="-fx-opacity: 0.9;">
+      <TableView fx:id="stadiumTableView" layoutX="16.0" layoutY="93.0" prefHeight="208.0" prefWidth="670.0" style="-fx-opacity: 0.78;">
         <columns>
           <TableColumn fx:id="stadiumID" editable="false" prefWidth="60.0" text="ID" />
           <TableColumn fx:id="stadiumName" prefWidth="107.0" text="Name" />
             <TableColumn fx:id="stadiumCapacity" prefWidth="75.0" text="Capacity" />
             <TableColumn fx:id="stadiumCity" prefWidth="75.0" text="City" />
             <TableColumn fx:id="stadiumPhoneNum" prefWidth="75.0" text="Phone" />
-            <TableColumn fx:id="stadiumReceps" prefWidth="75.0" text="Receptionists" />
-            <TableColumn fx:id="stadiumTeams" prefWidth="75.0" text="Teams" />
-            <TableColumn fx:id="stadiumMatches" prefWidth="75.0" text="Matches" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="278.0" layoutY="64.0" style="-fx-opacity: 0.8;" text="View Stadium" textFill="WHITE">
+      <Label layoutX="278.0" layoutY="28.0" style="-fx-opacity: 0.8;" text="View Stadium" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="77.0" style="-fx-opacity: 0.8;" text="Please Double Click a Stadium to see more details:" />
+      <ListView fx:id="stadiumTeams" layoutX="24.0" layoutY="340.0" opacity="0.7" prefHeight="55.0" prefWidth="659.0" style="-fx-opacity: 0.8;" />
+      <ListView fx:id="stadiumReceps" layoutX="24.0" layoutY="427.0" opacity="0.7" prefHeight="55.0" prefWidth="659.0" style="-fx-opacity: 0.8;" />
+      <ListView fx:id="stadiumMatches" layoutX="22.0" layoutY="506.0" opacity="0.7" prefHeight="55.0" prefWidth="659.0" style="-fx-opacity: 0.8;" />
+      <Label layoutX="24.0" layoutY="322.0" style="-fx-opacity: 0.8;" text="Teams:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="407.0" style="-fx-opacity: 0.8;" text="Receptionists:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="488.0" style="-fx-opacity: 0.8;" text="Matches:">
+         <font>
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
    </children>
