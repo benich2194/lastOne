@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import utils.NameToWindow;
 
 public class CoachModifController {
 	/**
@@ -33,7 +34,7 @@ public class CoachModifController {
     */
     @FXML
     void goToAddCoach(ActionEvent event) {
-    	WindowManager.openWindow("addCoach");
+    	WindowManager.openWindow(NameToWindow.ADD_COACH);
     }
     /**
      * go to modify coach window

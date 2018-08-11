@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Controller.Logger;
 import Controller.SysData;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -41,6 +42,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		
+		Logger.initializeMyFileWriter();
+		Logger.log("asd");
+		
+		
 		SysData.deserialize();
 		launch(args);
 		SysData.getInstance().setUserCoach(null);

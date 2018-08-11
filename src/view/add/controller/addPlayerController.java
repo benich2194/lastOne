@@ -1,4 +1,4 @@
-package view;
+package view.add.controller;
 
 import java.io.IOException;
 
@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
+import view.WindowManager;
 
 public class addPlayerController {
 	/**

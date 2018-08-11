@@ -1,4 +1,4 @@
-package view;
+package view.add.controller;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class addTrophyController {
 

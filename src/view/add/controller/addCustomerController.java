@@ -1,4 +1,4 @@
-package view;
+package view.add.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import utils.E_Cities;
 import utils.E_Levels;
+import view.WindowManager;
 
 public class addCustomerController {
 	/**

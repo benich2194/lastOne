@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import utils.NameToWindow;
 
 public class customerMenuAdminController {
 
@@ -26,7 +27,7 @@ public class customerMenuAdminController {
 
     @FXML
     void goToAddCustomer(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("addCustomer");	
+    	WindowManager.openWindow(NameToWindow.ADD_CUSTOMER);	
     }
 
     @FXML

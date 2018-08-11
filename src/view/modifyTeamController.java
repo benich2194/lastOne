@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 import Controller.SysData;
+import Model.Stadium;
 import Model.Team;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -124,14 +125,17 @@ public class modifyTeamController {
         teamStadiumID.setCellFactory(ComboBoxTableCell.forTableColumn(stadiumIDS));
  
         teamStadiumID.setOnEditCommit((CellEditEvent<Team, Integer> event) -> {
-            TablePosition<Team, Integer> pos = event.getTablePosition();
- 
-            Integer newPos = event.getNewValue();
- 
-            int row = pos.getRow();
-            Team tm = event.getTableView().getItems().get(row);
- 
-            tm.setStadium(SysData.getInstance().getStadiums().get(newPos));
+        	
+        	Team thisTeam = event.getRowValue();
+        	Stadium oldStadium = SysData.getInstance().getStadiums().get(event.getOldValue());
+        	System.out.println("Old stadium is " + oldStadium);
+        	Stadium newStadium = SysData.getInstance().getStadiums().get(event.getNewValue());
+        	System.out.println("New stadium is " + newStadium);
+            oldStadium.removeTeam(thisTeam);
+        	newStadium.addTeam(thisTeam);
+            
+            thisTeam.setStadium(newStadium);
+            
         });
         
         // ==== Team Level (COMBO BOX) ===

@@ -1,6 +1,9 @@
 package view;
 
 import java.io.IOException;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import Controller.SysData;
 import Model.Match;
 import Model.Receptionist;
@@ -13,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -94,8 +98,23 @@ public class viewStadiumController {
             }
         });
         
-        ObservableList<Team> teamsStadium = FXCollections.observableArrayList(SysData.getInstance().getTeams().values());
-        stadiumTeams.setCellFactory(ComboBoxTableCell.forTableColumn(teamsStadium));
+
+        TableColumn<Stadium, Set<Team>> thirdCol = new TableColumn<>("Teams");
+        PropertyValueFactory<Stadium, Set<Team>> thirdColFactory = new PropertyValueFactory<>("teams");
+        thirdCol.setCellValueFactory(thirdColFactory);
+
+        thirdCol.setCellFactory(col -> new TableCell<Stadium, Set<Team>>() {
+            @Override
+            public void updateItem(Set<Team> friends, boolean empty) {
+                super.updateItem(friends, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(friends.stream().map(Team::getName)
+                        .collect(Collectors.joining(", ")));
+                }
+            }
+        });
         
         ObservableList<Receptionist> recepStadium = FXCollections.observableArrayList(SysData.getInstance().getReceptionists().values());
         stadiumReceps.setCellFactory(ComboBoxTableCell.forTableColumn(recepStadium));

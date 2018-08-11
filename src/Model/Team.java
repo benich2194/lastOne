@@ -353,13 +353,12 @@ public class Team implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Team | id: " + id + ", name: " + name + ", value: " + value + ", level: " + level + ", stadium: "
 				+ stadium.getName() + ", coach: "
 				+ (coach != null ? coach.getFirstName() + " " + coach.getLastName() : "team has no coach");
 	}
-
 
 }
