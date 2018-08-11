@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
+import utils.NameToWindow;
 
 public class AdminMenuController implements Initializable{
 
@@ -19,7 +20,7 @@ public class AdminMenuController implements Initializable{
 		
 	}
 	
-    public void loadUI(String ui)
+    public void loadUI(NameToWindow ui)
     {
     	WindowManager.openWindow(ui);
     }
@@ -29,56 +30,56 @@ public class AdminMenuController implements Initializable{
 	}
 	@FXML
     private void GoToCoachPage(ActionEvent event) {
-    	loadUI("coachModif");
+    	loadUI(NameToWindow.MENU_COACH);
     }
 
     @FXML
     private void goToTeamPage(ActionEvent event) {
-    	loadUI("teamMenu");
+    	loadUI(NameToWindow.MENU_TEAM);
     }
 
     @FXML
     private void goToPlayerMenu(ActionEvent event) {
-    	loadUI("playerMenu");
+    	loadUI(NameToWindow.MENU_PLAYER);
     }
 
     @FXML
     private void goToCustomerMenu(ActionEvent event) {
-    	loadUI("/view/customerMenuAdmin");
+    	loadUI(NameToWindow.MENU_CUSTOMER);
     }
 
     @FXML
     private void goToRecepMenu(ActionEvent event) {
-    	loadUI("receptionistMenuAdmin");
+    	loadUI(NameToWindow.MENU_RECEPTIONIST);
     }
 
     @FXML
     private void goToStadiumMenu(ActionEvent event) {
-    	loadUI("stadiumMenu");
+    	loadUI(NameToWindow.MENU_STADIUM);
     }
 
     @FXML
     private void goToSubscriptionButton(ActionEvent event) {
-    	loadUI("subscriptionMenu");
+    	loadUI(NameToWindow.MENU_SUB);
     }
 
     @FXML
     private void goToTrophyMenu(ActionEvent event) {
-    	loadUI("trophyMenu");
+    	loadUI(NameToWindow.MENU_TROPHY);
     }
 
     @FXML
     private void goToMatchMenu(ActionEvent event) {
-    	loadUI("matchMenu");
+    	loadUI(NameToWindow.MENU_MATCH);
     }
 
     @FXML
     private void goToConnectionMenu(ActionEvent event) {
-    	loadUI("connectionMenu");
+    	loadUI(NameToWindow.MENU_CONNECTION);
     }
     @FXML
     void goToQueries(ActionEvent event) {
-    	loadUI("queries");
+    	loadUI(NameToWindow.QUERIES);
     }
 
 }
