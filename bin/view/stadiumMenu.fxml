@@ -18,12 +18,13 @@
          </image>
       </ImageView>
       <Button fx:id="addStadium" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddStadium" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Stadium" />
-      <Button fx:id="removeStadium" layoutX="285.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToRemoveStadium" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Stadium" />
+      <Button fx:id="removeStadium" layoutX="285.0" layoutY="368.0" mnemonicParsing="false" onAction="#goToRemoveStadium" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Stadium" />
       <Button fx:id="modStadium" layoutX="285.0" layoutY="181.0" mnemonicParsing="false" onAction="#goToModifyStadium" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Stadium" />
-      <Label layoutX="276.0" layoutY="39.0" style="-fx-opacity: 0.7;" text="Stadium Menu" textFill="WHITE">
+      <Label layoutX="274.0" layoutY="39.0" style="-fx-opacity: 0.7;" text="Stadium Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <Button fx:id="viewStadium" layoutX="284.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToViewStadium" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View Stadium" />
    </children>
 </AnchorPane>

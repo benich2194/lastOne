@@ -20,6 +20,9 @@ public class stadiumMenuController {
 
     @FXML
     private Button modStadium;
+    
+    @FXML
+    private Button viewStadium;
 
 
     @FXML
@@ -30,6 +33,11 @@ public class stadiumMenuController {
     @FXML
    void goToModifyStadium(ActionEvent event) throws IOException {
         WindowManager.openWindow("modifyStadium");
+    }
+    
+    @FXML
+   void goToViewStadium(ActionEvent event) throws IOException {
+        WindowManager.openWindow("viewStadium");
     }
 
     @FXML

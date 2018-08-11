@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -17,7 +18,7 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TableView fx:id="stadiumTableView" editable="true" layoutX="47.0" layoutY="75.0" prefHeight="362.0" prefWidth="618.0" style="-fx-opacity: 0.9;">
+      <TableView fx:id="stadiumTableView" editable="true" layoutX="42.0" layoutY="114.0" prefHeight="362.0" prefWidth="618.0" style="-fx-opacity: 0.9;">
         <columns>
           <TableColumn fx:id="stadiumID" editable="false" prefWidth="75.0" text="Stadium ID" />
           <TableColumn fx:id="stadiumName" prefWidth="75.0" text="Name" />
@@ -31,5 +32,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Label layoutX="260.0" layoutY="64.0" style="-fx-opacity: 0.8;" text="Modify Stadium" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
