@@ -100,14 +100,20 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 				java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
 				Integer houseNum=Integer.parseInt(houseNumber.getText());
-				Address ad=new Address(coachCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
+				E_Levels cl=levelCoach.getSelectionModel().getSelectedItem();
+				E_Cities cc=coachCity.getSelectionModel().getSelectedItem();
+				if(cl==null||cc==null) {
+					throw new NullPointerException();
+				}
+				else {
+				Address ad=new Address(cc,street,houseNum,phones);
 				if(SysData.getInstance().getCoachs().containsKey(id)) {
 		    		alert.setHeaderText("Unable to added coach.");
 		    		alert.setContentText("Coach already exists.");
 		    		alert.show();
 		    	}
 		    	else {
-		    		SysData.getInstance().addCoach(id,password, first, last, bday, work, levelCoach.getSelectionModel().getSelectedItem(), ad);
+		    		SysData.getInstance().addCoach(id,password, first, last, bday, work,cl , ad);
 		    		
 			    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 			    		alert.setHeaderText("Added coach");
@@ -119,6 +125,7 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 			    		alert.setContentText("Coach wasn't added.");
 			    		alert.show();
 			    	}
+		    	}
 		    	}
 			}catch(NumberFormatException e) {
 				if(flag==1) {
@@ -133,7 +140,9 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 				}
 				
 				
-			}  	
+			}catch(NullPointerException e) {
+				new MissingInputException();
+			}
 	    	}
 	 /**
 	  * goes back to previous page
