@@ -5,6 +5,7 @@ import java.util.Date;
 
 import Controller.SysData;
 import Model.Customer;
+import Model.Subscription;
 import Model.Team;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -13,10 +14,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import utils.E_Cities;
@@ -65,6 +69,9 @@ public class viewCustomerController {
 
     @FXML
     private TableColumn<Customer, Integer> custID;
+    
+    @FXML
+    private ListView<Subscription> custSubs;
 
     public void initialize() {
         // Defines how to fill data for each cell.
@@ -131,7 +138,27 @@ public class viewCustomerController {
                 return new SimpleObjectProperty<E_Cities>(ct);
             }
         });
+        
+        custTableView.setRowFactory(tv -> {
+            TableRow<Customer> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()==MouseButton.PRIMARY 
+                     && event.getClickCount() == 2) {
+
+                	Customer clickedRow = row.getItem();
+                    showRowDetails(clickedRow);
+                }
+            });
+            return row ;
+        });
+        
     }// End of viewCustomer Constructor
+    
+    private void showRowDetails(Customer item) {
+        ObservableList<Subscription> subsOfCustomer = FXCollections.observableArrayList(item.getSubscriptions());
+        custSubs.setItems(subsOfCustomer);
+
+    }
     
     @FXML
     void goBack(ActionEvent event) {

@@ -23,6 +23,9 @@ public class receptionistMenuAdminController {
 
     @FXML
     private Button modRecep;
+    
+    @FXML
+    private Button viewRecep;
 
 
     @FXML
@@ -33,6 +36,11 @@ public class receptionistMenuAdminController {
     @FXML
     void goToModifyRecep(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.MODIFY_RECEPTIONIST);
+    }
+    
+    @FXML
+    void goToViewRecep(ActionEvent event) throws IOException {
+    	WindowManager.openWindow("viewReceptionist");
     }
 
     @FXML
