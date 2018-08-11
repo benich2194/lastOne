@@ -176,7 +176,7 @@ public class LoginController extends Main {
 				alert.show();
 			}
 		}catch(NumberFormatException e) {//catch exception if trying to convert string to integer
-			new InvalidInputException("Only numbers in user field are valid");
+			new InvalidInputException();
 		}
 
 	}

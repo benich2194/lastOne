@@ -138,7 +138,7 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 				else {
 					if(houseNumber.getText()==""&&coachId.getText()=="") {}
 					else {
-						new InvalidInputException("Please enter numbers only in coach id and house number");
+						new InvalidInputException();
 					}
 					
 				}
