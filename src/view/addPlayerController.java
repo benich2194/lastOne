@@ -72,7 +72,13 @@ public class addPlayerController {
     @FXML
     private ComboBox<E_Position> playerPosition;
 
-
+    /**
+     * adds a new player to data base
+     * @param event add button is pressed
+     * @throws MissingInputException
+     * @throws ListNotSelectedException
+     * @throws InvalidInputException
+     */
     @FXML
     void addPlayer(ActionEvent event)  throws MissingInputException,ListNotSelectedException, InvalidInputException{
     	Alert alert = new Alert(AlertType.INFORMATION);
