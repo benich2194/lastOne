@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 import Controller.SysData;
+import Exceptions.IdExistsException;
 import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import Model.Address;
@@ -73,7 +74,7 @@ public class addCoachController {
 	 * @throws MissingInputException missing input exception that i created.
 	 * @throws InvalidInputException if instead of numbers in some fields text was input
 	 */
-	    void addCoach(ActionEvent event) throws IOException, MissingInputException,InvalidInputException {
+	    void addCoach(ActionEvent event) throws IOException, MissingInputException,InvalidInputException, IdExistsException {
 		int flag =0;
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
@@ -97,6 +98,9 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 			}
 			try{
 				Integer id = Integer.parseInt(coachId.getText());
+				if(SysData.getInstance().getReceptionists().containsKey(id)||SysData.getInstance().getPlayers().containsKey(id)||SysData.getInstance().getCoachs().containsKey(id)) {
+					throw new IdExistsException("coach");
+				}
 				java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
 				Integer houseNum=Integer.parseInt(houseNumber.getText());
@@ -142,6 +146,8 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 				
 			}catch(NullPointerException e) {
 				new MissingInputException();
+			}catch(IdExistsException e) {
+				
 			}
 	    	}
 	 /**
