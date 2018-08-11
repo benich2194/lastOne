@@ -12,10 +12,10 @@ public class InvalidInputException extends IOException{
 	 */
 	private static final long serialVersionUID = -3958964505912431852L;
 	public InvalidInputException(String message) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Login");
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Invalid Input");
 		alert.setHeaderText("");
-		alert.setHeaderText("Failed to login.");
+		alert.setHeaderText("Failed to continue,invalid input was entered.");
 		alert.setContentText(message);
 		alert.show();
 	}

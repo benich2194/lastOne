@@ -5,6 +5,8 @@ import Controller.SysData;
 import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import Model.Address;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,51 +20,61 @@ import utils.E_Levels;
 import utils.E_Cities;
 
 public class addCoachController {
+	/**
+	 * add coach fxml fields
+	 */
+	@FXML
+	private AnchorPane addCoachModif;
 
-	  @FXML
-	    private AnchorPane addCoachModif;
+	@FXML
+	private Button back;
 
-	    @FXML
-	    private Button back;
+	@FXML
+	private TextField coachId;
 
-	    @FXML
-	    private TextField coachId;
+	@FXML
+	private TextField firstName;
 
-	    @FXML
-	    private TextField firstName;
+	@FXML
+	private TextField lastName;
 
-	    @FXML
-	    private TextField lastName;
+	@FXML
+	private DatePicker birthDate;
 
-	    @FXML
-	    private DatePicker birthDate;
+	@FXML
+	private DatePicker startWorkingDate;
 
-	    @FXML
-	    private DatePicker startWorkingDate;
+	@FXML
+	private ComboBox<E_Levels> levelCoach;
 
-	    @FXML
-	    private ComboBox<E_Levels> levelCoach;
+	@FXML
+	private ComboBox<E_Cities> coachCity;
 
-	    @FXML
-	    private ComboBox<E_Cities> coachCity;
+	@FXML
+	private TextField houseNumber;
 
-	    @FXML
-	    private TextField houseNumber;
+	@FXML
+	private TextField coachStreet;
 
-	    @FXML
-	    private TextField coachStreet;
+	@FXML
+	private TextField coachPhone;
 
-	    @FXML
-	    private TextField coachPhone;
+	@FXML
+	private Button addButton;
 
-	    @FXML
-	    private Button addButton;
-	    
-	    @FXML
-	    private TextField coachPassword;
+	@FXML
+	private TextField coachPassword;
 
-	    @FXML
-	    void addCoach(ActionEvent event) throws IOException {
+	@FXML
+	/**
+	 * adds coach once add coach button is pressed
+	 * @param event coach button is pressed
+	 * @throws IOException input exception might occuer
+	 * @throws MissingInputException missing input exception that i created.
+	 * @throws InvalidInputException if instead of numbers in some fields text was input
+	 */
+	    void addCoach(ActionEvent event) throws IOException, MissingInputException,InvalidInputException {
+		int flag =0;
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
 			alert.setHeaderText("");
@@ -71,17 +83,22 @@ public class addCoachController {
 	    	String street=coachStreet.getText();
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
-	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
-	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
-	    	String password=coachPassword.getText();
-	    	if(first==""||last==""||bday==null) {
+	    	try {
+	    		java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
+		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
+	    	}catch(NullPointerException e) {
 	    		new MissingInputException();
 	    	}
-			if(coachId.getText()=="") {
-				new MissingInputException();
+	    	
+	    	String password=coachPassword.getText();
+if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
+	flag=1;
+	throw new MissingInputException();
 			}
 			try{
 				Integer id = Integer.parseInt(coachId.getText());
+				java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
+		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
 				Integer houseNum=Integer.parseInt(houseNumber.getText());
 				Address ad=new Address(coachCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 				if(SysData.getInstance().getCoachs().containsKey(id)) {
@@ -104,24 +121,66 @@ public class addCoachController {
 			    	}
 		    	}
 			}catch(NumberFormatException e) {
-				new InvalidInputException("Please enter numbers only in coach id and house number");
-			}
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
+				if(flag==1) {
+					
+				}
+				else {
+					if(houseNumber.getText()==""&&coachId.getText()=="") {}
+					else {
+						new InvalidInputException("Please enter numbers only in coach id and house number");
+					}
+					
+				}
+				
+				
+			}  	
 	    	}
-
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
-    	WindowManager.goBack();
-    }
-    
-    public void initialize() {
-    	coachCity.getItems().addAll(E_Cities.values());
-    	levelCoach.getItems().addAll(E_Levels.values());
-    }
+	 /**
+	  * goes back to previous page
+	  * @param event back button is pressed
+	  */
+	@FXML
+	void goBack(ActionEvent event) {
+		WindowManager.goBack();
+	}
+	/**
+	 * initializes combobox/lists, making sure every text field will be only letters or only numbers, as desired
+	 */
+	public void initialize() {
+		coachCity.getItems().addAll(E_Cities.values());
+		levelCoach.getItems().addAll(E_Levels.values());
+		 coachId.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\d*")) {
+		        	coachId.setText(newValue.replaceAll("[^\\d]", ""));
+		        }
+		    });
+		 houseNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\d*")) {
+		        	houseNumber.setText(newValue.replaceAll("[^\\d]", ""));
+		        }
+		    });
+		 firstName.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\sa-zA-Z*")) {
+		        	firstName.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+		        }
+		    });
+		 lastName.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\sa-zA-Z*")) {
+		        	lastName.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+		        }
+		    });
+		 coachStreet.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\sa-zA-Z*")) {
+		        	coachStreet.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+		        }
+		    });
+		 coachPhone.textProperty().addListener((observable, oldValue, newValue) -> {
+		        if (!newValue.matches("\\d*")) {
+		        	coachPhone.setText(newValue.replaceAll("[^\\d]", ""));
+		        }
+		    });
+		 
+		
+	}
+	
 }
