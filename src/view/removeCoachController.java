@@ -73,6 +73,11 @@ public class removeCoachController {
     	}catch(ListNotSelectedException e) {
     		
     	}
+    	finally {
+    		if(SysData.getInstance().getCoachs().size()>0) {
+    			coachList.getItems().addAll(SysData.getInstance().getCoachs().values());
+    		}
+    	}
     	
     }
     /**
