@@ -48,22 +48,22 @@ public class queriesController {
 
     @FXML
     void getASPMPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETALLSPM);
     }
 
     @FXML
     void getMPPPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETMPP);
     }
 
     @FXML
     void getMFTPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_MFT);
     }
 
     @FXML
     void getMACBSPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETMAC);
     }
 
     @FXML

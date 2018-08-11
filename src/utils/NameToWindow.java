@@ -58,6 +58,10 @@ public enum NameToWindow {
 	RECEPTIONIST_LOGIN("menus/playerMenu"),
 	
 	/*------------QUERIES-------------------------------------------------*/
+	QUERY_GETMAC("queries/getMAC"),
+	QUERY_GETALLSPM("queries/getALLSPM"),
+	QUERY_GETMPP("queries/getMPP"),
+	QUERY_MFT("queries/getMFT"),
 	QUERY_GETSPM("queries/getSPM");	
 	
 	

@@ -635,10 +635,12 @@ public class SysData implements Serializable {
 	 */
 	public <T> boolean addTrophy(E_Trophy trophy, T owner, Date trophyWinningDate) {
 		if (trophy != null && owner != null && trophyWinningDate != null) {
-			if (owner instanceof Employee && trophyWinningDate.before(((Employee) owner).getStartWorkingDate()))
-				return false;
-			Trophy<T> trp = new Trophy<T>(trophy, owner, trophyWinningDate);
-			return trophies.add(trp);
+			if(owner instanceof Player || owner instanceof Stadium || owner instanceof Coach || owner instanceof Team) {
+				if (owner instanceof Employee && trophyWinningDate.before(((Employee) owner).getStartWorkingDate()))
+					return false;
+				Trophy<T> trp = new Trophy<T>(trophy, owner, trophyWinningDate);
+				return trophies.add(trp);
+			}
 		}
 		return false;
 	}// ~ END OF removeSubscription

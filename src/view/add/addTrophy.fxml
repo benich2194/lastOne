@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -13,9 +14,18 @@
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
-            <Image url="@../../Soccer-Stadium.jpg" />
+            <Image url="@../../images/Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label layoutX="265.0" layoutY="50.0" prefHeight="37.0" prefWidth="197.0" style="-fx-opacity: 0.8;" text="Add Trophy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="addTrophyButton" layoutX="254.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToaddTrophy" prefHeight="33.0" prefWidth="149.0" text="Add Trophy" />
+      <ComboBox fx:id="chooseTrophy" layoutX="254.0" layoutY="108.0" onAction="#showComponents" prefHeight="25.0" prefWidth="149.0" promptText="Choose Trophy:" />
+      <ComboBox fx:id="chooseWinner" layoutX="254.0" layoutY="163.0" prefHeight="25.0" prefWidth="149.0" promptText="Choose Winner:" />
+      <DatePicker fx:id="chooseDate" layoutX="248.0" layoutY="217.0" prefHeight="26.0" prefWidth="160.0" />
    </children>
 </AnchorPane>
