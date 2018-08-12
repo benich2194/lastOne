@@ -1,6 +1,7 @@
 package view;
 
 import Controller.SysData;
+import Exceptions.ListNotSelectedException;
 import Model.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class customerJoinMatchController {
-
+	/**
+	 * fx fields
+	 */
     @FXML
     private AnchorPane joinMatch;
 
@@ -22,21 +25,37 @@ public class customerJoinMatchController {
     private ListView<Match> matchList;
 
     @FXML
-    void joinMatch(ActionEvent event) {
+    void joinMatch(ActionEvent event) throws ListNotSelectedException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Join Match");
 		alert.setHeaderText("");
-    	if(SysData.getInstance().addCustomerToMatch(SysData.getInstance().getUserCustomer(), matchList.getSelectionModel().getSelectedItem().getId())) {
-    		alert.setHeaderText("Joined Match Successfully");
-    		alert.setContentText("You were added to match "+matchList.getSelectionModel().getSelectedItem().getId()+".");
-    		alert.show();
-    	}
-    	else {
-    		alert.setHeaderText("Failed to join match.");
-    		alert.setContentText("You were not added to match "+matchList.getSelectionModel().getSelectedItem().getId()+".");
-    		alert.show();
-    	}
+		try {
+			if(matchList.getSelectionModel().getSelectedItem()==null) {
+				throw new ListNotSelectedException();
+			}
+			if(SysData.getInstance().addCustomerToMatch(SysData.getInstance().getUserCustomer(), matchList.getSelectionModel().getSelectedItem().getId())) {
+	    		alert.setHeaderText("Joined Match Successfully");
+	    		alert.setContentText("You were added to match "+matchList.getSelectionModel().getSelectedItem().getId()+".");
+	    		alert.show();
+	    	}
+	    	else {
+	    		alert.setHeaderText("Failed to join match.");
+	    		alert.setContentText("You were not added to match "+matchList.getSelectionModel().getSelectedItem().getId()+".");
+	    		alert.show();
+	    	}
+		}catch(ListNotSelectedException e) {
+			
+		}
+    	
+    	//refresh list
+    	matchList.getItems().removeAll(matchList.getItems());
+    	if(SysData.getInstance().getMatchs().size()>0) {
+ 			matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
+ 		}
     }
+    /**
+     * initialize list
+     */
     public void initialize() {
  		if(SysData.getInstance().getMatchs().size()>0) {
  			matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
