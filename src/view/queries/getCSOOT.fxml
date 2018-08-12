@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.queries.controller.getCSOOTController">
+   <children>
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+         <image>
+            <Image url="@../../images/Soccer-Stadium.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label layoutX="87.0" layoutY="106.0" style="-fx-opacity: 0.8;" text="Please choose 1st stadium:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="33.0" prefHeight="33.0" prefWidth="410.0" style="-fx-opacity: 0.8;" text="Get All Customers in Chosen Stadiums" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxChooseFS" layoutX="324.0" layoutY="103.0" onAction="#showComponents" prefHeight="26.0" prefWidth="323.0" />
+      <Button fx:id="buttonGETList" layoutX="276.0" layoutY="256.0" mnemonicParsing="false" onAction="#goToShowList" prefHeight="33.0" prefWidth="149.0" text="Get List" />
+      <Label fx:id="lbl" layoutX="128.0" layoutY="305.0" prefHeight="20.0" prefWidth="506.0" style="-fx-opacity: 0.76;" text="List of Customers in first Stadium &amp; second Stadium but not both:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="85.0" layoutY="162.0" style="-fx-opacity: 0.8;" text="Please choose 2nd stadium:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxChooseSS" layoutX="324.0" layoutY="159.0" prefHeight="26.0" prefWidth="323.0" />
+      <ListView fx:id="listViewCustomers" layoutX="35.0" layoutY="334.0" prefHeight="200.0" prefWidth="619.0" style="-fx-opacity: 0.75;" />
+   </children>
+</AnchorPane>
