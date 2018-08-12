@@ -103,6 +103,10 @@ public class removeStadiumController {
         		}
         	}
     	}
+			stadiumList.getItems().removeAll(stadiumList.getItems());
+			if(SysData.getInstance().getStadiums().size()>0) {
+	    		stadiumList.getItems().addAll(SysData.getInstance().getStadiums().values());
+	    	}
 		}catch(ListNotSelectedException e) {
 			
 		}
