@@ -17,4 +17,12 @@ public class MissingInputException extends Exception {
 		alert.setContentText("Please fill every field.");
 		alert.show();
 	}
+	public MissingInputException(String m) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Missing Input");
+		alert.setHeaderText("");
+		alert.setHeaderText("Failed to continue.");
+		alert.setContentText("Please fill "+m+" field.");
+		alert.show();
+	}
 }
