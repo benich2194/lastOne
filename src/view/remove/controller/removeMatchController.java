@@ -1,6 +1,7 @@
 package view.remove.controller;
 
 import Controller.SysData;
+import Exceptions.ListNotSelectedException;
 import Model.Customer;
 import Model.Match;
 import Model.Stadium;
@@ -16,7 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
 
 public class removeMatchController {
-
+	/**
+	 * fx fields
+	 */
     @FXML
     private AnchorPane removeMatch;
 
@@ -28,55 +31,58 @@ public class removeMatchController {
 
     @FXML
     private Button removeButton;
-
+    /**
+     * goes back to previous screen
+     * @param event back button is pressed
+     */
     @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();
     }
 
     @FXML
-    void removeMatch(ActionEvent event) {
-    	for(Team t:SysData.getInstance().getTeams().values()) {
-    		if(t!=null) {
-    			for(Match m:t.getMatches()) {
-        			if(m!=null) {
-        				if(m.getId()==matchList.getSelectionModel().getSelectedItem().getId()) {
-        					t.getMatches().remove(m);
-        				}
-        			}
+    void removeMatch(ActionEvent event) throws ListNotSelectedException{
+    	try {
+    		if(matchList.getSelectionModel().getSelectedItem()==null) {
+        		throw new ListNotSelectedException();
+        	}
+    		Match m=matchList.getSelectionModel().getSelectedItem();
+        	for(Team t:SysData.getInstance().getTeams().values()) {//removes match from teams
+        		if(t!=null) {
+        			t.removeMatch(m);
         		}
-    		}
+        		
+        	}
+        	for(Customer c:SysData.getInstance().getCustomers().values()) {//remove match from customers
+        		if(c!=null) {
+        			c.removeMatch(m);
+        		}
+        	}
+        	Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Remove Match");
+    		alert.setHeaderText("");
+        	SysData.getInstance().getMatchs().remove(m.getId());
+        	if(SysData.getInstance().getMatchs().containsKey(m.getId())) {
+        		alert.setHeaderText("Match wasn't removed");
+        		alert.setContentText("Match wasn't removed successfully.");
+        		alert.show();
+        	}
+        	else {
+        		alert.setHeaderText("Match removed");
+        		alert.setContentText("Match was removed successfully.");
+        		alert.show();
+        	}
+    	}catch(ListNotSelectedException e) {
     		
     	}
-    	for(Customer c:SysData.getInstance().getCustomers().values()) {
-    		if(c!=null) {
-    			for(Subscription s:c.getSubscriptions()) {
-    				if(s!=null) {
-    					for(Match m:s.getMatches()) {
-    						if(m.getId()==matchList.getSelectionModel().getSelectedItem().getId()) {
-    							s.getMatches().remove(m);
-    						}
-    					}
-    				}
-    			}
-    		}
-    	}
-    	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Remove Match");
-		alert.setHeaderText("");
-    	Match m=matchList.getSelectionModel().getSelectedItem();
-    	SysData.getInstance().getMatchs().remove(m.getId());
-    	if(SysData.getInstance().getMatchs().containsKey(m.getId())) {
-    		alert.setHeaderText("Match wasn't removed");
-    		alert.setContentText("Match wasn't removed successfully.");
-    		alert.show();
-    	}
-    	else {
-    		alert.setHeaderText("Match removed");
-    		alert.setContentText("Match was removed successfully.");
-    		alert.show();
-    	}
+    	matchList.getItems().removeAll(matchList.getItems());//refreshes list
+    	if(SysData.getInstance().getMatchs().size()>0) {
+			matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
+		}
     }
+    /**
+     * initializes match list
+     */
     public void initialize() {
 		if(SysData.getInstance().getMatchs().size()>0) {
 			matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
