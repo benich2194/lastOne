@@ -52,7 +52,9 @@ public class removeCustomerController {
 			if(c==null)
 				throw new ListNotSelectedException();
 			for (Subscription s : c.getSubscriptions()) {
-				SysData.getInstance().removeSubscription(s.getId());
+				if(s!=null) {
+					SysData.getInstance().removeSubscription(s.getId());
+				}
 			}
 			SysData.getInstance().getCustomers().remove(c.getId());
 			if (!SysData.getInstance().getCustomers().containsKey(c.getId())) {

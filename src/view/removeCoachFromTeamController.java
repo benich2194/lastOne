@@ -64,7 +64,16 @@ public class removeCoachFromTeamController {
     	}catch(ListNotSelectedException e) {
     		
     	}
-    	
+    	coachList.getItems().removeAll(coachList.getItems());//refreshes list
+     	if(SysData.getInstance().getCoachs()!=null) {
+    		for(Coach c:SysData.getInstance().getCoachs().values()) {
+    			if(c!=null) {
+    				if(c.getCurrentTeam()!=null) {
+    					coachList.getItems().add(c);
+    				}
+    			}
+    		}
+    	}
     }
     /**
      * initializes coach with team list
