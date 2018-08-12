@@ -32,14 +32,14 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxChooseFS" layoutX="324.0" layoutY="103.0" onAction="#showComponents" prefHeight="26.0" prefWidth="323.0" />
+      <ComboBox fx:id="comboBoxChooseFS" layoutX="324.0" layoutY="103.0" onAction="#showComp" prefHeight="26.0" prefWidth="323.0" />
       <Button fx:id="buttonGETList" layoutX="276.0" layoutY="256.0" mnemonicParsing="false" onAction="#goToShowList" prefHeight="33.0" prefWidth="149.0" text="Get List" />
       <Label fx:id="lbl" layoutX="128.0" layoutY="305.0" prefHeight="20.0" prefWidth="506.0" style="-fx-opacity: 0.76;" text="List of Customers in first Stadium &amp; second Stadium but not both:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="85.0" layoutY="162.0" style="-fx-opacity: 0.8;" text="Please choose 2nd stadium:">
+      <Label fx:id="lbl2" layoutX="85.0" layoutY="162.0" style="-fx-opacity: 0.8;" text="Please choose 2nd stadium:">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

@@ -68,22 +68,22 @@ public class queriesController {
 
     @FXML
     void getEWMTPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETEWMT);
     }
 
     @FXML
     void getTWLHCPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETTWLHC);
     }
 
     @FXML
     void getSTCSPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETCSOOT);
     }
 
     @FXML
     void getFPBHTPage(ActionEvent event) {
-    	WindowManager.openWindow("queries");
+    	WindowManager.openWindow(NameToWindow.QUERY_GETFPOBHT);
     }
 
 }

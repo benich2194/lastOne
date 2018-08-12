@@ -29,6 +29,9 @@ public class getCSOOTController {
     
     @FXML
     private Label lbl;
+    
+    @FXML
+    private Label lbl2;
 
     @FXML
     private ComboBox<Stadium> comboBoxChooseSS;
@@ -48,10 +51,13 @@ public class getCSOOTController {
     	comboBoxChooseFS.getItems().addAll(SysData.getInstance().getStadiums().values());
     	comboBoxChooseSS.setVisible(false);
     	listViewCustomers.setVisible(false);
+    	buttonGETList.setVisible(false);
+    	lbl2.setVisible(false);
     	lbl.setVisible(false);
     }
     
-    void showComponents(ActionEvent event) {
+    @FXML
+    void showComp(ActionEvent event) {
     	comboBoxChooseSS.getItems().clear();
     	Collection<Stadium> stSet = SysData.getInstance().getStadiums().values();
     	stSet.remove(comboBoxChooseFS.getSelectionModel().getSelectedItem());
@@ -59,6 +65,8 @@ public class getCSOOTController {
     	comboBoxChooseSS.setVisible(true);
     	listViewCustomers.setVisible(true);
     	lbl.setVisible(true);
+    	buttonGETList.setVisible(true);
+    	lbl2.setVisible(true);
     }
     
     @FXML

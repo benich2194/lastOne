@@ -62,6 +62,10 @@ public enum NameToWindow {
 	QUERY_GETALLSPM("queries/getALLSPM"),
 	QUERY_GETMPP("queries/getMPP"),
 	QUERY_MFT("queries/getMFT"),
+	QUERY_GETCSOOT("queries/getCSOOT"),
+	QUERY_GETEWMT("queries/getEWMT"),
+	QUERY_GETFPOBHT("queries/getFPOBHT"),
+	QUERY_GETTWLHC("queries/getTWLHC"),
 	QUERY_GETSPM("queries/getSPM");	
 	
 	
