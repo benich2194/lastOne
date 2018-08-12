@@ -1,7 +1,5 @@
 package view;
 
-import java.io.IOException;
-
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Coach;
@@ -84,6 +82,7 @@ public class coachToTeamController {
      * goes back to previous screen
      * @param event back button is pressed
      */
+    @FXML
     void goBack(ActionEvent event){
     	WindowManager.goBack();
     }

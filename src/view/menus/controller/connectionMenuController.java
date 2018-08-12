@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import utils.NameToWindow;
 import view.WindowManager;
 
 
@@ -47,7 +48,7 @@ public class connectionMenuController {
 
     @FXML
     void addMatch(ActionEvent event) {
-    	WindowManager.openWindow("addMatch");
+    	WindowManager.openWindow(NameToWindow.ADD_MATCH);
     }
 
     @FXML

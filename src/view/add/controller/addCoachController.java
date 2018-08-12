@@ -6,14 +6,13 @@ import Exceptions.IdExistsException;
 import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import Model.Address;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -65,7 +64,7 @@ public class addCoachController {
 	private Button addButton;
 
 	@FXML
-	private TextField coachPassword;
+    private PasswordField coachPassword;
 
 	@FXML
 	/**
@@ -93,9 +92,9 @@ public class addCoachController {
 	    	}
 	    	
 	    	String password=coachPassword.getText();
-if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
-	flag=1;
-	throw new MissingInputException();
+			if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
+				flag=1;
+				throw new MissingInputException();
 			}
 			try{
 				Integer id = Integer.parseInt(coachId.getText());
@@ -118,7 +117,7 @@ if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
 		    		alert.show();
 		    	}
 		    	else {
-		    		SysData.getInstance().addCoach(id,password, first, last, bday, work,cl , ad);
+		    		SysData.getInstance().addCoach(id,password, first, last, bday, work, cl, ad);
 		    		
 			    	if(SysData.getInstance().getCoachs().containsKey(id)) {
 			    		alert.setHeaderText("Added coach");
