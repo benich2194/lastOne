@@ -71,7 +71,15 @@ public class addCustomerController {
 	    private TextField cusMail;
 	    @FXML
 	    private TextField cusPassword;
-	    
+	    /**
+	     * add customer
+	     * @param event add customer button was pressed
+	     * @throws MissingInputException
+	     * @throws ListNotSelectedException
+	     * @throws PasswordTooShortException
+	     * @throws InvalidInputException
+	     * @throws IdExistsException
+	     */
 	    @FXML
 	    void addCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException,PasswordTooShortException, InvalidInputException, IdExistsException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);

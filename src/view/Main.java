@@ -45,8 +45,6 @@ public class Main extends Application {
 		
 		Logger.initializeMyFileWriter();
 		Logger.log("asd");
-		
-		
 		SysData.deserialize();
 		launch(args);
 		SysData.getInstance().setUserCoach(null);
