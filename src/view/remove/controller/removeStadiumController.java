@@ -3,6 +3,7 @@ package view.remove.controller;
 import java.io.IOException;
 
 import Controller.SysData;
+import Exceptions.ListNotSelectedException;
 import Model.Match;
 import Model.Receptionist;
 import Model.Stadium;
@@ -18,7 +19,9 @@ import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
 
 public class removeStadiumController {
-
+	/**
+	 * fxml fields
+	 */
     @FXML
     private AnchorPane removeStadium;
 
@@ -33,23 +36,32 @@ public class removeStadiumController {
 
     @FXML
     private Button removeButton;
-
+    /**
+     * goes back to previous screen
+     * @param event back button is pressed
+     */
     @FXML
-    void goBack(ActionEvent event) throws IOException {
+    void goBack(ActionEvent event) {
     	WindowManager.goBack();
     }
-    
+    /**
+     * removes stadium and disconnects its connection to every entity
+     * @param event remove button is pressed
+     * @throws ListNotSelectedException
+     */
     @FXML
-    void removeStadium(ActionEvent event) {
+    void removeStadium(ActionEvent event) throws ListNotSelectedException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		
 		alert.setTitle("Remove Stadium");
 	
 		alert.setHeaderText("");
-    	if(stadiumList.getSelectionModel()==null){
+		try {
+			if(stadiumList.getSelectionModel()==null){
     			alert.setHeaderText("Unable to remove stadium");
     			alert.setContentText("No stadium to remove");
     			alert.show();
+    			throw new ListNotSelectedException();
     	}
     	else {
     		Stadium s=stadiumList.getSelectionModel().getSelectedItem();
@@ -78,24 +90,27 @@ public class removeStadiumController {
     			}
     		}
         	if(s!=null) {
-        		if(SysData.getInstance().getStadiums().remove(s.getId()) != null) {
-        			alert.setHeaderText("Stadium added");
-        			alert.setContentText("Stadium added successfully.");
-        		
+        		SysData.getInstance().getStadiums().remove(s.getId());
+        		if(!SysData.getInstance().getStadiums().containsKey(s.getId())) {
+        			alert.setHeaderText("Stadium removed");
+        			alert.setContentText("Stadium removed successfully.");
         			alert.show();
         		}
         		else {
         			alert.setHeaderText("Unable to remove stadium");
         			alert.setContentText("No stadium to remove");
-        			alert.show();;
+        			alert.show();
         		}
         	}
     	}
-    		
-        		alert.setHeaderText("Unable to remove stadium");
-    			alert.setContentText("No stadium was selected");
-    			alert.show();     
+		}catch(ListNotSelectedException e) {
+			
+		}
+    	    
     }
+    /**
+     * initializes list of stadiums to remvoe
+     */
     public void initialize() {
     	if(SysData.getInstance().getStadiums().size()>0) {
     		stadiumList.getItems().addAll(SysData.getInstance().getStadiums().values());
