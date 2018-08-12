@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Model.Customer;
+import Model.Match;
 import Model.Player;
 import Model.Stadium;
 import Model.Team;
@@ -65,7 +67,23 @@ public class removeTeamController {
 	    			}
 	    		}
 	    	}
-	    	SysData.getInstance().getTeams().remove(t.getId());
+	    	t.getCoach().setCurrentTeam(null); //removes team from its coach
+	    	t.getStadium().removeTeam(t);//remove team from its stadium
+	    	for(Match m:SysData.getInstance().getMatchs().values()) {//removes matches
+	    		if(m!=null) {
+	    			if(m.getAwayTeam().equals(t)||m.getHomeTeam().equals(t)) {
+	    				SysData.getInstance().getMatchs().remove(m.getId());
+	    			}
+	    		}
+	    	}
+	    	for(Customer c:SysData.getInstance().getCustomers().values()) {//remove customers that it is its favorite team
+	    		if(c!=null) {
+	    			if(c.getFavoriteTeam().equals(t)) {
+	    				SysData.getInstance().getCustomers().remove(c.getId());
+	    			}
+	    		}
+	    	}
+	    	SysData.getInstance().getTeams().remove(t.getId());//remove the team from data base
 	    	if(SysData.getInstance().getTeams().containsKey(t.getId())) {
 	    		alert.setHeaderText("Team wasn't removed");
 	    		alert.setContentText("Team wasn't removed successfully.");
@@ -75,13 +93,11 @@ public class removeTeamController {
 	    		alert.setHeaderText("Team removed");
 	    		alert.setContentText("Team was removed successfully.");
 	    		alert.show();
-	    		if(SysData.getInstance().getTeams().size()>0) {//refreshes list
-	        		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
-	        	}
 	    	}
 		}catch(ListNotSelectedException e) {
 			
 		}
+		teamList.getItems().removeAll(teamList.getItems());
 		if(SysData.getInstance().getTeams().size()>0) {//refreshes list
     		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
     	}
