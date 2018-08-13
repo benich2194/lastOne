@@ -1,10 +1,5 @@
 package view;
 
-import java.io.IOException;
-import java.nio.channels.SelectionKey;
-
-import javax.swing.ListSelectionModel;
-
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
@@ -17,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +41,7 @@ public class SubToCustomerController {
 
     @FXML
     private ComboBox<E_Periods> periodList;
+    
     @FXML
     private DatePicker startDate;
 
@@ -57,7 +52,7 @@ public class SubToCustomerController {
 		alert.setHeaderText("");
 		try {
 			if(subId.getText()=="") {
-				throw new MissingInputException("subscription id");
+				throw new MissingInputException("Subscription ID");
 			}
 	    	Integer id=Integer.parseInt(subId.getText());
 	    	if(startDate.getValue()==null) {
