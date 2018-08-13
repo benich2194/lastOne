@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -69,8 +70,15 @@ public class addCustomerController {
 
 	    @FXML
 	    private TextField cusMail;
+	    
 	    @FXML
 	    private TextField cusPassword;
+	    
+	    @FXML
+	    private Label labelSuccess;
+
+	    @FXML
+	    private Button clearButton;
 	    /**
 	     * add customer
 	     * @param event add customer button was pressed
@@ -142,9 +150,19 @@ public class addCustomerController {
 		    	else {
 		    		SysData.getInstance().addCustomer(id,password, first, last, bday, levelCustomer.getSelectionModel().getSelectedItem(), mail, fav, ad);
 			    	if(SysData.getInstance().getCustomers().containsKey(id)) {
-			    		alert.setHeaderText("Added Customer");
-			    		alert.setContentText("Customer added successfully.");
-			    		alert.show();
+			    		labelSuccess.setText("Customer "+id+" was added succesfully!");
+			    		cusCity.valueProperty().set(null);
+			    		birthDate.valueProperty().set(null);
+			    		cusPassword.setText("");
+			    		cusId.setText("");
+			    		cusMail.setText("");
+			    		cusStreet.setText("");
+			    		firstName.setText("");
+			    		lastName.setText("");
+			    		houseNumber.setText("");
+			    		favTeam.setText("");
+			    		cusPhone.setText("");
+			    		levelCustomer.valueProperty().set(null);
 			    	}
 			    	else {
 			    		alert.setHeaderText("Unable to added Customer.");
@@ -215,6 +233,26 @@ public class addCustomerController {
     @FXML
     void goBack(ActionEvent event){
     	WindowManager.goBack();
+    }
+    /**
+     * clears form
+     * @param event clear button is pressed
+     */
+    @FXML
+    void clearForm(ActionEvent event) {
+    	cusCity.valueProperty().set(null);
+		birthDate.valueProperty().set(null);
+		cusPassword.setText("");
+		cusId.setText("");
+		cusMail.setText("");
+		cusStreet.setText("");
+		firstName.setText("");
+		lastName.setText("");
+		houseNumber.setText("");
+		favTeam.setText("");
+		cusPhone.setText("");
+		levelCustomer.valueProperty().set(null);
+		labelSuccess.setText("");
     }
 
 }

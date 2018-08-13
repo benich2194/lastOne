@@ -34,7 +34,13 @@
       <TextField fx:id="cusStreet" alignment="CENTER" layoutX="273.0" layoutY="351.0" prefHeight="25.0" prefWidth="174.0" promptText="street" />
       <TextField fx:id="cusPhone" alignment="CENTER" layoutX="274.0" layoutY="388.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
       <TextField fx:id="cusMail" alignment="CENTER" layoutX="273.0" layoutY="423.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's e-mail" />
-      <Button fx:id="addButton" layoutX="272.0" layoutY="489.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="39.0" prefWidth="174.0" text="Add Customer" />
+      <Button fx:id="addButton" layoutX="161.0" layoutY="540.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="33.0" prefWidth="174.0" text="Add Customer" />
       <TextField fx:id="cusPassword" alignment="CENTER" layoutX="272.0" layoutY="456.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
+      <Label fx:id="labelSuccess" layoutX="133.0" layoutY="498.0" prefHeight="33.0" prefWidth="465.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="400.0" layoutY="540.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
    </children>
 </AnchorPane>
