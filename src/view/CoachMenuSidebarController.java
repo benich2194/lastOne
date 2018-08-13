@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
+import utils.NameToWindow;
 
 public class CoachMenuSidebarController implements Initializable {
 
@@ -23,6 +24,11 @@ public class CoachMenuSidebarController implements Initializable {
 		WindowManager.openWindow(ui);
 	}
 
+    public void loadUI(NameToWindow ui)
+    {
+    	WindowManager.openWindow(ui);
+    }
+    
 	@FXML
 	void goToAddPlayerToTeam(ActionEvent event) {
 		loadUI("coachAddPlayerToTeam");
@@ -40,7 +46,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void goToQueries(ActionEvent event) {
-
+		loadUI(NameToWindow.QUERIES);
 	}
 
 	@FXML
@@ -50,7 +56,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void removePlayerFromTeam(ActionEvent event) {
-		loadUI("coachRemovePlayerFromTeam.fxml");
+		loadUI("coachRemovePlayerFromTeam");
 	}
 
 }

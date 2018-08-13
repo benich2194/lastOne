@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-04:38:52	asd
-=======
-05:39:19	asd
->>>>>>> coachmenu: coachAddPlayerToTeam done
+05:58:14	asd

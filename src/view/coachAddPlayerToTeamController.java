@@ -33,8 +33,8 @@ public class coachAddPlayerToTeamController {
     @FXML
     private Label lblMessage;
     
-	Integer coachID = Integer.parseInt(SysData.getInstance().getUserCoach());
-	Coach ch = SysData.getInstance().getCoachs().get(coachID);
+	private Integer coachID = Integer.parseInt(SysData.getInstance().getUserCoach());
+	private Coach ch = SysData.getInstance().getCoachs().get(coachID);
 	
     /**
      * adds player to the team

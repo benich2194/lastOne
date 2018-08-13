@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -26,11 +27,17 @@ public class coachRemovePlayerFromTeamController {
     private ListView<Player> playerList;
 
     @FXML
+    private Label lblMessage;
+
+    //Logged in coach's current team
+    private Team t = SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam();
+    
+    @FXML
     void removePlayerFromTeam(ActionEvent event) throws ListNotSelectedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Remove Player From Team");
 		alert.setHeaderText("");
-    	Team t=SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam();
+    	
     	try {
     		Player p=playerList.getSelectionModel().getSelectedItem();
     		if(p==null) {
@@ -60,8 +67,18 @@ public class coachRemovePlayerFromTeamController {
      * initializes list
      */
     public void initialize() {
-    	if(SysData.getInstance().getCoachs()!=null) {
-    		playerList.getItems().addAll(SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam().getPlayers().keySet());
+    	
+    	if(t==null)
+    	{
+    		playerList.setVisible(false);
+    		removeButton.setVisible(false);
+    		lblMessage.setText("You don't have a team at the moment, Please try again later.");
+    	}
+    	else
+    	{
+        	if(SysData.getInstance().getCoachs()!=null) {
+        		playerList.getItems().addAll(SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam().getPlayers().keySet());
+        	}
     	}
     }
 
