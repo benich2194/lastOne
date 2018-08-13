@@ -16,7 +16,7 @@ import utils.E_Cities;
 import view.Main;
 import view.WindowManager;
 
-public class addStadiumController extends Main {
+public class addStadiumController{
 	/**
 	 * fx fields
 	 */
@@ -104,7 +104,7 @@ public class addStadiumController extends Main {
 	 * @throws ListNotSelectedException
 	 */
 	@FXML
-	void addStadium(ActionEvent event) throws MissingInputException,ListNotSelectedException {
+	void addStadium(ActionEvent event) throws MissingInputException,ListNotSelectedException,NumberFormatException {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Stadium");
 		alert.setHeaderText("");
@@ -114,19 +114,21 @@ public class addStadiumController extends Main {
 			while (SysData.getInstance().getStadiums().containsKey(id))
 				id++;
 			String NAME = name.getText();
-			if(NAME=="") {
+			if(NAME.isEmpty()) {
+				System.out.println("boom2");
 				throw new MissingInputException("name");
 			}
-			if(houseNumber.getText()=="") {
+			
+			if(houseNumber.getText().isEmpty()) {
 				throw new MissingInputException("house number");
 			}
 			Integer HOUSENUM = Integer.parseInt(houseNumber.getText());
-			if(capacity.getText()=="") {
+			if(capacity.getText().isEmpty()) {
 				throw new MissingInputException("capacity");
 			}
 			Integer CAPACITY = Integer.parseInt(capacity.getText());
 			String PHONE = phone.getText();
-			if(PHONE=="") {
+			if(PHONE.isEmpty()) {
 				throw new MissingInputException("phone");
 			}
 			E_Cities c = cityList.getSelectionModel().getSelectedItem();
@@ -134,7 +136,7 @@ public class addStadiumController extends Main {
 				throw new ListNotSelectedException();
 			}
 			String STREET = street.getText();
-			if(STREET=="") {
+			if(STREET.isEmpty()) {
 				throw new MissingInputException("street");
 			}
 			String[] phoneArr = new String[1];
@@ -156,6 +158,8 @@ public class addStadiumController extends Main {
 				}
 			}
 
+		}catch(NumberFormatException e) {
+			
 		}catch(ListNotSelectedException e) {
 			
 		}catch(MissingInputException e) {
