@@ -19,6 +19,9 @@ public class trophyMenuController {
 
     @FXML
     private Button removeTrophy;
+    
+    @FXML
+    private Button viewTrophy;
 
     @FXML
     private Button modTrophy;
@@ -35,6 +38,12 @@ public class trophyMenuController {
 
     }
 
+    @FXML
+    void goToViewTrophy(ActionEvent event) throws IOException {
+    	WindowManager.openWindow("viewTrophies");
+
+    }
+    
     @FXML
     void goToRemoveTrophy(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.REMOVE_TROPHY);

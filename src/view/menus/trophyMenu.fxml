@@ -18,12 +18,13 @@
          </image>
       </ImageView>
       <Button fx:id="addTrophy" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddTro" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Trophy" />
-      <Button fx:id="removeTrophy" layoutX="285.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToRemoveTrophy" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Trophy" />
+      <Button fx:id="removeTrophy" layoutX="285.0" layoutY="372.0" mnemonicParsing="false" onAction="#goToRemoveTrophy" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Trophy" />
       <Button fx:id="modTrophy" layoutX="285.0" layoutY="181.0" mnemonicParsing="false" onAction="#goToModifyTro" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Trophy" />
       <Label layoutX="284.0" layoutY="38.0" style="-fx-opacity: 0.7;" text="Trophy Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <Button fx:id="viewTrophy" layoutX="285.0" layoutY="278.0" mnemonicParsing="false" onAction="#goToViewTrophy" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View Trophies" />
    </children>
 </AnchorPane>
