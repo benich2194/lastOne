@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +25,15 @@ public class coachReplacePlayersController {
 
     @FXML
     private ListView<Player> firstTeamList;
+    
+    @FXML
+    private Label lblMessage;
+    
+    @FXML
+    private Label buttonFP;
+    
+    @FXML
+    private Label buttonBP;
 
     @FXML
     private Button replaceButton;
@@ -73,6 +83,7 @@ public class coachReplacePlayersController {
     		}
     	}
     }
+    
     /**
      * initializes lists
      */
@@ -90,6 +101,14 @@ public class coachReplacePlayersController {
     			}
     		}
     	}
-    }
+    	else {
+    		lblMessage.setText("You don't have a team at the moment, Please try again later.");
+    		playerList.setVisible(false);
+    		firstTeamList.setVisible(false);
+    		replaceButton.setVisible(false);
+    		buttonBP.setVisible(false);
+    		buttonFP.setVisible(false);
+    	}
+    } //END of initialize
 
 }
