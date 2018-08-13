@@ -51,7 +51,7 @@ public class CoachMenuSidebarController implements Initializable {
 
 	@FXML
 	void goToViewPlayers(ActionEvent event) {
-
+		loadUI("coachViewPlayers");
 	}
 
 	@FXML
