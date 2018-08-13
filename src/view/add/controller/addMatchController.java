@@ -65,7 +65,7 @@ public class addMatchController {
 	    	Integer id = SysData.getInstance().getMatchs().size()+1;
 	    	while(SysData.getInstance().getMatchs().containsKey(id))
 	    		id++;
-	    	if(Extra.getText()=="") {
+	    	if(Extra.getText().isEmpty()) {
 	    		throw new MissingInputException("extra time");
 	    	}
 	    	Integer extra=Integer.parseInt(Extra.getText());
@@ -83,10 +83,10 @@ public class addMatchController {
 	    		if(Home.getSelectionModel().getSelectedItem()==null||Away.getSelectionModel().getSelectedItem()==null) {
 	    			throw new ListNotSelectedException();
 	    		}
-	    		if(homeS.getText()=="") {
+	    		if(homeS.getText().isEmpty()) {
 	    			throw new MissingInputException("home score");
 	    		}
-	    		if(awayS.getText()=="") {
+	    		if(awayS.getText().isEmpty()) {
 	    			throw new MissingInputException("away score");
 	    		}
 	    		SysData.getInstance().addMatch(id, date, extra, Home.getSelectionModel().getSelectedItem().getId(), Away.getSelectionModel().getSelectedItem().getId(), Integer.parseInt(homeS.getText()), Integer.parseInt(awayS.getText()));

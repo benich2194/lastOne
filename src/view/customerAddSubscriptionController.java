@@ -44,7 +44,7 @@ public class customerAddSubscriptionController {
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
 		try {
-			if(subId.getText()==null) {
+			if(subId.getText().isEmpty()) {
 				throw new MissingInputException("id");
 			}
 			Integer id=Integer.parseInt(subId.getText());

@@ -92,12 +92,33 @@ public class addCustomerController {
 		    	String[] phones=new String[1];
 		    	phones[0]=cusPhone.getText();
 		    	String street=cusStreet.getText();
-		    	if(id==""||first==""||last==""||street==""||cusPhone.getText()==""||houseNumber.getText()==""||favTeam.getText()=="") {
-		    		throw new MissingInputException();
+		    	if(id.isEmpty()) {
+		    		throw new MissingInputException("id");
+		    	}
+		    	if(first.isEmpty()) {
+		    		throw new MissingInputException("first name");
+		    	}
+		    	if(last.isEmpty()) {
+		    		throw new MissingInputException("last name");
+		    	}
+		    	if(street.isEmpty()) {
+		    		throw new MissingInputException("street name");
+		    	}
+		    	if(cusPhone.getText().isEmpty()) {
+		    		throw new MissingInputException("phone");
+		    	}
+		    	if(houseNumber.getText().isEmpty()) {
+		    		throw new MissingInputException("house number");
+		    	}
+		    	if(favTeam.getText().isEmpty()) {
+		    		throw new MissingInputException("favorite team id");
 		    	}
 		    	Integer houseNum=Integer.parseInt(houseNumber.getText());
 		    	if(cusCity.getSelectionModel().getSelectedItem()==null) {
 		    		throw new ListNotSelectedException();
+		    	}
+		    	if(cusMail.getText().isEmpty()) {
+		    		throw new MissingInputException("email");
 		    	}
 		    	Address ad=new Address(cusCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 		    	URL mail;

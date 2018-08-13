@@ -60,14 +60,22 @@ public class addTeamController {
 	 * @throws InvalidInputException
 	 */
 	@FXML
-	void addTeam(ActionEvent event) throws MissingInputException, InvalidInputException {
+	void addTeam(ActionEvent event) throws MissingInputException,ListNotSelectedException {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Stadium");
 		alert.setHeaderText("");
 		try {
 			if (teamId.getText() == "" || teamValue.getText() == "" || teamStadiumId.getSelectionModel().getSelectedItem()==null
 					|| teamName.getText() == "") {
-				throw new MissingInputException();
+				if(teamId.getText().isEmpty()) {
+					throw new MissingInputException("team id");
+				}
+				if(teamValue.getText().isEmpty()) {
+					throw new MissingInputException("team value");
+				}
+				if(teamStadiumId.getSelectionModel().getSelectedItem()==null) {
+					throw new ListNotSelectedException();
+				}
 			} else {
 				// ID is size of the map + 1, if exists, it will keep adding 1
 				Integer id = SysData.getInstance().getTeams().size() + 1;
@@ -117,13 +125,9 @@ public class addTeamController {
 				}
 			}
 		} catch (MissingInputException e) {
+		}
+		 catch (ListNotSelectedException e) {
 
-		} catch (NumberFormatException e) {
-			throw new InvalidInputException();
-		} catch (ListNotSelectedException e) {
-
-		} catch (NullPointerException e) {
-			throw new InvalidInputException();
 		}
 
 	}

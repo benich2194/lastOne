@@ -67,13 +67,13 @@ public class addReceptionistController {
 		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
 		try {
-			if(recepId.getText()=="") {
+			if(recepId.getText().isEmpty()) {
 				throw new MissingInputException("id");
 			}
 			Integer id = Integer.parseInt(recepId.getText());
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
-	    	if(first==""||last=="") {
+	    	if(first.isEmpty()||last.isEmpty()) {
 	    		throw new MissingInputException("name");
 	    	}
 	    	if(birthDate.getValue()==null||startWorkingDate==null) {
@@ -82,15 +82,15 @@ public class addReceptionistController {
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
 	    	String[] phones=new String[1];
-	    	if(recepPhone.getText()=="") {
+	    	if(recepPhone.getText().isEmpty()) {
 	    		throw new MissingInputException("phone");
 	    	}
 	    	phones[0]=recepPhone.getText();
-	    	if(recepStreet.getText()=="") {
+	    	if(recepStreet.getText().isEmpty()) {
 	    		throw new MissingInputException("street");
 	    	}
 	    	String street=recepStreet.getText();
-	    	if(houseNumber.getText()=="") {
+	    	if(houseNumber.getText().isEmpty()) {
 	    		throw new MissingInputException("house number");
 	    	}
 	    	Integer houseNum=Integer.parseInt(houseNumber.getText());

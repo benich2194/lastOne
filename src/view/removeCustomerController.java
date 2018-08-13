@@ -69,6 +69,7 @@ public class removeCustomerController {
 		}catch(ListNotSelectedException e) {
 			
 		}
+		//refreshes list
 		cusList.getItems().removeAll(cusList.getItems());
 		if (SysData.getInstance().getCustomers().size() > 0) {
 			cusList.getItems().addAll(SysData.getInstance().getCustomers().values());

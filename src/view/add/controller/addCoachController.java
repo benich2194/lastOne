@@ -4,6 +4,7 @@ import java.io.IOException;
 import Controller.SysData;
 import Exceptions.IdExistsException;
 import Exceptions.InvalidInputException;
+import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
 import Model.Address;
 import javafx.event.ActionEvent;
@@ -74,7 +75,7 @@ public class addCoachController {
 	 * @throws MissingInputException missing input exception that i created.
 	 * @throws InvalidInputException if instead of numbers in some fields text was input
 	 */
-	    void addCoach(ActionEvent event) throws IOException, MissingInputException,InvalidInputException, IdExistsException {
+	    void addCoach(ActionEvent event) throws MissingInputException,IdExistsException, ListNotSelectedException {
 		int flag =0;
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Coach");
@@ -84,22 +85,35 @@ public class addCoachController {
 	    	String street=coachStreet.getText();
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
-	    	try {
-	    		java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
-		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
-	    	}catch(NullPointerException e) {
-	    		new MissingInputException();
-	    	}
-	    	
 	    	String password=coachPassword.getText();
-			if(phones[0]==""||street==""||first==""||last==""||coachId.getText()=="") {
-				flag=1;
-				throw new MissingInputException();
-			}
 			try{
+				if(coachPhone.getText().isEmpty()) {
+					throw new MissingInputException("coach phone");
+				}
+				if(street.isEmpty()) {
+					throw new MissingInputException("street name");
+				}
+				if(first.isEmpty()) {
+					throw new MissingInputException("first name");
+				}
+				if(last.isEmpty()) {
+					throw new MissingInputException("last name");
+				}
+				if(coachId.getText().isEmpty()) {
+					throw new MissingInputException("coach id");
+				}
 				Integer id = Integer.parseInt(coachId.getText());
 				if(SysData.getInstance().getReceptionists().containsKey(id)||SysData.getInstance().getPlayers().containsKey(id)||SysData.getInstance().getCoachs().containsKey(id)) {
 					throw new IdExistsException("coach");
+				}
+				if(birthDate.getValue()==null) {
+					throw new MissingInputException("birth date");
+				}
+				if(startWorkingDate.getValue()==null) {
+					throw new MissingInputException("start working date");
+				}
+				if(houseNumber.getText().isEmpty()) {
+					throw new MissingInputException("house number");
 				}
 				java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 		    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
@@ -107,7 +121,7 @@ public class addCoachController {
 				E_Levels cl=levelCoach.getSelectionModel().getSelectedItem();
 				E_Cities cc=coachCity.getSelectionModel().getSelectedItem();
 				if(cl==null||cc==null) {
-					throw new NullPointerException();
+					throw new ListNotSelectedException();
 				}
 				else {
 				Address ad=new Address(cc,street,houseNum,phones);
@@ -131,22 +145,11 @@ public class addCoachController {
 			    	}
 		    	}
 		    	}
-			}catch(NumberFormatException e) {
-				if(flag==1) {
-					
-				}
-				else {
-					if(houseNumber.getText()==""&&coachId.getText()=="") {}
-					else {
-						new InvalidInputException();
-					}
-					
-				}
-				
-				
-			}catch(NullPointerException e) {
-				new MissingInputException();
 			}catch(IdExistsException e) {
+				
+			}catch(MissingInputException e) {
+				
+			}catch(ListNotSelectedException e) {
 				
 			}
 	    	}

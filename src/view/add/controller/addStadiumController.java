@@ -115,7 +115,6 @@ public class addStadiumController{
 				id++;
 			String NAME = name.getText();
 			if(NAME.isEmpty()) {
-				System.out.println("boom2");
 				throw new MissingInputException("name");
 			}
 			
