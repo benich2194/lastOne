@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
+import utils.NameToWindow;
 
 public class ReceptionistMenuSiderbarController implements Initializable{
 
@@ -19,9 +20,15 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
 	}
 
+    public void loadUI(NameToWindow ui)
+    {
+    	WindowManager.openWindow(ui);
+    }
+    
 	public void loadUI(String ui) {
 		WindowManager.openWindow(ui);
 	}
+	
     @FXML
     void goToAddCustomer(ActionEvent event) {
     	loadUI("receptionistAddCustomer");
@@ -49,12 +56,12 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToQueries(ActionEvent event) {
-
+		loadUI(NameToWindow.QUERIES);
     }
 
     @FXML
     void goToRemoveCustomer(ActionEvent event) {
-    	loadUI("receptionistRemoveCustomer");
+    	loadUI(NameToWindow.REMOVE_CUSTOMER);
     }
 
     @FXML

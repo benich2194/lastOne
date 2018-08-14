@@ -1,4 +1,4 @@
-package view;
+package view.remove.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
@@ -11,37 +11,49 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
-public class receptionistRemoveCustomerController {
+public class removeCustomerController {
 	/**
-	 * fx fields
+	 * fxml fields
 	 */
-    @FXML
-    private AnchorPane removeCustomer;
+	@FXML
+	private AnchorPane removeCustomer;
 
-    @FXML
-    private ComboBox<Customer> cusList;
+	@FXML
+	private Button back;
 
-    @FXML
-    private Button removeButton;
-    /**
-     * removes customer
-     * @param event remove button is pressed
-     * @throws ListNotSelectedException
-     */
-    @FXML
+	@FXML
+	private ComboBox<Customer> cusList;
+
+	@FXML
+	private Button removeButton;
+	/**
+	 * goes back to previous screen
+	 * @param event back button is pressed
+	 */
+	@FXML
+	void goBack(ActionEvent event){
+		WindowManager.goBack();
+	}
+	/**
+	 * removes customer from data base and its subscriptions
+	 * @param event remove button is pressed
+	 * @throws ListNotSelectedException
+	 */
+	@FXML
 	void removeCustomer(ActionEvent event) throws ListNotSelectedException {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Remove Customer");
 		alert.setHeaderText("");
-		Customer c = cusList.getSelectionModel().getSelectedItem();
-		
 		try {
+			Customer c = cusList.getSelectionModel().getSelectedItem();
 			if(c==null)
 				throw new ListNotSelectedException();
 			for (Subscription s : c.getSubscriptions()) {
-				if(s!=null)
+				if(s!=null) {
 					SysData.getInstance().removeSubscription(s.getId());
+				}
 			}
 			SysData.getInstance().getCustomers().remove(c.getId());
 			if (!SysData.getInstance().getCustomers().containsKey(c.getId())) {
@@ -56,18 +68,19 @@ public class receptionistRemoveCustomerController {
 		}catch(ListNotSelectedException e) {
 			
 		}
-		
-		cusList.getItems().removeAll(cusList.getItems());//refreshes list
-		cusList.getItems().addAll(SysData.getInstance().getCustomers().values());
+		//refreshes list
+		cusList.getItems().removeAll(cusList.getItems());
+		if (SysData.getInstance().getCustomers().size() > 0) {
+			cusList.getItems().addAll(SysData.getInstance().getCustomers().values());
+		}
 	}
-    /**
-     * initializes customer list
-     */
+	/**
+	 * initializes customer list
+	 */
 	public void initialize() {
 		if (SysData.getInstance().getCustomers().size() > 0) {
 			cusList.getItems().addAll(SysData.getInstance().getCustomers().values());
 		}
 
 	}
-
 }
