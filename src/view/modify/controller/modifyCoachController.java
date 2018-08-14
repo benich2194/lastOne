@@ -3,6 +3,7 @@ package view.modify.controller;
 import java.io.IOException;
 import java.util.Date;
 import Controller.SysData;
+import Exceptions.MissingInputException;
 import Model.Coach;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -68,7 +69,7 @@ public class modifyCoachController {
     @FXML
     private TableColumn<Coach, E_Cities> coachCity;
 
-    public void initialize() {
+    public void initialize() throws MissingInputException {
         // Defines how to fill data for each cell.
         // Get value from property of Player.
         coachID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -88,169 +89,196 @@ public class modifyCoachController {
         MakeEditable();
     }// End of modifyPlayer Constructor
         
-    private void MakeEditable() {
+    private void MakeEditable() throws MissingInputException{
     	// Make changes by double clicking the Cell and pressing enter after editing
     	// === On Cell edit commit (for FirstName column) ===
-    	coachFN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	coachFN.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
-    	coachFN.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
-            TablePosition<Coach, String> pos = event.getTablePosition();
- 
-            String newFirstName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
- 
-            cc.setFirstName(newFirstName);
-        });
-    	
-    	// === On Cell edit commit (for LastName column) ===
-    	coachLN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	coachLN.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
-    	coachLN.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
-            TablePosition<Coach, String> pos = event.getTablePosition();
- 
-            String newLastName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
- 
-            cc.setLastName(newLastName);
-        });
-    	
-        // ==== Coach Level (COMBO BOX) ===
-        
-        ObservableList<E_Levels> levelList = FXCollections.observableArrayList(E_Levels.values());
- 
-        coachLvl.setCellValueFactory(new Callback<CellDataFeatures<Coach, E_Levels>, ObservableValue<E_Levels>>() {
- 
-            @Override
-            public ObservableValue<E_Levels> call(CellDataFeatures<Coach, E_Levels> param) {
-            	Coach cc = param.getValue();
-
-                E_Levels lvl = cc.getLevel();
-                return new SimpleObjectProperty<E_Levels>(lvl);
-            }
-        });
- 
-        coachLvl.setCellFactory(ComboBoxTableCell.forTableColumn(levelList));
- 
-        coachLvl.setOnEditCommit((CellEditEvent<Coach, E_Levels> event) -> {
-            TablePosition<Coach, E_Levels> pos = event.getTablePosition();
- 
-            E_Levels newPos = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
- 
-            cc.setLevel(newPos);
-        });
- 
-       
-    	// === On Cell edit commit (for Phone Number column) ===
-        coachPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
-
-    	    @Override
-    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
-    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
-
-    	    }
-    	});
-        coachPhoneNum.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
-        coachPhoneNum.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
-            TablePosition<Coach, String> pos = event.getTablePosition();
- 
-            String newPhoneNumber = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
-            String[] newPhoneArray = {newPhoneNumber};
-            cc.getAddress().setPhoneNumber(newPhoneArray);
-            
-        });
-    	
-    	// === On Cell edit commit (for Coach's Street column) ===
-    	coachStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
-
-    	    @Override
-    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
-    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getStreet());
-
-    	    }
-    	});
-    	
-    	coachStreet.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
-    	coachStreet.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
-            TablePosition<Coach, String> pos = event.getTablePosition();
- 
-            String newStreet = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
- 
-            cc.getAddress().setStreet(newStreet);
-        });
-    	
-    	// === On Cell edit commit (for HouseNum column) ============
-    	coachHouseNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , Integer>, ObservableValue<Integer>>() {
-
-    	    @Override
-    	    public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Coach , Integer> param) {
-    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getHouseNumber());
-
-    	    }
-    	});
-    	coachHouseNum.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Integer>(){
-
-            @Override
-            public String toString(Integer object) {
-                return object.toString();
-            }
-
-            @Override
-            public Integer fromString(String string) {
-                return Integer.parseInt(string);
-            }
-
-        }));
-    	
-    	coachHouseNum.setOnEditCommit((CellEditEvent<Coach, Integer> event) -> {
-            TablePosition<Coach, Integer> pos = event.getTablePosition();
- 
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
-            cc.getAddress().setHouseNumber(newValue);
-        });
-        
-        // ==== Coach City (COMBO BOX) ===
-        
-        ObservableList<E_Cities> cityList = FXCollections.observableArrayList(E_Cities.values());
- 
-        coachCity.setCellValueFactory(new Callback<CellDataFeatures<Coach, E_Cities>, ObservableValue<E_Cities>>() {
- 
-            @Override
-            public ObservableValue<E_Cities> call(CellDataFeatures<Coach, E_Cities> param) {
-            	Coach cc = param.getValue();
-
-            	E_Cities ct = cc.getAddress().getCity();
-                return new SimpleObjectProperty<E_Cities>(ct);
-            }
-        });
- 
-        coachCity.setCellFactory(ComboBoxTableCell.forTableColumn(cityList));
- 
-        coachCity.setOnEditCommit((CellEditEvent<Coach, E_Cities> event) -> {
-            TablePosition<Coach, E_Cities> pos = event.getTablePosition();
- 
-            E_Cities newCity = event.getNewValue();
- 
-            int row = pos.getRow();
-            Coach cc = event.getTableView().getItems().get(row);
- 
-            cc.getAddress().setCity(newCity);
-        });
+	    	coachFN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+	    	coachFN.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
+	    	coachFN.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
+	            TablePosition<Coach, String> pos = event.getTablePosition();
+	 
+	            String newFirstName = event.getNewValue();
+	            if(!newFirstName.isEmpty() && newFirstName!=null) {
+		            int row = pos.getRow();
+		            Coach cc = event.getTableView().getItems().get(row);
+		 
+		            cc.setFirstName(newFirstName);
+	            } else
+					try {
+						throw new MissingInputException("First name");
+					} catch (MissingInputException e) {
+					}
+	        });
+	    	
+	    	// === On Cell edit commit (for LastName column) ===
+	    	coachLN.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+	    	coachLN.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
+	    	coachLN.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
+	            TablePosition<Coach, String> pos = event.getTablePosition();
+	 
+	            
+	            String newLastName = event.getNewValue();
+	            if(!newLastName.isEmpty() && newLastName!=null) {
+		            int row = pos.getRow();
+		            Coach cc = event.getTableView().getItems().get(row);
+		 
+		            cc.setLastName(newLastName);
+	            } else
+					try {
+						throw new MissingInputException("Last name");
+					} catch (MissingInputException e) {
+					}
+	        });
+	    	
+	        // ==== Coach Level (COMBO BOX) ===
+	        
+	        ObservableList<E_Levels> levelList = FXCollections.observableArrayList(E_Levels.values());
+	 
+	        coachLvl.setCellValueFactory(new Callback<CellDataFeatures<Coach, E_Levels>, ObservableValue<E_Levels>>() {
+	 
+	            @Override
+	            public ObservableValue<E_Levels> call(CellDataFeatures<Coach, E_Levels> param) {
+	            	Coach cc = param.getValue();
+	
+	                E_Levels lvl = cc.getLevel();
+	                return new SimpleObjectProperty<E_Levels>(lvl);
+	            }
+	        });
+	 
+	        coachLvl.setCellFactory(ComboBoxTableCell.forTableColumn(levelList));
+	 
+	        coachLvl.setOnEditCommit((CellEditEvent<Coach, E_Levels> event) -> {
+	            TablePosition<Coach, E_Levels> pos = event.getTablePosition();
+	 
+	            E_Levels newPos = event.getNewValue();
+	 
+	            int row = pos.getRow();
+	            Coach cc = event.getTableView().getItems().get(row);
+	 
+	            cc.setLevel(newPos);
+	        });
+	 
+	       
+	    	// === On Cell edit commit (for Phone Number column) ===
+	        coachPhoneNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
+	
+	    	    @Override
+	    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
+	    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getPrimaryNumber());
+	
+	    	    }
+	    	});
+	        coachPhoneNum.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
+	        coachPhoneNum.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
+	            TablePosition<Coach, String> pos = event.getTablePosition();
+	 
+	            String newPhoneNumber = event.getNewValue();
+	            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
+		            int row = pos.getRow();
+		            Coach cc = event.getTableView().getItems().get(row);
+		            String[] newPhoneArray = {newPhoneNumber};
+		            cc.getAddress().setPhoneNumber(newPhoneArray);
+	            } else
+					try {
+						throw new MissingInputException("Phone number");
+					} catch (MissingInputException e) {
+					}
+	        });
+	    	
+	    	// === On Cell edit commit (for Coach's Street column) ===
+	    	coachStreet.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , String>, ObservableValue<String>>() {
+	    		
+	    	    @Override
+	    	    public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach , String> param) {
+	    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getStreet());
+	
+	    	    }
+	    	});
+	    	
+	    	coachStreet.setCellFactory(TextFieldTableCell.<Coach> forTableColumn());
+	    	coachStreet.setOnEditCommit((CellEditEvent<Coach, String> event) -> {
+	            TablePosition<Coach, String> pos = event.getTablePosition();
+	 
+	            String newStreet = event.getNewValue();
+	            if(!newStreet.isEmpty() && newStreet!=null) {
+		            int row = pos.getRow();
+		            Coach cc = event.getTableView().getItems().get(row);
+		 
+		            cc.getAddress().setStreet(newStreet);
+	            }
+	            else
+					try {
+						throw new MissingInputException("Street");
+					} catch (MissingInputException e) {
+					}
+	        });
+	    	
+	    	// === On Cell edit commit (for HouseNum column) ============
+	    	coachHouseNum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach , Integer>, ObservableValue<Integer>>() {
+	
+	    	    @Override
+	    	    public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Coach , Integer> param) {
+	    	        return new SimpleObjectProperty<>(param.getValue().getAddress().getHouseNumber());
+	
+	    	    }
+	    	});
+	    	coachHouseNum.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Integer>(){
+	
+	            @Override
+	            public String toString(Integer object) {
+	                return object.toString();
+	            }
+	
+	            @Override
+	            public Integer fromString(String string) {
+	                return Integer.parseInt(string);
+	            }
+	
+	        }));
+	    	
+	    	coachHouseNum.setOnEditCommit((CellEditEvent<Coach, Integer> event) -> {
+	            TablePosition<Coach, Integer> pos = event.getTablePosition();
+	 
+	            Integer newValue = event.getNewValue();
+	            if(newValue!=null) {
+		            int row = pos.getRow();
+		            Coach cc = event.getTableView().getItems().get(row);
+		            cc.getAddress().setHouseNumber(newValue);
+	            }
+	            else
+					try {
+						throw new MissingInputException("House number");
+					} catch (MissingInputException e) {
+					}
+	        });
+	        
+	        // ==== Coach City (COMBO BOX) ===
+	        
+	        ObservableList<E_Cities> cityList = FXCollections.observableArrayList(E_Cities.values());
+	 
+	        coachCity.setCellValueFactory(new Callback<CellDataFeatures<Coach, E_Cities>, ObservableValue<E_Cities>>() {
+	 
+	            @Override
+	            public ObservableValue<E_Cities> call(CellDataFeatures<Coach, E_Cities> param) {
+	            	Coach cc = param.getValue();
+	
+	            	E_Cities ct = cc.getAddress().getCity();
+	                return new SimpleObjectProperty<E_Cities>(ct);
+	            }
+	        });
+	 
+	        coachCity.setCellFactory(ComboBoxTableCell.forTableColumn(cityList));
+	 
+	        coachCity.setOnEditCommit((CellEditEvent<Coach, E_Cities> event) -> {
+	            TablePosition<Coach, E_Cities> pos = event.getTablePosition();
+	 
+	            E_Cities newCity = event.getNewValue();
+	 
+	            int row = pos.getRow();
+	            Coach cc = event.getTableView().getItems().get(row);
+	 
+	            cc.getAddress().setCity(newCity);
+	        });
     }//End of Method MAKEEDITABLE
     
     
