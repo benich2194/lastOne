@@ -23,7 +23,7 @@ public enum NameToWindow {
 	MODIFY_STADIUM("modify/modifyStadium"),
 	MODIFY_TROPHY("modify/modifyTrophy"),
 	MODIFY_COACH("modify/modifyCoach"),
-	MODIFY_SUB("modify/modifySub"),
+	MODIFY_SUB("modify/modifySubscription"),
 	
 	/*------------REMOVE-------------------------------------------------*/
 	REMOVE_TEAM("remove/removeTeam"),
