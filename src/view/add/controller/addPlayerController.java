@@ -88,25 +88,50 @@ public class addPlayerController {
      * @throws InvalidInputException
      */
     @FXML
-    void addPlayer(ActionEvent event)  throws MissingInputException,ListNotSelectedException, InvalidInputException{
+    void addPlayer(ActionEvent event)  throws MissingInputException,ListNotSelectedException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player");
 		alert.setHeaderText("");
 		try {
+			if(playerValue.getText().isEmpty()) {
+				throw new MissingInputException("player value");
+			}
 			Long val=Long.parseLong(playerValue.getText());
+			if(playerId.getText().isEmpty()) {
+				throw new MissingInputException("player id");
+			}
 			Integer id = Integer.parseInt(playerId.getText());
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
 	    	String[] phones=new String[1];
 	    	phones[0]=playerPhone.getText();
 	    	String street=playerStreet.getText();
+	    	if(houseNumber.getText().isEmpty()) {
+	    		throw new MissingInputException("house number");
+	    	}
 	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
-	    	if(playerValue.getText()==""||playerId.getText()==""||first==""||last==""||playerPhone.getText()==""||street==""||houseNumber.getText()=="") {
-	    		throw new MissingInputException();
+	    	if(playerValue.getText().isEmpty()) {
+	    		throw new MissingInputException("player value");
+	    	}
+	    	if(playerId.getText().isEmpty()) {
+	    		throw new MissingInputException("player id");
 	    	}
 	    	if(birthDate.getValue()==null||startWorkingDate.getValue()==null) {
-	    		throw new MissingInputException();
+	    		throw new MissingInputException("date");
 	    	}
+	    	if(first.isEmpty()) {
+	    		throw new MissingInputException("first name");
+	    	}
+	    	if(last.isEmpty()) {
+	    		throw new MissingInputException("last name");
+	    	}
+	    	if(playerPhone.getText().isEmpty()) {
+	    		throw new MissingInputException("phone number");
+	    	}
+	    	if(street.isEmpty()) {
+	    		throw new MissingInputException("street");
+	    	}
+	    	
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
 	    	if(playerCity.getSelectionModel().getSelectedItem()==null||playerLevel.getSelectionModel().getSelectedItem()==null||rightLeg.getSelectionModel().getSelectedItem()==null||playerPosition.getSelectionModel().getSelectedItem()==null) {
@@ -146,11 +171,8 @@ public class addPlayerController {
 		}catch(ListNotSelectedException e) {
 			
 		}catch(MissingInputException e) {
-			
-		}catch(NumberFormatException e) {
-			throw new InvalidInputException();
-		}
     	
+    }
     }
     /**
      * goes back to previous screen
