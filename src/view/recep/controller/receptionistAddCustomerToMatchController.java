@@ -1,4 +1,4 @@
-package view;
+package view.recep.controller;
 
 import java.util.ArrayList;
 import Controller.SysData;

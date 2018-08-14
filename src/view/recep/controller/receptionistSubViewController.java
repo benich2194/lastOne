@@ -1,4 +1,4 @@
-package view;
+package view.recep.controller;
 
 import Controller.SysData;
 import Model.Receptionist;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class receptionistSubViewController {
 

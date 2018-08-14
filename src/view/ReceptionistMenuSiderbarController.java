@@ -35,17 +35,17 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToAddCustomerToMatch(ActionEvent event) {
-    	loadUI("receptionistAddCustomerToMatch");
+    	loadUI(NameToWindow.RECEP_CUSTOMATCH);
     }
 
     @FXML
     void goToAddSubscription(ActionEvent event) {
-    	loadUI("receptionistAddSubToCustomer");
+    	loadUI(NameToWindow.RECEP_ADDSUBTOCUST);
     }
 
     @FXML
     void goToModifySubscription(ActionEvent event) {
-
+    	loadUI(NameToWindow.RECEP_MODIFSUB);
     }
 
 
@@ -56,7 +56,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToRemoveSubscription(ActionEvent event) {
-    	loadUI("receptionistRemoveSubscription");
+    	loadUI(NameToWindow.RECEP_REMOVESUB);
     }
 
     @FXML
@@ -66,7 +66,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToViewSubscriptions(ActionEvent event) {
-    	loadUI("receptionistSubView");
+    	loadUI(NameToWindow.RECEP_SUBVIEW);
     }
     
 

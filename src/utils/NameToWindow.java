@@ -57,6 +57,14 @@ public enum NameToWindow {
 	CUSTOMER_LOGIN("menus/matchMenu"),
 	RECEPTIONIST_LOGIN("menus/playerMenu"),
 	
+	/*------------RECEPTIONIST LOGIN SCREEN-------------------------------------------*/
+
+	RECEP_CUSTOMATCH("recep/receptionistAddCustomerToMatch"),
+	RECEP_MODIFSUB("recep/modifySubscription"),
+	RECEP_ADDSUBTOCUST("recep/receptionistAddSubToCustomer"),
+	RECEP_REMOVESUB("recep/receptionistRemoveSubscription"),
+	RECEP_SUBVIEW("recep/receptionistSubView"),
+	
 	/*------------QUERIES-------------------------------------------------*/
 	QUERY_GETMAC("queries/getMAC"),
 	QUERY_GETALLSPM("queries/getALLSPM"),
