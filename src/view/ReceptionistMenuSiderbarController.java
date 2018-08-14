@@ -31,7 +31,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 	
     @FXML
     void goToAddCustomer(ActionEvent event) {
-    	loadUI("receptionistAddCustomer");
+    	loadUI(NameToWindow.ADD_CUSTOMER);
     }
 
     @FXML
