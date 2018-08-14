@@ -156,9 +156,17 @@ public class addCoachController {
 						levelCoach.valueProperty().set(null);
 						
 					} else {
-						alert.setHeaderText("Unable to added coach.");
-						alert.setContentText("Coach wasn't added.");
-						alert.show();
+						if(startWorkingDate.getValue().isBefore(birthDate.getValue())) {
+							alert.setHeaderText("Unable to added coach.");
+							alert.setContentText("Coach was born before he started working.");
+							alert.show();
+						}
+						else {
+							alert.setHeaderText("Unable to added coach.");
+							alert.setContentText("Coach wasn't added.");
+							alert.show();
+						}
+						
 					}
 				}
 			}

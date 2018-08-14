@@ -65,8 +65,7 @@ public class addTeamController {
 		alert.setTitle("Add Stadium");
 		alert.setHeaderText("");
 		try {
-			if (teamId.getText() == "" || teamValue.getText() == "" || teamStadiumId.getSelectionModel().getSelectedItem()==null
-					|| teamName.getText() == "") {
+			
 				if(teamId.getText().isEmpty()) {
 					throw new MissingInputException("team id");
 				}
@@ -76,15 +75,15 @@ public class addTeamController {
 				if(teamStadiumId.getSelectionModel().getSelectedItem()==null) {
 					throw new ListNotSelectedException();
 				}
-			} else {
-				// ID is size of the map + 1, if exists, it will keep adding 1
-				Integer id = SysData.getInstance().getTeams().size() + 1;
-				while (SysData.getInstance().getTeams().containsKey(id))
-					id++;
+				if(teamValue.getText().isEmpty()) {
+					throw new MissingInputException("team value");
+				}
+			 else {
+				Integer id=Integer.parseInt(teamId.getText());
 				String name = teamName.getText();
 				Integer value = Integer.parseInt(teamValue.getText());
 				Integer stadium = teamStadiumId.getSelectionModel().getSelectedItem().getId();
-				if (id == null || name == null || value == null || stadium == null) {
+				if (id==null || name.isEmpty() || value==null || stadium==null) {
 					alert.setHeaderText("Unable to add team");
 					alert.setContentText("Invalid input.");
 					alert.show();
@@ -138,12 +137,8 @@ public class addTeamController {
 	public void initialize() {
 		teamLevel.getItems().addAll(E_Levels.values());
 		teamStadiumId.getItems().addAll(SysData.getInstance().getStadiums().values());
-		teamId.setEditable(false);
-		teamId.setDisable(true);
-		Integer idCurrent = SysData.getInstance().getTeams().size() + 1;
-		while (SysData.getInstance().getTeams().containsKey(idCurrent))
-			idCurrent++;
-		teamId.setText(idCurrent.toString());
+		teamId.setEditable(true);
+		teamId.setDisable(false);
 		teamName.textProperty().addListener((observable, oldValue, newValue) -> {
 	        if (!newValue.matches("\\sa-zA-Z*")) {
 	        	teamName.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
