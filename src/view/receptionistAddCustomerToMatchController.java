@@ -1,10 +1,14 @@
 package view;
 
+import java.util.ArrayList;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Customer;
 import Model.Match;
 import Model.Receptionist;
+import Model.Subscription;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,7 +32,10 @@ public class receptionistAddCustomerToMatchController {
 
     @FXML
     private ListView<Match> matchList;
-
+    
+    //Receptionist can add customers who he sold subscriptions to, to a match
+    private ArrayList<Customer> myList;
+    
     @FXML
     void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException{
     	Alert alert = new Alert(AlertType.INFORMATION);
@@ -79,10 +86,21 @@ public class receptionistAddCustomerToMatchController {
      * initializes lists
      */
     public void initialize() {
-    	if(SysData.getInstance().getCustomers()!=null) {
-    		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
-    	}
+    	myList = new ArrayList<Customer>();
+    	
     	Receptionist r=SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
+    	
+    	//Creates List of customers that belong to the Receptionist
+    	for(Subscription s: r.getSubscriptions())
+    		if(s!=null && s.getCustomer()!=null)
+    			myList.add(s.getCustomer());
+    	
+    	if(myList!=null) {
+	        ObservableList<Customer> customersSoldSubTo = FXCollections.observableArrayList(myList);
+	        customerList.setItems(customersSoldSubTo);
+    	}
+    	
+    	
     	for(Match m:SysData.getInstance().getMatchs().values()) {
     		if(m!=null) {
     			if(m.getHomeTeam()!=null&&m.getHomeTeam().getStadium()!=null) {
