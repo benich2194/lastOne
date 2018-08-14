@@ -72,13 +72,8 @@ public class addStadiumController {
 	 */
 	public void initialize() {
 		cityList.getItems().addAll(E_Cities.values());
-		id.setEditable(false);
-		id.setDisable(true);
-
-		Integer idCurrent = SysData.getInstance().getStadiums().size() + 1;
-		while (SysData.getInstance().getStadiums().containsKey(idCurrent))
-			idCurrent++;
-		id.setText(idCurrent.toString());
+		id.setEditable(true);
+		id.setDisable(false);
 		street.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\sa-zA-Z*")) {
 				street.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
@@ -104,6 +99,11 @@ public class addStadiumController {
 				houseNumber.setText(newValue.replaceAll("[^\\d]", ""));
 			}
 		});
+		id.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				id.setText(newValue.replaceAll("[^\\d]", ""));
+			}
+		});
 	}
 
 	/**
@@ -120,9 +120,10 @@ public class addStadiumController {
 		alert.setHeaderText("");
 		try {
 			// ID is size of the map + 1, if exists, it will keep adding 1
-			Integer id = SysData.getInstance().getStadiums().size() + 1;
-			while (SysData.getInstance().getStadiums().containsKey(id))
-				id++;
+			if(this.id.getText().isEmpty()) {
+				throw new MissingInputException("id");
+			}
+			Integer id = Integer.parseInt(this.id.getText());
 			String NAME = name.getText();
 			if (NAME.isEmpty()) {
 				throw new MissingInputException("name");
