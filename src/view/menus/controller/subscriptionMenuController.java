@@ -22,6 +22,9 @@ public class subscriptionMenuController {
 
     @FXML
     private Button modSub;
+    
+    @FXML
+    private Button viewSub;
 
 
     @FXML
@@ -32,6 +35,11 @@ public class subscriptionMenuController {
     @FXML
     void goToModSub(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.MODIFY_SUB);
+    }
+    
+    @FXML
+    void goToViewSub(ActionEvent event) throws IOException {
+    	WindowManager.openWindow("viewAllSubscriptions");
     }
 
     @FXML
