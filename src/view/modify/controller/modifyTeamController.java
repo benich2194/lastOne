@@ -54,16 +54,22 @@ public class modifyTeamController {
     public void initialize() {
         // Defines how to fill data for each cell.
         // Get value from property of Team
-    	teamID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	teamName.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	teamValue.setCellValueFactory(new PropertyValueFactory<>("value"));
-    	teamLvl.setCellValueFactory(new PropertyValueFactory<>("level"));
-    	teamStadiumID.setCellValueFactory(new PropertyValueFactory<>("stadiumID"));
-        
-        // Display row data
-        ObservableList<Team> list = FXCollections.observableArrayList(SysData.getInstance().getTeams().values());
-        tableViewTeam.setItems(list);
-        MakeEditable();
+    	if(!SysData.getInstance().getTeams().isEmpty()) {
+	    	teamID.setCellValueFactory(new PropertyValueFactory<>("id"));
+	    	teamName.setCellValueFactory(new PropertyValueFactory<>("name"));
+	    	teamValue.setCellValueFactory(new PropertyValueFactory<>("value"));
+	    	teamLvl.setCellValueFactory(new PropertyValueFactory<>("level"));
+	    	teamStadiumID.setCellValueFactory(new PropertyValueFactory<>("stadiumID"));
+	        
+	        // Display row data
+	        ObservableList<Team> list = FXCollections.observableArrayList(SysData.getInstance().getTeams().values());
+	        tableViewTeam.setItems(list);
+	        MakeEditable();
+    	}
+    	else
+    	{
+    		System.out.println("No Teams");
+    	}
     }// End of modifyTeam Constructor
     
     private void MakeEditable() {
@@ -75,11 +81,11 @@ public class modifyTeamController {
             TablePosition<Team, String> pos = event.getTablePosition();
  
             String newName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Team tm = event.getTableView().getItems().get(row);
- 
-            tm.setName(newName);
+            if(newName!=null && !newName.isEmpty()) {
+	            int row = pos.getRow();
+	            Team tm = event.getTableView().getItems().get(row);
+	            tm.setName(newName);
+            }
         });
     	
 

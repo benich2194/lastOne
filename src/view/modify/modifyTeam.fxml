@@ -16,9 +16,14 @@
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
-            <Image url="@../../Soccer-Stadium.jpg" />
+            <Image url="@../../images/Soccer-Stadium.jpg" />
          </image>
       </ImageView>
+      <Label layoutX="281.0" layoutY="60.0" prefHeight="37.0" prefWidth="166.0" style="-fx-opacity: 0.8;" text="Modify Team" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
       <TableView fx:id="tableViewTeam" editable="true" layoutX="81.0" layoutY="116.0" prefHeight="359.0" prefWidth="551.0" style="-fx-opacity: 0.9;">
         <columns>
@@ -32,10 +37,5 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="271.0" layoutY="72.0" style="-fx-opacity: 0.8;" text="Modify Team" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

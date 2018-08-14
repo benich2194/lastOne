@@ -1,4 +1,4 @@
-package view;
+package view.coach.controller;
 
 import java.io.IOException;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package view;
+package view.coach.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;

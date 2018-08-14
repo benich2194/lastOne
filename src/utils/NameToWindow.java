@@ -49,7 +49,7 @@ public enum NameToWindow {
 	MENU_CONNECTION("menus/connectionMenu"),
 	QUERIES("menus/queries"),
 	
-	/*------------LOGIN SCREENS-------------------------------------------*/
+	/*------------MAIN LOGIN SCREENS-------------------------------------------*/
 	
 	//NOT DONE YET
 	ADMIN_LOGIN("menus/teamMenu"),
@@ -64,6 +64,14 @@ public enum NameToWindow {
 	RECEP_ADDSUBTOCUST("recep/receptionistAddSubToCustomer"),
 	RECEP_REMOVESUB("recep/receptionistRemoveSubscription"),
 	RECEP_SUBVIEW("recep/receptionistSubView"),
+	
+	/*------------COACH LOGIN SCREEN-------------------------------------------*/
+
+	COACH_MODIFPLAYERS("coach/coachModifyPlayers"),
+	COACH_REMOVEPL("coach/coachRemovePlayerFromTeam"),
+	COACH_REPLACEPL("coach/coachReplacePlayers"),
+	COACH_VIEWPL("coach/coachViewPlayers"),
+	COACH_ADDPLTOTEAM("coach/coachAddPlayerToTeam"),
 	
 	/*------------QUERIES-------------------------------------------------*/
 	QUERY_GETMAC("queries/getMAC"),

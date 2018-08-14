@@ -20,10 +20,6 @@ public class CoachMenuSidebarController implements Initializable {
 
 	}
 
-	public void loadUI(String ui) {
-		WindowManager.openWindow(ui);
-	}
-
     public void loadUI(NameToWindow ui)
     {
     	WindowManager.openWindow(ui);
@@ -31,32 +27,58 @@ public class CoachMenuSidebarController implements Initializable {
     
 	@FXML
 	void goToAddPlayerToTeam(ActionEvent event) {
-		loadUI("coachAddPlayerToTeam");
+		loadUI(NameToWindow.COACH_ADDPLTOTEAM);
 	}
 
 	@FXML
 	void goToChangeFirstTeam(ActionEvent event) {
-		loadUI("coachReplacePlayers");
+		loadUI(NameToWindow.COACH_REPLACEPL);
 	}
 
 	@FXML
 	void goToModifyPlayerInTeam(ActionEvent event) {
-		loadUI("coachModifyPlayers");
+		loadUI(NameToWindow.COACH_MODIFPLAYERS);
 	}
 
-	@FXML
-	void goToQueries(ActionEvent event) {
-		loadUI(NameToWindow.QUERIES);
-	}
 
 	@FXML
 	void goToViewPlayers(ActionEvent event) {
-		loadUI("coachViewPlayers");
+		loadUI(NameToWindow.COACH_VIEWPL);
 	}
 
 	@FXML
 	void removePlayerFromTeam(ActionEvent event) {
-		loadUI("coachRemovePlayerFromTeam");
+		loadUI(NameToWindow.COACH_REMOVEPL);
 	}
+	
+	@FXML
+    void goToGSPM(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_GETSPM);
+    }
+
+    @FXML
+    void goToASPM(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETALLSPM);
+    }
+
+    @FXML
+    void goToMPP(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETMPP);
+    }
+
+    @FXML
+    void goToMFT(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_MFT);
+    }
+
+    @FXML
+    void goToTWLHC(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETTWLHC);
+    }
+
+    @FXML
+    void goToFPOBHT(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETFPOBHT);
+    }
 
 }
