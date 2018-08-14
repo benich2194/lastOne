@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -48,6 +49,13 @@ public class addMatchController {
 
     @FXML
     private DatePicker matchDate;
+    
+    @FXML
+    private Button clearButton;
+    
+    @FXML
+    private Label labelSuccess;
+
     /**
      * adds match to database
      * @param event add match button is pressed
@@ -91,9 +99,15 @@ public class addMatchController {
 	    		}
 	    		SysData.getInstance().addMatch(id, date, extra, Home.getSelectionModel().getSelectedItem().getId(), Away.getSelectionModel().getSelectedItem().getId(), Integer.parseInt(homeS.getText()), Integer.parseInt(awayS.getText()));
 		    	if(SysData.getInstance().getMatchs().containsKey(id)) {
-		    		alert.setHeaderText("Added Match");
-		    		alert.setContentText("Match added successfully.");
-		    		alert.show();
+		    		labelSuccess.setText("Match "+matchId.getText()+" added succesfully!");
+		    		matchDate.valueProperty().set(null);
+		    		Away.valueProperty().set(null);
+		    		matchId.setText("");
+		    		homeS.setText("");
+		    		awayS.setText("");
+		    		Extra.setText("");
+		    		Home.valueProperty().set(null);
+		    		
 		    	}
 		    	else {
 		    		alert.setHeaderText("Unable to add Match.");
@@ -148,5 +162,20 @@ public class addMatchController {
 	        	awayS.setText(newValue.replaceAll("[^\\d]", ""));
 	        }
 	    });
+    }
+    /**
+     * clears form
+     * @param event clear button is pressed
+     */
+    @FXML
+    void clearForm(ActionEvent event) {
+    	matchDate.valueProperty().set(null);
+		Away.valueProperty().set(null);
+		matchId.setText("");
+		homeS.setText("");
+		awayS.setText("");
+		Extra.setText("");
+		Home.valueProperty().set(null);
+		labelSuccess.setText("");
     }
 }

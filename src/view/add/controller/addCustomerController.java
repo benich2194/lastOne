@@ -79,6 +79,8 @@ public class addCustomerController {
 
 	    @FXML
 	    private Button clearButton;
+	    
+	    
 	    /**
 	     * add customer
 	     * @param event add customer button was pressed

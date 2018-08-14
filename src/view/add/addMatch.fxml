@@ -25,10 +25,16 @@
       <ComboBox fx:id="Away" layoutX="264.0" layoutY="233.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Team:" />
       <TextField fx:id="homeS" alignment="CENTER" layoutX="262.0" layoutY="275.0" prefHeight="25.0" prefWidth="181.0" promptText="Home Score" />
       <TextField fx:id="awayS" alignment="CENTER" layoutX="262.0" layoutY="315.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Score" />
-      <Button fx:id="addButton" layoutX="264.0" layoutY="438.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="40.0" prefWidth="173.0" text="Add Match" />
+      <Button fx:id="addButton" layoutX="142.0" layoutY="437.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="40.0" prefWidth="173.0" text="Add Match" />
       <Label layoutX="290.0" layoutY="24.0" prefHeight="31.0" prefWidth="167.0" text="Add Match" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="371.0" layoutY="437.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="40.0" prefWidth="172.0" text="Clear" />
+      <Label fx:id="labelSuccess" layoutX="143.0" layoutY="381.0" prefHeight="33.0" prefWidth="399.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
    </children>
