@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -60,6 +61,12 @@ public class addReceptionistController {
 
     @FXML
     private TextField recepPassword;
+    
+    @FXML
+    private Label labelSuccess;
+
+    @FXML
+    private Button clearButton;
 
     @FXML
     void addRecep(ActionEvent event) throws MissingInputException, PasswordTooShortException, ListNotSelectedException {
@@ -110,9 +117,17 @@ public class addReceptionistController {
 	    	else {
 	    		SysData.getInstance().addReceptionist(id,password, first, last, bday, work, ad);
 		    	if(SysData.getInstance().getReceptionists().containsKey(id)) {
-		    		alert.setHeaderText("Added Receptionist");
-		    		alert.setContentText("Receptionist added successfully.");
-		    		alert.show();
+		    		labelSuccess.setText("Receptionist "+id+" was added succesfully!");
+		    		recepCity.valueProperty().set(null);
+		    		birthDate.valueProperty().set(null);
+		    		recepPassword.setText("");
+		    		recepId.setText("");
+		    		recepStreet.setText("");
+		    		firstName.setText("");
+		    		lastName.setText("");
+		    		houseNumber.setText("");
+		    		recepPhone.setText("");
+		    		startWorkingDate.valueProperty().set(null);
 		    	}
 		    	else {
 		    		alert.setHeaderText("Unable to added Receptionist.");
@@ -173,6 +188,24 @@ public class addReceptionistController {
     @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();
+    }
+    /**
+     * clears form
+     * @param event clear button is pressed
+     */
+    @FXML
+    void clearForm(ActionEvent event) {
+    	recepCity.valueProperty().set(null);
+		birthDate.valueProperty().set(null);
+		recepPassword.setText("");
+		recepId.setText("");
+		recepStreet.setText("");
+		firstName.setText("");
+		lastName.setText("");
+		houseNumber.setText("");
+		recepPhone.setText("");
+		startWorkingDate.valueProperty().set(null);
+		labelSuccess.setText("");
     }
 
 }

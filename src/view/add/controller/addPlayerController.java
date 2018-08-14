@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -72,6 +73,12 @@ public class addPlayerController {
 
     @FXML
     private ComboBox<E_Position> playerPosition;
+    
+    @FXML
+    private Button clearButton;
+
+    @FXML
+    private Label labelSuccess;
 
     /**
      * adds a new player to data base
@@ -115,9 +122,20 @@ public class addPlayerController {
 	    	else {
 	    		SysData.getInstance().addPlayer(id,"0",first,last,bday,work,playerLevel.getSelectionModel().getSelectedItem(),val,rightLeg.getSelectionModel().getSelectedItem(),playerPosition.getSelectionModel().getSelectedItem(),ad);
 		    	if(SysData.getInstance().getPlayers().containsKey(id)) {
-		    		alert.setHeaderText("Added Player");
-		    		alert.setContentText("Player added successfully.");
-		    		alert.show();
+		    		labelSuccess.setText("Player "+id+" was added succesfully!");
+		    		playerCity.valueProperty().set(null);
+		    		birthDate.valueProperty().set(null);
+		    		startWorkingDate.valueProperty().set(null);
+		    		playerPosition.valueProperty().set(null);
+		    		playerId.setText("");
+		    		playerPhone.setText("");
+		    		playerStreet.setText("");
+		    		firstName.setText("");
+		    		lastName.setText("");
+		    		houseNumber.setText("");
+		    		playerValue.setText("");
+		    		rightLeg.valueProperty().set(null);
+		    		playerLevel.valueProperty().set(null);
 		    	}
 		    	else {
 		    		alert.setHeaderText("Unable to add Player.");
@@ -187,6 +205,27 @@ public class addPlayerController {
 		        }
 		    });
     	 
+    }
+    /**
+     * clears form
+     * @param event clear button is pressed
+     */
+    @FXML
+    void clearForm(ActionEvent event) {
+    	playerCity.valueProperty().set(null);
+		birthDate.valueProperty().set(null);
+		startWorkingDate.valueProperty().set(null);
+		playerPosition.valueProperty().set(null);
+		playerId.setText("");
+		playerPhone.setText("");
+		playerStreet.setText("");
+		firstName.setText("");
+		lastName.setText("");
+		houseNumber.setText("");
+		playerValue.setText("");
+		rightLeg.valueProperty().set(null);
+		playerLevel.valueProperty().set(null);
+		labelSuccess.setText("");
     }
 
 }

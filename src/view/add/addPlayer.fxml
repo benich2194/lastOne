@@ -31,10 +31,16 @@
       <ComboBox fx:id="rightLeg" layoutX="273.0" layoutY="382.0" prefHeight="25.0" prefWidth="174.0" promptText="Right leg Kicker?" />
       <TextField fx:id="playerValue" alignment="CENTER" layoutX="273.0" layoutY="416.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's value" />
       <ComboBox fx:id="playerPosition" layoutX="274.0" layoutY="447.0" prefHeight="25.0" prefWidth="174.0" promptText="Player's position" />
-      <Button fx:id="addButton" layoutX="272.0" layoutY="515.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="35.0" prefWidth="174.0" text="Add Player" />
+      <Button fx:id="addButton" layoutX="177.0" layoutY="533.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="33.0" prefWidth="174.0" text="Add Player" />
       <Label layoutX="300.0" layoutY="19.0" text="Add Player" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="388.0" layoutY="533.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
+      <Label fx:id="labelSuccess" layoutX="177.0" layoutY="489.0" prefHeight="33.0" prefWidth="385.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
    </children>

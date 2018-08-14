@@ -32,7 +32,13 @@
       <TextField fx:id="houseNumber" alignment="CENTER" layoutX="274.0" layoutY="282.0" prefHeight="25.0" prefWidth="174.0" promptText="House Number" />
       <TextField fx:id="recepStreet" alignment="CENTER" layoutX="273.0" layoutY="316.0" prefHeight="25.0" prefWidth="174.0" promptText="street" />
       <TextField fx:id="recepPhone" alignment="CENTER" layoutX="273.0" layoutY="350.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
-      <Button fx:id="addButton" layoutX="274.0" layoutY="443.0" mnemonicParsing="false" onAction="#addRecep" prefHeight="39.0" prefWidth="174.0" text="Add Receptionist" />
+      <Button fx:id="addButton" layoutX="160.0" layoutY="496.0" mnemonicParsing="false" onAction="#addRecep" prefHeight="33.0" prefWidth="174.0" text="Add Receptionist" />
       <TextField fx:id="recepPassword" alignment="CENTER" layoutX="272.0" layoutY="384.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
+      <Label fx:id="labelSuccess" layoutX="150.0" layoutY="454.0" prefHeight="33.0" prefWidth="429.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="394.0" layoutY="496.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
    </children>
 </AnchorPane>
