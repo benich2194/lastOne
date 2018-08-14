@@ -28,7 +28,13 @@
       <TextField fx:id="houseNumber" alignment="CENTER" layoutX="276.0" layoutY="178.0" promptText="House Number" />
       <TextField fx:id="capacity" alignment="CENTER" layoutX="276.0" layoutY="211.0" promptText="Capacity" />
       <TextField fx:id="phone" alignment="CENTER" layoutX="276.0" layoutY="243.0" promptText="Phone Number" />
-      <Button fx:id="submit" layoutX="277.0" layoutY="380.0" mnemonicParsing="false" onAction="#addStadium" prefHeight="43.0" prefWidth="149.0" text="Submit" />
+      <Button fx:id="submit" layoutX="175.0" layoutY="397.0" mnemonicParsing="false" onAction="#addStadium" prefHeight="43.0" prefWidth="149.0" text="Submit" />
       <ComboBox fx:id="cityList" layoutX="276.0" layoutY="275.0" prefWidth="150.0" promptText="                 City" />
+      <Label fx:id="labelSuccess" layoutX="174.0" layoutY="358.0" prefHeight="33.0" prefWidth="390.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="393.0" layoutY="397.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="43.0" prefWidth="172.0" text="Clear" />
    </children>
 </AnchorPane>
