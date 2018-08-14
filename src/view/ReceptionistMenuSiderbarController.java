@@ -2,7 +2,6 @@ package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,19 +44,10 @@ public class ReceptionistMenuSiderbarController implements Initializable{
     }
 
     @FXML
-    void goToModifyCustomer(ActionEvent event) {
-
-    }
-
-    @FXML
     void goToModifySubscription(ActionEvent event) {
 
     }
 
-    @FXML
-    void goToQueries(ActionEvent event) {
-		loadUI(NameToWindow.QUERIES);
-    }
 
     @FXML
     void goToRemoveCustomer(ActionEvent event) {
@@ -77,6 +67,32 @@ public class ReceptionistMenuSiderbarController implements Initializable{
     @FXML
     void goToViewSubscriptions(ActionEvent event) {
     	loadUI("receptionistSubView");
+    }
+    
+
+    @FXML
+    void goToGSPM(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETSPM);
+    }
+
+    @FXML
+    void goToGASPM(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETALLSPM);
+    }
+
+    @FXML
+    void goMPP(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETMPP);
+    }
+
+    @FXML
+    void goToMAC(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETMAC);
+    }
+
+    @FXML
+    void goToFPBHT(ActionEvent event) {
+    	loadUI(NameToWindow.QUERY_GETFPOBHT);
     }
 
 }
