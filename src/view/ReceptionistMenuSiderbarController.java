@@ -76,7 +76,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToViewSubscriptions(ActionEvent event) {
-
+    	loadUI("receptionistSubView");
     }
 
 }

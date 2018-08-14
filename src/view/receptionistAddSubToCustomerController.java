@@ -67,9 +67,14 @@ public class receptionistAddSubToCustomerController {
 	        		alert.setContentText("Subscription was added to Customer successfully.");
 	        		alert.show();
 	    		}
-	    		else {
-	    			alert.setHeaderText("failed to add Subscription to Customer.");
-	        		alert.setContentText("unable to add Subscription to Customer.");
+	    		else  if(r.getWorkingStadium()==null) {
+	    			alert.setHeaderText("Failed to add Subscription to Customer.");
+	        		alert.setContentText("Receptionist is not connected to a stadium.");
+	        		alert.show();
+	    		}
+	    		else{
+	    			alert.setHeaderText("Failed to add Subscription to Customer.");
+	        		alert.setContentText("Unable to add Subscription to Customer.");
 	        		alert.show();
 	    		}
 		}catch(MissingInputException e) {
