@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import Controller.SysData;
+import Exceptions.MissingInputException;
 import Model.Customer;
 import Model.Team;
 import javafx.beans.property.SimpleObjectProperty;
@@ -73,7 +74,7 @@ public class modifyCustomerController {
     @FXML
     private TableColumn<Customer, Integer> custID;
 
-    public void initialize() {
+    public void initialize() throws MissingInputException{
         // Defines how to fill data for each cell.
         // Get value from property of Player.
         custID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -89,12 +90,14 @@ public class modifyCustomerController {
         custFavTeam.setCellValueFactory(new PropertyValueFactory<>("favoriteTeam"));
         
         // Display row data
-        ObservableList<Customer> list = FXCollections.observableArrayList(SysData.getInstance().getCustomers().values());
-        custTableView.setItems(list);
-        MakeEditable();
+        if(!SysData.getInstance().getCustomers().isEmpty()) {
+	        ObservableList<Customer> list = FXCollections.observableArrayList(SysData.getInstance().getCustomers().values());
+	        custTableView.setItems(list);
+	        MakeEditable();
+        }
     }// End of modifyPlayer Constructor
         
-    private void MakeEditable() {
+    private void MakeEditable() throws MissingInputException{
     	// Make changes by double clicking the Cell and pressing enter after editing
     	// === On Cell edit commit (for FirstName column) ===
     	custFN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -103,11 +106,16 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newFirstName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
- 
-            cc.setFirstName(newFirstName);
+            if(!newFirstName.isEmpty() && newFirstName!=null) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	 
+	            cc.setFirstName(newFirstName);
+            }else
+				try {
+					throw new MissingInputException("First name");
+				} catch (MissingInputException e) {
+				}    
         });
     	
     	// === On Cell edit commit (for LastName column) ===
@@ -117,11 +125,15 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newLastName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
- 
-            cc.setLastName(newLastName);
+            if(!newLastName.isEmpty() && newLastName!=null) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	 
+	            cc.setLastName(newLastName);
+            }try {
+				throw new MissingInputException("Last name");
+			} catch (MissingInputException e) {
+			}
         });
     	
     	// === On Cell edit commit (for Email column) ===
@@ -181,11 +193,16 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newPhoneNumber = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
-            String[] newPhoneArray = {newPhoneNumber};
-            cc.getAddress().setPhoneNumber(newPhoneArray);
+            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	            String[] newPhoneArray = {newPhoneNumber};
+	            cc.getAddress().setPhoneNumber(newPhoneArray);
+            }else
+				try {
+					throw new MissingInputException("Phone number");
+				} catch (MissingInputException e) {
+				}
             
         });
     	
@@ -204,11 +221,17 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newStreet = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
- 
-            cc.getAddress().setStreet(newStreet);
+            if(!newStreet.isEmpty() && newStreet!=null) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	 
+	            cc.getAddress().setStreet(newStreet);
+            }
+            else
+				try {
+					throw new MissingInputException("Street");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for HouseNum column) ============
@@ -239,10 +262,15 @@ public class modifyCustomerController {
             TablePosition<Customer, Integer> pos = event.getTablePosition();
  
             Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
-            cc.getAddress().setHouseNumber(newValue);
+            if(newValue!=null) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	            cc.getAddress().setHouseNumber(newValue);
+            } else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
         
    // ==== Customer City (COMBO BOX) ===

@@ -84,9 +84,11 @@ public class modifyCoachController {
         coachSW.setCellValueFactory(new PropertyValueFactory<>("startWorkingDate"));
         
         // Display row data
-        ObservableList<Coach> list = FXCollections.observableArrayList(SysData.getInstance().getCoachs().values());
-        coachTableView.setItems(list);
-        MakeEditable();
+        if(!SysData.getInstance().getCoachs().isEmpty()) {
+	        ObservableList<Coach> list = FXCollections.observableArrayList(SysData.getInstance().getCoachs().values());
+	        coachTableView.setItems(list);
+	        MakeEditable();
+        }
     }// End of modifyPlayer Constructor
         
     private void MakeEditable() throws MissingInputException{
