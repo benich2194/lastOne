@@ -9,6 +9,7 @@ import Exceptions.IdExistsException;
 import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectNotExistException;
 import Exceptions.PasswordTooShortException;
 import Model.Address;
 import javafx.event.ActionEvent;
@@ -89,9 +90,10 @@ public class addCustomerController {
 	     * @throws PasswordTooShortException
 	     * @throws InvalidInputException
 	     * @throws IdExistsException
+	     * @throws ObjectNotExistException 
 	     */
 	    @FXML
-	    void addCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException,PasswordTooShortException, InvalidInputException, IdExistsException {
+	    void addCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException,PasswordTooShortException, InvalidInputException, IdExistsException, ObjectNotExistException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Customer");
 			alert.setHeaderText("");
@@ -104,6 +106,9 @@ public class addCustomerController {
 		    	String street=cusStreet.getText();
 		    	if(id.isEmpty()) {
 		    		throw new MissingInputException("id");
+		    	}
+		    	if(id.length()!=utils.Constants.ID_NUMBER_SIZE) {
+		    		throw new InvalidInputException("id is invalid. please enter a "+utils.Constants.ID_NUMBER_SIZE+" length number");
 		    	}
 		    	if(first.isEmpty()) {
 		    		throw new MissingInputException("first name");
@@ -138,10 +143,13 @@ public class addCustomerController {
 					throw new InvalidInputException("Invalid email address");
 				}
 		    	if(birthDate.getValue()==null) {
-		    		throw new MissingInputException();
+		    		throw new MissingInputException("birth date");
 		    	}
 		    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 		    	Integer fav=Integer.parseInt(favTeam.getText());
+		    	if(!SysData.getInstance().getTeams().containsKey(fav)) {
+		    		throw new ObjectNotExistException("team does not exist");
+		    	}
 		    	String password=cusPassword.getText();
 		    	if(password.length()<3) {
 		    		throw new PasswordTooShortException();
@@ -181,6 +189,8 @@ public class addCustomerController {
 			}catch(InvalidInputException e) {
 				
 			}catch(IdExistsException e) {
+				
+			}catch(ObjectNotExistException e) {
 				
 			}
 	    	
