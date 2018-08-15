@@ -1,6 +1,7 @@
 package view.add.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import Controller.SysData;
 import Exceptions.InvalidInputException;
@@ -88,15 +89,12 @@ public class addPlayerController {
      * @throws InvalidInputException
      */
     @FXML
-    void addPlayer(ActionEvent event)  throws MissingInputException,ListNotSelectedException{
+    void addPlayer(ActionEvent event)  throws MissingInputException,ListNotSelectedException, InvalidInputException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player");
 		alert.setHeaderText("");
 		try {
-			if(playerValue.getText().isEmpty()) {
-				throw new MissingInputException("player value");
-			}
-			Long val=Long.parseLong(playerValue.getText());
+			
 			if(playerId.getText().isEmpty()) {
 				throw new MissingInputException("player id");
 			}
@@ -106,18 +104,8 @@ public class addPlayerController {
 	    	String[] phones=new String[1];
 	    	phones[0]=playerPhone.getText();
 	    	String street=playerStreet.getText();
-	    	if(houseNumber.getText().isEmpty()) {
-	    		throw new MissingInputException("house number");
-	    	}
-	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
-	    	if(playerValue.getText().isEmpty()) {
-	    		throw new MissingInputException("player value");
-	    	}
 	    	if(playerId.getText().isEmpty()) {
 	    		throw new MissingInputException("player id");
-	    	}
-	    	if(birthDate.getValue()==null||startWorkingDate.getValue()==null) {
-	    		throw new MissingInputException("date");
 	    	}
 	    	if(first.isEmpty()) {
 	    		throw new MissingInputException("first name");
@@ -125,17 +113,50 @@ public class addPlayerController {
 	    	if(last.isEmpty()) {
 	    		throw new MissingInputException("last name");
 	    	}
+	    	if(birthDate.getValue()==null) {
+	    		throw new MissingInputException("birth date");
+	    	}
+	    	if(startWorkingDate.getValue()==null) {
+	    		throw new MissingInputException("start worki date");
+	    	}
+	    	if(houseNumber.getText().isEmpty()) {
+	    		throw new MissingInputException("house number");
+	    	}
+	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
+	    	if(playerValue.getText().isEmpty()) {
+	    		throw new MissingInputException("player value");
+	    	}
+
 	    	if(playerPhone.getText().isEmpty()) {
 	    		throw new MissingInputException("phone number");
 	    	}
+	    	if(playerValue.getText().isEmpty()) {
+				throw new MissingInputException("player value");
+			}
+			Long val=Long.parseLong(playerValue.getText());
 	    	if(street.isEmpty()) {
 	    		throw new MissingInputException("street");
 	    	}
 	    	
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
-	    	if(playerCity.getSelectionModel().getSelectedItem()==null||playerLevel.getSelectionModel().getSelectedItem()==null||rightLeg.getSelectionModel().getSelectedItem()==null||playerPosition.getSelectionModel().getSelectedItem()==null) {
-	    		throw new ListNotSelectedException();
+	    	if(work.before(bday)) {
+	    		throw new InvalidInputException("please change dates.cannot be born after started working.");
+	    	}
+	    	if(bday.after(new Date())) {
+	    		throw new InvalidInputException("please change birth date.player wasn't born yet");
+	    	}
+	    	if(playerCity.getSelectionModel().getSelectedItem()==null) {
+	    		throw new ListNotSelectedException("Please choose a city:");
+	    	}
+	    	if(playerLevel.getSelectionModel().getSelectedItem()==null) {
+	    		throw new ListNotSelectedException("Please choose a level:");
+	    	}
+	    	if(rightLeg.getSelectionModel().getSelectedItem()==null) {
+	    		throw new ListNotSelectedException("Please choose if right leg kicker:");
+	    	}
+	    	if(playerPosition.getSelectionModel().getSelectedItem()==null) {
+	    		throw new ListNotSelectedException("Please select a position:");
 	    	}
 	    	Address ad=new Address(playerCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 	    	
@@ -171,6 +192,8 @@ public class addPlayerController {
 		}catch(ListNotSelectedException e) {
 			
 		}catch(MissingInputException e) {
+    	
+    }catch(InvalidInputException e) {
     	
     }
     }
