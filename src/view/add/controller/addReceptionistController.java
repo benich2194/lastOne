@@ -80,11 +80,17 @@ public class addReceptionistController {
 			Integer id = Integer.parseInt(recepId.getText());
 	    	String first=firstName.getText();
 	    	String last=lastName.getText();
-	    	if(first.isEmpty()||last.isEmpty()) {
-	    		throw new MissingInputException("name");
+	    	if(first.isEmpty()) {
+	    		throw new MissingInputException("first name");
 	    	}
-	    	if(birthDate.getValue()==null||startWorkingDate==null) {
-	    		throw new MissingInputException("date");
+	    	if(last.isEmpty()) {
+	    		throw new MissingInputException("last name");
+	    	}
+	    	if(birthDate.getValue()==null) {
+	    		throw new MissingInputException(" birth date");
+	    	}
+	    	if(startWorkingDate.getValue()==null) {
+	    		throw new MissingInputException("start work date");
 	    	}
 	    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
 	    	java.sql.Date work=java.sql.Date.valueOf(startWorkingDate.getValue());
@@ -102,11 +108,11 @@ public class addReceptionistController {
 	    	}
 	    	Integer houseNum=Integer.parseInt(houseNumber.getText());
 	    	String password=recepPassword.getText();
-	    	if(password.length()<3) {
+	    	if(password.length()<1) {
 	    		throw new PasswordTooShortException();
 	    	}
 	    	if(recepCity.getSelectionModel().getSelectedItem()==null) {
-	    		throw new ListNotSelectedException();
+	    		throw new ListNotSelectedException("Please choose city");
 	    	}
 	    	Address ad=new Address(recepCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 	    	if(SysData.getInstance().getReceptionists().containsKey(id)) {
