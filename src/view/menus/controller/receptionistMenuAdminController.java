@@ -11,7 +11,9 @@ import view.WindowManager;
 
 
 public class receptionistMenuAdminController {
-
+	/**
+	 * fx fields
+	 */
     @FXML
     private AnchorPane recepMenu;
 
@@ -26,26 +28,45 @@ public class receptionistMenuAdminController {
     
     @FXML
     private Button viewRecep;
-
-
+    /**
+     * opens add receptionist
+     * @param event add receptionist button is pressed
+     */
     @FXML
-    void goToAddRecep(ActionEvent event) throws IOException {
+    void goToAddRecep(ActionEvent event){
     	WindowManager.openWindow(NameToWindow.ADD_RECEPTIONIST);
     }
-
+    /**
+     * opens modify receptionist
+     * @param event modify receptionist button is pressed
+     */
     @FXML
-    void goToModifyRecep(ActionEvent event) throws IOException {
+    void goToModifyRecep(ActionEvent event) {
     	WindowManager.openWindow(NameToWindow.MODIFY_RECEPTIONIST);
     }
-    
+    /**
+     * opens view receptionists
+     * @param event view receptionists button is pressed
+     */
     @FXML
-    void goToViewRecep(ActionEvent event) throws IOException {
+    void goToViewRecep(ActionEvent event) {
     	WindowManager.openWindow("viewReceptionist");
     }
-
+    /**
+     * opens remove receptionist
+     * @param event remove receptionist button is pressed
+     */
     @FXML
-    void goToRemoveRecep(ActionEvent event) throws IOException {
+    void goToRemoveRecep(ActionEvent event) {
     	WindowManager.openWindow(NameToWindow.REMOVE_RECEPTIONIST);
+    }
+    /**
+     * opens remove receptionist from stadium
+     * @param event remove receptionist from stadium button is pressed
+     */
+    @FXML
+    void goToRemoveFromStadium(ActionEvent event) {
+    	WindowManager.openWindow("removeRecepFromStadium");
     }
 
 }
