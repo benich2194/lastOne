@@ -11,11 +11,11 @@ public class InvalidInputException extends IOException{
 	 * 
 	 */
 	private static final long serialVersionUID = -3958964505912431852L;
-	public InvalidInputException() {
+	public InvalidInputException(String m) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Invalid Input");
 		alert.setHeaderText("");
-		alert.setHeaderText("Failed to continue,invalid input was entered.");
+		alert.setHeaderText(m);
 		alert.show();
 	}
 }

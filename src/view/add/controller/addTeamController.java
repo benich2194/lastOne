@@ -4,6 +4,7 @@ import Controller.SysData;
 import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectNotExistException;
 import Model.Stadium;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,10 +58,11 @@ public class addTeamController {
 	 * 
 	 * @param event add team button is pressed
 	 * @throws MissingInputException
+	 * @throws ObjectNotExistException 
 	 * @throws InvalidInputException
 	 */
 	@FXML
-	void addTeam(ActionEvent event) throws MissingInputException,ListNotSelectedException {
+	void addTeam(ActionEvent event) throws MissingInputException,ListNotSelectedException{
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Stadium");
 		alert.setHeaderText("");
@@ -77,6 +79,9 @@ public class addTeamController {
 				}
 				if(teamValue.getText().isEmpty()) {
 					throw new MissingInputException("team value");
+				}
+				if(teamName.getText().isEmpty()) {
+					throw new MissingInputException("team name");
 				}
 			 else {
 				Integer id=Integer.parseInt(teamId.getText());
@@ -104,8 +109,7 @@ public class addTeamController {
 					 		teamStadiumId.valueProperty().set(null);
 					 		teamName.setText("");
 					 		teamValue.setText("");
-					 		id++;
-					 		teamId.setText(id.toString());
+					 		teamId.setText("");
 							
 						} else {
 							if(teamStadiumId.getSelectionModel().getSelectedItem().getTeams().size()==Constants.MAX_TEAMS_FOR_STADIUM)
@@ -163,6 +167,7 @@ public class addTeamController {
  		teamName.setText("");
  		teamValue.setText("");
  		labelSuccess.setText("");
+ 		teamId.setText("");
 	 }
 	
 	/**

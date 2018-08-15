@@ -135,7 +135,7 @@ public class addCustomerController {
 				try {
 					mail = new URL("http:\\"+cusMail.getText());
 				} catch (MalformedURLException e) {
-					throw new InvalidInputException();
+					throw new InvalidInputException("Invalid email address");
 				}
 		    	if(birthDate.getValue()==null) {
 		    		throw new MissingInputException();
