@@ -36,6 +36,9 @@ public enum NameToWindow {
 	REMOVE_SUB("remove/removeSub"),
 	REMOVE_COACH("remove/removeCoach"),
 	
+	/*------------TRANSFER-------------------------------------------------*/
+	TRANSFER_CTT("transfer/transferCoachToTeam"),
+	
 	/*------------MENUS-------------------------------------------------*/
 	MENU_TEAM("menus/teamMenu"),
 	MENU_CUSTOMER("menus/customerMenuAdmin"),

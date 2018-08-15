@@ -19,15 +19,16 @@
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addCoach" layoutX="233.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCoach" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Add Coach" />
-      <Button fx:id="removeCoachButton" layoutX="233.0" layoutY="281.0" mnemonicParsing="false" onAction="#goToRemoveCoach" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Remove Coach" />
-      <Button fx:id="modCoach" layoutX="233.0" layoutY="186.0" mnemonicParsing="false" onAction="#goToModifyCoach" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Modify Coach" />
+      <Button fx:id="addCoach" layoutX="233.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Add Coach" />
+      <Button fx:id="removeCoachButton" layoutX="233.0" layoutY="253.0" mnemonicParsing="false" onAction="#goToRemoveCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Remove Coach" />
+      <Button fx:id="modCoach" layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToModifyCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Modify Coach" />
       <Label layoutX="274.0" layoutY="37.0" style="-fx-opacity: 0.7;" text="Coach Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewCoachButton" layoutX="233.0" layoutY="375.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="View Coaches" />
-      <Button fx:id="removeFromTeam" layoutX="233.0" layoutY="468.0" mnemonicParsing="false" onAction="#goToRemoveCoachFromTeam" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Dissconnect Coach From Team" />
+      <Button fx:id="viewCoachButton" layoutX="233.0" layoutY="407.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="View Coaches" />
+      <Button fx:id="removeFromTeam" layoutX="233.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToRemoveCoachFromTeam" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Dissconnect Coach From Team" />
+      <Button fx:id="transferCoachButton" layoutX="233.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToTransferCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Transfer Coach To Team" />
    </children>
 </AnchorPane>
