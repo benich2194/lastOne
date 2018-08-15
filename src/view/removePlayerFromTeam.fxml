@@ -21,7 +21,12 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="removeButton" layoutX="275.0" layoutY="476.0" mnemonicParsing="false" onAction="#removePlayerFromTeam" prefHeight="36.0" prefWidth="151.0" text="Remove Player" />
+      <Button fx:id="removeButton" layoutX="284.0" layoutY="527.0" mnemonicParsing="false" onAction="#removePlayerFromTeam" prefHeight="36.0" prefWidth="151.0" text="Remove Player" />
       <ListView fx:id="playerList" layoutX="27.0" layoutY="97.0" prefHeight="362.0" prefWidth="664.0" />
+      <Label fx:id="labelSuccess" alignment="CENTER" layoutX="38.0" layoutY="479.0" prefHeight="33.0" prefWidth="643.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

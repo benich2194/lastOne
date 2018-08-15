@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +28,9 @@ public class removePlayerFromTeamController {
 
     @FXML
     private ListView<Player> playerList;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button is pressed
@@ -53,9 +57,7 @@ public class removePlayerFromTeamController {
 	    	}
 	    	if(t.removePlayer(p)) {
 	    		p.setCurrentTeam(null);
-	    		alert.setHeaderText("Removed Player from team");
-	    		alert.setContentText("Removed Player from team successfully.");
-	    		alert.show();
+	    		labelSuccess.setText("removed player "+p.getId()+" from team "+t.getId());
 	    	}
 	    	else {
 	    		alert.setHeaderText("Player removal from team failed.");
