@@ -46,15 +46,14 @@ public class coachToTeamController {
     		}
     	}
     	if(SysData.getInstance().getCoachs().values().size()>0) {
-    		for(Coach c:SysData.getInstance().getCoachs().values()) {
-    			if(c!=null&&c.getCurrentTeam()==null) {
-    				coachList.getItems().add(c);
-    			}
-    		}
-    	}
-    
+    		coachList.getItems().addAll(SysData.getInstance().getCoachs().values());
+    	}  
     }
-    
+    /**
+     * adds coach to a team
+     * @param event add coach button is pressed
+     * @throws ListNotSelectedException
+     */
     @FXML
     void addCoachToTeam(ActionEvent event) throws ListNotSelectedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
@@ -64,13 +63,18 @@ public class coachToTeamController {
 			Coach c=coachList.getSelectionModel().getSelectedItem();
 			Team t=teamList.getSelectionModel().getSelectedItem();
 			if(teamList.getSelectionModel().getSelectedItem()!=null&&coachList.getSelectionModel().getSelectedItem()!=null) {
-	    		if(SysData.getInstance().addCoachToTeam(coachList.getSelectionModel().getSelectedItem().getId(), teamList.getSelectionModel().getSelectedItem().getId())) {
+	    		if(c.getCurrentTeam()==null&&SysData.getInstance().addCoachToTeam(coachList.getSelectionModel().getSelectedItem().getId(), teamList.getSelectionModel().getSelectedItem().getId())) {
 	    			labelSuccess.setText("coach "+c.getId()+" was added to team "+t.getId());
 	    		}
 	    		else {
-	    			alert.setHeaderText("failed to add coach to team.");
-	        		alert.setContentText("unable to add coach to team.");
-	        		alert.show();
+	    			if(c.getCurrentTeam()!=null&&c.transferTo(t)) {
+	    				labelSuccess.setText("coach "+c.getId()+" was added to team "+t.getId());
+	    			}
+	    			else {
+	    				alert.setHeaderText("failed to add coach to team.");
+		        		alert.setContentText("unable to add coach to team.");
+		        		alert.show();
+	    			}
 	    		}
 	    	}
 	    	else {
@@ -90,11 +94,7 @@ public class coachToTeamController {
     		}
     	}
     	if(SysData.getInstance().getCoachs().values().size()>0) {
-    		for(Coach c:SysData.getInstance().getCoachs().values()) {
-    			if(c!=null&&c.getCurrentTeam()==null) {
-    				coachList.getItems().add(c);
-    			}
-    		}
+    		coachList.getItems().addAll(SysData.getInstance().getCoachs().values());
     	}
     }
 
