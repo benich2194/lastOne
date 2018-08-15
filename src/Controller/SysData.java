@@ -623,7 +623,16 @@ public class SysData implements Serializable {
 		return false;
 	}// ~ END OF removeSubscription
 //	
-
+	public boolean removeCustomer(Customer c) {
+		if(c==null)
+			return false;
+		if(customers.containsKey(c.getId())) {
+			customers.remove(c.getId());
+			return true;
+		}
+		else
+			return false;
+	}
 	/**
 	 * This method adds a Trophy to the system only if all the parameters are valid
 	 * and the Trophy does not already exist in the system
