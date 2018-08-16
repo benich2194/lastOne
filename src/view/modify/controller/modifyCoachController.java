@@ -89,7 +89,9 @@ public class modifyCoachController {
 	        coachTableView.setItems(list);
 	        MakeEditable();
         }
-    }// End of modifyPlayer Constructor
+        
+
+    }// End of Initialize
         
     private void MakeEditable() throws MissingInputException{
     	// Make changes by double clicking the Cell and pressing enter after editing
@@ -100,11 +102,11 @@ public class modifyCoachController {
 	            TablePosition<Coach, String> pos = event.getTablePosition();
 	 
 	            String newFirstName = event.getNewValue();
-	            if(!newFirstName.isEmpty() && newFirstName!=null) {
-		            int row = pos.getRow();
-		            Coach cc = event.getTableView().getItems().get(row);
-		 
-		            cc.setFirstName(newFirstName);
+	            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("\\sa-zA-Z*")) {
+			            int row = pos.getRow();
+			            Coach cc = event.getTableView().getItems().get(row);
+			 
+			            cc.setFirstName(newFirstName);
 	            } else
 					try {
 						throw new MissingInputException("First name");
@@ -120,7 +122,7 @@ public class modifyCoachController {
 	 
 	            
 	            String newLastName = event.getNewValue();
-	            if(!newLastName.isEmpty() && newLastName!=null) {
+	            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("\\sa-zA-Z*")) {
 		            int row = pos.getRow();
 		            Coach cc = event.getTableView().getItems().get(row);
 		 
@@ -175,16 +177,23 @@ public class modifyCoachController {
 	            TablePosition<Coach, String> pos = event.getTablePosition();
 	 
 	            String newPhoneNumber = event.getNewValue();
+	            try {
+            		Integer phone = Integer.parseInt(newPhoneNumber);
+            	}catch(NumberFormatException e) {
+	        		newPhoneNumber="";
+        		}
+	            
 	            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
 		            int row = pos.getRow();
 		            Coach cc = event.getTableView().getItems().get(row);
 		            String[] newPhoneArray = {newPhoneNumber};
 		            cc.getAddress().setPhoneNumber(newPhoneArray);
-	            } else
+	            } else {
 					try {
 						throw new MissingInputException("Phone number");
 					} catch (MissingInputException e) {
 					}
+	            }
 	        });
 	    	
 	    	// === On Cell edit commit (for Coach's Street column) ===
@@ -202,7 +211,7 @@ public class modifyCoachController {
 	            TablePosition<Coach, String> pos = event.getTablePosition();
 	 
 	            String newStreet = event.getNewValue();
-	            if(!newStreet.isEmpty() && newStreet!=null) {
+	            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
 		            int row = pos.getRow();
 		            Coach cc = event.getTableView().getItems().get(row);
 		 
@@ -228,21 +237,29 @@ public class modifyCoachController {
 	
 	            @Override
 	            public String toString(Integer object) {
-	                return object.toString();
+	            	if(object!=null)
+	            		return object.toString();
+	            	return "";
 	            }
 	
 	            @Override
 	            public Integer fromString(String string) {
-	                return Integer.parseInt(string);
+	            	try {
+	            		return Integer.parseInt(string);
+	            	} catch (NumberFormatException e) {
+	            		return 0;
+	            	}
 	            }
 	
 	        }));
-	    	
+	    
+	      
 	    	coachHouseNum.setOnEditCommit((CellEditEvent<Coach, Integer> event) -> {
 	            TablePosition<Coach, Integer> pos = event.getTablePosition();
-	 
-	            Integer newValue = event.getNewValue();
-	            if(newValue!=null) {
+	            
+	            
+	            Integer newValue = (event.getNewValue());
+	            if(newValue!=null && newValue!=0) {
 		            int row = pos.getRow();
 		            Coach cc = event.getTableView().getItems().get(row);
 		            cc.getAddress().setHouseNumber(newValue);

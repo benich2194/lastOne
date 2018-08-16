@@ -52,6 +52,12 @@ public class modifyMatchController {
     	buttonTime.setVisible(false);
     	datepicker.setVisible(false);
     	timepicker.setVisible(false);
+    	
+    	timepicker.textProperty().addListener((observable, oldValue, newValue) -> {
+	        if (!newValue.matches("\\d*")) {
+	        	timepicker.setText(newValue.replaceAll("[^\\d]", ""));
+	        }
+	    });
     }
     
     @FXML
