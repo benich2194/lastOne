@@ -27,9 +27,6 @@ public class CoachModifController {
     private Button viewCoachButton;
     
     @FXML
-    private Button transferCoachButton;
-    
-    @FXML
     private Button removeFromTeam;
     
    /**
@@ -55,12 +52,6 @@ public class CoachModifController {
     @FXML
     void goToRemoveCoach(ActionEvent event){
     	WindowManager.openWindow(NameToWindow.REMOVE_COACH);
-    }
-    
-
-    @FXML
-    void goToTransferCoach(ActionEvent event){
-    	WindowManager.openWindow(NameToWindow.TRANSFER_CTT);
     }
     
     /**

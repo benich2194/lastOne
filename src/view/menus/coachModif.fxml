@@ -27,8 +27,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewCoachButton" layoutX="233.0" layoutY="407.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="View Coaches" />
-      <Button fx:id="removeFromTeam" layoutX="233.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToRemoveCoachFromTeam" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Dissconnect Coach From Team" />
-      <Button fx:id="transferCoachButton" layoutX="233.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToTransferCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Transfer Coach To Team" />
+      <Button fx:id="viewCoachButton" layoutX="233.0" layoutY="337.0" mnemonicParsing="false" onAction="#goToViewCoach" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="View Coaches" />
+      <Button fx:id="removeFromTeam" layoutX="233.0" layoutY="420.0" mnemonicParsing="false" onAction="#goToRemoveCoachFromTeam" prefHeight="48.0" prefWidth="221.0" stylesheets="@Design.css" text="Dissconnect Coach From Team" />
    </children>
 </AnchorPane>
