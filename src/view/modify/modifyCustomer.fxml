@@ -18,9 +18,9 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="295.0" layoutY="47.0" style="-fx-opacity: 0.7;" text="Modify Customer" textFill="WHITE">
+      <Label layoutX="277.0" layoutY="43.0" style="-fx-opacity: 0.7;" text="Modify Customer" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
       <TableView fx:id="custTableView" editable="true" layoutX="10.0" layoutY="90.0" prefHeight="414.0" prefWidth="677.0" style="-fx-opacity: 0.9;">

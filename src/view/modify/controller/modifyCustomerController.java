@@ -106,7 +106,7 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newFirstName = event.getNewValue();
-            if(!newFirstName.isEmpty() && newFirstName!=null) {
+            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("\\sa-zA-Z*")) {
 	            int row = pos.getRow();
 	            Customer cc = event.getTableView().getItems().get(row);
 	 
@@ -125,7 +125,7 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newLastName = event.getNewValue();
-            if(!newLastName.isEmpty() && newLastName!=null) {
+            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("\\sa-zA-Z*")) {
 	            int row = pos.getRow();
 	            Customer cc = event.getTableView().getItems().get(row);
 	 
@@ -193,6 +193,12 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newPhoneNumber = event.getNewValue();
+            try {
+        		Integer phone = Integer.parseInt(newPhoneNumber);
+        	}catch(NumberFormatException e) {
+        		newPhoneNumber="";
+    		}
+            
             if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
 	            int row = pos.getRow();
 	            Customer cc = event.getTableView().getItems().get(row);
@@ -221,7 +227,7 @@ public class modifyCustomerController {
             TablePosition<Customer, String> pos = event.getTablePosition();
  
             String newStreet = event.getNewValue();
-            if(!newStreet.isEmpty() && newStreet!=null) {
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
 	            int row = pos.getRow();
 	            Customer cc = event.getTableView().getItems().get(row);
 	 
@@ -248,12 +254,18 @@ public class modifyCustomerController {
 
             @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
@@ -262,7 +274,7 @@ public class modifyCustomerController {
             TablePosition<Customer, Integer> pos = event.getTablePosition();
  
             Integer newValue = event.getNewValue();
-            if(newValue!=null) {
+            if(newValue!=null && newValue!=0) {
 	            int row = pos.getRow();
 	            Customer cc = event.getTableView().getItems().get(row);
 	            cc.getAddress().setHouseNumber(newValue);
