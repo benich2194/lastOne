@@ -30,6 +30,8 @@ import utils.E_Levels;
 import utils.E_Position;
 import view.WindowManager;
 import Controller.SysData;
+import Exceptions.MissingInputException;
+import Model.Coach;
 import Model.Player;
 
 public class modifyPlayerController {
@@ -113,13 +115,18 @@ public class modifyPlayerController {
     	playerFN.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
     	playerFN.setOnEditCommit((CellEditEvent<Player, String> event) -> {
             TablePosition<Player, String> pos = event.getTablePosition();
- 
+       	 
             String newFirstName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
- 
-            pl.setFirstName(newFirstName);
+            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("\\sa-zA-Z*")) {
+		            int row = pos.getRow();
+		            Player pp = event.getTableView().getItems().get(row);
+		 
+		            pp.setFirstName(newFirstName);
+            } else
+				try {
+					throw new MissingInputException("First name");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for LastName column) ===
@@ -127,13 +134,19 @@ public class modifyPlayerController {
     	playerLN.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
     	playerLN.setOnEditCommit((CellEditEvent<Player, String> event) -> {
             TablePosition<Player, String> pos = event.getTablePosition();
- 
+       	 
+            
             String newLastName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
- 
-            pl.setLastName(newLastName);
+            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("\\sa-zA-Z*")) {
+	            int row = pos.getRow();
+	            Player pp = event.getTableView().getItems().get(row);
+	 
+	            pp.setLastName(newLastName);
+            } else
+				try {
+					throw new MissingInputException("Last name");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for Value column) ============
@@ -156,11 +169,17 @@ public class modifyPlayerController {
             TablePosition<Player, Long> pos = event.getTablePosition();
  
             Long newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
- 
-            pl.setValue(newValue);
+	        if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Player pl = event.getTableView().getItems().get(row);
+	 
+	            pl.setValue(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
  
         // ==== Player Position (COMBO BOX) ===
@@ -265,12 +284,23 @@ public class modifyPlayerController {
             TablePosition<Player, String> pos = event.getTablePosition();
  
             String newPhoneNumber = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
-            String[] newPhoneArray = {newPhoneNumber};
-            pl.getAddress().setPhoneNumber(newPhoneArray);
+            try {
+        		Integer phone = Integer.parseInt(newPhoneNumber);
+        	}catch(NumberFormatException e) {
+        		newPhoneNumber="";
+    		}
             
+            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
+	            int row = pos.getRow();
+	            Player pp = event.getTableView().getItems().get(row);
+	            String[] newPhoneArray = {newPhoneNumber};
+	            pp.getAddress().setPhoneNumber(newPhoneArray);
+            } else {
+				try {
+					throw new MissingInputException("Phone number");
+				} catch (MissingInputException e) {
+				}
+            }
         });
     	
     	// === On Cell edit commit (for Player's Street column) ===
@@ -286,13 +316,19 @@ public class modifyPlayerController {
     	playerStreet.setCellFactory(TextFieldTableCell.<Player> forTableColumn());
     	playerStreet.setOnEditCommit((CellEditEvent<Player, String> event) -> {
             TablePosition<Player, String> pos = event.getTablePosition();
- 
+       	 
             String newStreet = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
- 
-            pl.getAddress().setStreet(newStreet);
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
+	            int row = pos.getRow();
+	            Player pp = event.getTableView().getItems().get(row);
+	 
+	            pp.getAddress().setStreet(newStreet);
+            }
+            else
+				try {
+					throw new MissingInputException("Street");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for HouseNum column) ============
@@ -309,24 +345,37 @@ public class modifyPlayerController {
 
             @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
     	
     	playerHouseNum.setOnEditCommit((CellEditEvent<Player, Integer> event) -> {
             TablePosition<Player, Integer> pos = event.getTablePosition();
- 
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Player pl = event.getTableView().getItems().get(row);
-            pl.getAddress().setHouseNumber(newValue);
+            
+            
+            Integer newValue = (event.getNewValue());
+            if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Player pp = event.getTableView().getItems().get(row);
+	            pp.getAddress().setHouseNumber(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
         
         // ==== Player City (COMBO BOX) ===
