@@ -2,6 +2,8 @@ package view.modify.controller;
 
 import java.io.IOException;
 import Controller.SysData;
+import Exceptions.MissingInputException;
+import Model.Coach;
 import Model.Stadium;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -83,11 +85,16 @@ public class modifyStadiumController {
             TablePosition<Stadium, String> pos = event.getTablePosition();
  
             String newName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Stadium st = event.getTableView().getItems().get(row);
- 
-            st.setName(newName);
+            if(!newName.isEmpty() && newName!=null && newName.matches("\\sa-zA-Z*")) {
+		            int row = pos.getRow();
+		            Stadium ss = event.getTableView().getItems().get(row);
+		 
+		            ss.setName(newName);
+            } else
+				try {
+					throw new MissingInputException("First name");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for Phone Number column) ===
@@ -104,12 +111,23 @@ public class modifyStadiumController {
             TablePosition<Stadium, String> pos = event.getTablePosition();
  
             String newPhoneNumber = event.getNewValue();
- 
-            int row = pos.getRow();
-            Stadium st = event.getTableView().getItems().get(row);
-            String[] newPhoneArray = {newPhoneNumber};
-            st.getAddress().setPhoneNumber(newPhoneArray);
-            System.out.println("The phone number is " + st.getAddress().getPrimaryNumber());
+            try {
+        		Integer phone = Integer.parseInt(newPhoneNumber);
+        	}catch(NumberFormatException e) {
+        		newPhoneNumber="";
+    		}
+            
+            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
+	            int row = pos.getRow();
+	            Stadium st = event.getTableView().getItems().get(row);
+	            String[] newPhoneArray = {newPhoneNumber};
+	            st.getAddress().setPhoneNumber(newPhoneArray);
+            } else {
+				try {
+					throw new MissingInputException("Phone number");
+				} catch (MissingInputException e) {
+				}
+            }
             
         });
     	
@@ -128,11 +146,17 @@ public class modifyStadiumController {
             TablePosition<Stadium, String> pos = event.getTablePosition();
  
             String newStreet = event.getNewValue();
- 
-            int row = pos.getRow();
-            Stadium st = event.getTableView().getItems().get(row);
- 
-            st.getAddress().setStreet(newStreet);
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
+	            int row = pos.getRow();
+	            Stadium st = event.getTableView().getItems().get(row);
+	 
+	            st.getAddress().setStreet(newStreet);
+            }
+            else
+				try {
+					throw new MissingInputException("Street");
+				} catch (MissingInputException e) {
+				}
         });
     	
 
@@ -142,12 +166,18 @@ public class modifyStadiumController {
 
             @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
@@ -155,12 +185,17 @@ public class modifyStadiumController {
     	stadiumCapacity.setOnEditCommit((CellEditEvent<Stadium, Integer> event) -> {
             TablePosition<Stadium, Integer> pos = event.getTablePosition();
  
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Stadium st = event.getTableView().getItems().get(row);
- 
-            st.setCapacity(newValue);
+            Integer newValue = (event.getNewValue());
+            if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Stadium ss = event.getTableView().getItems().get(row);
+	            ss.getAddress().setHouseNumber(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for HouseNum column) ============
@@ -175,14 +210,19 @@ public class modifyStadiumController {
     	});
     	stadiumHouseNum.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Integer>(){
 
-            @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
@@ -190,12 +230,17 @@ public class modifyStadiumController {
     	stadiumHouseNum.setOnEditCommit((CellEditEvent<Stadium, Integer> event) -> {
             TablePosition<Stadium, Integer> pos = event.getTablePosition();
  
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Stadium st = event.getTableView().getItems().get(row);
- 
-            st.getAddress().setHouseNumber(newValue);
+            Integer newValue = (event.getNewValue());
+            if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Stadium ss = event.getTableView().getItems().get(row);
+	            ss.getAddress().setHouseNumber(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
         
         // ==== Stadium City (COMBO BOX) ===
