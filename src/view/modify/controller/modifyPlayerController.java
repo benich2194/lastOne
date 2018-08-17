@@ -155,14 +155,20 @@ public class modifyPlayerController {
 
             @Override
             public String toString(Long object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Long fromString(String string) {
-                return Long.parseLong(string);
+            	try {
+            		return Long.parseLong(string);
+            	} catch (NumberFormatException e) {
+            		return (long) 0;
+            	}
             }
-
+            
         }));
     	
     	playerVal.setOnEditCommit((CellEditEvent<Player, Long> event) -> {
