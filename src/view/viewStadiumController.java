@@ -93,24 +93,6 @@ public class viewStadiumController {
                 return new SimpleObjectProperty<E_Cities>(ct);
             }
         });
-        
-
-//        TableColumn<Stadium, Set<Team>> thirdCol = new TableColumn<>("Teams");
-//        PropertyValueFactory<Stadium, Set<Team>> thirdColFactory = new PropertyValueFactory<>("teams");
-//        thirdCol.setCellValueFactory(thirdColFactory);
-//
-//        thirdCol.setCellFactory(col -> new TableCell<Stadium, Set<Team>>() {
-//            @Override
-//            public void updateItem(Set<Team> friends, boolean empty) {
-//                super.updateItem(friends, empty);
-//                if (empty) {
-//                    setText(null);
-//                } else {
-//                    setText(friends.stream().map(Team::getName)
-//                        .collect(Collectors.joining(", ")));
-//                }
-//            }
-//        });
   
 
         stadiumTableView.setRowFactory(tv -> {

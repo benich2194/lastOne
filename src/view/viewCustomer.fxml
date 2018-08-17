@@ -27,7 +27,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <TableView fx:id="custTableView" editable="true" layoutX="10.0" layoutY="90.0" prefHeight="362.0" prefWidth="677.0" style="-fx-opacity: 0.8;">
+      <TableView fx:id="custTableView" editable="true" layoutX="10.0" layoutY="90.0" prefHeight="362.0" prefWidth="677.0" style="-fx-opacity: 0.7;">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
@@ -51,6 +51,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ListView fx:id="custSubs" layoutX="21.0" layoutY="500.0" prefHeight="76.0" prefWidth="657.0" style="-fx-opacity: 0.78;" />
+      <ListView fx:id="custSubs" layoutX="21.0" layoutY="500.0" prefHeight="76.0" prefWidth="657.0" style="-fx-opacity: 0.72;" />
    </children>
 </AnchorPane>
