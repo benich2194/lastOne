@@ -92,7 +92,7 @@ public class modifyStadiumController {
 		            ss.setName(newName);
             } else
 				try {
-					throw new MissingInputException("First name");
+					throw new MissingInputException("Stadium's name");
 				} catch (MissingInputException e) {
 				}
         });
@@ -189,11 +189,11 @@ public class modifyStadiumController {
             if(newValue!=null && newValue!=0) {
 	            int row = pos.getRow();
 	            Stadium ss = event.getTableView().getItems().get(row);
-	            ss.getAddress().setHouseNumber(newValue);
+	            ss.setCapacity(newValue);
             }
             else
 				try {
-					throw new MissingInputException("House number");
+					throw new MissingInputException("capacity");
 				} catch (MissingInputException e) {
 				}
         });

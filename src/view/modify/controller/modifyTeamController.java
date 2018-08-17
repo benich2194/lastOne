@@ -2,6 +2,7 @@ package view.modify.controller;
 
 import java.io.IOException;
 import Controller.SysData;
+import Exceptions.MissingInputException;
 import Model.Stadium;
 import Model.Team;
 import javafx.beans.property.SimpleObjectProperty;
@@ -81,11 +82,16 @@ public class modifyTeamController {
             TablePosition<Team, String> pos = event.getTablePosition();
  
             String newName = event.getNewValue();
-            if(newName!=null && !newName.isEmpty()) {
-	            int row = pos.getRow();
-	            Team tm = event.getTableView().getItems().get(row);
-	            tm.setName(newName);
-            }
+            if(!newName.isEmpty() && newName!=null && newName.matches("\\sa-zA-Z*")) {
+		            int row = pos.getRow();
+		            Team tm = event.getTableView().getItems().get(row);
+		 
+		            tm.setName(newName);
+            } else
+				try {
+					throw new MissingInputException("Team's name");
+				} catch (MissingInputException e) {
+				}
         });
     	
 
@@ -95,12 +101,18 @@ public class modifyTeamController {
 
             @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
@@ -108,12 +120,17 @@ public class modifyTeamController {
     	teamValue.setOnEditCommit((CellEditEvent<Team, Integer> event) -> {
             TablePosition<Team, Integer> pos = event.getTablePosition();
  
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Team tm = event.getTableView().getItems().get(row);
- 
-            tm.setValue(newValue);
+            Integer newValue = (event.getNewValue());
+            if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Team tm = event.getTableView().getItems().get(row);
+	            tm.setValue(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("Team's value");
+				} catch (MissingInputException e) {
+				}
         });
  
         // ==== Team Stadium ID (COMBO BOX) ===
