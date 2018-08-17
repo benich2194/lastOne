@@ -3,6 +3,8 @@ package view.modify.controller;
 import java.io.IOException;
 import java.util.Date;
 import Controller.SysData;
+import Exceptions.MissingInputException;
+import Model.Coach;
 import Model.Receptionist;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -91,11 +93,16 @@ public class modifyReceptionistController {
             TablePosition<Receptionist, String> pos = event.getTablePosition();
  
             String newFirstName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Receptionist rr = event.getTableView().getItems().get(row);
- 
-            rr.setFirstName(newFirstName);
+            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("\\sa-zA-Z*")) {
+		            int row = pos.getRow();
+		            Receptionist rr = event.getTableView().getItems().get(row);
+		 
+		            rr.setFirstName(newFirstName);
+            } else
+				try {
+					throw new MissingInputException("First name");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for LastName column) ===
@@ -105,11 +112,16 @@ public class modifyReceptionistController {
             TablePosition<Receptionist, String> pos = event.getTablePosition();
  
             String newLastName = event.getNewValue();
- 
-            int row = pos.getRow();
-            Receptionist cc = event.getTableView().getItems().get(row);
- 
-            cc.setLastName(newLastName);
+            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("\\sa-zA-Z*")) {
+	            int row = pos.getRow();
+	            Receptionist rr = event.getTableView().getItems().get(row);
+	 
+	            rr.setLastName(newLastName);
+            } else
+				try {
+					throw new MissingInputException("Last name");
+				} catch (MissingInputException e) {
+				}
         });
        
     	// === On Cell edit commit (for Phone Number column) ===
@@ -126,11 +138,23 @@ public class modifyReceptionistController {
             TablePosition<Receptionist, String> pos = event.getTablePosition();
  
             String newPhoneNumber = event.getNewValue();
- 
-            int row = pos.getRow();
-            Receptionist cc = event.getTableView().getItems().get(row);
-            String[] newPhoneArray = {newPhoneNumber};
-            cc.getAddress().setPhoneNumber(newPhoneArray);
+            try {
+        		Integer phone = Integer.parseInt(newPhoneNumber);
+        	}catch(NumberFormatException e) {
+        		newPhoneNumber="";
+    		}
+            
+            if(!newPhoneNumber.isEmpty() && newPhoneNumber!=null) {
+	            int row = pos.getRow();
+	            Receptionist rr = event.getTableView().getItems().get(row);
+	            String[] newPhoneArray = {newPhoneNumber};
+	            rr.getAddress().setPhoneNumber(newPhoneArray);
+            } else {
+				try {
+					throw new MissingInputException("Phone number");
+				} catch (MissingInputException e) {
+				}
+            }
             
         });
     	
@@ -149,11 +173,17 @@ public class modifyReceptionistController {
             TablePosition<Receptionist, String> pos = event.getTablePosition();
  
             String newStreet = event.getNewValue();
- 
-            int row = pos.getRow();
-            Receptionist cc = event.getTableView().getItems().get(row);
- 
-            cc.getAddress().setStreet(newStreet);
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
+	            int row = pos.getRow();
+	            Receptionist rr = event.getTableView().getItems().get(row);
+	 
+	            rr.getAddress().setStreet(newStreet);
+            }
+            else
+				try {
+					throw new MissingInputException("Street");
+				} catch (MissingInputException e) {
+				}
         });
     	
     	// === On Cell edit commit (for HouseNum column) ============
@@ -169,12 +199,18 @@ public class modifyReceptionistController {
 
             @Override
             public String toString(Integer object) {
-                return object.toString();
+            	if(object!=null)
+            		return object.toString();
+            	return "";
             }
 
             @Override
             public Integer fromString(String string) {
-                return Integer.parseInt(string);
+            	try {
+            		return Integer.parseInt(string);
+            	} catch (NumberFormatException e) {
+            		return 0;
+            	}
             }
 
         }));
@@ -182,11 +218,17 @@ public class modifyReceptionistController {
     	recepHouseNum.setOnEditCommit((CellEditEvent<Receptionist, Integer> event) -> {
             TablePosition<Receptionist, Integer> pos = event.getTablePosition();
  
-            Integer newValue = event.getNewValue();
- 
-            int row = pos.getRow();
-            Receptionist cc = event.getTableView().getItems().get(row);
-            cc.getAddress().setHouseNumber(newValue);
+            Integer newValue = (event.getNewValue());
+            if(newValue!=null && newValue!=0) {
+	            int row = pos.getRow();
+	            Receptionist rr = event.getTableView().getItems().get(row);
+	            rr.getAddress().setHouseNumber(newValue);
+            }
+            else
+				try {
+					throw new MissingInputException("House number");
+				} catch (MissingInputException e) {
+				}
         });
         
         // ==== Receptionist City (COMBO BOX) ===

@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TableView fx:id="playerTableView" editable="true" layoutX="6.0" layoutY="92.0" prefHeight="421.0" prefWidth="689.0" style="-fx-opacity: 0.9;">
+      <TableView fx:id="playerTableView" editable="true" layoutX="6.0" layoutY="92.0" prefHeight="421.0" prefWidth="689.0" style="-fx-opacity: 0.71;">
         <columns>
           <TableColumn fx:id="playerID" editable="false" prefWidth="77.0" text="ID" />
           <TableColumn fx:id="playerFN" prefWidth="96.0" text="First Name" />
