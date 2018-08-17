@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addCustomer" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.add.controller.addCustomerController">
+<AnchorPane fx:id="addCustomer" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.add.controller.addCustomerController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
@@ -29,7 +34,6 @@
       <DatePicker fx:id="birthDate" layoutX="274.0" layoutY="181.0" promptText="Birth Date" />
       <ComboBox fx:id="levelCustomer" layoutX="273.0" layoutY="215.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's level:" />
       <ComboBox fx:id="cusCity" layoutX="272.0" layoutY="250.0" prefHeight="25.0" prefWidth="174.0" promptText="Customer's city:" />
-      <TextField fx:id="favTeam" alignment="CENTER" layoutX="273.0" layoutY="285.0" prefHeight="25.0" prefWidth="174.0" promptText="Favorite team id" />
       <TextField fx:id="houseNumber" alignment="CENTER" layoutX="274.0" layoutY="318.0" prefHeight="25.0" prefWidth="174.0" promptText="House Number" />
       <TextField fx:id="cusStreet" alignment="CENTER" layoutX="273.0" layoutY="351.0" prefHeight="25.0" prefWidth="174.0" promptText="street" />
       <TextField fx:id="cusPhone" alignment="CENTER" layoutX="274.0" layoutY="388.0" prefHeight="25.0" prefWidth="174.0" promptText="Phone Number" />
@@ -42,5 +46,6 @@
          </font>
       </Label>
       <Button fx:id="clearButton" layoutX="400.0" layoutY="540.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
+      <ComboBox fx:id="favTeam" layoutX="272.0" layoutY="285.0" prefHeight="26.0" prefWidth="174.0" promptText="Favorite Team:" />
    </children>
 </AnchorPane>

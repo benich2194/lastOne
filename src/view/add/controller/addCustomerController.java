@@ -12,6 +12,7 @@ import Exceptions.MissingInputException;
 import Exceptions.ObjectNotExistException;
 import Exceptions.PasswordTooShortException;
 import Model.Address;
+import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -67,7 +68,7 @@ public class addCustomerController {
 	    private Button addButton;
 
 	    @FXML
-	    private TextField favTeam;
+	    private ComboBox<Team> favTeam;
 
 	    @FXML
 	    private TextField cusMail;
@@ -125,15 +126,15 @@ public class addCustomerController {
 		    	if(houseNumber.getText().isEmpty()) {
 		    		throw new MissingInputException("house number");
 		    	}
-		    	if(favTeam.getText().isEmpty()) {
-		    		throw new MissingInputException("favorite team id");
+		    	if(favTeam.getSelectionModel().getSelectedItem()==null) {
+		    		throw new ListNotSelectedException();
 		    	}
 		    	Integer houseNum=Integer.parseInt(houseNumber.getText());
 		    	if(cusCity.getSelectionModel().getSelectedItem()==null) {
 		    		throw new ListNotSelectedException();
 		    	}
 		    	if(cusMail.getText().isEmpty()) {
-		    		throw new MissingInputException("email");
+		    		throw new MissingInputException("Email");
 		    	}
 		    	Address ad=new Address(cusCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 		    	URL mail;
@@ -146,7 +147,7 @@ public class addCustomerController {
 		    		throw new MissingInputException("birth date");
 		    	}
 		    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
-		    	Integer fav=Integer.parseInt(favTeam.getText());
+		    	Integer fav= favTeam.getSelectionModel().getSelectedItem().getId();
 		    	if(!SysData.getInstance().getTeams().containsKey(fav)) {
 		    		throw new ObjectNotExistException("team does not exist");
 		    	}
@@ -170,9 +171,9 @@ public class addCustomerController {
 			    		firstName.setText("");
 			    		lastName.setText("");
 			    		houseNumber.setText("");
-			    		favTeam.setText("");
 			    		cusPhone.setText("");
 			    		levelCustomer.valueProperty().set(null);
+			    		favTeam.valueProperty().set(null);
 			    	}
 			    	else {
 			    		alert.setHeaderText("Unable to added Customer.");
@@ -196,41 +197,46 @@ public class addCustomerController {
 	    	
 	    }
 	    /**
-	     * initializes city list and level list, defines text fields to be number only or letter only
+	     * Initializes city list, favorite Teams list & level list, defines text fields to be number only or letter only
 	     */
 	    public void initialize() {
 	  		cusCity.getItems().addAll(E_Cities.values());
+	  		
 	  		levelCustomer.getItems().addAll(E_Levels.values());
+	  		
+	  		if(!SysData.getInstance().getTeams().values().isEmpty())
+	  			favTeam.getItems().addAll(SysData.getInstance().getTeams().values());
+	  		
 	  		 cusId.textProperty().addListener((observable, oldValue, newValue) -> {
 			        if (!newValue.matches("\\d*")) {
 			        	cusId.setText(newValue.replaceAll("[^\\d]", ""));
 			        }
 			    });
+	  		 
 	  		cusPhone.textProperty().addListener((observable, oldValue, newValue) -> {
 		        if (!newValue.matches("\\d*")) {
 		        	cusPhone.setText(newValue.replaceAll("[^\\d]", ""));
 		        }
 		    });
+	  		
 	  		houseNumber.textProperty().addListener((observable, oldValue, newValue) -> {
 		        if (!newValue.matches("\\d*")) {
 		        	houseNumber.setText(newValue.replaceAll("[^\\d]", ""));
 		        }
 		    });
-	  		favTeam.textProperty().addListener((observable, oldValue, newValue) -> {
-		        if (!newValue.matches("\\d*")) {
-		        	favTeam.setText(newValue.replaceAll("[^\\d]", ""));
-		        }
-		    });
+
 	  		 firstName.textProperty().addListener((observable, oldValue, newValue) -> {
 			        if (!newValue.matches("\\sa-zA-Z*")) {
 			        	firstName.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
 			        }
 			    });
+	  		 
 	  		 lastName.textProperty().addListener((observable, oldValue, newValue) -> {
 			        if (!newValue.matches("\\sa-zA-Z*")) {
 			        	lastName.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
 			        }
 			    });
+	  		 
 	  		cusStreet.textProperty().addListener((observable, oldValue, newValue) -> {
 		        if (!newValue.matches("\\sa-zA-Z*")) {
 		        	cusStreet.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
@@ -253,6 +259,7 @@ public class addCustomerController {
     @FXML
     void clearForm(ActionEvent event) {
     	cusCity.valueProperty().set(null);
+    	favTeam.valueProperty().set(null);
 		birthDate.valueProperty().set(null);
 		cusPassword.setText("");
 		cusId.setText("");
@@ -261,7 +268,6 @@ public class addCustomerController {
 		firstName.setText("");
 		lastName.setText("");
 		houseNumber.setText("");
-		favTeam.setText("");
 		cusPhone.setText("");
 		levelCustomer.valueProperty().set(null);
 		labelSuccess.setText("");
