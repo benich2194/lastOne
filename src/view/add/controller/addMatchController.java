@@ -1,7 +1,16 @@
 package view.add.controller;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.PrimitiveIterator.OfDouble;
+
 import Controller.SysData;
+import Exceptions.IdExistsException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
 import Exceptions.ObjectExistsException;
@@ -19,7 +28,9 @@ import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
 
 public class addMatchController {
-
+	/**
+	 * fx fields
+	 */
     @FXML
     private AnchorPane addMatch;
 
@@ -48,13 +59,18 @@ public class addMatchController {
     private Button addButton;
 
     @FXML
-    private DatePicker matchDate;
-    
-    @FXML
     private Button clearButton;
     
     @FXML
     private Label labelSuccess;
+    
+    @FXML
+    private ComboBox<Integer> hourList;
+
+    @FXML
+    private ComboBox<Integer> minuteList;
+    @FXML
+    private DatePicker matchDate;
 
     /**
      * adds match to database
@@ -62,28 +78,44 @@ public class addMatchController {
      * @throws MissingInputException
      * @throws ListNotSelectedException
      * @throws ObjectExistsException
+     * @throws IdExistsException 
      */
     @FXML
-    void addMatch(ActionEvent event) throws MissingInputException, ListNotSelectedException, ObjectExistsException{
+    void addMatch(ActionEvent event) throws MissingInputException, ListNotSelectedException, ObjectExistsException, IdExistsException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Match");
 		alert.setHeaderText("");
+		int flag=0;
 		try {
-			//ID is size of the map + 1, if exists, it will keep adding 1
-	    	Integer id = SysData.getInstance().getMatchs().size()+1;
-	    	while(SysData.getInstance().getMatchs().containsKey(id))
-	    		id++;
+			if(matchId.getText().isEmpty()) {
+				throw new MissingInputException("match id");
+			}
+			Integer id=Integer.parseInt(matchId.getText());
+			if(SysData.getInstance().getMatchs().containsKey(id)) {
+				throw new IdExistsException("match already exists");
+			}
 	    	if(Extra.getText().isEmpty()) {
 	    		throw new MissingInputException("extra time");
 	    	}
 	    	Integer extra=Integer.parseInt(Extra.getText());
-	    	java.sql.Date date = null;
-	    	if(matchDate!=null) {
-	    		date=java.sql.Date.valueOf(matchDate.getValue());
-	    	}
-	    	else {
+	    	if(matchDate==null) {
 	    		throw new MissingInputException("date of match");
+
 	    	}
+	    	
+	    	
+    		if(minuteList.getSelectionModel().getSelectedItem()==null) {
+    			throw new ListNotSelectedException("Choose minute");
+    		}
+    		if(hourList.getSelectionModel().getSelectedItem()==null) {
+    			throw new ListNotSelectedException("Choose hour");
+    		}
+    		Integer minute=minuteList.getSelectionModel().getSelectedItem();
+    		Integer hour=hourList.getSelectionModel().getSelectedItem();
+    		LocalDate date=matchDate.getValue();
+    		LocalTime lt=LocalTime.of(hour, minute);
+    		Instant instant = lt.atDate(LocalDate.of(date.getYear(),date.getMonth(), date.getDayOfMonth())).atZone(ZoneId.systemDefault()).toInstant();
+			Date time = Date.from(instant);
 	    	if(SysData.getInstance().getMatchs().containsKey(id)) {
 	    		throw new ObjectExistsException("match");
 	    	}
@@ -96,8 +128,8 @@ public class addMatchController {
 	    		}
 	    		if(awayS.getText().isEmpty()) {
 	    			throw new MissingInputException("away score");
-	    		}
-	    		SysData.getInstance().addMatch(id, date, extra, Home.getSelectionModel().getSelectedItem().getId(), Away.getSelectionModel().getSelectedItem().getId(), Integer.parseInt(homeS.getText()), Integer.parseInt(awayS.getText()));
+	    		}	    		
+	    		SysData.getInstance().addMatch(id, time, extra, Home.getSelectionModel().getSelectedItem().getId(), Away.getSelectionModel().getSelectedItem().getId(), Integer.parseInt(homeS.getText()), Integer.parseInt(awayS.getText()));
 		    	if(SysData.getInstance().getMatchs().containsKey(id)) {
 		    		labelSuccess.setText("Match "+matchId.getText()+" added succesfully!");
 		    		matchDate.valueProperty().set(null);
@@ -107,12 +139,27 @@ public class addMatchController {
 		    		awayS.setText("");
 		    		Extra.setText("");
 		    		Home.valueProperty().set(null);
+		    		minuteList.getItems().removeAll(minuteList.getItems());
+		    		hourList.getItems().removeAll(hourList.getItems());
+		    		for(int i=0;i<61;i++) {
+		        		minuteList.getItems().add(i);
+		        	}
+		        	for(int i=0;i<24;i++) {
+		        		hourList.getItems().add(i);
+		        	}
 		    		
 		    	}
 		    	else {
 		    		alert.setHeaderText("Unable to add Match.");
-		    		alert.setContentText("Match wasn't added.");
-		    		alert.show();
+		    		if(flag==1) {
+		    			alert.setContentText("Match wasn't added. the teams are the same");
+		    			alert.show();
+		    		}
+		    		else {
+		    			alert.setContentText("cannot add match, overlaps with a different match");
+		    			alert.show();
+		    		}
+		    		
 		    	}
 	    	}
 		}catch(MissingInputException e) {
@@ -120,6 +167,8 @@ public class addMatchController {
 		}catch(ListNotSelectedException e) {
 			
 		}catch(ObjectExistsException e) {
+			
+		}catch(IdExistsException e) {
 			
 		}
     }
@@ -141,15 +190,16 @@ public class addMatchController {
     	if(SysData.getInstance().getTeams().values().size()>0) {
     		Away.getItems().addAll(SysData.getInstance().getTeams().values());
     	}
-    	matchId.setEditable(false);
-    	matchId.setDisable(true);
-    	Integer idCurrent = SysData.getInstance().getMatchs().size()+1;
-    	while(SysData.getInstance().getMatchs().containsKey(idCurrent))
-    		idCurrent++;
-    	matchId.setText(idCurrent.toString());
+    	matchId.setEditable(true);
+    	matchId.setDisable(false);
     	Extra.textProperty().addListener((observable, oldValue, newValue) -> {
 	        if (!newValue.matches("\\d*")) {
 	        	Extra.setText(newValue.replaceAll("[^\\d]", ""));
+	        }
+	    });
+    	matchId.textProperty().addListener((observable, oldValue, newValue) -> {
+	        if (!newValue.matches("\\d*")) {
+	        	matchId.setText(newValue.replaceAll("[^\\d]", ""));
 	        }
 	    });
     	homeS.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -162,6 +212,12 @@ public class addMatchController {
 	        	awayS.setText(newValue.replaceAll("[^\\d]", ""));
 	        }
 	    });
+    	for(int i=0;i<60;i++) {
+    		minuteList.getItems().add(i);
+    	}
+    	for(int i=0;i<24;i++) {
+    		hourList.getItems().add(i);
+    	}
     }
     /**
      * clears form
@@ -177,5 +233,13 @@ public class addMatchController {
 		Extra.setText("");
 		Home.valueProperty().set(null);
 		labelSuccess.setText("");
+		minuteList.getItems().removeAll(minuteList.getItems());
+		hourList.getItems().removeAll(hourList.getItems());
+		for(int i=0;i<60;i++) {
+    		minuteList.getItems().add(i);
+    	}
+    	for(int i=0;i<24;i++) {
+    		hourList.getItems().add(i);
+    	}
     }
 }

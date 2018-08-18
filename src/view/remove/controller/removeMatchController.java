@@ -58,6 +58,11 @@ public class removeMatchController {
         			c.removeMatch(m);
         		}
         	}
+        	for(Stadium s:SysData.getInstance().getStadiums().values()) {//remove match from stadiums
+        		if(s!=null) {
+        			s.removeMatch(m);
+        		}
+        	}
         	Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Remove Match");
     		alert.setHeaderText("");
@@ -87,7 +92,6 @@ public class removeMatchController {
 		if(SysData.getInstance().getMatchs().size()>0) {
 			matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
 		}
-		
 }
 
 }

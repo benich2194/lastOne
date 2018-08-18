@@ -19,12 +19,12 @@
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
       <TextField fx:id="matchId" alignment="CENTER" layoutX="265.0" layoutY="70.0" prefHeight="25.0" prefWidth="181.0" promptText="Match ID" />
-      <DatePicker layoutX="264.0" layoutY="106.0" prefHeight="25.0" prefWidth="181.0" promptText="Match Date" />
-      <TextField fx:id="Extra" alignment="CENTER" layoutX="263.0" layoutY="149.0" prefHeight="25.0" prefWidth="181.0" promptText="Extra Time" />
-      <ComboBox fx:id="Home" layoutX="263.0" layoutY="190.0" prefHeight="25.0" prefWidth="181.0" promptText="Home Team:" />
-      <ComboBox fx:id="Away" layoutX="264.0" layoutY="233.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Team:" />
-      <TextField fx:id="homeS" alignment="CENTER" layoutX="262.0" layoutY="275.0" prefHeight="25.0" prefWidth="181.0" promptText="Home Score" />
-      <TextField fx:id="awayS" alignment="CENTER" layoutX="262.0" layoutY="315.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Score" />
+      <DatePicker fx:id="matchDate" layoutX="264.0" layoutY="106.0" prefHeight="25.0" prefWidth="181.0" promptText="Match Date" />
+      <TextField fx:id="Extra" alignment="CENTER" layoutX="260.0" layoutY="176.0" prefHeight="25.0" prefWidth="181.0" promptText="Extra Time" />
+      <ComboBox fx:id="Home" layoutX="260.0" layoutY="217.0" prefHeight="25.0" prefWidth="181.0" promptText="Home Team:" />
+      <ComboBox fx:id="Away" layoutX="261.0" layoutY="260.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Team:" />
+      <TextField fx:id="homeS" alignment="CENTER" layoutX="259.0" layoutY="302.0" prefHeight="25.0" prefWidth="181.0" promptText="Home Score" />
+      <TextField fx:id="awayS" alignment="CENTER" layoutX="259.0" layoutY="342.0" prefHeight="25.0" prefWidth="181.0" promptText="Away Score" />
       <Button fx:id="addButton" layoutX="142.0" layoutY="437.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="40.0" prefWidth="173.0" text="Add Match" />
       <Label layoutX="290.0" layoutY="24.0" prefHeight="31.0" prefWidth="167.0" text="Add Match" textFill="WHITE">
          <font>
@@ -37,5 +37,13 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <ComboBox fx:id="hourList" layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="41.0" />
+      <ComboBox fx:id="minuteList" layoutX="381.0" layoutY="141.0" prefHeight="25.0" prefWidth="33.0" />
+      <Label layoutX="368.0" layoutY="143.0" prefHeight="17.0" prefWidth="7.0" text=":">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="265.0" layoutY="141.0" prefHeight="25.0" prefWidth="34.0" text="Time:" />
    </children>
 </AnchorPane>
