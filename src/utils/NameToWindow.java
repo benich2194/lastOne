@@ -78,7 +78,7 @@ public enum NameToWindow {
 	CUSTOMER_LOGIN("menus/matchMenu"),
 	RECEPTIONIST_LOGIN("menus/playerMenu"),
 	
-	/*------------RECEPTIONIST LOGIN SCREEN-------------------------------------------*/
+	/*------------RECEPTIONIST LOGIN SCREEN--------------------------------------*/
 
 	RECEP_CUSTOMATCH("recep/receptionistAddCustomerToMatch"),
 	RECEP_MODIFSUB("recep/modifySubscription"),
@@ -93,6 +93,12 @@ public enum NameToWindow {
 	COACH_REPLACEPL("coach/coachReplacePlayers"),
 	COACH_VIEWPL("coach/coachViewPlayers"),
 	COACH_ADDPLTOTEAM("coach/coachAddPlayerToTeam"),
+	
+	/*------------CUSTOMER LOGIN SCREEN-----------------------------------------*/
+
+	CUSTOMER_ADDSUB("customer/customerAddSubscription"),
+	CUSTOMER_JOINMATCH("customer/customerJoinMatch"),
+	CUSTOMER_VIEWSUB("customer/customerViewSubscriptions"),
 	
 	/*------------QUERIES-------------------------------------------------*/
 	QUERY_GETMAC("queries/getMAC"),

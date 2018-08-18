@@ -14,7 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="addSub" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customerAddSubscriptionController">
+<AnchorPane fx:id="addSub" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.controller.customerAddSubscriptionController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="705.0" style="-fx-opacity: 0.2;">
          <image>

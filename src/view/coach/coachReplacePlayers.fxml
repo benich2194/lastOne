@@ -20,20 +20,20 @@
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="playerList" blendMode="SCREEN" layoutX="11.0" layoutY="98.0" prefHeight="368.0" prefWidth="335.0" style="-fx-opacity: 0.75;" />
+      <ListView fx:id="playerList" layoutX="11.0" layoutY="98.0" prefHeight="368.0" prefWidth="335.0" style="-fx-opacity: 0.75;" />
       <ListView fx:id="firstTeamList" layoutX="359.0" layoutY="98.0" prefHeight="368.0" prefWidth="326.0" style="-fx-opacity: 0.75;" />
       <Button fx:id="replaceButton" layoutX="317.0" layoutY="503.0" mnemonicParsing="false" onAction="#replacePlayers" prefHeight="41.0" prefWidth="84.0" text="Replace" />
-      <Label layoutX="99.0" layoutY="16.0" prefHeight="41.0" prefWidth="525.0" style="-fx-opacity: 0.9;" text="Replace Bench player and First team player" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="106.0" layoutY="16.0" prefHeight="41.0" prefWidth="525.0" style="-fx-opacity: 0.9;" text="Replace Bench Player &amp; First Team Player" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="buttonBP" layoutX="99.0" layoutY="57.0" prefHeight="41.0" prefWidth="147.0" style="-fx-opacity: 0.79;" text="Bench Players" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="buttonBP" layoutX="99.0" layoutY="57.0" prefHeight="41.0" prefWidth="147.0" style="-fx-opacity: 0.70;" text="Bench Players" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="buttonFP" layoutX="445.0" layoutY="57.0" prefHeight="41.0" prefWidth="147.0" style="-fx-opacity: 0.79;" text="First Players" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="buttonFP" layoutX="445.0" layoutY="57.0" prefHeight="41.0" prefWidth="147.0" style="-fx-opacity: 0.70;" text="First Players" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

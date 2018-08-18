@@ -1,4 +1,4 @@
-package view;
+package view.customer.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;

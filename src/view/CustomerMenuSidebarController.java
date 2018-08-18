@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
+import utils.NameToWindow;
 
 public class CustomerMenuSidebarController implements Initializable{
 
@@ -19,7 +20,7 @@ public class CustomerMenuSidebarController implements Initializable{
 		
 	}
 	
-    public void loadUI(String ui)
+    public void loadUI(NameToWindow ui)
     {
     	WindowManager.openWindow(ui);
     }
@@ -29,17 +30,17 @@ public class CustomerMenuSidebarController implements Initializable{
 	}
     @FXML
     void goToAddSubscription(ActionEvent event) {
-    	loadUI("customerAddSubscription");
+    	loadUI(NameToWindow.CUSTOMER_ADDSUB);
     }
 
     @FXML
     void goToJoinMatch(ActionEvent event) {
-    	loadUI("customerJoinMatch");
+    	loadUI(NameToWindow.CUSTOMER_JOINMATCH);
     }
 
     @FXML
     void goToViewSubscriptions(ActionEvent event) {
-    	loadUI("customerViewSubscriptions");
+    	loadUI(NameToWindow.CUSTOMER_VIEWSUB);
     }
 
 }
