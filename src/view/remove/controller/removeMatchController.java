@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -31,6 +32,8 @@ public class removeMatchController {
 
     @FXML
     private Button removeButton;
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button is pressed
@@ -68,9 +71,7 @@ public class removeMatchController {
     		alert.setHeaderText("");
         	SysData.getInstance().getMatchs().remove(m.getId());
         	if(SysData.getInstance().getMatchs().containsKey(m.getId())) {
-        		alert.setHeaderText("Match wasn't removed");
-        		alert.setContentText("Match wasn't removed successfully.");
-        		alert.show();
+        		labelSuccess.setText("match "+m.getId()+"was removed succesfully!");
         	}
         	else {
         		alert.setHeaderText("Match removed");
