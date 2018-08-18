@@ -28,6 +28,9 @@ public class playerMenuController {
 
     @FXML
     private Button viewPlayer;
+    
+    @FXML
+    private Button sortFTPButton;
 
     @FXML
     void goToAddPlayer(ActionEvent event) throws IOException {
@@ -50,6 +53,12 @@ public class playerMenuController {
     @FXML
     void goToViewPlayers(ActionEvent event) {
     	WindowManager.openWindow("viewPlayer");
+    }
+    
+
+    @FXML
+    void goToSortFirstTeamPlayers(ActionEvent event) {
+    	WindowManager.openWindow(NameToWindow.SORT_FTPADMIN);
     }
     
     @FXML

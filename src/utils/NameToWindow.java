@@ -49,6 +49,9 @@ public enum NameToWindow {
 	MENU_CONNECTION("menus/connectionMenu"),
 	QUERIES("menus/queries"),
 	
+	/*------------BONUS-------------------------------------------------*/
+	SORT_FTPADMIN("bonus/sortFirstPlayers"),
+	
 	/*------------MAIN LOGIN SCREENS-------------------------------------------*/
 	
 	//NOT DONE YET

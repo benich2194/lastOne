@@ -43,7 +43,7 @@ public class modifySubscriptionController {
 
     
     /**
-     * initializes trophy list
+     * initializes subscription list
      */
     public void initialize() {
     	subList.getItems().clear();
