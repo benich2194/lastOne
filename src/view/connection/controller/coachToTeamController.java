@@ -1,4 +1,4 @@
-package view;
+package view.connection.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class coachToTeamController {
 	/**

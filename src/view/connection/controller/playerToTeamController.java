@@ -1,4 +1,4 @@
-package view;
+package view.connection.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
@@ -8,11 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class playerToTeamController {
 	/**

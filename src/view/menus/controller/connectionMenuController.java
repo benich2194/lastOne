@@ -38,12 +38,12 @@ public class connectionMenuController {
 
     @FXML
     void addCoachToTeam(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("coachToTeam");
+    	WindowManager.openWindow(NameToWindow.CONNECT_COACHTOTEAM);
     }
 
     @FXML
     void addCustomerToMatch(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("cusToMatch");
+    	WindowManager.openWindow(NameToWindow.CONNECT_CUSTOMERTOMATCH);
     }
 
     @FXML
@@ -53,22 +53,22 @@ public class connectionMenuController {
 
     @FXML
     void addPlayerToFirstTeamPlayers(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("playerToFirstTeam");
+    	WindowManager.openWindow(NameToWindow.CONNECT_PLAYERTOFIRSTT);
     }
 
     @FXML
     void addPlayerToTeam(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("playerToTeam");
+    	WindowManager.openWindow(NameToWindow.CONNECT_PLAYERTOTEAM);
     }
 
     @FXML
     void addReceptionistToStadium(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("recepToStadium");
+    	WindowManager.openWindow(NameToWindow.CONNECT_RECEPTOSTADIUM);
     }
 
     @FXML
     void addSubscriptionToCustomer(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("SubToCustomer");
+    	WindowManager.openWindow(NameToWindow.CONNECT_SUBTOCUSTOMER);
     }
 
 }

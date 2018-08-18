@@ -46,6 +46,14 @@ public enum NameToWindow {
 	VIEW_SUB("view/viewAllSubscriptions"),
 	VIEW_COACH("view/viewCoach"),
 	
+	/*------------CONNECT-------------------------------------------------*/
+	CONNECT_COACHTOTEAM("connection/coachToTeam"),
+	CONNECT_CUSTOMERTOMATCH("connection/cusToMatch"),
+	CONNECT_PLAYERTOFIRSTT("connection/playerToFirstTeam"),
+	CONNECT_PLAYERTOTEAM("connection/playerToTeam"),
+	CONNECT_RECEPTOSTADIUM("connection/recepToStadium"),
+	CONNECT_SUBTOCUSTOMER("connection/SubToCustomer"),
+	
 	/*------------MENUS-------------------------------------------------*/
 	MENU_TEAM("menus/teamMenu"),
 	MENU_CUSTOMER("menus/customerMenuAdmin"),
