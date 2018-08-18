@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -44,12 +45,21 @@ public class SubToCustomerController {
     
     @FXML
     private DatePicker startDate;
+    
+    @FXML
+    private Label labelSuccess;
+
+    @FXML
+    private Button clearButton;
 
     @FXML
     void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
+		Customer c=customerList.getSelectionModel().getSelectedItem();
+		Receptionist r=recepList.getSelectionModel().getSelectedItem();
+		E_Periods p=periodList.getSelectionModel().getSelectedItem();
 		try {
 			if(subId.getText().isEmpty()) {
 				throw new MissingInputException("Subscription ID");
@@ -59,13 +69,29 @@ public class SubToCustomerController {
 	    		throw new MissingInputException("start date");
 	    	}
 	    	java.sql.Date work=java.sql.Date.valueOf(startDate.getValue());
-	    	if(customerList.getSelectionModel().getSelectedItem()==null||periodList.getSelectionModel().getSelectedItem()==null||recepList.getSelectionModel().getSelectedItem()==null) {
-	    		throw new ListNotSelectedException();
+	    	if(c==null) {
+	    		throw new ListNotSelectedException("Choose from customer list");
 	    	}
-	    		if(SysData.getInstance().addSubscriptionToCustomer(id, customerList.getSelectionModel().getSelectedItem().getId(), recepList.getSelectionModel().getSelectedItem().getId(), periodList.getSelectionModel().getSelectedItem(), work)) {
-	    			alert.setHeaderText("Added Subscription to Customer.");
-	        		alert.setContentText("Subscription was added to Customer successfully.");
-	        		alert.show();
+	    	if(r==null) {
+	    		throw new ListNotSelectedException("Choose from receptionist list");
+	    	}
+	    	if(p==null) {
+	    		throw new ListNotSelectedException("Choose from period list");
+	    	}
+	    		if(SysData.getInstance().addSubscriptionToCustomer(id, c.getId(),r.getId(), p, work)) {
+	    			labelSuccess.setText("Subscription "+id+" was added succesfully to customer "+c.getId());
+	    			startDate.valueProperty().set(null);
+	    			subId.setText("");
+	    			recepList.getItems().removeAll(recepList.getItems());
+	    			customerList.getItems().removeAll(customerList.getItems());
+	    			if(SysData.getInstance().getCustomers().values().size()>0) {
+	    	    		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
+	    	    	}
+	    			if(SysData.getInstance().getReceptionists().values().size()>0) {
+	    	    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+	    	    	}
+	    			periodList.getItems().removeAll(periodList.getItems());
+	    			periodList.getItems().addAll(E_Periods.values());
 	    		}
 	    		else {
 	    			alert.setHeaderText("failed to add Subscription to Customer.");
@@ -98,6 +124,22 @@ public class SubToCustomerController {
     		if(SysData.getInstance().getCustomers().values().size()>0) {
         		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
         	}
+    }
+    @FXML
+    void clearForm(ActionEvent event) {
+		startDate.valueProperty().set(null);
+		subId.setText("");
+		labelSuccess.setText("");
+		recepList.getItems().removeAll(recepList.getItems());
+		customerList.getItems().removeAll(customerList.getItems());
+		if(SysData.getInstance().getCustomers().values().size()>0) {
+    		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
+    	}
+		if(SysData.getInstance().getReceptionists().values().size()>0) {
+    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+    	}
+		periodList.getItems().removeAll(periodList.getItems());
+		periodList.getItems().addAll(E_Periods.values());
     }
 
 }
