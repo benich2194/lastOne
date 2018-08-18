@@ -60,7 +60,7 @@ public class CoachModifController {
      */
     @FXML
     void goToViewCoach(ActionEvent event) {
-    	WindowManager.openWindow("viewCoach");
+    	WindowManager.openWindow(NameToWindow.VIEW_COACH);
     }
     
     @FXML

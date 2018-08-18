@@ -1,4 +1,4 @@
-package view;
+package view.view.controller;
 
 import java.net.URL;
 import java.util.Date;
@@ -25,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import utils.E_Cities;
 import utils.E_Levels;
+import view.WindowManager;
 
 public class viewCustomerController {
 

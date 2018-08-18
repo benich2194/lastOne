@@ -52,7 +52,7 @@ public class playerMenuController {
     
     @FXML
     void goToViewPlayers(ActionEvent event) {
-    	WindowManager.openWindow("viewPlayer");
+    	WindowManager.openWindow(NameToWindow.VIEW_PLAYER);
     }
     
 

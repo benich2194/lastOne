@@ -39,7 +39,7 @@ public class subscriptionMenuController {
     
     @FXML
     void goToViewSub(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("viewAllSubscriptions");
+    	WindowManager.openWindow(NameToWindow.VIEW_SUB);
     }
 
     @FXML

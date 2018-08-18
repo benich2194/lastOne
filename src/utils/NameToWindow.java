@@ -36,6 +36,16 @@ public enum NameToWindow {
 	REMOVE_SUB("remove/removeSub"),
 	REMOVE_COACH("remove/removeCoach"),
 	
+	/*------------VIEW-------------------------------------------------*/
+	VIEW_TEAM("view/viewTeams"),
+	VIEW_CUSTOMER("view/viewCustomer"),
+	VIEW_PLAYER("view/viewPlayer"),
+	VIEW_RECEPTIONIST("view/viewReceptionist"),
+	VIEW_STADIUM("view/viewStadium"),
+	VIEW_TROPHY("view/viewTrophies"),
+	VIEW_SUB("view/viewAllSubscriptions"),
+	VIEW_COACH("view/viewCoach"),
+	
 	/*------------MENUS-------------------------------------------------*/
 	MENU_TEAM("menus/teamMenu"),
 	MENU_CUSTOMER("menus/customerMenuAdmin"),

@@ -42,7 +42,7 @@ public class teamMenuController {
     }
     @FXML
     void goToViewTeams(ActionEvent event) {
-    	WindowManager.openWindow("viewTeams");
+    	WindowManager.openWindow(NameToWindow.VIEW_TEAM);
     }
 
 }

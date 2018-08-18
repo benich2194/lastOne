@@ -12,7 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="modifyPlayer" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.viewAllSubsController">
+<AnchorPane fx:id="modifyTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.view.controller.viewTrophiesController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
@@ -20,11 +20,11 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="229.0" layoutY="36.0" prefHeight="28.0" prefWidth="266.0" style="-fx-opacity: 0.8;" text="View All Subscriptions" textFill="WHITE">
+      <Label layoutX="281.0" layoutY="37.0" style="-fx-opacity: 0.8;" text="View Trophies" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <ListView fx:id="subListView" layoutX="31.0" layoutY="87.0" prefHeight="437.0" prefWidth="636.0" style="-fx-opacity: 0.71;" />
+      <ListView fx:id="listTrophies" layoutX="53.0" layoutY="87.0" prefHeight="398.0" prefWidth="599.0" style="-fx-opacity: 0.71;" />
    </children>
 </AnchorPane>

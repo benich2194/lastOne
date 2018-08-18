@@ -1,7 +1,5 @@
 package view.menus.controller;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,7 +48,7 @@ public class receptionistMenuAdminController {
      */
     @FXML
     void goToViewRecep(ActionEvent event) {
-    	WindowManager.openWindow("viewReceptionist");
+    	WindowManager.openWindow(NameToWindow.VIEW_RECEPTIONIST);
     }
     /**
      * opens remove receptionist

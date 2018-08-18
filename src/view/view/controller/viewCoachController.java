@@ -1,11 +1,8 @@
-package view;
+package view.view.controller;
 
 import java.util.Date;
 import Controller.SysData;
 import Model.Coach;
-import Model.Match;
-import Model.Receptionist;
-import Model.Stadium;
 import Model.Team;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -25,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import utils.E_Cities;
 import utils.E_Levels;
+import view.WindowManager;
 
 public class viewCoachController {
 	/**

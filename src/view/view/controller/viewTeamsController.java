@@ -1,4 +1,4 @@
-package view;
+package view.view.controller;
 
 import Controller.SysData;
 import Model.Match;
@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class viewTeamsController {
 
@@ -28,7 +29,7 @@ public class viewTeamsController {
     private ListView<Player> teamPlayersList;
     
     @FXML
-    private ListView<Match> teamMatches;
+    private ListView<Match> teamsMatches;
 
 	
     public void initialize() {
@@ -54,7 +55,7 @@ public class viewTeamsController {
         	teamPlayersList.setItems(teamplayers);
         
         if(!matchestm.isEmpty())
-        	teamMatches.setItems(matchestm);
+        	teamsMatches.setItems(matchestm);
     }
     
     @FXML

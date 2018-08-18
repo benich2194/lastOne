@@ -1,4 +1,4 @@
-package view;
+package view.view.controller;
 
 import java.io.IOException;
 import Controller.SysData;
@@ -23,6 +23,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import utils.E_Cities;
+import view.WindowManager;
 
 public class viewStadiumController {
 

@@ -1,4 +1,4 @@
-package view;
+package view.view.controller;
 
 import java.io.IOException;
 import java.util.Date;
@@ -22,6 +22,7 @@ import javafx.util.StringConverter;
 import utils.E_Cities;
 import utils.E_Levels;
 import utils.E_Position;
+import view.WindowManager;
 import Controller.SysData;
 import Model.Player;
 import Model.Team;

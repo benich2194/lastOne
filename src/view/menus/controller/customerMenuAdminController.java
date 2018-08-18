@@ -43,6 +43,6 @@ public class customerMenuAdminController {
 
     @FXML
     void goToViewCustomer(ActionEvent event) {
-    	WindowManager.openWindow("viewCustomer");
+    	WindowManager.openWindow(NameToWindow.VIEW_CUSTOMER);
     }
 }

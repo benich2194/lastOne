@@ -1,4 +1,4 @@
-package view;
+package view.view.controller;
 
 import java.io.IOException;
 import java.util.Date;

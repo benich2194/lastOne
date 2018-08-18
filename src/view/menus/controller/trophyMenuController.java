@@ -40,7 +40,7 @@ public class trophyMenuController {
 
     @FXML
     void goToViewTrophy(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("viewTrophies");
+    	WindowManager.openWindow(NameToWindow.VIEW_TROPHY);
 
     }
     

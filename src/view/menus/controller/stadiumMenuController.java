@@ -39,7 +39,7 @@ public class stadiumMenuController {
     
     @FXML
    void goToViewStadium(ActionEvent event) throws IOException {
-        WindowManager.openWindow("viewStadium");
+        WindowManager.openWindow(NameToWindow.VIEW_STADIUM);
     }
 
     @FXML
