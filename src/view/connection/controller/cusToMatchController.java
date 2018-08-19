@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -31,26 +32,32 @@ public class cusToMatchController {
 
     @FXML
     private ListView<Match> matchList;
+    
+    @FXML
+    private Label labelSuccess;
 
     @FXML
     void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Customer to Match");
 		alert.setHeaderText("");
+		Customer c=customerList.getSelectionModel().getSelectedItem();
+		Match m=matchList.getSelectionModel().getSelectedItem();
 		try {
-			if(customerList.getSelectionModel().getSelectedItem()==null||matchList.getSelectionModel().getSelectedItem()==null) {
-				throw new ListNotSelectedException();
+			if(c==null) {
+				throw new ListNotSelectedException("Select from customer list:");
 			}
-			if(SysData.getInstance().getMatchs().get(matchList.getSelectionModel().getSelectedItem().getId()).getCrowd().containsKey(customerList.getSelectionModel().getSelectedItem())) {
+			if(m==null) {
+				throw new ListNotSelectedException("Select from match list:");
+			}
+			if(SysData.getInstance().getMatchs().get(m.getId()).getCrowd().containsKey(c)) {
 				alert.setHeaderText("Unable to add Customer To Match.");
 	    		alert.setContentText("Customer exists in match.");
 	    		alert.show();
 			}
 	    	else {
-		    	if(SysData.getInstance().addCustomerToMatch(customerList.getSelectionModel().getSelectedItem().getId(), matchList.getSelectionModel().getSelectedItem().getId())) {
-		    		alert.setHeaderText("Added Customer to Match");
-		    		alert.setContentText("Added Customer to Match successfully.");
-		    		alert.show();
+		    	if(SysData.getInstance().addCustomerToMatch(c.getId(), m.getId())) {
+		    		labelSuccess.setText("Added customer "+c.getId()+ "to match "+m.getId()+" succesfully!");
 		    	}
 		    	else {
 		    		alert.setHeaderText("Unable to Add Customer to Match.");

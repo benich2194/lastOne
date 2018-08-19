@@ -35,6 +35,7 @@ public enum NameToWindow {
 	REMOVE_TROPHY("remove/removeTrophy"),
 	REMOVE_SUB("remove/removeSub"),
 	REMOVE_COACH("remove/removeCoach"),
+	REMOVE_CUSFROMMATCH("connection/removeCusFromMatch"),
 	
 	/*------------VIEW-------------------------------------------------*/
 	VIEW_TEAM("view/viewTeams"),

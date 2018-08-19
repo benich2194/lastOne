@@ -25,5 +25,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <Button layoutX="244.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToRemoveCusFromMatch" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Remove Customer From Match" />
    </children>
 </AnchorPane>

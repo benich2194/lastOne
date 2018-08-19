@@ -70,5 +70,9 @@ public class connectionMenuController {
     void addSubscriptionToCustomer(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.CONNECT_SUBTOCUSTOMER);
     }
+    @FXML
+    void goToRemoveCusFromMatch(ActionEvent event) {
+    	WindowManager.openWindow(NameToWindow.REMOVE_CUSFROMMATCH);
+    }
 
 }
