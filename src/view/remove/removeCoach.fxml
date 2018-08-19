@@ -23,5 +23,10 @@
       </Label>
       <ComboBox fx:id="coachList" layoutX="155.0" layoutY="83.0" prefHeight="25.0" prefWidth="405.0" promptText="Choose coach to remove:" />
       <Button fx:id="removeButton" layoutX="275.0" layoutY="323.0" mnemonicParsing="false" onAction="#removeCoach" prefHeight="50.0" prefWidth="151.0" text="Remove Coach" />
+      <Label fx:id="labelSuccess" layoutX="34.0" layoutY="279.0" prefHeight="33.0" prefWidth="648.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

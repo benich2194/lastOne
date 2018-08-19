@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -27,6 +28,9 @@ public class removeSubController {
 
     @FXML
     private ComboBox<Subscription> subList;
+    
+    @FXML
+    private Label labelSuccess;
 
     @FXML
     private Button removeButton;
@@ -54,9 +58,7 @@ public class removeSubController {
 			}
 			Subscription s=subList.getSelectionModel().getSelectedItem();
 			if(SysData.getInstance().removeSubscription(s.getId())) {
-	    		alert.setHeaderText("Subscription was removed");
-	    		alert.setContentText("Subscription was removed successfully.");
-	    		alert.show();
+	    		labelSuccess.setText("subscription "+s.getId()+" was removed succesfully!");
 	    	}
 	    	else {
 	    		alert.setHeaderText("Subscription wasn't removed");

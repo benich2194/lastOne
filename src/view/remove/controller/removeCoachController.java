@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -26,6 +27,9 @@ public class removeCoachController {
 
     @FXML
     private ComboBox<Coach> coachList;
+    
+    @FXML
+    private Label labelSuccess;
 
     @FXML
     private Button removeButton;
@@ -61,9 +65,7 @@ public class removeCoachController {
         	else {
     	    	SysData.getInstance().getCoachs().remove(c.getId());
     	    	if(!SysData.getInstance().getCoachs().containsKey(c.getId())) {
-    	    		alert.setHeaderText("Removed coach");
-    	    		alert.setContentText("Removed coach successfully.");
-    	    		alert.show();
+    	    		labelSuccess.setText("removed coach "+c.getId()+" succesfully!");
     	    	}
     	    	else {
     	    		alert.setHeaderText("Unable to remove coach.");
