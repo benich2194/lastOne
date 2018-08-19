@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
+import Exceptions.ObjectExistsException;
 import utils.Constants;
 import utils.E_Levels;
 
@@ -159,18 +160,27 @@ public class Match implements Serializable{
 	 * 
 	 * @param fan
 	 * @return true if the fan was added successfully, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addFan(Customer fan) {
-		if (fan != null) {
-			for (Customer c : crowd.keySet()) 
-				if (c.equals(fan)) 
-					return false;
-			Boolean flag = fan.getFavoriteTeam().equals(homeTeam);
-			crowd.put(fan, flag) ;
-			return true;
-			
+	public boolean addFan(Customer fan) throws ObjectExistsException {
+		if (fan == null) {// if fan is null, return false
+			return false;
 		}
-		return false;
+		if (fan.getFavoriteTeam() != null && fan.getFavoriteTeam().equals(homeTeam)) {// if fan is a fan of the home
+																						// team, add him with true value
+																						// and retur ntrue;
+			crowd.put(fan, true);
+			return true;
+		}
+		for (Customer c : crowd.keySet()) {// if fan exists, return false
+			if (c != null) {
+				if (fan.getId()==c.getId()) {
+					throw new ObjectExistsException("customer is already in match");
+				}
+			}
+		}
+		crowd.put(fan, false);// add fan with false boolean, return true;
+		return true;
 	}
 
 	/**

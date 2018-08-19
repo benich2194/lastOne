@@ -58,21 +58,24 @@ public class removeCusFromMatchController {
         	if(m==null) {
         		throw new ListNotSelectedException("choose from match list");
         	}
-        	if(m.removeFan(c)) {
-        		if(c.removeMatch(m)) {
-        			labelSuccess.setText("Removed match "+m.getId()+" from customer "+c.getId()+" sucessfully!");
+        	m.removeFan(c);
+        	c.removeMatch(m);
+        	labelSuccess.setText("Removed match "+m.getId()+" from customer "+c.getId()+" sucessfully!");
+        	//updates lists
+        	matchList.getItems().removeAll(matchList.getItems());
+        	customerList.getItems().removeAll(customerList.getItems());
+        	matchList.getItems().removeAll(matchList.getItems());
+        	Customer cu=customerList.getSelectionModel().getSelectedItem();
+        	if(cu!=null) {
+        		for(Subscription s:cu.getSubscriptions()) {
+        			if(s!=null) {
+        				for(Match ma:s.getMatches()) {
+        					if(ma!=null) {
+        						matchList.getItems().add(ma);
+        					}
+        				}
+        			}
         		}
-        		else {
-        			alert.setHeaderText("Unable to remove Customer from Match.");
-    	    		alert.setContentText("cannot remove match from Customer.");
-    	    		alert.show();
-    	    		m.addFan(c);
-        		}
-        	}
-        	else {
-        		alert.setHeaderText("Unable to remove Customer from Match.");
-	    		alert.setContentText("cannot remove customer from match.");
-	    		alert.show();
         	}
     	}catch(ListNotSelectedException e) {
     		
@@ -89,10 +92,10 @@ public class removeCusFromMatchController {
     	matchList.getItems().removeAll(matchList.getItems());
     	Customer c=customerList.getSelectionModel().getSelectedItem();
     	if(c!=null) {
-    		if(SysData.getInstance().getMatchs().values()!=null) {
-    			for(Match m:SysData.getInstance().getMatchs().values()) {
-    				if(m!=null) {
-    					if(m.getCrowd().containsKey(c)) {
+    		for(Subscription s:c.getSubscriptions()) {
+    			if(s!=null) {
+    				for(Match m:s.getMatches()) {
+    					if(m!=null) {
     						matchList.getItems().add(m);
     					}
     				}
@@ -105,21 +108,12 @@ public class removeCusFromMatchController {
     	matchList.getItems().removeAll(matchList.getItems());
     	Customer c=customerList.getSelectionModel().getSelectedItem();
     	if(c!=null) {
-    		if(SysData.getInstance().getMatchs().values()!=null) {
-    			for(Match m:SysData.getInstance().getMatchs().values()) {
-    				if(m!=null) {
-    					if(m.getCrowd().containsKey(c)) {
+    		for(Subscription s:c.getSubscriptions()) {
+    			if(s!=null) {
+    				for(Match m:s.getMatches()) {
+    					if(m!=null) {
     						matchList.getItems().add(m);
     					}
-    				}
-    			}
-    		}
-    	}
-    	for(Subscription s:c.getSubscriptions()) {
-    		if(s!=null) {
-    			for(Match match:s.getMatches()) {
-    				if(!matchList.getItems().contains(match)) {
-    					matchList.getItems().add(match);
     				}
     			}
     		}

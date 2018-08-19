@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -32,6 +33,9 @@ public class removePlayerController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes to previous screen
      * @param event back button is pressed
@@ -71,9 +75,7 @@ public class removePlayerController {
             	}
             	SysData.getInstance().getPlayers().remove(c.getId());
             	if(!SysData.getInstance().getPlayers().containsKey(c.getId())) {
-            		alert.setHeaderText("Removed Player");
-            		alert.setContentText("Removed Player successfully.");
-            		alert.show();
+            		labelSuccess.setText("player "+c.getId()+" was removed succesfully!");
             	}
             	else {
             		alert.setHeaderText("Unable to remove Player.");

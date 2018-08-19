@@ -12,6 +12,9 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 
+import Exceptions.NoValidSubscriptionException;
+import Exceptions.ObjectExistsException;
+
 /**
  * This SysData object ~ represents the class system
  * 
@@ -559,8 +562,10 @@ public class SysData implements Serializable {
 	 * @param customerId
 	 * @param matchId
 	 * @return true if the customer was added successfully to match, false otherwise
+	 * @throws NoValidSubscriptionException 
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addCustomerToMatch(String customerId, int matchId) {
+	public boolean addCustomerToMatch(String customerId, int matchId) throws NoValidSubscriptionException, ObjectExistsException {
 		if (Customer.checkId(customerId) == "0" || !matches.containsKey(matchId)) {// if customer id or match doesnt
 			// exist, return false
 			return false;
@@ -574,6 +579,7 @@ public class SysData implements Serializable {
 		if (!myCustomer.addMatch(myMatch)) {// if cannot add match to customer subscription, return false
 			return false;
 		}
+		
 		if (!myMatch.addFan(myCustomer)) {// if cannot add customer to match crowd, rollback previous and return false
 			myCustomer.removeMatch(myMatch);
 			return false;

@@ -3,6 +3,8 @@ package view.recep.controller;
 import java.util.ArrayList;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.NoValidSubscriptionException;
+import Exceptions.ObjectExistsException;
 import Model.Customer;
 import Model.Match;
 import Model.Receptionist;
@@ -37,7 +39,7 @@ public class receptionistAddCustomerToMatchController {
     private ArrayList<Customer> myList;
     
     @FXML
-    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException{
+    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException, NoValidSubscriptionException, ObjectExistsException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Customer to Match");
 		alert.setHeaderText("");
@@ -57,9 +59,6 @@ public class receptionistAddCustomerToMatchController {
 	    		alert.show();
 	    	}
 	    	else {
-	    		alert.setHeaderText("Unable to Add Customer to Match.");
-	    		alert.setContentText("Customer cannot be added to match");
-	    		alert.show();
 	    	}
     	}
 		customerList.getItems().removeAll(customerList.getItems());//refreshes list
@@ -79,6 +78,8 @@ public class receptionistAddCustomerToMatchController {
     	}
 		
     }catch(ListNotSelectedException e){
+    	
+    }catch(NoValidSubscriptionException e) {
     	
     }
     }

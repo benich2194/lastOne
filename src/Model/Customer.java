@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import Exceptions.NoValidSubscriptionException;
 import utils.Constants;
 import utils.E_Levels;
 
@@ -202,32 +203,43 @@ public class Customer implements Comparable<Customer>, Serializable{
 	 * 
 	 * @param match
 	 * @return true if the match was added successfully, false otherwise
+	 * @throws NoValidSubscriptionException 
 	 */
-	public boolean addMatch(Match match) {
-		if (match != null) {
-			Subscription validSubscription = null;
-			for (Subscription s : subscriptions) {
-				Stadium stadium = s.getReceptionist().getWorkingStadium();
-				if (stadium.equals(match.getHomeTeam().getStadium()) && s.getLastDay().after(match.getStartDateTime()))
-					validSubscription = s;
-			}
-			if (validSubscription == null) {
-				return false;
-			}
-			Date start = match.getStartDateTime();
-			Date end = match.getFinishDateTime();
-			for (Match m : validSubscription.getMatches()) {
-				if (m == null) continue;
-				if (start.before(m.getStartDateTime()) && end.after(m.getStartDateTime()))
-					return false;
-				if (start.before(m.getFinishDateTime()) && end.after(m.getFinishDateTime()))
-					return false;
-				if (start.equals(m.getStartDateTime())) 
-					return false;
-			}
-			validSubscription.addMatch(match);
-			return true;
+	public boolean addMatch(Match match) throws NoValidSubscriptionException {
+		int flag=0;
+		if (match == null) {// if match is null, return false
+			return false;
 		}
+			for (Subscription s : subscriptions) {
+				if (s != null) {
+					if (s.getLastDay().after(match.getFinishDateTime())
+							&& match.getHomeTeam().getStadium().getReceptionists().contains(s.getReceptionist())) {// if
+																													// subscription
+																													// is
+																													// valid,
+																													// and
+																													// the
+																													// match
+																													// stadium
+																													// receptionist
+																													// sold
+																													// it,
+																													// add
+																													// match
+																													// to
+																													// subscription
+						if (s.addMatch(match)) {// if succesfully added, return true
+							flag=1;
+							return true;
+						}
+
+					}
+
+				}
+			}
+			if(flag==0) {
+				throw new NoValidSubscriptionException("no valid subscription for customer to add match");
+			}
 		return false;
 	}
 	

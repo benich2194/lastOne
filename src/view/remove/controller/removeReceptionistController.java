@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 import view.WindowManager;
 
 
@@ -31,6 +32,9 @@ public class removeReceptionistController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button is pressed
@@ -66,9 +70,7 @@ public class removeReceptionistController {
 	    	}
 	    	SysData.getInstance().getReceptionists().remove(c.getId());
 	    	if(!SysData.getInstance().getReceptionists().containsKey(c.getId())) {
-	    		alert.setHeaderText("Removed Receptionist");
-	    		alert.setContentText("Removed Receptionist successfully.");
-	    		alert.show();
+	    		labelSuccess.setText("receptionist "+c.getId()+" was removed succesfully!");
 	    	}
 	    	else {
 	    		alert.setHeaderText("Unable to remove Receptionist.");

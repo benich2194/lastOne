@@ -36,6 +36,9 @@ public class removeStadiumController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button is pressed
@@ -92,9 +95,7 @@ public class removeStadiumController {
         	if(s!=null) {
         		SysData.getInstance().getStadiums().remove(s.getId());
         		if(!SysData.getInstance().getStadiums().containsKey(s.getId())) {
-        			alert.setHeaderText("Stadium removed");
-        			alert.setContentText("Stadium removed successfully.");
-        			alert.show();
+        			labelSuccess.setText("stadium "+s.getId()+" was removed succesfully!");
         		}
         		else {
         			alert.setHeaderText("Unable to remove stadium");
