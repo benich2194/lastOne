@@ -3,9 +3,14 @@ package view.add.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import Controller.SysData;
+import Exceptions.EmailNotValidException;
 import Exceptions.IdExistsException;
+import Exceptions.InvalidBirthdateException;
 import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
@@ -92,9 +97,11 @@ public class addCustomerController {
 	     * @throws InvalidInputException
 	     * @throws IdExistsException
 	     * @throws ObjectNotExistException 
+	     * @throws InvalidBirthdateException 
+	     * @throws EmailNotValidException 
 	     */
 	    @FXML
-	    void addCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException,PasswordTooShortException, InvalidInputException, IdExistsException, ObjectNotExistException {
+	    void addCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException,PasswordTooShortException, InvalidInputException, IdExistsException, ObjectNotExistException, InvalidBirthdateException, EmailNotValidException {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Add Customer");
 			alert.setHeaderText("");
@@ -139,6 +146,9 @@ public class addCustomerController {
 		    	Address ad=new Address(cusCity.getSelectionModel().getSelectedItem(),street,houseNum,phones);
 		    	URL mail;
 				try {
+					if(!isValid(cusMail.getText())) {
+						throw new EmailNotValidException();
+					}
 					mail = new URL("http:\\"+cusMail.getText());
 				} catch (MalformedURLException e) {
 					throw new InvalidInputException("Invalid email address");
@@ -147,6 +157,9 @@ public class addCustomerController {
 		    		throw new MissingInputException("birth date");
 		    	}
 		    	java.sql.Date bday = java.sql.Date.valueOf(birthDate.getValue());
+		    	if(bday.after(new Date())) {
+		    		throw new InvalidBirthdateException();
+		    	}
 		    	Integer fav= favTeam.getSelectionModel().getSelectedItem().getId();
 		    	if(!SysData.getInstance().getTeams().containsKey(fav)) {
 		    		throw new ObjectNotExistException("team does not exist");
@@ -158,6 +171,7 @@ public class addCustomerController {
 		    	if(SysData.getInstance().getCustomers().containsKey(id)) {
 		    		throw new IdExistsException("customer");
 		    	}
+		    	
 		    	else {
 		    		SysData.getInstance().addCustomer(id,password, first, last, bday, levelCustomer.getSelectionModel().getSelectedItem(), mail, fav, ad);
 			    	if(SysData.getInstance().getCustomers().containsKey(id)) {
@@ -192,6 +206,10 @@ public class addCustomerController {
 			}catch(IdExistsException e) {
 				
 			}catch(ObjectNotExistException e) {
+				
+			}catch(InvalidBirthdateException e) {
+				
+			}catch(EmailNotValidException e) {
 				
 			}
 	    	
@@ -272,5 +290,21 @@ public class addCustomerController {
 		levelCustomer.valueProperty().set(null);
 		labelSuccess.setText("");
     }
-
+    /**
+     * checks email is valid
+     * @param email email address
+     * @return true if valid
+     */
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+                             
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 }

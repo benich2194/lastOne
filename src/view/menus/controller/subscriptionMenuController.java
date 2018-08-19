@@ -29,7 +29,7 @@ public class subscriptionMenuController {
 
     @FXML
     void goToAddSub(ActionEvent event) throws IOException {
-    	WindowManager.openWindow("SubToCustomer");
+    	WindowManager.openWindow(NameToWindow.CONNECT_SUBTOCUSTOMER);
     }
 
     @FXML
