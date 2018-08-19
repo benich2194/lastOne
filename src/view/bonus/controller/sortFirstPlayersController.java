@@ -14,8 +14,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import view.WindowManager;
 
 public class sortFirstPlayersController {
@@ -47,10 +49,18 @@ public class sortFirstPlayersController {
     @FXML
     private GridPane gridpane;
 
+    private ImageView source; 
+    
+    final GridPane target = gridpane;
+    
+    Player pl;
+    
     /**
      * initializes team list, hides all other components from display
      */
     public void initialize() {
+    	//First attempt at drag and drop     
+        pl=null;
     	cbTeam.getItems().clear();
 
     	if(!SysData.getInstance().getTeams().isEmpty())
@@ -63,21 +73,65 @@ public class sortFirstPlayersController {
     	bgimg.setVisible(false);
     	lblInst.setVisible(false);
     	gridpane.setVisible(false);
+    	
+    	source = new ImageView("images/splayer.png");
+        source.setFitWidth(45);
+        source.setFitHeight(45);   
+        
+        int numCols = 5;
+        int numRows = 7;
+
+        for (int i = 0 ; i < numCols ; i++) {
+            for (int j = 0; j < numRows; j++) {
+                addPane(i, j);
+            }
+        }
     }
+    
+    private void addPane(int colIndex, int rowIndex) {
+        Pane pane = new Pane();
+        
+        pane.setOnMouseClicked(e -> {
+            System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
+            if(pl!=null) { // If a player was chosen
+            	source = new ImageView("images/splayer.png");
+                source.setFitWidth(45);
+                source.setFitHeight(45);  
+                source.setUserData(pl);
+//                if(gridpane.getChildren().contains(pl))
+//                	gridpane.getChildren().remove(pl);
+            	switch(pl.getPosition()) {
+            	case GOAlKEEPER:  if(colIndex==4)
+            							gridpane.add(source, colIndex, 3);
+            		break;
+            	case ATTACKER: if(colIndex==0 || colIndex==1)
+            						gridpane.add(source, colIndex, rowIndex);
+            		break;
+            	case DEFENDER: if(colIndex==3)
+            						gridpane.add(source, colIndex, rowIndex);
+            		break;
+            	case MIDFIELDER: if(colIndex==2 || colIndex==1)
+            						gridpane.add(source, colIndex, rowIndex);
+            		break;
+            		default: System.out.println("Cannot place player in selected spot.");
+            		break;
+            	}
+            }
+        });
+        gridpane.add(pane, colIndex, rowIndex);
+    }
+
     
     @FXML
     void goBack(ActionEvent event) throws IOException{
     	WindowManager.goBack();
     }
 
-    @FXML
-    void droppedPlayerInGrid(ActionEvent event) {
-
-    }
 
     @FXML
     void showPlayerList(ActionEvent event) {
-
+    	listplayers.getItems().clear();
+    	
     	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
     	//Make a list of first team players on selected team
     	ArrayList<Player> plys = new ArrayList<Player>();
@@ -103,8 +157,9 @@ public class sortFirstPlayersController {
     }
 
     @FXML
-    void dragPlayer(ActionEvent event) {
-
+    void chosenPlayer(MouseEvent event) {
+    	pl = listplayers.getSelectionModel().getSelectedItem();
     }
+
 
 }
