@@ -115,6 +115,15 @@ public class removeCusFromMatchController {
     			}
     		}
     	}
+    	for(Subscription s:c.getSubscriptions()) {
+    		if(s!=null) {
+    			for(Match match:s.getMatches()) {
+    				if(!matchList.getItems().contains(match)) {
+    					matchList.getItems().add(match);
+    				}
+    			}
+    		}
+    	}
     }
 
 }
