@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -35,6 +36,9 @@ public class removeTeamController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes to previous screen
      * @param event back button is pressed
@@ -54,12 +58,14 @@ public class removeTeamController {
 				throw new ListNotSelectedException();
 			}
 			Team t=teamList.getSelectionModel().getSelectedItem();
-			if(t.getCoach()!=null) {//removes coach
+			if(t.getCoach()!=null) {//removes coach from team
 				t.getCoach().setCurrentTeam(null);
+				
 			}
 			if(t.getPlayers()!=null) {//removes players
 				for(Player p:t.getPlayers().keySet()){
 					if(p!=null) {
+						p.setCurrentTeam(null);
 						t.removePlayer(p);
 					}
 				}
@@ -83,9 +89,7 @@ public class removeTeamController {
 				t.getStadium().removeTeam(t);
 			}
 			if(SysData.getInstance().getTeams().remove(t.getId())!=null) {
-				alert.setHeaderText("Removed Team");
-        		alert.setContentText("Removed Team successfully.");
-        		alert.show();
+				labelSuccess.setText("Team "+t.getId()+" was removed succesfully!");
 			}
 			else {
 				alert.setHeaderText("Failed to remove Team");

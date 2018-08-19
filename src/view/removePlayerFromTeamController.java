@@ -51,19 +51,15 @@ public class removePlayerFromTeamController {
 		alert.setHeaderText("");
 		try {
 			Player p=playerList.getSelectionModel().getSelectedItem();
-	    	Team t=p.getCurrentTeam();
-	    	if(t==null||p==null) {
-	    		throw new ListNotSelectedException();
+	    	if(p==null) {
+	    		throw new ListNotSelectedException("Choose player from list");
 	    	}
-	    	if(t.removePlayer(p)) {
-	    		p.setCurrentTeam(null);
-	    		labelSuccess.setText("removed player "+p.getId()+" from team "+t.getId());
-	    	}
-	    	else {
-	    		alert.setHeaderText("Player removal from team failed.");
-	    		alert.setContentText("Unable to remove player from team.");
-	    		alert.show();
-	    	}
+	    		Team t=p.getCurrentTeam();
+	    		if(t.removePlayer(p)) {
+	    			p.setCurrentTeam(null);
+		    		labelSuccess.setText("removed player "+p.getId()+" from team "+t.getId());
+	    		}
+	    		
 		}catch(ListNotSelectedException e) {
 			
 		}

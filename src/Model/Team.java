@@ -161,7 +161,7 @@ public class Team implements Serializable {
 		if (!players.containsKey(player)) {// if player does not exist, return false
 			return false;
 		}
-		if (players.remove(player)) {// if cannot remove player, return false
+		if (players.remove(player)==null) {// if cannot remove player, return false
 			return false;
 		}
 		player.setCurrentTeam(null);// set this player team to null(has no team) and return true

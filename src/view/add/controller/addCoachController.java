@@ -135,7 +135,7 @@ public class addCoachController {
 			} else {
 				Address ad = new Address(cc, street, houseNum, phones);
 				if (SysData.getInstance().getCoachs().containsKey(id)) {
-					alert.setHeaderText("Unable to added coach.");
+					alert.setHeaderText("Unable to add coach.");
 					alert.setContentText("Coach already exists.");
 					alert.show();
 				} else {
@@ -157,12 +157,12 @@ public class addCoachController {
 						
 					} else {
 						if(startWorkingDate.getValue().isBefore(birthDate.getValue())) {
-							alert.setHeaderText("Unable to added coach.");
+							alert.setHeaderText("Unable to add coach.");
 							alert.setContentText("Coach was born before he started working.");
 							alert.show();
 						}
 						else {
-							alert.setHeaderText("Unable to added coach.");
+							alert.setHeaderText("Unable to add coach.");
 							alert.setContentText("Coach wasn't added.");
 							alert.show();
 						}

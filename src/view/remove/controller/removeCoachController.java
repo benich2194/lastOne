@@ -55,7 +55,7 @@ public class removeCoachController {
     	try {
     		Coach c=coachList.getSelectionModel().getSelectedItem();
     		if(c==null) {
-        		throw new ListNotSelectedException();
+        		throw new ListNotSelectedException("Choose  a coach from coach list");
         	}
         	if(c.getCurrentTeam()!=null) {
         		alert.setHeaderText("Unable to remove coach.");

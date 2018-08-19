@@ -15,7 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
 
 public class viewTeamsController {
-
+	/**
+	 * fx fields
+	 */
     @FXML
     private AnchorPane modifyTeam;
 
@@ -57,7 +59,10 @@ public class viewTeamsController {
         if(!matchestm.isEmpty())
         	teamsMatches.setItems(matchestm);
     }
-    
+    /**
+     * goes back to previous screen
+     * @param event back button is pressed
+     */
     @FXML
     void goBack(ActionEvent event) {
     	WindowManager.goBack();

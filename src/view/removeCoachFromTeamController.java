@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class removeCoachFromTeamController {
@@ -26,6 +27,9 @@ public class removeCoachFromTeamController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button is pressed
@@ -48,6 +52,7 @@ public class removeCoachFromTeamController {
         		c.getTeams().add(t);
         		c.setCurrentTeam(null);
         		t.setCoach(null);
+        		labelSuccess.setText("coach "+c.getId()+" was removed successfully from team "+t.getId());
         	}
         	else {
         		throw new ListNotSelectedException();

@@ -397,24 +397,35 @@ public class SysData implements Serializable {
 	 * @return true if the player was added successfully to team, false otherwise
 	 */
 	public boolean addPlayerToTeam(int playerId, int teamId) {
-		if (playerId > 0 && teamId > 0) {
-			if (players.containsKey(playerId) && teams.containsKey(teamId)) {
-				Player player = players.get(playerId);
-				Team team = teams.get(teamId);
-
-				if (player.getCurrentTeam() != null) {
-					if (player.getCurrentTeam().equals(team))
-						return false;
-					player.getCurrentTeam().removePlayer(player);
-				}
-
-				if (team.addPlayer(player)) {
-					player.setCurrentTeam(team);
-					return true;
-				}
-			}
+		if (!players.containsKey(playerId) || !teams.containsKey(teamId)) {// if player or team does not exist, return
+			// false
+			return false;
 		}
-		return false;
+		if (teams.get(teamId).getPlayers().size() == Constants.MAX_PLAYERS_FOR_TEAM) {// if maximum players has reached,
+			// return false
+			return false;
+		}
+		if (players.get(playerId).getCurrentTeam() != null
+				&& players.get(playerId).getCurrentTeam().equals(teams.get(teamId))) {// if already in the team, return
+			// false
+			return false;
+		}
+		if (players.get(playerId).getCurrentTeam() != null
+				&& players.get(playerId).getCurrentTeam().getId() != teamId) {// if player has a team already, transfer
+			// him to this one.if failed, return
+			// false,if succesful, return true;
+			if (!players.get(playerId).transferTo(teams.get(teamId))) {
+				return false;
+			}
+			return true;
+		} else {// if player does not have a team, add him.if failed ,return false
+			if (!teams.get(teamId).addPlayer(players.get(playerId))) {
+				return false;
+			}
+			players.get(playerId).setCurrentTeam(teams.get(teamId));// set player's current team to this team and return
+			// true
+			return true;
+		}
 	}// ~ END OF addCoachToTeam
 
 	/**
@@ -562,10 +573,11 @@ public class SysData implements Serializable {
 	 * @param customerId
 	 * @param matchId
 	 * @return true if the customer was added successfully to match, false otherwise
-	 * @throws NoValidSubscriptionException 
-	 * @throws ObjectExistsException 
+	 * @throws NoValidSubscriptionException
+	 * @throws ObjectExistsException
 	 */
-	public boolean addCustomerToMatch(String customerId, int matchId) throws NoValidSubscriptionException, ObjectExistsException {
+	public boolean addCustomerToMatch(String customerId, int matchId)
+			throws NoValidSubscriptionException, ObjectExistsException {
 		if (Customer.checkId(customerId) == "0" || !matches.containsKey(matchId)) {// if customer id or match doesnt
 			// exist, return false
 			return false;
@@ -579,7 +591,7 @@ public class SysData implements Serializable {
 		if (!myCustomer.addMatch(myMatch)) {// if cannot add match to customer subscription, return false
 			return false;
 		}
-		
+
 		if (!myMatch.addFan(myCustomer)) {// if cannot add customer to match crowd, rollback previous and return false
 			myCustomer.removeMatch(myMatch);
 			return false;
@@ -629,16 +641,17 @@ public class SysData implements Serializable {
 		return false;
 	}// ~ END OF removeSubscription
 //	
+
 	public boolean removeCustomer(Customer c) {
-		if(c==null)
+		if (c == null)
 			return false;
-		if(customers.containsKey(c.getId())) {
+		if (customers.containsKey(c.getId())) {
 			customers.remove(c.getId());
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
+
 	/**
 	 * This method adds a Trophy to the system only if all the parameters are valid
 	 * and the Trophy does not already exist in the system
@@ -650,7 +663,8 @@ public class SysData implements Serializable {
 	 */
 	public <T> boolean addTrophy(E_Trophy trophy, T owner, Date trophyWinningDate) {
 		if (trophy != null && owner != null && trophyWinningDate != null) {
-			if(owner instanceof Player || owner instanceof Stadium || owner instanceof Coach || owner instanceof Team) {
+			if (owner instanceof Player || owner instanceof Stadium || owner instanceof Coach
+					|| owner instanceof Team) {
 				if (owner instanceof Employee && trophyWinningDate.before(((Employee) owner).getStartWorkingDate()))
 					return false;
 				Trophy<T> trp = new Trophy<T>(trophy, owner, trophyWinningDate);
