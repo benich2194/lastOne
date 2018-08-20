@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -43,6 +44,9 @@ public class receptionistAddSubToCustomerController {
     @FXML
     private DatePicker startDate;
     
+    @FXML
+    private Label labelSuccess;
+    
     //Logged in Receptionist
     private Receptionist r = SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
 
@@ -51,6 +55,8 @@ public class receptionistAddSubToCustomerController {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
+		Customer c=customerList.getSelectionModel().getSelectedItem();
+		E_Periods p=periodList.getSelectionModel().getSelectedItem();
 		try {
 			if(subId.getText().isEmpty()) {
 				throw new MissingInputException("Subscription ID");
@@ -60,22 +66,28 @@ public class receptionistAddSubToCustomerController {
 	    		throw new MissingInputException("start date");
 	    	}
 	    	java.sql.Date work=java.sql.Date.valueOf(startDate.getValue());
-	    	if(customerList.getSelectionModel().getSelectedItem()==null||periodList.getSelectionModel().getSelectedItem()==null) {
-	    		throw new ListNotSelectedException();
+	    	if(c==null) {
+	    		throw new ListNotSelectedException("Choose from customer list");
 	    	}
-	    		if(SysData.getInstance().addSubscriptionToCustomer(id, customerList.getSelectionModel().getSelectedItem().getId(), r.getId(), periodList.getSelectionModel().getSelectedItem(), work)) {
-	    			alert.setHeaderText("Added Subscription to Customer.");
-	        		alert.setContentText("Subscription was added to Customer successfully.");
-	        		alert.show();
+	    	if(p==null) {
+	    		throw new ListNotSelectedException("Choose from period list");
+	    	}
+	    		if(SysData.getInstance().addSubscriptionToCustomer(id, c.getId(),r.getId(), p, work)) {
+	    			labelSuccess.setText("Subscription "+id+" was added succesfully to customer "+c.getId());
+	    			startDate.valueProperty().set(null);
+	    			subId.setText("");
+	    			//refreshes lists
+	    			customerList.getItems().removeAll(customerList.getItems());
+	    	    		periodList.getItems().addAll(E_Periods.values());
+	    	    		if(SysData.getInstance().getCustomers().values().size()>0) {
+	    	        		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
+	    	        	}
+	    			periodList.getItems().removeAll(periodList.getItems());
+	    			periodList.getItems().addAll(E_Periods.values());
 	    		}
-	    		else  if(r.getWorkingStadium()==null) {
-	    			alert.setHeaderText("Failed to add Subscription to Customer.");
-	        		alert.setContentText("Receptionist is not connected to a stadium.");
-	        		alert.show();
-	    		}
-	    		else{
-	    			alert.setHeaderText("Failed to add Subscription to Customer.");
-	        		alert.setContentText("Unable to add Subscription to Customer.");
+	    		else {
+	    			alert.setHeaderText("failed to add Subscription to Customer.");
+	        		alert.setContentText("unable to add Subscription to Customer.");
 	        		alert.show();
 	    		}
 		}catch(MissingInputException e) {
