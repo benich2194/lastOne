@@ -4,6 +4,7 @@ import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
+import Exceptions.ObjectNotExistException;
 import Model.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class customerJoinMatchController {
     private ListView<Match> matchList;
 
     @FXML
-    void joinMatch(ActionEvent event) throws ListNotSelectedException, NoValidSubscriptionException, ObjectExistsException{
+    void joinMatch(ActionEvent event) throws ListNotSelectedException, NoValidSubscriptionException, ObjectExistsException, ObjectNotExistException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Join Match");
 		alert.setHeaderText("");
@@ -46,6 +47,8 @@ public class customerJoinMatchController {
 		}catch(ListNotSelectedException e) {
 			
 		}catch(NoValidSubscriptionException e) {
+			
+		}catch(ObjectNotExistException e) {
 			
 		}
     	

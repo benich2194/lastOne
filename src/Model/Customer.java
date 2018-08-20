@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Exceptions.NoValidSubscriptionException;
+import Exceptions.ObjectNotExistException;
 import utils.Constants;
 import utils.E_Levels;
 
@@ -204,8 +205,9 @@ public class Customer implements Comparable<Customer>, Serializable{
 	 * @param match
 	 * @return true if the match was added successfully, false otherwise
 	 * @throws NoValidSubscriptionException 
+	 * @throws ObjectNotExistException 
 	 */
-	public boolean addMatch(Match match) throws NoValidSubscriptionException {
+	public boolean addMatch(Match match) throws NoValidSubscriptionException, ObjectNotExistException {
 		int flag=0;
 		if (match == null) {// if match is null, return false
 			return false;
@@ -228,6 +230,9 @@ public class Customer implements Comparable<Customer>, Serializable{
 																													// match
 																													// to
 																													// subscription
+						if(!match.getHomeTeam().getStadium().getReceptionists().contains(s.getReceptionist())) {
+							flag=2;
+						}
 						if (s.addMatch(match)) {// if succesfully added, return true
 							flag=1;
 							return true;
@@ -239,6 +244,9 @@ public class Customer implements Comparable<Customer>, Serializable{
 			}
 			if(flag==0) {
 				throw new NoValidSubscriptionException("no valid subscription for customer to add match");
+			}
+			if(flag==2) {
+				throw new ObjectNotExistException("No receptionist from match stadium that sold subscription for the customer");
 			}
 		return false;
 	}

@@ -13,7 +13,7 @@ public class NoValidSubscriptionException extends Exception {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Invalid Input");
 		alert.setHeaderText("");
-		alert.setHeaderText("Nothing was selected in the list.");
+		alert.setHeaderText("No valid subscription for this match");
 		alert.setContentText(m);
 		alert.show();
 	}

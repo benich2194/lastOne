@@ -65,6 +65,9 @@ public class removeCusFromMatchController {
         	matchList.getItems().removeAll(matchList.getItems());
         	customerList.getItems().removeAll(customerList.getItems());
         	matchList.getItems().removeAll(matchList.getItems());
+        	if(SysData.getInstance().getCustomers()!=null) {
+        		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
+        	}
         	Customer cu=customerList.getSelectionModel().getSelectedItem();
         	if(cu!=null) {
         		for(Subscription s:cu.getSubscriptions()) {

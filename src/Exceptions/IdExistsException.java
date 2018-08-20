@@ -11,7 +11,7 @@ public class IdExistsException extends Exception {
 
 	public IdExistsException(String message) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Invalid Input");
+		alert.setTitle("Invalid ID entered");
 		alert.setHeaderText("");
 		alert.setHeaderText("Id already exists in system.");
 		alert.setContentText("Please choose a different id for:"+message);

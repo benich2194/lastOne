@@ -5,6 +5,7 @@ import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
+import Exceptions.ObjectNotExistException;
 import Model.Customer;
 import Model.Match;
 import Model.Receptionist;
@@ -39,7 +40,7 @@ public class receptionistAddCustomerToMatchController {
     private ArrayList<Customer> myList;
     
     @FXML
-    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException, NoValidSubscriptionException, ObjectExistsException{
+    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException, NoValidSubscriptionException, ObjectExistsException, ObjectNotExistException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Customer to Match");
 		alert.setHeaderText("");
@@ -80,6 +81,8 @@ public class receptionistAddCustomerToMatchController {
     }catch(ListNotSelectedException e){
     	
     }catch(NoValidSubscriptionException e) {
+    	
+    }catch(ObjectNotExistException e) {
     	
     }
     }

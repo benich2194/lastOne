@@ -19,7 +19,7 @@ public class ListNotSelectedException extends Exception {
 	}
 	public ListNotSelectedException(String m) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Invalid Input");
+		alert.setTitle("No input detected");
 		alert.setHeaderText("");
 		alert.setHeaderText("Nothing was selected in the list.");
 		alert.setContentText(m);

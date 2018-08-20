@@ -15,6 +15,7 @@ import java.util.*;
 import Exceptions.MaximumReachedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
+import Exceptions.ObjectNotExistException;
 
 /**
  * This SysData object ~ represents the class system
@@ -609,9 +610,10 @@ public class SysData implements Serializable {
 	 * @return true if the customer was added successfully to match, false otherwise
 	 * @throws NoValidSubscriptionException
 	 * @throws ObjectExistsException
+	 * @throws ObjectNotExistException 
 	 */
 	public boolean addCustomerToMatch(String customerId, int matchId)
-			throws NoValidSubscriptionException, ObjectExistsException {
+			throws NoValidSubscriptionException, ObjectExistsException, ObjectNotExistException {
 		if (Customer.checkId(customerId) == "0" || !matches.containsKey(matchId)) {// if customer id or match doesnt
 			// exist, return false
 			return false;

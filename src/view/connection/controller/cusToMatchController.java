@@ -5,6 +5,7 @@ import Exceptions.IdExistsException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
+import Exceptions.ObjectNotExistException;
 import Model.Customer;
 import Model.Match;
 import javafx.event.ActionEvent;
@@ -38,7 +39,7 @@ public class cusToMatchController {
     private ComboBox<Match> matchList;
 
     @FXML
-    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException,ObjectExistsException, NoValidSubscriptionException {
+    void addCustomerToMatch(ActionEvent event) throws ListNotSelectedException,ObjectExistsException, NoValidSubscriptionException, ObjectNotExistException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Customer to Match");
 		alert.setHeaderText("");
@@ -52,7 +53,6 @@ public class cusToMatchController {
         		throw new ListNotSelectedException("choose match:");
         	}
     		if(SysData.getInstance().addCustomerToMatch(c.getId(), m.getId())) {
-    			System.out.println("boom");
     			labelSuccess.setText("added customer "+c.getId()+" to match "+m.getId()+" succesfully!");
     		}
     		else {
@@ -63,6 +63,8 @@ public class cusToMatchController {
     	}catch(NoValidSubscriptionException e) {
     		
     	}catch(ObjectExistsException e) {
+    		
+    	}catch(ObjectNotExistException e) {
     		
     	}
     	//refreshes boxes
