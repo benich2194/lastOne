@@ -2,6 +2,7 @@ package view.coach.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.ObjectExistsException;
 import Model.Coach;
 import Model.Player;
 import javafx.event.ActionEvent;
@@ -40,9 +41,10 @@ public class coachAddPlayerToTeamController {
      * adds player to the team
      * @param event add player button pressed
      * @throws ListNotSelectedException
+     * @throws ObjectExistsException
      */
     @FXML
-    void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException {
+    void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException,ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player To Team");
 		alert.setHeaderText("");
@@ -77,6 +79,8 @@ public class coachAddPlayerToTeamController {
 	    		throw new ListNotSelectedException();
 	    	}
 		}catch(ListNotSelectedException e) {
+			
+		}catch(ObjectExistsException e) {
 			
 		}
 		

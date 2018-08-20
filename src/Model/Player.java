@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 
+import Exceptions.ObjectExistsException;
 import utils.E_Levels;
 import utils.E_Position;
 
@@ -81,8 +82,9 @@ public class Player extends Coach implements Serializable {
 	 *
 	 * @param team
 	 * @return true if the player was added successfully to team, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean transferTo(Team team) {
+	public boolean transferTo(Team team) throws ObjectExistsException {
 		if (team == null) {// if team is null, return false
 			return false;
 		}
@@ -90,11 +92,11 @@ public class Player extends Coach implements Serializable {
 			return false;
 		}
 		if (getCurrentTeam().equals(team)) {// if he is already in this team, return false
-			return false;
+			throw new ObjectExistsException("player is already in this team");
 		}
 		for(Player p:team.getPlayers().keySet()) {//if player exists in this team, return false
 			if(p!=null&&p.getId()==this.getId()) {
-				return false;
+				throw new ObjectExistsException("player is already in this team");
 			}
 		}
 		getCurrentTeam().removePlayer(this);// remove player from his current team

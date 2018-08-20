@@ -359,8 +359,9 @@ public class SysData implements Serializable {
 	 * @param coachId
 	 * @param teamId
 	 * @return true if the coach was added successfully to team, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addCoachToTeam(int coachId, int teamId) {
+	public boolean addCoachToTeam(int coachId, int teamId) throws ObjectExistsException {
 		if (coachId > 0 && teamId > 0) {
 			if (coaches.containsKey(coachId) && teams.containsKey(teamId)) {
 				Coach coach = coaches.get(coachId);
@@ -395,8 +396,9 @@ public class SysData implements Serializable {
 	 * @param playerId
 	 * @param teamId
 	 * @return true if the player was added successfully to team, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addPlayerToTeam(int playerId, int teamId) {
+	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException {
 		if (!players.containsKey(playerId) || !teams.containsKey(teamId)) {// if player or team does not exist, return
 			// false
 			return false;
@@ -408,7 +410,7 @@ public class SysData implements Serializable {
 		if (players.get(playerId).getCurrentTeam() != null
 				&& players.get(playerId).getCurrentTeam().equals(teams.get(teamId))) {// if already in the team, return
 			// false
-			return false;
+			throw new ObjectExistsException("player is already in this team");
 		}
 		if (players.get(playerId).getCurrentTeam() != null
 				&& players.get(playerId).getCurrentTeam().getId() != teamId) {// if player has a team already, transfer

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
+import Exceptions.ObjectExistsException;
 import utils.E_Levels;
 
 /**
@@ -67,17 +68,27 @@ public class Coach extends Employee implements Serializable{
 	 *
 	 * @param team
 	 * @return true if the coach was added successfully to team, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean transferTo(Team team) {
-		if (team != null && currentTeam != null && team != currentTeam) {
-			currentTeam.setCoach(null);
-			if (addTeam(currentTeam)) { 
-				if (team.registerCoach(this)) 
-					return true;
-				removeTeam(team);
-			} else return team.registerCoach(this);
+	public boolean transferTo(Team team) throws ObjectExistsException {
+		if (team == null) {// if team is null, return false
+			return false;
 		}
-		return false;
+		if(team.getCoach()!=null&&team.getCoach().equals(this)) {//if coach already coaches this team, return false
+			throw  new ObjectExistsException("coach is already in this team");
+		}
+		if (currentTeam != null && team.equals(currentTeam)) {// if this current team equals the new team, return false
+			throw  new ObjectExistsException("coach is already in this team");
+		}
+		if (currentTeam != null && !addTeam(currentTeam)) {// if cannot add current team to past teams array, return
+															// false
+			return false;
+		}
+		if (teams.contains(team)) {// if the team was already coached, remove from past teams array
+			teams.remove(team);
+		}
+		setCurrentTeam(team);// set current team to new team
+		return true;// return true
 	}
 	
 	/**

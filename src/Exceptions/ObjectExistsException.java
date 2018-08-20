@@ -13,7 +13,7 @@ public class ObjectExistsException extends Exception {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle(m+" "+"already exists");
 		alert.setHeaderText("");
-		alert.setHeaderText("Failed to continue,"+m+" already exists");
+		alert.setHeaderText("Failed to continue,"+m);
 		alert.show();
 	}
 }

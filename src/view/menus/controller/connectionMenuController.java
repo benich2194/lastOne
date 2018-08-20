@@ -11,7 +11,9 @@ import view.WindowManager;
 
 
 public class connectionMenuController {
-
+	/**
+	 * fxml fields
+	 */
     @FXML
     private AnchorPane connectionMenu;
 
@@ -31,9 +33,6 @@ public class connectionMenuController {
     private Button cusSub;
 
     @FXML
-    private Button addMatch;
-
-    @FXML
     private Button cusMatch;
 
     @FXML
@@ -44,11 +43,6 @@ public class connectionMenuController {
     @FXML
     void addCustomerToMatch(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.CONNECT_CUSTOMERTOMATCH);
-    }
-
-    @FXML
-    void addMatch(ActionEvent event) {
-    	WindowManager.openWindow(NameToWindow.ADD_MATCH);
     }
 
     @FXML

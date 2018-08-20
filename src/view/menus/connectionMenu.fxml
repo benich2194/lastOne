@@ -18,13 +18,12 @@
       <Button fx:id="playerMenuButton" blendMode="SRC_ATOP" layoutX="247.0" layoutY="257.0" mnemonicParsing="false" onAction="#addReceptionistToStadium" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Receptionist To Stadium" />
       <Button fx:id="playerFirst" layoutX="244.0" layoutY="200.0" mnemonicParsing="false" onAction="#addPlayerToFirstTeamPlayers" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Player to First Team Players" />
       <Button fx:id="playerTeam" layoutX="242.0" layoutY="81.0" mnemonicParsing="false" onAction="#addPlayerToTeam" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Player to Team" />
-      <Button fx:id="addMatch" layoutX="247.0" layoutY="378.0" mnemonicParsing="false" onAction="#addMatch" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="add Match" />
       <Button fx:id="cusMatch" layoutX="247.0" layoutY="316.0" mnemonicParsing="false" onAction="#addCustomerToMatch" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Customer to Match" />
       <Label layoutX="228.0" layoutY="27.0" prefHeight="43.0" prefWidth="229.0" style="-fx-opacity: 0.7;" text="Connection Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="244.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToRemoveCusFromMatch" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Remove Customer From Match" />
+      <Button layoutX="247.0" layoutY="372.0" mnemonicParsing="false" onAction="#goToRemoveCusFromMatch" prefHeight="43.0" prefWidth="184.0" stylesheets="@Design.css" text="Remove Customer From Match" />
    </children>
 </AnchorPane>
