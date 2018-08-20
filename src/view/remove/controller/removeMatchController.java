@@ -71,12 +71,12 @@ public class removeMatchController {
     		alert.setHeaderText("");
         	SysData.getInstance().getMatchs().remove(m.getId());
         	if(SysData.getInstance().getMatchs().containsKey(m.getId())) {
-        		labelSuccess.setText("match "+m.getId()+"was removed succesfully!");
+        		alert.setHeaderText("Unable to remove match.");
+	    		alert.setContentText("Cannot remove match from database.");
+	    		alert.show();
         	}
         	else {
-        		alert.setHeaderText("Match removed");
-        		alert.setContentText("Match was removed successfully.");
-        		alert.show();
+        		labelSuccess.setText("match "+m.getId()+"was removed succesfully!");
         	}
     	}catch(ListNotSelectedException e) {
     		

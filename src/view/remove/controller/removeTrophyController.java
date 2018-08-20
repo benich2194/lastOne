@@ -28,6 +28,9 @@ public class removeTrophyController {
 
     @FXML
     private Button removeButton;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * goes back to previous screen
      * @param event back button isp ressed
@@ -51,9 +54,7 @@ public class removeTrophyController {
 				throw new ListNotSelectedException();
 			}
 			if(SysData.getInstance().getTrophies().remove(troList.getSelectionModel().getSelectedItem())) {
-				alert.setHeaderText("Removed trophy");
-				alert.setContentText("Removed trophy successfully.");
-				alert.show();
+				labelSuccess.setText("trophy "+troList.getSelectionModel().getSelectedItem().getTrophy()+" was removed succesfully!");
 			}
 			else {
 				alert.setHeaderText("unable to remove trophy");
@@ -63,7 +64,11 @@ public class removeTrophyController {
 		}catch(ListNotSelectedException e) {
 			
 		}
-		
+		//refreshes list
+		troList.getItems().removeAll(troList.getItems());
+		if(SysData.getInstance().getTrophies().size()>0) {
+    		troList.getItems().addAll(SysData.getInstance().getTrophies());
+    	}
     }
     /**
      * initializes trophy list

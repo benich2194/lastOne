@@ -22,15 +22,15 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="addTrophyButton" layoutX="166.0" layoutY="325.0" mnemonicParsing="false" onAction="#goToaddTrophy" prefHeight="33.0" prefWidth="149.0" text="Add Trophy" />
+      <Button fx:id="addTrophyButton" layoutX="160.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToaddTrophy" prefHeight="33.0" prefWidth="149.0" text="Add Trophy" />
       <ComboBox fx:id="chooseTrophy" layoutX="254.0" layoutY="108.0" onAction="#showComponents" prefHeight="25.0" prefWidth="149.0" promptText="Choose Trophy:" />
       <ComboBox fx:id="chooseWinner" layoutX="254.0" layoutY="163.0" prefHeight="25.0" prefWidth="149.0" promptText="Choose Winner:" />
       <DatePicker fx:id="chooseDate" layoutX="248.0" layoutY="217.0" prefHeight="26.0" prefWidth="160.0" />
-      <Label fx:id="labelSuccess" layoutX="131.0" layoutY="279.0" prefHeight="33.0" prefWidth="485.0" textFill="#017c87">
+      <Label fx:id="labelSuccess" layoutX="6.0" layoutY="279.0" prefHeight="37.0" prefWidth="689.0" textFill="#017c87">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="clearButton" layoutX="375.0" layoutY="325.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
+      <Button fx:id="clearButton" layoutX="369.0" layoutY="355.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
    </children>
 </AnchorPane>
