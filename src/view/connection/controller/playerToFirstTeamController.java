@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import view.WindowManager;
@@ -49,8 +50,8 @@ public class playerToFirstTeamController {
 	        		alert.show();
 	    		}
 	    		else {
-	    			alert.setHeaderText("failed to add Player to First Team Players.");
-	        		alert.setContentText("unable to add Player to First Team Players, select a player and a team please.");
+	    			alert.setHeaderText("Failed to add Player to First Team Players.");
+	        		alert.setContentText("Unable to add Player to First Team Players, Please select a player & a team.");
 	        		alert.show();
 	    		}
 	    	}
@@ -62,22 +63,32 @@ public class playerToFirstTeamController {
 		}
     	//refreshes lists
     	teamList.getItems().removeAll(teamList.getItems());
-    	playerList.getItems().removeAll(playerList.getItems());
     	if(SysData.getInstance().getTeams().values().size()>0) {
     		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
     	}
-    	if(SysData.getInstance().getPlayers().values().size()>0) {
-    		playerList.getItems().addAll(SysData.getInstance().getPlayers().values());
-    	}
     }
+    
     public void initialize() {
     	if(SysData.getInstance().getTeams().values().size()>0) {
     		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
     	}
-    	if(SysData.getInstance().getPlayers().values().size()>0) {
-    		playerList.getItems().addAll(SysData.getInstance().getPlayers().values());
-    	}
+    	
+    	//Clear players list until a Team is chosen
+        playerList.getItems().clear();
+    	
     }
+    
+    /**
+     * shows all the players on current team in players list
+     * @param mouse click
+     */
+    @FXML
+    void showTeamPlayers(MouseEvent event) {
+    	//If there are players on the team
+    	if(!teamList.getSelectionModel().getSelectedItem().getPlayers().keySet().isEmpty())
+    		playerList.getItems().addAll(teamList.getSelectionModel().getSelectedItem().getPlayers().keySet());
+    }
+    
     /**
      * goes back to previous screen
      * @param event back button is pressed

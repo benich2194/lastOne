@@ -21,8 +21,8 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <ListView fx:id="playerList" layoutX="11.0" layoutY="98.0" prefHeight="368.0" prefWidth="335.0" />
-      <ListView fx:id="teamList" layoutX="350.0" layoutY="98.0" prefHeight="368.0" prefWidth="342.0" />
+      <ListView fx:id="playerList" layoutX="357.0" layoutY="111.0" prefHeight="368.0" prefWidth="335.0" style="-fx-opacity: 0.76;" />
+      <ListView fx:id="teamList" layoutX="9.0" layoutY="111.0" onMouseClicked="#showTeamPlayers" prefHeight="368.0" prefWidth="342.0" style="-fx-opacity: 0.76;" />
       <Button fx:id="connectThem" layoutX="314.0" layoutY="494.0" mnemonicParsing="false" onAction="#addPlayerToFirstTeam" prefHeight="41.0" prefWidth="84.0" text="Connect" />
       <Label layoutX="189.0" layoutY="50.0" prefHeight="27.0" prefWidth="396.0" style="-fx-opacity: 0.8;" text="Connect Player To First Team Players" textFill="WHITE">
          <font>

@@ -1,6 +1,8 @@
 package Model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -150,5 +152,12 @@ public class Player extends Coach implements Serializable {
 			return false;
 		}
 		return true;// return true
+	}
+	
+	@Override
+	public String toString() {
+		DateFormat dft = new SimpleDateFormat("dd/MM/yyyy;HH:mm");
+		return "ID: " + this.getId() + ", Name: " + this.getFirstName() + " " + this.getLastName() + ",Position: " + this.getPosition() + ", Birthdate: " + dft.format(this.getBirthdate())
+				+ ", Swd: " + dft.format(this.getStartWorkingDate()) + ", Address: " + this.getAddress();
 	}
 }

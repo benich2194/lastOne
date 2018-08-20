@@ -21,7 +21,7 @@
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="playerList" blendMode="SCREEN" layoutX="15.0" layoutY="113.0" prefHeight="341.0" prefWidth="671.0" />
+      <ListView fx:id="playerList" layoutX="15.0" layoutY="113.0" prefHeight="341.0" prefWidth="671.0" style="-fx-opacity: 0.76;" />
       <Button fx:id="connectThem" layoutX="309.0" layoutY="526.0" mnemonicParsing="false" onAction="#addPlayerToTeam" prefHeight="41.0" prefWidth="84.0" text="Add" />
       <Label layoutX="228.0" layoutY="50.0" prefHeight="27.0" prefWidth="261.0" style="-fx-opacity: 0.8;" text="Add Player To My Team" textFill="WHITE">
          <font>
