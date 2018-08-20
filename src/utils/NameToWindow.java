@@ -92,6 +92,7 @@ public enum NameToWindow {
 	COACH_MODIFPLAYERS("coach/coachModifyPlayers"),
 	COACH_REMOVEPL("coach/coachRemovePlayerFromTeam"),
 	COACH_REPLACEPL("coach/coachReplacePlayers"),
+	COACH_PLYSTOFIRSTTEAM("coach/coachplayerToFirstTeam"),
 	COACH_VIEWPL("coach/coachViewPlayers"),
 	COACH_ADDPLTOTEAM("coach/coachAddPlayerToTeam"),
 	

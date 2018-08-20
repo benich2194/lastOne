@@ -50,8 +50,13 @@
                   <Glow />
                </effect>
             </Button>
+            <Button mnemonicParsing="false" onAction="#goToAddTOFIRSTTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Add Player to First Team">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
 
-            <Button mnemonicParsing="false" onAction="#goToChangeFirstTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Change First Team Players">
+            <Button mnemonicParsing="false" onAction="#goToChangeFirstTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Replace First Team Players">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
