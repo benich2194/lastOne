@@ -83,14 +83,19 @@ public class SubToCustomerController {
 	    			labelSuccess.setText("Subscription "+id+" was added succesfully to customer "+c.getId());
 	    			startDate.valueProperty().set(null);
 	    			subId.setText("");
-	    			recepList.getItems().removeAll(recepList.getItems());
+	    			recepList.getItems().removeAll(recepList.getItems());//refreshes lists
 	    			customerList.getItems().removeAll(customerList.getItems());
-	    			if(SysData.getInstance().getCustomers().values().size()>0) {
-	    	    		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
-	    	    	}
 	    			if(SysData.getInstance().getReceptionists().values().size()>0) {
-	    	    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+	    	    		for(Receptionist rec:SysData.getInstance().getReceptionists().values()) {
+	    	    			if(rec!=null&&rec.getWorkingStadium()!=null) {
+	    	    				recepList.getItems().add(rec);
+	    	    			}
+	    	    		}
 	    	    	}
+	    	    		periodList.getItems().addAll(E_Periods.values());
+	    	    		if(SysData.getInstance().getCustomers().values().size()>0) {
+	    	        		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
+	    	        	}
 	    			periodList.getItems().removeAll(periodList.getItems());
 	    			periodList.getItems().addAll(E_Periods.values());
 	    		}
@@ -119,7 +124,11 @@ public class SubToCustomerController {
      */
     public void initialize() {
     	if(SysData.getInstance().getReceptionists().values().size()>0) {
-    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null&&r.getWorkingStadium()!=null) {
+    				recepList.getItems().add(r);
+    			}
+    		}
     	}
     		periodList.getItems().addAll(E_Periods.values());
     		if(SysData.getInstance().getCustomers().values().size()>0) {
@@ -137,7 +146,11 @@ public class SubToCustomerController {
     		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
     	}
 		if(SysData.getInstance().getReceptionists().values().size()>0) {
-    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null&&r.getWorkingStadium()!=null) {
+    				recepList.getItems().add(r);
+    			}
+    		}
     	}
 		periodList.getItems().removeAll(periodList.getItems());
 		periodList.getItems().addAll(E_Periods.values());

@@ -119,7 +119,6 @@ public class addStadiumController {
 		alert.setTitle("Add Stadium");
 		alert.setHeaderText("");
 		try {
-			// ID is size of the map + 1, if exists, it will keep adding 1
 			if(this.id.getText().isEmpty()) {
 				throw new MissingInputException("id");
 			}

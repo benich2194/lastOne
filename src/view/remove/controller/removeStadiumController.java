@@ -5,8 +5,10 @@ import java.io.IOException;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Match;
+import Model.Player;
 import Model.Receptionist;
 import Model.Stadium;
+import Model.Subscription;
 import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,14 +77,28 @@ public class removeStadiumController {
     				}
     			}
     		}
-    		if(s.getTeams()!=null) {
+    		for(Team t:s.getTeams()) {//remove matches that happened in this stadium in team and players
+    			if(t!=null) {
+    				for(Player p:t.getPlayers().keySet()) {
+    					if(p!=null) {
+    						for(Match m:p.getMatches()) {
+    							if(m!=null&&m.getHomeTeam()!=null&&m.getHomeTeam().getStadium().equals(s)) {
+    								p.removeMatch(m);
+    								t.removeMatch(m);
+    							}
+    						}
+    					}
+    				}
+    			}
+    		}
+    		if(s.getTeams()!=null) {//remove stadium from team
     			for(Team t:s.getTeams()) {
     				if(t!=null) {
     					t.setStadium(null);
     				}
     			}
     		}
-    		if(s.getMatches()!=null) {
+    		if(s.getMatches()!=null) {//remove matches from team that belongs to stadium
     			for(Match m:s.getMatches()) {
     				SysData.getInstance().getMatchs().remove(m.getId());
     				for(Team t:SysData.getInstance().getTeams().values()) {
@@ -90,6 +106,16 @@ public class removeStadiumController {
     						t.removeMatch(m);
     					}
     				}
+    			}
+    		}
+    		for(Receptionist r:s.getReceptionists()) {//remove receptionist and subs sold by her
+    			if(r!=null) {
+    				for(Subscription sub:r.getSubscriptions()) {
+    					if(sub!=null) {
+    						SysData.getInstance().removeSubscription(sub.getId());
+    					}
+    				}
+    				s.removeReceptionist(r);
     			}
     		}
         	if(s!=null) {

@@ -2,6 +2,7 @@ package view.add.controller;
 
 import java.io.IOException;
 import Controller.SysData;
+import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
 import Exceptions.PasswordTooShortException;
@@ -69,7 +70,7 @@ public class addReceptionistController {
     private Button clearButton;
 
     @FXML
-    void addRecep(ActionEvent event) throws MissingInputException, PasswordTooShortException, ListNotSelectedException {
+    void addRecep(ActionEvent event) throws MissingInputException, PasswordTooShortException, ListNotSelectedException, InvalidInputException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Receptionist");
 		alert.setHeaderText("");
@@ -97,6 +98,9 @@ public class addReceptionistController {
 	    	String[] phones=new String[1];
 	    	if(recepPhone.getText().isEmpty()) {
 	    		throw new MissingInputException("phone");
+	    	}
+	    	if(work.before(bday)) {
+	    		throw new InvalidInputException("Birthday is after start work date,please change input");
 	    	}
 	    	phones[0]=recepPhone.getText();
 	    	if(recepStreet.getText().isEmpty()) {
@@ -146,6 +150,8 @@ public class addReceptionistController {
 		}catch(PasswordTooShortException e) {
 			
 		}catch(ListNotSelectedException e) {
+			
+		}catch(InvalidInputException e) {
 			
 		}
     	
