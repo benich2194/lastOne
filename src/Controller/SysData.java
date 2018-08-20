@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 
+import Exceptions.MaximumReachedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
 
@@ -359,7 +360,7 @@ public class SysData implements Serializable {
 	 * @param coachId
 	 * @param teamId
 	 * @return true if the coach was added successfully to team, false otherwise
-	 * @throws ObjectExistsException 
+	 * @throws ObjectExistsException
 	 */
 	public boolean addCoachToTeam(int coachId, int teamId) throws ObjectExistsException {
 		if (!coaches.containsKey(coachId) || !teams.containsKey(teamId)) {// if one of them doesnt exist, return false
@@ -405,7 +406,7 @@ public class SysData implements Serializable {
 	 * @param playerId
 	 * @param teamId
 	 * @return true if the player was added successfully to team, false otherwise
-	 * @throws ObjectExistsException 
+	 * @throws ObjectExistsException
 	 */
 	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException {
 		if (!players.containsKey(playerId) || !teams.containsKey(teamId)) {// if player or team does not exist, return
@@ -448,21 +449,43 @@ public class SysData implements Serializable {
 	 * @param teamId
 	 * @return true if the player was added successfully to team fir players, false
 	 *         otherwise
+	 * @throws MaximumReachedException 
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addPlayerToTeamFirstPlayers(int playerId, int teamId) {
-		if (playerId > 0 && teamId > 0) {
-			if (players.containsKey(playerId) && teams.containsKey(teamId)) {
-				Player player = players.get(playerId);
-				Team team = teams.get(teamId);
-				if (player.getCurrentTeam() != null) {
-					if (!player.getCurrentTeam().equals(team)) {
-						return false;
-					}
-					return team.addPlayerToFirstTeam(player);
-				}
+	public boolean addPlayerToTeamFirstPlayers(int playerId, int teamId) throws MaximumReachedException, ObjectExistsException {
+		if (players.get(playerId) == null || teams.get(teamId) == null) {// if player or team does not exist, return
+			// false
+			return false;
+		}
+		int counter = 0;
+		for (boolean b : teams.get(teamId).getPlayers().values()) {// counts how many first team players
+			if (b == true) {
+				counter++;
 			}
 		}
-		return false;
+		if (counter == Constants.NUM_OF_FIRST_TEAM_PLAYERS) {// if maximum first team players has reached, return false
+			throw new MaximumReachedException("maximum first players in team has reached its limit");
+		}
+		if (players.get(playerId).getCurrentTeam() != null
+				&& players.get(playerId).getCurrentTeam().equals(teams.get(teamId))
+				&& teams.get(teamId).getPlayers().get(players.get(playerId)) == false) {// if player already exist but
+			// not as first team player,
+			// replace him and re add him as
+			// first team player
+			if (!teams.get(teamId).replacePlayerOfFirstTeam(players.get(playerId), players.get(playerId))) {
+				return false;
+			}
+			return true;
+		}
+		if (players.get(playerId).getCurrentTeam() != null) {// if player already has a team and it is not this team,
+// cannot add him so return false
+			return false;
+		}
+		if (!teams.get(teamId).addPlayerToFirstTeam(players.get(playerId))) {// if cannot add player to first team
+			// players, return false
+			return false;
+		}
+		return true;
 	}// ~ END OF addCoachToTeam
 
 	/**

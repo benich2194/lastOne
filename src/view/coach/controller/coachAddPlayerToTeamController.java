@@ -2,6 +2,7 @@ package view.coach.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.MaximumReachedException;
 import Exceptions.ObjectExistsException;
 import Model.Coach;
 import Model.Player;
@@ -42,9 +43,10 @@ public class coachAddPlayerToTeamController {
      * @param event add player button pressed
      * @throws ListNotSelectedException
      * @throws ObjectExistsException
+     * @throws MaximumReachedException 
      */
     @FXML
-    void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException,ObjectExistsException {
+    void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException,ObjectExistsException, MaximumReachedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player To Team");
 		alert.setHeaderText("");
@@ -81,6 +83,8 @@ public class coachAddPlayerToTeamController {
 		}catch(ListNotSelectedException e) {
 			
 		}catch(ObjectExistsException e) {
+			
+		}catch(MaximumReachedException e) {
 			
 		}
 		

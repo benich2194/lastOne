@@ -2,12 +2,15 @@ package view.connection.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.MaximumReachedException;
+import Exceptions.ObjectExistsException;
 import Model.Player;
 import Model.Team;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
@@ -32,50 +35,70 @@ public class playerToFirstTeamController {
 
     @FXML
     private Button connectThem;
+    
+    @FXML
+    private Label labelSuccess;
     /**
      * adds player to first team players
      * @param event add button is pressed
      * @throws ListNotSelectedException
+     * @throws ObjectExistsException 
+     * @throws MaximumReachedException 
      */
     @FXML
-    void addPlayerToFirstTeam(ActionEvent event) throws ListNotSelectedException {
+    void addPlayerToFirstTeam(ActionEvent event) throws ListNotSelectedException, MaximumReachedException, ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player To First Team Players");
 		alert.setHeaderText("");
+		Team t=teamList.getSelectionModel().getSelectedItem();
+		Player p=playerList.getSelectionModel().getSelectedItem();
 		try {
-			if(teamList.getSelectionModel().getSelectedItem()!=null&&playerList.getSelectionModel().getSelectedItem()!=null) {
-	    		if(SysData.getInstance().addPlayerToTeamFirstPlayers(playerList.getSelectionModel().getSelectedItem().getId(),teamList.getSelectionModel().getSelectedItem().getId())){
-	    			alert.setHeaderText("Added Player to First Team Players.");
-	        		alert.setContentText("Player was added to First Team Players successfully.");
-	        		alert.show();
+			if(t!=null&&p!=null) {
+	    		if(SysData.getInstance().addPlayerToTeamFirstPlayers(p.getId(),t.getId())){
+	    			labelSuccess.setText("player "+p.getId()+" was added to first team players in team "+t.getId());
 	    		}
 	    		else {
 	    			alert.setHeaderText("Failed to add Player to First Team Players.");
-	        		alert.setContentText("Unable to add Player to First Team Players, Please select a player & a team.");
+	        		alert.setContentText("player is already a first team player in this team");
 	        		alert.show();
 	    		}
 	    	}
 	    	else {
-	    		throw new ListNotSelectedException();
+	    		if(p==null) {
+	    			throw new ListNotSelectedException("please choose player from list");
+	    		}
+	    		if(t==null) {
+	    			throw new ListNotSelectedException("Please choose team from list");
+	    		}
 	    	}
 		}catch(ListNotSelectedException e) {
 			
+		}catch(ObjectExistsException e) {
+			
 		}
     	//refreshes lists
+		playerList.getItems().removeAll(playerList.getItems());
     	teamList.getItems().removeAll(teamList.getItems());
     	if(SysData.getInstance().getTeams().values().size()>0) {
-    		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
+    		for(Team te:SysData.getInstance().getTeams().values()) {
+    			if(te!=null&&te.getPlayers().size()<utils.Constants.NUM_OF_FIRST_TEAM_PLAYERS) {
+    				teamList.getItems().add(te);
+    			}
+    		}
     	}
     }
     
     public void initialize() {
     	if(SysData.getInstance().getTeams().values().size()>0) {
-    		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
+    		for(Team t:SysData.getInstance().getTeams().values()) {
+    			if(t!=null&&t.getPlayers().size()<utils.Constants.NUM_OF_FIRST_TEAM_PLAYERS) {
+    				teamList.getItems().add(t);
+    			}
+    		}
     	}
     	
     	//Clear players list until a Team is chosen
         playerList.getItems().clear();
-    	
     }
     
     /**
@@ -85,8 +108,18 @@ public class playerToFirstTeamController {
     @FXML
     void showTeamPlayers(MouseEvent event) {
     	//If there are players on the team
+    	playerList.getItems().removeAll(playerList.getItems());
     	if(!teamList.getSelectionModel().getSelectedItem().getPlayers().keySet().isEmpty())
-    		playerList.getItems().addAll(teamList.getSelectionModel().getSelectedItem().getPlayers().keySet());
+    		for(Player p:teamList.getSelectionModel().getSelectedItem().getPlayers().keySet()) {
+    			if(p!=null&&teamList.getSelectionModel().getSelectedItem().getPlayers().get(p)==false) {
+    				playerList.getItems().add(p);
+    			}
+    		}
+    	for(Player p:SysData.getInstance().getPlayers().values()) {
+    		if(p!=null&&p.getCurrentTeam()==null&&!teamList.getSelectionModel().getSelectedItem().getPlayers().containsKey(p)) {
+    			playerList.getItems().add(p);
+    		}
+    	}
     }
     
     /**

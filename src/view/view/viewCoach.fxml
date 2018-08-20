@@ -18,7 +18,7 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <TableView fx:id="coachTableView" editable="true" layoutX="6.0" layoutY="75.0" onKeyReleased="#showRowDetails" prefHeight="357.0" prefWidth="689.0" style="-fx-opacity: 0.8;">
+      <TableView fx:id="coachTableView" editable="true" layoutX="6.0" layoutY="75.0" prefHeight="357.0" prefWidth="689.0" style="-fx-opacity: 0.8;">
         <columns>
           <TableColumn fx:id="coachID" editable="false" prefWidth="74.0" text="ID" />
           <TableColumn fx:id="coachFirstName" prefWidth="95.0" text="First Name" />

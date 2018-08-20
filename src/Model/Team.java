@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.ObjectExistsException;
 import utils.Constants;
 import utils.E_Levels;
 
@@ -174,8 +175,9 @@ public class Team implements Serializable {
 	 * 
 	 * @param player
 	 * @return true if the player was added successfully, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addPlayerToFirstTeam(Player player) {
+	public boolean addPlayerToFirstTeam(Player player) throws ObjectExistsException {
 		if (player == null) {// if player is null, return false
 			return false;
 		}
@@ -192,7 +194,7 @@ public class Team implements Serializable {
 		if (players.containsKey(player)) {// if player exists in team
 			if (players.get(player).booleanValue() == true) {// if he is already in first team players array, return
 																// false
-				return false;
+				throw new ObjectExistsException("player already is a first team player");
 			} else {
 				players.remove(player);// if he wasn't a first team player, remove him and add him as a first team
 										// player
@@ -211,8 +213,9 @@ public class Team implements Serializable {
 	 * 
 	 * @param player
 	 * @return true if the player was removed successfully, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean replacePlayerOfFirstTeam(Player oldPlayer, Player newPlayer) {
+	public boolean replacePlayerOfFirstTeam(Player oldPlayer, Player newPlayer) throws ObjectExistsException {
 		if (oldPlayer == null || newPlayer == null || !players.containsKey(oldPlayer) || players.get(oldPlayer)) {// if
 																													// one
 																													// of

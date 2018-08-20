@@ -2,6 +2,7 @@ package view.coach.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.ObjectExistsException;
 import Model.Player;
 import Model.Team;
 import javafx.event.ActionEvent;
@@ -41,9 +42,10 @@ public class coachReplacePlayersController {
      * replace players from first players to regular players
      * @param event replace button is pressed
      * @throws ListNotSelectedException
+     * @throws ObjectExistsException 
      */
     @FXML
-    void replacePlayers(ActionEvent event) throws ListNotSelectedException {
+    void replacePlayers(ActionEvent event) throws ListNotSelectedException, ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Replace players");
 		alert.setHeaderText("");
@@ -63,6 +65,8 @@ public class coachReplacePlayersController {
         		alert.show();
         	}
     	}catch(ListNotSelectedException e) {
+    		
+    	}catch(ObjectExistsException e) {
     		
     	}
     	
