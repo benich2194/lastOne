@@ -1,6 +1,7 @@
 package view.remove.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
@@ -64,12 +65,13 @@ public class removeTeamController {
 			}
 			if(t.getPlayers()!=null) {//removes players
 				for(Player p:t.getPlayers().keySet()){
-					if(p!=null) {
+					if(p!=null) {	
 						p.setCurrentTeam(null);
-						t.removePlayer(p);
 					}
 				}
 			}
+			ArrayList<Customer> removeCus=new ArrayList<Customer>();
+			ArrayList<Subscription> removeSub=new ArrayList<Subscription>();
 			if(SysData.getInstance().getCustomers()!=null) {
 				for(Customer c:SysData.getInstance().getCustomers().values()) {//removes customers that its their favroite team
 					if(c!=null) {
@@ -77,13 +79,21 @@ public class removeTeamController {
 							if(c.getSubscriptions()!=null) {
 								for(Subscription s:c.getSubscriptions()) {
 									if(s!=null)
-										SysData.getInstance().removeSubscription(s.getId());
+										removeSub.add(s);
 								}
+								removeCus.add(c);
 							}
-							SysData.getInstance().removeCustomer(c);
+							
 						}
+						
 					}
 				}
+			}
+			for(Customer c:removeCus) {
+				SysData.getInstance().removeCustomer(c);
+			}
+			for(Subscription s:removeSub) {
+				SysData.getInstance().removeSubscription(s.getId());
 			}
 			if(t.getStadium()!=null) {//removes team from its stadium
 				t.getStadium().removeTeam(t);

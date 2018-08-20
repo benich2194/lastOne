@@ -362,29 +362,38 @@ public class SysData implements Serializable {
 	 * @throws ObjectExistsException 
 	 */
 	public boolean addCoachToTeam(int coachId, int teamId) throws ObjectExistsException {
-		if (coachId > 0 && teamId > 0) {
-			if (coaches.containsKey(coachId) && teams.containsKey(teamId)) {
-				Coach coach = coaches.get(coachId);
-				Team team = teams.get(teamId);
-
-				if (coach.getCurrentTeam() != null) {
-
-					if (coach.getCurrentTeam().equals(team)) {
-					}
-
-					if (team.registerCoach(coach)) {
-						return coach.transferTo(team);
-					}
-				}
-
-				if (team.registerCoach(coach)) {
-					coach.setCurrentTeam(team);
-					return true;
-				}
-			}
+		if (!coaches.containsKey(coachId) || !teams.containsKey(teamId)) {// if one of them doesnt exist, return false
+			return false;
 		}
-
-		return false;
+		if (teams.get(teamId).getCoach() != null) {// if team already has a coach, return false
+			return false;
+		}
+		if (coaches.get(coachId).getCurrentTeam() != null
+				&& coaches.get(coachId).getCurrentTeam().equals(teams.get(teamId))) {// if the coach current team is
+																						// this team, return false
+			return false;
+		}
+		if (coaches.get(coachId).getCurrentTeam() != null) {// if the coach already has a team, add him to team than
+															// transfer coach team
+			if (!teams.get(teamId).registerCoach(coaches.get(coachId))) {
+				return false;
+			}
+			if (!coaches.get(coachId).transferTo(teams.get(teamId))) {
+				teams.get(teamId).setCoach(null);
+				return false;
+			}
+			teams.get(teamId).setCoach(coaches.get(coachId));
+			return true;// return true
+		} else {
+			coaches.get(coachId).setCurrentTeam(teams.get(teamId));// if he doesn't have a team, set a team to coach and
+																	// add to team register coach
+			if (!teams.get(teamId).registerCoach(coaches.get(coachId))) {
+				coaches.get(coachId).setCurrentTeam(null);// if failed, rollback and sets coach current team to null
+				return false;// return false
+			}
+			teams.get(teamId).setCoach(coaches.get(coachId));
+			return true;// return true
+		}
 	}// ~ END OF addCoachToTeam
 
 	/**

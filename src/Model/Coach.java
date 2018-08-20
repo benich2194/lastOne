@@ -82,7 +82,7 @@ public class Coach extends Employee implements Serializable{
 		}
 		if (currentTeam != null && !addTeam(currentTeam)) {// if cannot add current team to past teams array, return
 															// false
-			return false;
+			throw new ObjectExistsException("coach already coached this team before");
 		}
 		if (teams.contains(team)) {// if the team was already coached, remove from past teams array
 			teams.remove(team);
@@ -99,9 +99,16 @@ public class Coach extends Employee implements Serializable{
 	 * @return true if the team was added successfully, false otherwise
 	 */
 	protected boolean addTeam(Team team) {
-		if (team != null && !teams.contains(team)) 
-			return teams.add(team);
-		return false;
+		if (team == null) {// if team is null,return false
+			return false;
+		}
+		if (teams.contains(team)) {// if team exists already, return false
+			return false;
+		}
+		if (!teams.add(team)) {// if cannot add team, return false
+			return false;
+		}
+		return true;// return true
 	}
 
 	/**
