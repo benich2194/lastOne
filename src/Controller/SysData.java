@@ -362,8 +362,9 @@ public class SysData implements Serializable {
 	 * @param teamId
 	 * @return true if the coach was added successfully to team, false otherwise
 	 * @throws ObjectExistsException
+	 * @throws MaximumReachedException 
 	 */
-	public boolean addCoachToTeam(int coachId, int teamId) throws ObjectExistsException {
+	public boolean addCoachToTeam(int coachId, int teamId) throws ObjectExistsException, MaximumReachedException {
 		if (!coaches.containsKey(coachId) || !teams.containsKey(teamId)) {// if one of them doesnt exist, return false
 			return false;
 		}
@@ -408,8 +409,9 @@ public class SysData implements Serializable {
 	 * @param teamId
 	 * @return true if the player was added successfully to team, false otherwise
 	 * @throws ObjectExistsException
+	 * @throws MaximumReachedException 
 	 */
-	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException {
+	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException, MaximumReachedException {
 		if (!players.containsKey(playerId) || !teams.containsKey(teamId)) {// if player or team does not exist, return
 			// false
 			return false;

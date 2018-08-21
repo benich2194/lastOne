@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.MaximumReachedException;
 import Exceptions.ObjectExistsException;
 import utils.Constants;
 import utils.E_Levels;
@@ -133,13 +134,14 @@ public class Team implements Serializable {
 	 * 
 	 * @param employee
 	 * @return true if the player was added successfully, false otherwise
+	 * @throws MaximumReachedException 
 	 */
-	public boolean addPlayer(Player player) {
+	public boolean addPlayer(Player player) throws MaximumReachedException {
 		if (player == null) {// if player is null, return false
 			return false;
 		}
 		if (players.size() == Constants.MAX_PLAYERS_FOR_TEAM) {// if maximum number of players has reached, return false
-			return false;
+			throw new MaximumReachedException("maximum players in this team");
 		}
 		if (players.containsKey(player)) {// if player already exists, return false
 			return false;
@@ -214,8 +216,9 @@ public class Team implements Serializable {
 	 * @param player
 	 * @return true if the player was removed successfully, false otherwise
 	 * @throws ObjectExistsException 
+	 * @throws MaximumReachedException 
 	 */
-	public boolean replacePlayerOfFirstTeam(Player oldPlayer, Player newPlayer) throws ObjectExistsException {
+	public boolean replacePlayerOfFirstTeam(Player oldPlayer, Player newPlayer) throws ObjectExistsException, MaximumReachedException {
 		if (oldPlayer == null || newPlayer == null || !players.containsKey(oldPlayer) || players.get(oldPlayer)) {// if
 																													// one
 																													// of

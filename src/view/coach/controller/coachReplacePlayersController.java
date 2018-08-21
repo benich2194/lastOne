@@ -2,6 +2,7 @@ package view.coach.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Exceptions.MaximumReachedException;
 import Exceptions.ObjectExistsException;
 import Model.Player;
 import Model.Team;
@@ -43,9 +44,10 @@ public class coachReplacePlayersController {
      * @param event replace button is pressed
      * @throws ListNotSelectedException
      * @throws ObjectExistsException 
+     * @throws MaximumReachedException 
      */
     @FXML
-    void replacePlayers(ActionEvent event) throws ListNotSelectedException, ObjectExistsException {
+    void replacePlayers(ActionEvent event) throws ListNotSelectedException, ObjectExistsException, MaximumReachedException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Replace players");
 		alert.setHeaderText("");
@@ -67,6 +69,8 @@ public class coachReplacePlayersController {
     	}catch(ListNotSelectedException e) {
     		
     	}catch(ObjectExistsException e) {
+    		
+    	}catch(MaximumReachedException e) {
     		
     	}
     	

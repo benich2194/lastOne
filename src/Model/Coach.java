@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
+import Exceptions.MaximumReachedException;
 import Exceptions.ObjectExistsException;
 import utils.E_Levels;
 
@@ -69,8 +70,9 @@ public class Coach extends Employee implements Serializable{
 	 * @param team
 	 * @return true if the coach was added successfully to team, false otherwise
 	 * @throws ObjectExistsException 
+	 * @throws MaximumReachedException 
 	 */
-	public boolean transferTo(Team team) throws ObjectExistsException {
+	public boolean transferTo(Team team) throws ObjectExistsException, MaximumReachedException {
 		if (team == null) {// if team is null, return false
 			return false;
 		}

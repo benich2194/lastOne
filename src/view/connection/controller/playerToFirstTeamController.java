@@ -80,23 +80,14 @@ public class playerToFirstTeamController {
 		playerList.getItems().removeAll(playerList.getItems());
     	teamList.getItems().removeAll(teamList.getItems());
     	if(SysData.getInstance().getTeams().values().size()>0) {
-    		for(Team te:SysData.getInstance().getTeams().values()) {
-    			if(te!=null&&te.getPlayers().size()<utils.Constants.NUM_OF_FIRST_TEAM_PLAYERS) {
-    				teamList.getItems().add(te);
-    			}
+    		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
     		}
-    	}
     }
     
     public void initialize() {
     	if(SysData.getInstance().getTeams().values().size()>0) {
-    		for(Team t:SysData.getInstance().getTeams().values()) {
-    			if(t!=null&&t.getPlayers().size()<utils.Constants.NUM_OF_FIRST_TEAM_PLAYERS) {
-    				teamList.getItems().add(t);
-    			}
-    		}
-    	}
-    	
+    		teamList.getItems().addAll(SysData.getInstance().getTeams().values());
+    		}	
     	//Clear players list until a Team is chosen
         playerList.getItems().clear();
     }
