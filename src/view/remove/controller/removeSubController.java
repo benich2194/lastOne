@@ -5,6 +5,7 @@ import Exceptions.ListNotSelectedException;
 import Model.Coach;
 import Model.Customer;
 import Model.Player;
+import Model.Receptionist;
 import Model.Subscription;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,8 +69,9 @@ public class removeSubController {
 		}catch(ListNotSelectedException e) {
 			
 		}
+		//refreshes lists
     	subList.getItems().removeAll(subList.getItems());
-    	if(SysData.getInstance().getCustomers().values()!=null) {//refreshes list
+      	if(SysData.getInstance().getCustomers().values()!=null) {
     		for(Customer c:SysData.getInstance().getCustomers().values()) {
     			if(c!=null&&c.getSubscriptions()!=null) {
     				for(Subscription s:c.getSubscriptions()) {
@@ -80,7 +82,19 @@ public class removeSubController {
     			}
     		}
     	}
-    	
+    	if(SysData.getInstance().getReceptionists()!=null) {
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null) {
+    				if(r.getSubscriptions()!=null) {
+    					for(Subscription s:r.getSubscriptions()) {
+    						if(s!=null&&!subList.getItems().contains(s)) {
+    							subList.getItems().add(s);
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
     }
     public void initialize() {
     	if(SysData.getInstance().getCustomers().values()!=null) {
@@ -89,6 +103,19 @@ public class removeSubController {
     				for(Subscription s:c.getSubscriptions()) {
     					if(s!=null) {
     						subList.getItems().add(s);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	if(SysData.getInstance().getReceptionists()!=null) {
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null) {
+    				if(r.getSubscriptions()!=null) {
+    					for(Subscription s:r.getSubscriptions()) {
+    						if(s!=null&&!subList.getItems().contains(s)) {
+    							subList.getItems().add(s);
+    						}
     					}
     				}
     			}
