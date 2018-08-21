@@ -3,6 +3,7 @@ package view.recep.controller;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectExistsException;
 import Model.Customer;
 import Model.Receptionist;
 import javafx.event.ActionEvent;
@@ -51,7 +52,7 @@ public class receptionistAddSubToCustomerController {
     private Receptionist r = SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
 
     @FXML
-    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException {
+    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException, ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
@@ -93,6 +94,8 @@ public class receptionistAddSubToCustomerController {
 		}catch(MissingInputException e) {
 			
 		}catch(ListNotSelectedException e) {
+			
+		}catch(ObjectExistsException e) {
 			
 		}
 		

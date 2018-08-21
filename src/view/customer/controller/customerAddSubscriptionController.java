@@ -3,6 +3,7 @@ package view.customer.controller;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectExistsException;
 import Model.Receptionist;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +40,7 @@ public class customerAddSubscriptionController {
     private ComboBox<E_Periods> periodList;
 
     @FXML
-    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException {
+    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException, ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
@@ -76,6 +77,8 @@ public class customerAddSubscriptionController {
     	}catch(MissingInputException e) {
     		
     	}catch(ListNotSelectedException e) {
+    		
+    	}catch(ObjectExistsException e) {
     		
     	}
     	//refreshes list

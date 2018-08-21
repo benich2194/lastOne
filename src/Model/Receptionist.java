@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 
+import Exceptions.ObjectExistsException;
+
 /**
  * Class Receptionist ~ represent a single Receptionist of the company,
  * inheritor of Employee
@@ -55,11 +57,19 @@ public class Receptionist extends Employee implements Serializable{
 	 * 
 	 * @param subscription
 	 * @return true if the subscription was added successfully, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addSubscription(Subscription subscription) {
-		if (subscription != null && !subscriptions.contains(subscription)) 
-			return subscriptions.add(subscription);
-		return false;
+	public boolean addSubscription(Subscription subscription) throws ObjectExistsException {
+		if (subscription == null) {// if subscription is null, return false
+			return false;
+		}
+		if (subscriptions.contains(subscription)) {// if subscription already exists, return false
+			throw new ObjectExistsException("Receptionist already sold subscription with this id");
+		}
+		if (!subscriptions.add(subscription)) {// if cannot add subscription, return false
+			return false;
+		}
+		return true;// return true
 	}
 
 	/**
@@ -69,9 +79,16 @@ public class Receptionist extends Employee implements Serializable{
 	 * @return true if the subscription was removed successfully, false otherwise
 	 */
 	public boolean removeSubscription(Subscription subscription) {
-		if (subscription != null && subscriptions.contains(subscription)) 
-			return subscriptions.remove(subscription);
-		return false;
+		if (subscription == null) {// if subscription is null, return false
+			return false;
+		}
+		if (!subscriptions.contains(subscription)) {// if subscription does not exist, return false
+			return false;
+		}
+		if (!subscriptions.remove(subscription)) {// if cannot remove subscription, return false
+			return false;
+		}
+		return true;// return true
 	}
 
 }

@@ -538,9 +538,10 @@ public class SysData implements Serializable {
 	 * @param startDate
 	 * @return true if the suscription was added successfully to customer, false
 	 *         otherwise
+	 * @throws ObjectExistsException 
 	 */
 	public boolean addSubscriptionToCustomer(int subscriptionId, String customerId, int receptionistId,
-			E_Periods period, Date startDate) {
+			E_Periods period, Date startDate) throws ObjectExistsException {
 		if (subscriptionId > 0 && receptionistId > 0 && !Customer.checkId(customerId).equals("0")) {
 			if (customers.containsKey(customerId) && receptionists.containsKey(receptionistId)) {
 				Customer customer = customers.get(customerId);
@@ -645,7 +646,7 @@ public class SysData implements Serializable {
 	 * @return
 	 */
 	public boolean removeSubscription(int subscriptionId) {
-		int flag = 0;
+		int flag=0;
 		if (subscriptionId < 0) {// if id is less than 0, return false
 			return false;
 		}
@@ -655,21 +656,19 @@ public class SysData implements Serializable {
 				for (Subscription s : r.getSubscriptions()) {
 					if (s != null) {
 						if (s.getId() == subscriptionId) {
-							flag = 1;
-						}
+							r.removeSubscription(new Subscription(subscriptionId));
+							flag=1;
 					}
 				}
 			}
 		}
-		if (flag != 1) {// if subscription does not exist, return false
-			return false;
 		}
-		flag = 0;
 		for (Customer c : customers.values()) {// if a customer has the subscription, remove it and raise flag to tell
 												// it was removed from one of them if existed
 			if (c != null) {
-				if (c.removeSubscription(new Subscription(subscriptionId))) {
-					flag = 1;
+				if (c.getSubscriptions().contains(new Subscription(subscriptionId))) {
+					c.removeSubscription(new Subscription(subscriptionId));
+					flag=1;
 				}
 			}
 			if (flag == 1) {// returns true if the subscription was removed from a customer

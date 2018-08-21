@@ -3,6 +3,7 @@ package view.connection.controller;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectExistsException;
 import Model.Customer;
 import Model.Receptionist;
 import javafx.event.ActionEvent;
@@ -54,7 +55,7 @@ public class SubToCustomerController {
     private Button clearButton;
 
     @FXML
-    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException {
+    void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException,ListNotSelectedException, ObjectExistsException {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Subscription To Customer");
 		alert.setHeaderText("");
@@ -107,6 +108,8 @@ public class SubToCustomerController {
 		}catch(MissingInputException e) {
 			
 		}catch(ListNotSelectedException e) {
+			
+		}catch(ObjectExistsException e) {
 			
 		}
 		

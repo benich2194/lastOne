@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Exceptions.NoValidSubscriptionException;
+import Exceptions.ObjectExistsException;
 import Exceptions.ObjectNotExistException;
 import utils.Constants;
 import utils.E_Levels;
@@ -39,7 +40,7 @@ public class Customer implements Comparable<Customer>, Serializable{
 
 	// -------------------------------Constructors------------------------------
 	public Customer(String id,String password, String firstName, String lastName, Date birthdate, E_Levels level,
-			URL email, Address address, Team favoriteTeam, Subscription subscription) {
+			URL email, Address address, Team favoriteTeam, Subscription subscription) throws ObjectExistsException {
 		this.id = checkId(id);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -159,24 +160,39 @@ public class Customer implements Comparable<Customer>, Serializable{
 	 * 
 	 * @param subscription
 	 * @return true if this subscription was successfully added, false otherwise
+	 * @throws ObjectExistsException 
 	 */
-	public boolean addSubscription(Subscription subscription) {
-		if (subscription != null && !subscriptions.contains(subscription)) 
-			return subscriptions.add(subscription);
-		return false;
+	public boolean addSubscription(Subscription subscription) throws ObjectExistsException {
+		if (subscription == null) {// if subscription is null, return false
+			return false;
+		}
+		if (subscriptions.contains(subscription)) {// if subscription already exists, return false
+			throw new ObjectExistsException("Customer already has subscription with this id");
+		}
+		if (!subscriptions.add(subscription)) {// if cannot add subscription, return false
+			return false;
+		}
+		return true;// return true
 	}
 
 	/**
-	 * This method removes an existing subscription from the subscriptions array 
+	 * This method removes an existing subscription from the subscriptions array
 	 * only if the subscription exists
 	 * 
 	 * @param subscription
 	 * @return true if this subscription was removed successfully, false otherwise
 	 */
 	public boolean removeSubscription(Subscription subscription) {
-		if (subscription != null && subscriptions.contains(subscription)) 
-			return subscriptions.remove(subscription);
-		return false;
+		if (subscription == null) {// if subscription is null, return false;
+			return false;
+		}
+		if (!subscriptions.contains(subscription)) {// if subscription does not exist, return false
+			return false;
+		}
+		if (!subscriptions.remove(subscription)) {// if cannot remove subscription, return false
+			return false;
+		}
+		return true;// return true
 	}
 
 	/**
