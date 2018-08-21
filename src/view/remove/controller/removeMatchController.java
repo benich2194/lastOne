@@ -76,7 +76,7 @@ public class removeMatchController {
 	    		alert.show();
         	}
         	else {
-        		labelSuccess.setText("match "+m.getId()+"was removed succesfully!");
+        		labelSuccess.setText("match "+m.getId()+" was removed succesfully!");
         	}
     	}catch(ListNotSelectedException e) {
     		
