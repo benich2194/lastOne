@@ -74,9 +74,17 @@ public class coachToTeamController {
 	    				labelSuccess.setText("coach "+c.getId()+" was added to team "+t.getId());
 	    			}
 	    			else {
-	    				alert.setHeaderText("failed to add coach to team.");
-		        		alert.setContentText("unable to add coach to team.");
-		        		alert.show();
+	    				if(c.getLevel().getLevel()<t.getLevel().getLevel()) {
+	    					alert.setHeaderText("failed to add coach to team.");
+			        		alert.setContentText("coach level is lower than team level.");
+			        		alert.show();
+	    				}
+	    				else {
+	    					alert.setHeaderText("failed to add coach to team.");
+			        		alert.setContentText("unable to add coach to team.");
+			        		alert.show();
+	    				}
+	    				
 	    			}
 	    		}
 	    	}
