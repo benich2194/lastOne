@@ -11,6 +11,7 @@ import java.util.PrimitiveIterator.OfDouble;
 
 import Controller.SysData;
 import Exceptions.IdExistsException;
+import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
 import Exceptions.ObjectExistsException;
@@ -79,9 +80,10 @@ public class addMatchController {
      * @throws ListNotSelectedException
      * @throws ObjectExistsException
      * @throws IdExistsException 
+     * @throws InvalidInputException 
      */
     @FXML
-    void addMatch(ActionEvent event) throws MissingInputException, ListNotSelectedException, ObjectExistsException, IdExistsException{
+    void addMatch(ActionEvent event) throws MissingInputException, ListNotSelectedException, ObjectExistsException, IdExistsException, InvalidInputException{
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Match");
 		alert.setHeaderText("");
@@ -128,7 +130,10 @@ public class addMatchController {
 	    		}
 	    		if(awayS.getText().isEmpty()) {
 	    			throw new MissingInputException("away score");
-	    		}	    		
+	    		}	    	
+	    		if(Home.getSelectionModel().getSelectedItem().equals(Away.getSelectionModel().getSelectedItem())) {
+	    			throw new InvalidInputException("the teams selected are the same.please choose different teams.");
+	    		}
 	    		SysData.getInstance().addMatch(id, time, extra, Home.getSelectionModel().getSelectedItem().getId(), Away.getSelectionModel().getSelectedItem().getId(), Integer.parseInt(homeS.getText()), Integer.parseInt(awayS.getText()));
 		    	if(SysData.getInstance().getMatchs().containsKey(id)) {
 		    		labelSuccess.setText("Match "+matchId.getText()+" added succesfully!");
@@ -169,6 +174,8 @@ public class addMatchController {
 		}catch(ObjectExistsException e) {
 			
 		}catch(IdExistsException e) {
+			
+		}catch(InvalidInputException e) {
 			
 		}
     }
