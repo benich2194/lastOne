@@ -90,7 +90,7 @@ public class addTrophyController {
 	}
 
 	@FXML
-	void goToaddTrophy(ActionEvent event) throws InvalidInputException {
+	void goToaddTrophy(ActionEvent event) throws InvalidInputException, MissingInputException {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Trophy");
 		alert.setHeaderText("");
@@ -98,12 +98,10 @@ public class addTrophyController {
 		boolean isMyComboBoxEmptyWinner = chooseWinner.getSelectionModel().isEmpty();
 		// Check if a winner was selected
 		if (isMyComboBoxEmptyWinner) {
-			alert.setHeaderText("No Winner was selected");
-			alert.setContentText("Please select a winner from the list.");
-			alert.show();
+			throw new MissingInputException("Please choose winner");
 		} else {
 			if(chooseDate.getValue()==null) {
-				throw new InvalidInputException("please choose date");
+				throw new MissingInputException("please choose date");
 			}
 			java.sql.Date datepick = java.sql.Date.valueOf(chooseDate.getValue());
 			Trophy tt = new Trophy(chooseTrophy.getSelectionModel().getSelectedItem(),
@@ -127,6 +125,8 @@ public class addTrophyController {
 			}
 		}
 		}catch(InvalidInputException e) {
+			
+		}catch(MissingInputException e) {
 			
 		}
 

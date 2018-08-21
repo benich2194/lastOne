@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 
+import Exceptions.InvalidInputException;
 import Exceptions.MaximumReachedException;
 import Exceptions.NoValidSubscriptionException;
 import Exceptions.ObjectExistsException;
@@ -697,13 +698,14 @@ public class SysData implements Serializable {
 	 * 
 	 * @param subscriptionId
 	 * @return
+	 * @throws InvalidInputException 
 	 */
-	public <T> boolean addTrophy(E_Trophy trophy, T owner, Date trophyWinningDate) {
+	public <T> boolean addTrophy(E_Trophy trophy, T owner, Date trophyWinningDate) throws InvalidInputException {
 		if (trophy != null && owner != null && trophyWinningDate != null) {
 			if (owner instanceof Player || owner instanceof Stadium || owner instanceof Coach
 					|| owner instanceof Team) {
 				if (owner instanceof Employee && trophyWinningDate.before(((Employee) owner).getStartWorkingDate()))
-					return false;
+					throw new InvalidInputException("Cannot award trophy before employee started working");
 				Trophy<T> trp = new Trophy<T>(trophy, owner, trophyWinningDate);
 				return trophies.add(trp);
 			}
