@@ -15,7 +15,7 @@ Button, TextField, ComboBox {
     -fx-background-radius: 25;
     -fx-background-insets: 0,1,1;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 3, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.85) , 2, 0.1 , 0 , 1 );
 }
 Button:hover{
     -fx-background-color: 
@@ -25,7 +25,7 @@ Button:hover{
     -fx-background-radius: 30;
     -fx-background-insets: 0,1,1;
     -fx-text-fill: #c3c4c4;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.7) , 3, 0.0 , 0 , 5 );
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.48) , 3, 0.0 , 0 , 5 );
 }
 
 .loginTextField{
