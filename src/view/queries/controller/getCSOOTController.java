@@ -2,6 +2,9 @@ package view.queries.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import Controller.SysData;
 import Model.Customer;
 import Model.Stadium;
@@ -59,7 +62,8 @@ public class getCSOOTController {
     @FXML
     void showComp(ActionEvent event) {
     	comboBoxChooseSS.getItems().clear();
-    	Collection<Stadium> stSet = SysData.getInstance().getStadiums().values();
+    	Collection<Stadium> stSet = new ArrayList<Stadium>();
+    	stSet.addAll(SysData.getInstance().getStadiums().values());  			
     	stSet.remove(comboBoxChooseFS.getSelectionModel().getSelectedItem());
     	comboBoxChooseSS.getItems().addAll(stSet);
     	comboBoxChooseSS.setVisible(true);
@@ -84,8 +88,11 @@ public class getCSOOTController {
     		alert.show();
     	}
     	else {
+    		//Create ArrayList and then converted to Set of customers to make sure there are no duplicates
 	    	ArrayList<Customer> all = SysData.getInstance().getCustomersStadium1XORStadium2(comboBoxChooseFS.getSelectionModel().getSelectedItem().getId(), comboBoxChooseSS.getSelectionModel().getSelectedItem().getId());
-	    	listViewCustomers.getItems().addAll(all);
+	    	Set<Customer> st = new HashSet<Customer>(all);
+	    	listViewCustomers.getItems().clear();
+	    	listViewCustomers.getItems().addAll(st);
     	}
     }
 
