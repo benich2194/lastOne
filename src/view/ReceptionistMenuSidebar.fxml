@@ -120,5 +120,6 @@
          </children>
       </VBox>
       <FlowPane fx:id="menupane" layoutX="240.0" layoutY="43.0" prefHeight="582.0" prefWidth="700.0" />
+      <Button fx:id="logout" layoutX="73.0" layoutY="521.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="26.0" prefWidth="108.0" style="-fx-opacity: 0.8;" text="Logout" />
    </children>
 </AnchorPane>
