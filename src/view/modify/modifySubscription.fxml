@@ -18,23 +18,19 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="246.0" layoutY="50.0" style="-fx-opacity: 0.8;" text="Modify Subscription" textFill="WHITE">
+      <Label layoutX="244.0" layoutY="43.0" style="-fx-opacity: 0.8;" text="Modify Subscription" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ComboBox fx:id="subList" layoutX="124.0" layoutY="99.0" onAction="#showDP" prefHeight="33.0" prefWidth="437.0" promptText="Select subscription to modify:" />
-      <Label fx:id="datelbl" layoutX="121.0" layoutY="194.0" text="Please select a new Date:">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="datepicker" layoutX="294.0" layoutY="189.0" onAction="#hidelbl" />
-      <Label fx:id="lblMessage" layoutX="173.0" layoutY="279.0" prefHeight="33.0" prefWidth="390.0" textFill="#0d718d">
+      <ComboBox fx:id="subList" layoutX="124.0" layoutY="93.0" onAction="#showDP" prefHeight="39.0" prefWidth="437.0" promptText="Select subscription to modify:" />
+      <DatePicker fx:id="datepicker" layoutX="254.0" layoutY="188.0" onAction="#hidelbl" prefHeight="26.0" prefWidth="184.0" promptText="Select new Date" />
+      <Label fx:id="lblMessage" layoutX="156.0" layoutY="142.0" prefHeight="33.0" prefWidth="390.0" textFill="#0d718d">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="buttonModify" layoutX="278.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="43.0" prefWidth="140.0" text="Modify" />
+      <Button fx:id="buttonModify" layoutX="285.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="46.0" prefWidth="124.0" text="Modify" />
+      <ComboBox fx:id="periodpicker" layoutX="255.0" layoutY="253.0" onAction="#hidelbl" prefHeight="26.0" prefWidth="184.0" promptText="Select new Period" />
    </children>
 </AnchorPane>
