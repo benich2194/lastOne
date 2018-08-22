@@ -32,7 +32,7 @@
             <TableColumn fx:id="custFN" prefWidth="75.0" text="First Name" />
             <TableColumn fx:id="custLN" prefWidth="75.0" text="Last Name" />
             <TableColumn fx:id="custBday" editable="false" prefWidth="75.0" text="Birthdate" />
-            <TableColumn fx:id="custLvl" editable="false" prefWidth="75.0" text="Level" />
+            <TableColumn fx:id="custLvl" prefWidth="75.0" text="Level" />
             <TableColumn fx:id="custHouseNum" prefWidth="75.0" text="House Number" />
             <TableColumn fx:id="custStreet" prefWidth="75.0" text="Street" />
             <TableColumn fx:id="custCity" prefWidth="75.0" text="City" />

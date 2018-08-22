@@ -1,6 +1,8 @@
 package view.modify.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import Controller.SysData;
@@ -28,6 +30,7 @@ import javafx.util.StringConverter;
 import utils.E_Cities;
 import utils.E_Levels;
 import view.WindowManager;
+import view.add.controller.addCustomerController;
 
 
 public class modifyCustomerController {
@@ -137,17 +140,49 @@ public class modifyCustomerController {
         });
     	
     	// === On Cell edit commit (for Email column) ===
-    	custEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-    	//custEmail.setCellFactory(TextFieldTableCell.<Customer> forTableColumn());
+    	custEmail.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Customer , URL>, ObservableValue<URL>>() {
+
+    	    @Override
+    	    public ObservableValue<URL> call(TableColumn.CellDataFeatures<Customer , URL> param) {
+    	        return new SimpleObjectProperty<>(param.getValue().getEmail());
+
+    	    }
+    	});
+    	custEmail.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<URL>(){
+
+            @Override
+            public String toString(URL object) {
+            	if(object!=null)
+            		return object.toString();
+            	return "";
+            }
+
+            @Override
+            public URL fromString(String string) {
+            	try {
+            		File file = new File(string);
+            		URL url = file.toURI().toURL();
+            		return url;
+            	} catch (MalformedURLException e) {
+            		return null;
+				}
+            }
+
+        }));
+    	
     	custEmail.setOnEditCommit((CellEditEvent<Customer, URL> event) -> {
             TablePosition<Customer, URL> pos = event.getTablePosition();
  
-            URL newemail = event.getNewValue();
- 
-            int row = pos.getRow();
-            Customer cc = event.getTableView().getItems().get(row);
- 
-            cc.setEmail(newemail);
+            URL newValue = event.getNewValue();
+            if(newValue!=null && addCustomerController.isValid(newValue.toString())) {
+	            int row = pos.getRow();
+	            Customer cc = event.getTableView().getItems().get(row);
+	            cc.setEmail(newValue);
+            } else
+				try {
+					throw new MissingInputException("Email");
+				} catch (MissingInputException e) {
+				}
         });
   
         // ==== Customer Level (COMBO BOX) ===
