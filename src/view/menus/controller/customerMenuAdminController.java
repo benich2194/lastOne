@@ -25,6 +25,9 @@ public class customerMenuAdminController {
     
     @FXML
     private Button viewCustomer;
+    
+    @FXML
+    private Button discCustomer;
 
     @FXML
     void goToAddCustomer(ActionEvent event) throws IOException {
@@ -42,7 +45,13 @@ public class customerMenuAdminController {
     }
 
     @FXML
-    void goToViewCustomer(ActionEvent event) {
+    void goToViewCustomer(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.VIEW_CUSTOMER);
+    }
+    
+
+    @FXML
+    void goToDisconnectCustomer(ActionEvent event) throws IOException {
+    	WindowManager.openWindow(NameToWindow.REMOVE_CUSFROMMATCH);
     }
 }

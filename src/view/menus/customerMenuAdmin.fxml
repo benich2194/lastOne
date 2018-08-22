@@ -19,14 +19,15 @@
             <Image url="@../../Soccer-Stadium.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addCustomer" layoutX="285.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCustomer" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Add Customer" />
-      <Button fx:id="removeCustomer" layoutX="285.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToRemoveCustomer" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Remove Customer" />
-      <Button fx:id="modCustomer" layoutX="285.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToModifyCustomer" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="Modify Customer" />
-      <Label layoutX="259.0" layoutY="32.0" prefHeight="41.0" prefWidth="199.0" style="-fx-opacity: 0.7;" text="Customer Menu" textFill="WHITE">
+      <Button fx:id="addCustomer" layoutX="256.0" layoutY="88.0" mnemonicParsing="false" onAction="#goToAddCustomer" prefHeight="47.0" prefWidth="160.0" stylesheets="@Design.css" text="Add Customer" />
+      <Button fx:id="removeCustomer" layoutX="256.0" layoutY="234.0" mnemonicParsing="false" onAction="#goToRemoveCustomer" prefHeight="47.0" prefWidth="160.0" stylesheets="@Design.css" text="Remove Customer" />
+      <Button fx:id="modCustomer" layoutX="256.0" layoutY="163.0" mnemonicParsing="false" onAction="#goToModifyCustomer" prefHeight="47.0" prefWidth="160.0" stylesheets="@Design.css" text="Modify Customer" />
+      <Label layoutX="253.0" layoutY="31.0" prefHeight="41.0" prefWidth="199.0" style="-fx-opacity: 0.7;" text="Customer Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewCustomer" layoutX="285.0" layoutY="369.0" mnemonicParsing="false" onAction="#goToViewCustomer" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View Customers" />
+      <Button fx:id="viewCustomer" layoutX="256.0" layoutY="313.0" mnemonicParsing="false" onAction="#goToViewCustomer" prefHeight="47.0" prefWidth="160.0" stylesheets="@Design.css" text="View Customers" />
+      <Button fx:id="discCustomer" layoutX="256.0" layoutY="387.0" mnemonicParsing="false" onAction="#goToDisconnectCustomer" prefHeight="47.0" prefWidth="160.0" stylesheets="@Design.css" text="Disconnect From Match" />
    </children>
 </AnchorPane>

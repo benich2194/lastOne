@@ -64,7 +64,7 @@ public class receptionistMenuAdminController {
      */
     @FXML
     void goToRemoveFromStadium(ActionEvent event) {
-    	WindowManager.openWindow("removeRecepFromStadium");
+    	WindowManager.openWindow(NameToWindow.REMOVE_RECEPFROMSTADI);
     }
 
 }

@@ -14,27 +14,25 @@ public class connectionMenuController {
 	/**
 	 * fxml fields
 	 */
-    @FXML
-    private AnchorPane connectionMenu;
-
-    @FXML
-    private Button coachTeam;
-
-    @FXML
-    private Button playerMenuButton;
 
     @FXML
     private Button playerFirst;
 
     @FXML
-    private Button playerTeam;
-
-    @FXML
-    private Button cusSub;
+    private Button coachTeam;
 
     @FXML
     private Button cusMatch;
 
+    @FXML
+    private Button playerTeam;
+
+    @FXML
+    private Button playerMenuButton;
+
+    @FXML
+    private AnchorPane connectionMenu;
+    
     @FXML
     void addCoachToTeam(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.CONNECT_COACHTOTEAM);
@@ -64,9 +62,6 @@ public class connectionMenuController {
     void addSubscriptionToCustomer(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.CONNECT_SUBTOCUSTOMER);
     }
-    @FXML
-    void goToRemoveCusFromMatch(ActionEvent event) {
-    	WindowManager.openWindow(NameToWindow.REMOVE_CUSFROMMATCH);
-    }
+
 
 }

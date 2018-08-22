@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="playerMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.menus.controller.playerMenuController">
    <children>
-      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.1;">
          <image>
             <Image url="@../../images/Soccer-Stadium.jpg" />
          </image>

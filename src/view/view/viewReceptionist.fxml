@@ -12,9 +12,9 @@
 
 <AnchorPane fx:id="modifyReceptionist" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.view.controller.viewReceptionistController">
    <children>
-      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.24;">
          <image>
-            <Image url="@../../Soccer-Stadium.jpg" />
+            <Image url="@../../images/Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />

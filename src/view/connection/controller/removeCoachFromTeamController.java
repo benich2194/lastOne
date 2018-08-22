@@ -1,4 +1,4 @@
-package view;
+package view.connection.controller;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import view.WindowManager;
 
 public class removeCoachFromTeamController {
 	/**

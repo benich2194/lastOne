@@ -63,7 +63,7 @@ public class playerMenuController {
     
     @FXML
     void goToRemovePlayerFromTeam(ActionEvent event) {
-    	WindowManager.openWindow("removePlayerFromTeam");
+    	WindowManager.openWindow(NameToWindow.REMOVE_PLAYERFROMTEAM);
     }
 
 }

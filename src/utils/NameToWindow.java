@@ -35,7 +35,11 @@ public enum NameToWindow {
 	REMOVE_TROPHY("remove/removeTrophy"),
 	REMOVE_SUB("remove/removeSub"),
 	REMOVE_COACH("remove/removeCoach"),
+	//Disconnections: ------ In view.connection folder:---------
 	REMOVE_CUSFROMMATCH("connection/removeCusFromMatch"),
+	REMOVE_COACHFROMTEAM("connection/removeCoachFromTeam"),
+	REMOVE_PLAYERFROMTEAM("connection/removePlayerFromTeam"),
+	REMOVE_RECEPFROMSTADI("connection/removeRecepFromStadium"),
 	
 	/*------------VIEW-------------------------------------------------*/
 	VIEW_TEAM("view/viewTeams"),

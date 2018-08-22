@@ -65,6 +65,6 @@ public class CoachModifController {
     
     @FXML
     void goToRemoveCoachFromTeam(ActionEvent event) {
-    	WindowManager.openWindow("removeCoachFromTeam");
+    	WindowManager.openWindow(NameToWindow.REMOVE_COACHFROMTEAM);
     }
 }
