@@ -2,13 +2,16 @@ package view.bonus.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-
 import Controller.SysData;
 import Model.Player;
 import Model.Team;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,7 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import view.WindowManager;
 
 public class sortFirstPlayersController {
@@ -50,19 +55,21 @@ public class sortFirstPlayersController {
     private GridPane gridpane;
 
     private ImageView source; 
+
+    private Player pl;
     
-    final GridPane target = gridpane;
-    
-    Player pl;
+    private HashMap<Player, Integer> onChosenTeam;
     
     /**
      * initializes team list, hides all other components from display
      */
-    public void initialize() {
-    	//First attempt at drag and drop     
+    public void initialize() {    
         pl=null;
     	cbTeam.getItems().clear();
-
+    	
+    	//Saves players on current team that were placed on the board & their place: row|column
+    	onChosenTeam = new HashMap<Player, Integer>();
+    	
     	if(!SysData.getInstance().getTeams().isEmpty())
     		cbTeam.getItems().addAll(SysData.getInstance().getTeams().values());
     	
@@ -89,29 +96,82 @@ public class sortFirstPlayersController {
     }
     
     private void addPane(int colIndex, int rowIndex) {
-        Pane pane = new Pane();
-        
+    	StackPane pane = new StackPane();
+        	
         pane.setOnMouseClicked(e -> {
             System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
+            Text tx = new Text();
+
+            
             if(pl!=null) { // If a player was chosen
             	source = new ImageView("images/splayer.png");
                 source.setFitWidth(45);
                 source.setFitHeight(45);  
                 source.setUserData(pl);
-//                if(gridpane.getChildren().contains(pl))
-//                	gridpane.getChildren().remove(pl);
-            	switch(pl.getPosition()) {
-            	case GOAlKEEPER:  if(colIndex==4)
-            							gridpane.add(source, colIndex, 3);
+                
+                //If the player is on the grid
+             if(onChosenTeam.containsKey(pl)) {
+                	int column = onChosenTeam.get(pl)/10;
+                	int row = onChosenTeam.get(pl)%10;
+                	
+                	 Node result = null;
+                	 ObservableList<Node> childrens = gridpane.getChildren();
+                	 for(Node node : childrens) {
+                	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+                	            result = node;
+                	            break;
+                	        }
+                	  }
+                	  if(result!=null) {
+                		  gridpane.getChildren().remove(result);
+                		  onChosenTeam.remove(pl);
+                		  //remove option - doesnt work atm because the remove is to switch location on grid  
+                	  }
+                	 
+                } // end of if player is on the grid
+               
+				
+            switch(pl.getPosition()) {
+            	case GOAlKEEPER:  if(colIndex==4) {
+									tx.setText(Integer.toString(pl.getId()));
+									tx.setFont(Font.font(null, 9.7));
+									pane.getChildren().add(tx);
+									pane.getChildren().add(source);
+									pane.setAlignment(Pos.BOTTOM_RIGHT);
+									String place = Integer.toString(colIndex) + Integer.toString(rowIndex);
+									onChosenTeam.put(pl, Integer.parseInt(place));
+            						}
             		break;
-            	case ATTACKER: if(colIndex==0 || colIndex==1)
-            						gridpane.add(source, colIndex, rowIndex);
+            		
+            	case ATTACKER: if(colIndex==0 || colIndex==1) {
+									tx.setText(Integer.toString(pl.getId()));
+									tx.setFont(Font.font(null, 9.7));
+									pane.getChildren().add(tx);
+									pane.getChildren().add(source);
+									pane.setAlignment(Pos.BOTTOM_RIGHT);
+									String place = Integer.toString(colIndex) + Integer.toString(rowIndex);
+									onChosenTeam.put(pl, Integer.parseInt(place));
+            					}				
             		break;
-            	case DEFENDER: if(colIndex==3)
-            						gridpane.add(source, colIndex, rowIndex);
+            	case DEFENDER: if(colIndex==3) {
+									tx.setText(Integer.toString(pl.getId()));
+									tx.setFont(Font.font(null, 9.7));
+									pane.getChildren().add(tx);
+									pane.getChildren().add(source);
+									pane.setAlignment(Pos.BOTTOM_RIGHT);
+									String place = Integer.toString(colIndex) + Integer.toString(rowIndex);
+									onChosenTeam.put(pl, Integer.parseInt(place));
+            					}
             		break;
-            	case MIDFIELDER: if(colIndex==2 || colIndex==1)
-            						gridpane.add(source, colIndex, rowIndex);
+            	case MIDFIELDER: if(colIndex==2 || colIndex==1) {
+									tx.setText(Integer.toString(pl.getId()));
+									tx.setFont(Font.font(null, 9.7));
+									pane.getChildren().add(tx);
+									pane.getChildren().add(source);
+									pane.setAlignment(Pos.BOTTOM_RIGHT);
+									String place = Integer.toString(colIndex) + Integer.toString(rowIndex);
+									onChosenTeam.put(pl, Integer.parseInt(place));
+            					}
             		break;
             		default: System.out.println("Cannot place player in selected spot.");
             		break;

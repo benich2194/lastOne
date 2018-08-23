@@ -62,7 +62,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblInst" layoutX="211.0" layoutY="106.0" style="-fx-opacity: 0.550;" text="Drag &amp; Drop players from the list into the field">
+      <Label fx:id="lblInst" layoutX="181.0" layoutY="106.0" style="-fx-opacity: 0.550;" text="Select players from the list and place them in the field">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
