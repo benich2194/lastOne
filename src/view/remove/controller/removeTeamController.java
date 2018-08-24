@@ -11,6 +11,7 @@ import Model.Player;
 import Model.Stadium;
 import Model.Subscription;
 import Model.Team;
+import Model.Trophy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -97,6 +98,39 @@ public class removeTeamController {
 			}
 			if(t.getStadium()!=null) {//removes team from its stadium
 				t.getStadium().removeTeam(t);
+			}
+			ArrayList<Match> matchDel=new ArrayList<Match>();
+			for(Match m:SysData.getInstance().getMatchs().values()) {//delete matches with this team
+				if(m!=null&&m.getHomeTeam().equals(t)||m.getAwayTeam().equals(t)) {
+					matchDel.add(m);
+				}
+			}
+			for(Match m:matchDel) {
+				if(m!=null) {
+					SysData.getInstance().getMatchs().remove(m.getId());
+				}
+			}
+			ArrayList<Trophy> troDel=new ArrayList<Trophy>();
+			for(Trophy tr:SysData.getInstance().getTrophies()) {
+				if(tr!=null&&tr.getOwner() instanceof Team&&tr.getOwner().equals(t)) {
+					troDel.add(tr);
+				}
+			}
+			for(Trophy tr:troDel) {
+				SysData.getInstance().getTrophies().remove(tr);
+			}
+			for(Customer c:SysData.getInstance().getCustomers().values()) {//remove match from customers matches
+				if(c!=null) {
+					for(Subscription s:c.getSubscriptions()) {
+						if(s!=null) {
+							for(Match m:s.getMatches()) {
+								if(m.getCrowd()!=null&&m.getCrowd().containsKey(c)) {
+									c.removeMatch(m);
+								}
+							}
+						}
+					}
+				}
 			}
 			if(SysData.getInstance().getTeams().remove(t.getId())!=null) {
 				labelSuccess.setText("Team "+t.getId()+" was removed succesfully!");

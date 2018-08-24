@@ -1,12 +1,14 @@
 package view.remove.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Coach;
 import Model.Player;
 import Model.Team;
+import Model.Trophy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -72,6 +74,15 @@ public class removePlayerController {
             		if(c.getCurrentTeam().getPlayers().containsKey(c)) {
             			c.getCurrentTeam().removePlayer((Player)c);
             		}
+            	}
+            	ArrayList<Trophy> troDel=new ArrayList<Trophy>();
+            	for(Trophy tr:SysData.getInstance().getTrophies()) {
+            		if(tr!=null&&tr.getOwner() instanceof Player&&tr.getOwner().equals(playerList.getSelectionModel().getSelectedItem())) {
+            			troDel.add(tr);
+            		}
+            	}
+            	for(Trophy tr:troDel) {//remove trophies of this player from database
+            		SysData.getInstance().getTrophies().remove(tr);
             	}
             	SysData.getInstance().getPlayers().remove(c.getId());
             	if(!SysData.getInstance().getPlayers().containsKey(c.getId())) {

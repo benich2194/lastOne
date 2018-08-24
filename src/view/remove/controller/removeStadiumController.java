@@ -1,15 +1,18 @@
 package view.remove.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
+import Model.Customer;
 import Model.Match;
 import Model.Player;
 import Model.Receptionist;
 import Model.Stadium;
 import Model.Subscription;
 import Model.Team;
+import Model.Trophy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -62,7 +65,7 @@ public class removeStadiumController {
 	
 		alert.setHeaderText("");
 		try {
-			if(stadiumList.getSelectionModel()==null){
+			if(stadiumList.getSelectionModel().getSelectedItem()==null){
     			alert.setHeaderText("Unable to remove stadium");
     			alert.setContentText("No stadium to remove");
     			alert.show();
@@ -85,19 +88,38 @@ public class removeStadiumController {
     							if(m!=null&&m.getHomeTeam()!=null&&m.getHomeTeam().getStadium().equals(s)) {
     								p.removeMatch(m);
     								t.removeMatch(m);
+    								SysData.getInstance().getMatchs().remove(m.getId());
     							}
     						}
     					}
     				}
     			}
     		}
-    		if(s.getTeams()!=null) {//remove stadium from team
-    			for(Team t:s.getTeams()) {
-    				if(t!=null) {
-    					t.setStadium(null);
-    				}
+    		ArrayList<Match> matchDel=new ArrayList<Match>();
+    		for(Match m:SysData.getInstance().getMatchs().values()) {
+    			if(m!=null&&m.getHomeTeam()!=null&&m.getHomeTeam().getStadium()!=null&&m.getHomeTeam().getStadium().equals(s)) {
+    				matchDel.add(m);
     			}
     		}
+    		for(Match m:matchDel) {
+    			SysData.getInstance().getMatchs().remove(m.getId());
+    		}
+			for(Team t:s.getTeams()) {
+				if(t!=null) {
+					ArrayList<Match> matchDell=new ArrayList<Match>();
+					for(Match m:SysData.getInstance().getMatchs().values()) {//delete matches with this team
+						if(m!=null&&m.getHomeTeam().equals(t)||m.getAwayTeam().equals(t)) {
+							matchDel.add(m);
+						}
+					}
+					for(Match m:matchDell) {
+						if(m!=null) {
+							SysData.getInstance().getMatchs().remove(m.getId());
+						}
+					}
+				}
+			}
+			
     		if(s.getMatches()!=null) {//remove matches from team that belongs to stadium
     			for(Match m:s.getMatches()) {
     				SysData.getInstance().getMatchs().remove(m.getId());
@@ -117,6 +139,15 @@ public class removeStadiumController {
     				}
     				s.removeReceptionist(r);
     			}
+    		}
+    		ArrayList<Trophy> troDel=new ArrayList<Trophy>();
+    		for(Trophy tr:SysData.getInstance().getTrophies()) {
+    			if(tr!=null&&tr.getOwner() instanceof Stadium&&tr.getOwner().equals(s)) {
+    				troDel.add(tr);
+    			}
+    		}
+    		for(Trophy tr:troDel) {
+    			SysData.getInstance().getTrophies().remove(tr);
     		}
         	if(s!=null) {
         		SysData.getInstance().getStadiums().remove(s.getId());

@@ -4,6 +4,7 @@ import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Customer;
 import Model.Match;
+import Model.Player;
 import Model.Stadium;
 import Model.Subscription;
 import Model.Team;
@@ -55,6 +56,11 @@ public class removeMatchController {
         			t.removeMatch(m);
         		}
         		
+        	}
+        	for(Player p:SysData.getInstance().getPlayers().values()) {//remove match from players
+        		if(p!=null) {
+        			p.removeMatch(m);
+        		}
         	}
         	for(Customer c:SysData.getInstance().getCustomers().values()) {//remove match from customers
         		if(c!=null) {
