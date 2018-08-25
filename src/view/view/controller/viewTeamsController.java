@@ -1,9 +1,7 @@
 package view.view.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-
 import Controller.SysData;
 import Model.Match;
 import Model.Player;

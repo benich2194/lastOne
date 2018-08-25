@@ -22,6 +22,9 @@ public class matchMenuController {
 
     @FXML
     private Button modMatch;
+    
+    @FXML
+    private Button viewMatch;
 
     @FXML
     void goToAddMatch(ActionEvent event) throws IOException {
@@ -36,6 +39,11 @@ public class matchMenuController {
     @FXML
     void goToRemoveMatch(ActionEvent event) throws IOException {
     	WindowManager.openWindow(NameToWindow.REMOVE_MATCH);
+    }
+    
+    @FXML
+    void goToViewMatch(ActionEvent event) {
+    	WindowManager.openWindow(NameToWindow.VIEW_MATCHES);
     }
 
 }

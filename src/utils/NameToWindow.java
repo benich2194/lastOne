@@ -50,6 +50,7 @@ public enum NameToWindow {
 	VIEW_TROPHY("view/viewTrophies"),
 	VIEW_SUB("view/viewAllSubscriptions"),
 	VIEW_COACH("view/viewCoach"),
+	VIEW_MATCHES("view/viewAllMatches"),
 	
 	/*------------CONNECT-------------------------------------------------*/
 	CONNECT_COACHTOTEAM("connection/coachToTeam"),

@@ -25,5 +25,6 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <Button fx:id="viewMatch" layoutX="285.0" layoutY="347.0" mnemonicParsing="false" onAction="#goToViewMatch" prefHeight="54.0" prefWidth="131.0" stylesheets="@Design.css" text="View All Matches" />
    </children>
 </AnchorPane>

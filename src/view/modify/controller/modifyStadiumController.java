@@ -3,7 +3,6 @@ package view.modify.controller;
 import java.io.IOException;
 import Controller.SysData;
 import Exceptions.MissingInputException;
-import Model.Coach;
 import Model.Stadium;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
