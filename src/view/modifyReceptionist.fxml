@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="modifyReceptionist" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.modifyReceptionistController">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="701.0">
+         <image>
+            <Image url="@../../Soccer-Stadium.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+   </children>
+</AnchorPane>
