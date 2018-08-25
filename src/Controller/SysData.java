@@ -495,6 +495,7 @@ public class SysData implements Serializable {
 			// players, return false
 			return false;
 		}
+		players.get(playerId).setCurrentTeam(teams.get(teamId));
 		return true;
 	}// ~ END OF addCoachToTeam
 
