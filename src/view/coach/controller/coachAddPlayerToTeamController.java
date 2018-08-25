@@ -93,8 +93,6 @@ public class coachAddPlayerToTeamController {
     		for(Player p:SysData.getInstance().getPlayers().values()) {
     			if(p!=null&&p.getCurrentTeam()==null) {
     				playerList.getItems().add(p);
-    				System.out.println(p.getCurrentTeam());
-    				System.out.println(p);
     			}
     		}
     	}

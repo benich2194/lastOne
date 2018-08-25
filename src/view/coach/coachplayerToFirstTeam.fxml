@@ -23,7 +23,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="lblMessage" layoutX="204.0" layoutY="86.0" prefHeight="18.0" prefWidth="368.0" textFill="#268594">
+      <Label fx:id="lblMessage" layoutX="180.0" layoutY="65.0" prefHeight="18.0" prefWidth="368.0" textFill="#268594">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

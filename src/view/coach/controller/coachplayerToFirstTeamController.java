@@ -64,14 +64,13 @@ public class coachplayerToFirstTeamController {
 	    			labelSuccess.setText("player" +p.getId()+" was added succesfully to first team players!");
 	        		//refreshses list
 	        		playerList.getItems().removeAll(playerList.getItems());
-	        		for(Player pl: ch.getCurrentTeam().getPlayers().keySet()) {
-	        			if(pl!=null) {
-	        				if(!ch.getCurrentTeam().getPlayers().get(pl)) {
-	        					playerList.getItems().add(pl);
-	        				
-	        				}
-	        			}
-	        		}
+	        		if(SysData.getInstance().getPlayers()!=null) {
+	            		for(Player pl:SysData.getInstance().getPlayers().values()) {
+	            			if(pl!=null&&pl.getCurrentTeam()==null) {
+	            				playerList.getItems().add(pl);
+	            			}
+	            		}
+	            	}
 	    		}
 	    		else {
 	    			alert.setHeaderText("Failed to add Player to First Team Players.");
@@ -101,14 +100,13 @@ public class coachplayerToFirstTeamController {
     	else {
     		lblMessage.setText("Please select a player to add to the first team:");
     			//Add to list only who isn't a first team player
-        		for(Player p: ch.getCurrentTeam().getPlayers().keySet()) {
-        			if(p!=null) {
-        				if(!ch.getCurrentTeam().getPlayers().get(p)) {
-        					playerList.getItems().add(p);
-        				
-        				}
+    		if(SysData.getInstance().getPlayers()!=null) {
+        		for(Player p:SysData.getInstance().getPlayers().values()) {
+        			if(p!=null&&p.getCurrentTeam()==null) {
+        				playerList.getItems().add(p);
         			}
         		}
+        	}
     	}
     }
    
