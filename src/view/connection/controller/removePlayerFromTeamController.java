@@ -59,6 +59,7 @@ public class removePlayerFromTeamController {
 	    		if(t!=null&&p!=null) {
 	    			t.removePlayer(p);
 	    			p.setCurrentTeam(null);
+	    			System.out.println();
 		    		labelSuccess.setText("removed player "+p.getId()+" from team "+t.getId());
 	    		}
 	    		
