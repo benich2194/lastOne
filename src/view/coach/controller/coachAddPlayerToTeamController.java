@@ -29,11 +29,12 @@ public class coachAddPlayerToTeamController {
     @FXML
     private Button connectThem;
     
-    @FXML
-    private ComboBox<Boolean> firstList;
 
     @FXML
     private Label lblMessage;
+
+    @FXML
+    private Label labelSuccess;
     
 	private Integer coachID = Integer.parseInt(SysData.getInstance().getUserCoach());
 	private Coach ch = SysData.getInstance().getCoachs().get(coachID);
@@ -52,35 +53,21 @@ public class coachAddPlayerToTeamController {
 		alert.setHeaderText("");
 
 		try {
-			if(playerList.getSelectionModel().getSelectedItem()==null||firstList.getSelectionModel().getSelectedItem()==null) {
-				throw new ListNotSelectedException();
-			}
-			if(playerList.getSelectionModel().getSelectedItem()!=null) {
-	    		if(firstList.getSelectionModel().getSelectedItem()) {
-	    			if(SysData.getInstance().addPlayerToTeamFirstPlayers(playerList.getSelectionModel().getSelectedItem().getId(), ch.getCurrentTeam().getId())) {
-	        			alert.setHeaderText("Added Player to first team players.");
-	            		alert.setContentText("Player was added to first team players successfully.");
-	            		alert.show();
-	        		}
-	        		else {
-	        			if(SysData.getInstance().addPlayerToTeam(playerList.getSelectionModel().getSelectedItem().getId(), ch.getCurrentTeam().getId())) {
-	            			alert.setHeaderText("Added Player to team.");
-	                		alert.setContentText("Player was added to team successfully.");
-	                		alert.show();
-	            		}
+			Player p=playerList.getSelectionModel().getSelectedItem();
+			if(p==null)
+				throw new ListNotSelectedException("Please choose from player list");
+			if(p!=null) {
+	    			if(SysData.getInstance().addPlayerToTeam(p.getId(), SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam().getId())) {
+	    				labelSuccess.setText("added player "+p.getId()+" to team successfully");
+	    			}
 	            		else {
 	            			alert.setHeaderText("Failed to add Player to team.");
-	                		alert.setContentText("unable to add Player to team, select a player and a team please.");
+	                		alert.setContentText("Fails at player seniority.");
 	                		alert.show();
 	            		}
 	        		}
-	    		}
 	    		
-	    	}
-	    	else {
-	    		throw new ListNotSelectedException();
-	    	}
-		}catch(ListNotSelectedException e) {
+	    	}catch(ListNotSelectedException e) {
 			
 		}catch(ObjectExistsException e) {
 			
@@ -106,16 +93,16 @@ public class coachAddPlayerToTeamController {
     		for(Player p:SysData.getInstance().getPlayers().values()) {
     			if(p!=null&&p.getCurrentTeam()==null) {
     				playerList.getItems().add(p);
+    				System.out.println(p.getCurrentTeam());
+    				System.out.println(p);
     			}
     		}
     	}
-    	firstList.getItems().add(true);
-    	firstList.getItems().add(false);
+
 		
 		if(ch.getCurrentTeam()==null)
 		{
 			playerList.setVisible(false);
-			firstList.setVisible(false);
 			connectThem.setVisible(false);
 			lblMessage.setText("You don't have a team at the moment, Please try again later.");
 		}

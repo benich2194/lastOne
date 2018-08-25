@@ -28,6 +28,9 @@ public class coachRemovePlayerFromTeamController {
 
     @FXML
     private Label lblMessage;
+    
+    @FXML
+    private Label labelSuccess;
 
     //Logged in coach's current team
     private Team t = SysData.getInstance().getCoachs().get(Integer.parseInt(SysData.getInstance().getUserCoach())).getCurrentTeam();
@@ -41,7 +44,7 @@ public class coachRemovePlayerFromTeamController {
     	try {
     		Player p=playerList.getSelectionModel().getSelectedItem();
     		if(p==null) {
-    			throw new ListNotSelectedException();
+    			throw new ListNotSelectedException("Please choose a player from list:");
     		}
         	if(t!=null&&!t.removePlayer(p)) {
         		alert.setHeaderText("failed to remove Player from team.");
@@ -50,9 +53,7 @@ public class coachRemovePlayerFromTeamController {
         	}
         	else {
         		p.setCurrentTeam(null);
-        		alert.setHeaderText("Player was removed from team successfully.");
-        		alert.setContentText("Player is no longer in this team.");
-        		alert.show();
+        		labelSuccess.setText("player "+p.getId()+" was removed succesfully from team!");
         	}
     	}catch(ListNotSelectedException e) {
     		

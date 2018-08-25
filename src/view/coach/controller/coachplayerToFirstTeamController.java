@@ -35,6 +35,9 @@ public class coachplayerToFirstTeamController {
     @FXML
     private Button connectThem;
     
+    @FXML
+    private Label labelSuccess;
+    
     //Logged in coach ID
 	private Integer coachID = Integer.parseInt(SysData.getInstance().getUserCoach());
 	
@@ -55,12 +58,20 @@ public class coachplayerToFirstTeamController {
 		alert.setTitle("Add Player To First Team Players");
 		alert.setHeaderText("");
 		try {
-			if(playerList.getSelectionModel().getSelectedItem()!=null) {
-	    		if(SysData.getInstance().addPlayerToTeamFirstPlayers(playerList.getSelectionModel().getSelectedItem().getId(),ch.getCurrentTeam().getId())){
-	    			alert.setHeaderText("Added Player to First Team Players.");
-	        		alert.setContentText("Player was added to First Team Players successfully.");
-	        		alert.show();
-	        		initialize();
+			Player p=playerList.getSelectionModel().getSelectedItem();
+			if(p!=null) {
+	    		if(SysData.getInstance().addPlayerToTeamFirstPlayers(p.getId(),ch.getCurrentTeam().getId())){
+	    			labelSuccess.setText("player" +p.getId()+" was added succesfully to first team players!");
+	        		//refreshses list
+	        		playerList.getItems().removeAll(playerList.getItems());
+	        		for(Player pl: ch.getCurrentTeam().getPlayers().keySet()) {
+	        			if(pl!=null) {
+	        				if(!ch.getCurrentTeam().getPlayers().get(pl)) {
+	        					playerList.getItems().add(pl);
+	        				
+	        				}
+	        			}
+	        		}
 	    		}
 	    		else {
 	    			alert.setHeaderText("Failed to add Player to First Team Players.");
