@@ -84,7 +84,7 @@ public class modifyStadiumController {
             TablePosition<Stadium, String> pos = event.getTablePosition();
  
             String newName = event.getNewValue();
-            if(!newName.isEmpty() && newName!=null && newName.matches("\\sa-zA-Z*")) {
+            if(!newName.isEmpty() && newName!=null && newName.matches("^[ A-Za-z]+$")) {
 		            int row = pos.getRow();
 		            Stadium ss = event.getTableView().getItems().get(row);
 		 
@@ -146,7 +146,7 @@ public class modifyStadiumController {
             TablePosition<Stadium, String> pos = event.getTablePosition();
  
             String newStreet = event.getNewValue();
-            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("[a-zA-Z]+")) {
 	            int row = pos.getRow();
 	            Stadium st = event.getTableView().getItems().get(row);
 	 

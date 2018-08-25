@@ -117,7 +117,7 @@ public class modifyPlayerController {
             TablePosition<Player, String> pos = event.getTablePosition();
        	 
             String newFirstName = event.getNewValue();
-            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("\\sa-zA-Z*")) {
+            if(!newFirstName.isEmpty() && newFirstName!=null && newFirstName.matches("[a-zA-Z]+")) {
 		            int row = pos.getRow();
 		            Player pp = event.getTableView().getItems().get(row);
 		 
@@ -137,7 +137,7 @@ public class modifyPlayerController {
        	 
             
             String newLastName = event.getNewValue();
-            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("\\sa-zA-Z*")) {
+            if(!newLastName.isEmpty() && newLastName!=null && newLastName.matches("[a-zA-Z]+")) {
 	            int row = pos.getRow();
 	            Player pp = event.getTableView().getItems().get(row);
 	 
@@ -324,7 +324,7 @@ public class modifyPlayerController {
             TablePosition<Player, String> pos = event.getTablePosition();
        	 
             String newStreet = event.getNewValue();
-            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("\\sa-zA-Z*")) {
+            if(!newStreet.isEmpty() && newStreet!=null && newStreet.matches("[a-zA-Z]+")) {
 	            int row = pos.getRow();
 	            Player pp = event.getTableView().getItems().get(row);
 	 

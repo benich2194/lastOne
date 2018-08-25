@@ -82,7 +82,7 @@ public class modifyTeamController {
             TablePosition<Team, String> pos = event.getTablePosition();
  
             String newName = event.getNewValue();
-            if(!newName.isEmpty() && newName!=null && newName.matches("\\sa-zA-Z*")) {
+            if(!newName.isEmpty() && newName!=null && newName.matches("[a-zA-Z]+")) {
 		            int row = pos.getRow();
 		            Team tm = event.getTableView().getItems().get(row);
 		 
