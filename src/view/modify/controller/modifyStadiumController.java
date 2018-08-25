@@ -90,11 +90,12 @@ public class modifyStadiumController {
 		            Stadium ss = event.getTableView().getItems().get(row);
 		 
 		            ss.setName(newName);
-            } else
+            } else {
 				try {
-					throw new MissingInputException("Stadium's name");
+					throw new MissingInputException("Stadium name");
 				} catch (MissingInputException e) {
 				}
+            }
         });
     	
     	// === On Cell edit commit (for Phone Number column) ===

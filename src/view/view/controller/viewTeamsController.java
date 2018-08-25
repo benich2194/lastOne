@@ -1,6 +1,7 @@
 package view.view.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import Controller.SysData;
@@ -66,15 +67,17 @@ public class viewTeamsController {
         	teamsMatches.setItems(matchestm);
 
         //Display First Team Players
-        //Remove everyone who is not a first team player, from allPlys ArrayList
-        for(Map.Entry<Player, Boolean> entry: item.getPlayers().entrySet()) {
-        	if(!entry.getValue())
-        		allPlys.remove(entry.getKey());
-        }
+    	Team chosen = item;
+    	//Make a list of first team players on selected team
+    	ArrayList<Player> plys = new ArrayList<Player>();
+    	for(Map.Entry<Player,Boolean> entry: chosen.getPlayers().entrySet()) {
+    		if(entry.getValue()) //If he's value is true (then hes a first team player) add him to 'plys'
+    			plys.add(entry.getKey());
+    	}
         
-        ObservableList<Player> firstTeamplayers = FXCollections.observableArrayList(allPlys);
+        ObservableList<Player> firstTeamplayers = FXCollections.observableArrayList(plys);
         if(!firstTeamplayers.isEmpty())
-        	teamPlayersList.setItems(firstTeamplayers);
+        	teamPlayersListFirst.setItems(firstTeamplayers);
     }
     
     /**
