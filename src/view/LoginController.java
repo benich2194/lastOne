@@ -7,6 +7,7 @@ import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +16,8 @@ import utils.Constants;
 import view.menus.controller.trophyMenuController;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -64,7 +67,7 @@ public class LoginController extends Main {
 			alert.showAndWait();
 		}
 	}
-
+	
 	@FXML
 	/**
 	 * function activated when login button is pressed. checks user and password and opens a menu accordingly.
