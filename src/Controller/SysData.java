@@ -275,21 +275,27 @@ public class SysData implements Serializable {
 	 * @param address
 	 * @return true if the player was added successfully, false otherwise
 	 */
-	public boolean addPlayer(int id, String password, String firstName, String lastName, Date birthdate,
-			Date startWorkingDate, E_Levels level, long value, Boolean isRightLegKicker, E_Position position,
-			Address address) {
-		Date today = new Date();
-		if (id > 0 && firstName != null && lastName != null && birthdate != null && startWorkingDate != null
-				&& level != null && address != null && value > 0 && birthdate.before(today)
-				&& startWorkingDate.before(today) && birthdate.before(startWorkingDate)) {
-			if (!players.containsKey(id)) {
-				if (players.put(id, new Player(id, password, firstName, lastName, birthdate, startWorkingDate, address,
-						level, value, isRightLegKicker, position)) == null) {
-					return true;
-				}
-			}
+	public boolean addPlayer(int id, String firstName, String lastName, Date birthdate, Date startWorkingDate,
+			E_Levels level, long value, Boolean isRightLegKicker, E_Position position, Address address) {
+		if (id < 0 || firstName == null || lastName == null || birthdate == null || startWorkingDate == null
+				|| level == null || value < 0 || position == null || address == null) {// if one of the parameters is
+																						// invalid, return false
+			return false;
 		}
-		return false;
+		if (players.containsKey(id)) {// if player exists, return false
+			return false;
+		}
+		if (birthdate.after(startWorkingDate)) {// if birthdate is after start working date, return false
+			return false;
+		}
+		Date today = new Date();
+		if (birthdate.after(today)) {// if still wasn't born, return false
+			return false;
+		}
+		Player myPlayer = new Player(id,"", firstName, lastName, birthdate, startWorkingDate, address, level, value,
+				isRightLegKicker, position);// create player
+		players.put(id, myPlayer);// add player
+		return true;// return true
 	} // ~ END OF addPlayer
 
 	/**

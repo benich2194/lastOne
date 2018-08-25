@@ -56,7 +56,8 @@ public class removePlayerFromTeamController {
 	    		throw new ListNotSelectedException("Choose player from list");
 	    	}
 	    		Team t=p.getCurrentTeam();
-	    		if(t.removePlayer(p)) {
+	    		if(t!=null&&p!=null) {
+	    			t.removePlayer(p);
 	    			p.setCurrentTeam(null);
 		    		labelSuccess.setText("removed player "+p.getId()+" from team "+t.getId());
 	    		}
@@ -65,22 +66,29 @@ public class removePlayerFromTeamController {
 			
 		}
     	playerList.getItems().removeAll(playerList.getItems());//refreshes list
-    	for(Player pl:SysData.getInstance().getPlayers().values()) {
-    		if(pl!=null&&pl.getCurrentTeam()!=null) {
-    			playerList.getItems().add(pl);
-    		}
-    	}
+    	   for(Team t:SysData.getInstance().getTeams().values()) {
+    	    	if(t!=null) {
+    	    		for(Player p:t.getPlayers().keySet()) {
+    	    			if(p!=null) {
+    	    				playerList.getItems().add(p);
+    	    			}
+    	    		}
+    	    	}
+    	    }
     	
     }
     /**
      * initializes player list
      */
     public void initialize() {
-    	for(Player p:SysData.getInstance().getPlayers().values()) {
-    		if(p!=null&&p.getCurrentTeam()!=null) {
-    			playerList.getItems().add(p);
+    for(Team t:SysData.getInstance().getTeams().values()) {
+    	if(t!=null) {
+    		for(Player p:t.getPlayers().keySet()) {
+    			if(p!=null) {
+    				playerList.getItems().add(p);
+    			}
     		}
     	}
     }
-
+    }
 }

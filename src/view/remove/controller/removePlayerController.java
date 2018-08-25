@@ -71,9 +71,7 @@ public class removePlayerController {
     			}
             	//remove player from a team he is in..
             	if(c.getCurrentTeam()!=null) {
-            		if(c.getCurrentTeam().getPlayers().containsKey(c)) {
-            			c.getCurrentTeam().removePlayer((Player)c);
-            		}
+            		c.getCurrentTeam().removePlayer(c);
             	}
             	ArrayList<Trophy> troDel=new ArrayList<Trophy>();
             	for(Trophy tr:SysData.getInstance().getTrophies()) {

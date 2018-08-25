@@ -60,25 +60,33 @@ public class playerToTeamController {
 			if (p == null) {
 				throw new ListNotSelectedException("Please choose a player");
 			}
-			if (p.getCurrentTeam() == null && SysData.getInstance().addPlayerToTeam(p.getId(), t.getId())) {
-				labelSuccess.setText("Player " + p.getId() + " was added succesfully to team " + t.getId());
-			} else {
-				if (t.getPlayers().size() == utils.Constants.MAX_PLAYERS_FOR_TEAM) {
-					alert.setHeaderText("failed to add Player to team.");
-					alert.setContentText("players limit has reached.");
-					alert.show();
-				} else {
-					if(p.getCurrentTeam()!=null&&p.transferTo(t)) {
-						labelSuccess.setText("Player " + p.getId() + " was added succesfully to team " + t.getId());
-					}
-					else {
-						alert.setHeaderText("failed to add Player to team.");
-						alert.setContentText("cannot add player, compares their seniority.");
-						alert.show();
-					}
-				}
-
+			if(t.getPlayers().containsKey(p)) {
+				alert.setHeaderText("failed to add Player to team.");
+				alert.setContentText("player exists in team already.");
+				alert.show();
 			}
+			else {
+				if (p.getCurrentTeam() == null && SysData.getInstance().addPlayerToTeam(p.getId(), t.getId())) {
+					labelSuccess.setText("Player " + p.getId() + " was added succesfully to team " + t.getId());
+				} else {
+					if (t.getPlayers().size() == utils.Constants.MAX_PLAYERS_FOR_TEAM) {
+						alert.setHeaderText("failed to add Player to team.");
+						alert.setContentText("players limit has reached.");
+						alert.show();
+					} else {
+						if(p.getCurrentTeam()!=null&&p.transferTo(t)) {
+							labelSuccess.setText("Player " + p.getId() + " was added succesfully to team " + t.getId());
+						}
+						else {
+							alert.setHeaderText("failed to add Player to team.");
+							alert.setContentText("cannot add player, compares their seniority.");
+							alert.show();
+						}
+					}
+
+				}
+			}
+		
 		} catch (ListNotSelectedException e) {
 
 		}catch(ObjectExistsException e) {

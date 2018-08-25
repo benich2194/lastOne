@@ -200,6 +200,7 @@ public class Team implements Serializable {
 			} else {
 				players.remove(player);// if he wasn't a first team player, remove him and add him as a first team
 										// player
+				player.setCurrentTeam(this);
 				players.put(player, true);
 				return true;
 			}
