@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminMenuController">
+
+   <children>
+      <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../main.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Coach">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+
+            <Button mnemonicParsing="false" onAction="#goToTeamPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Team">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+
+            <Button mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Player">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToCustomerMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Customer">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToRecepMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Receptionist">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToStadiumMenu" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Stadium">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToSubscriptionButton" styleClass="menuButton" text="Subscription">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToTrophyMenu" styleClass="menuButton" text="Trophy">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#goToMatchMenu" styleClass="menuButton" text="Match">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#goToConnectionMenu" styleClass="menuButton" text="Connection">
+               <effect>
+                  <Glow />
+               </effect></Button>
+            <Button mnemonicParsing="false" onAction="#goToQueries" styleClass="menuButton" text="Queries">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children>
+      </VBox>
+      <FlowPane fx:id="menupane" layoutX="240.0" layoutY="43.0" prefHeight="582.0" prefWidth="700.0" />
+      <Button fx:id="logout" layoutX="76.0" layoutY="519.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="26.0" prefWidth="108.0" style="-fx-opacity: 0.8;" text="Logout" />
+   </children>
+</AnchorPane>

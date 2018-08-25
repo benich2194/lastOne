@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addTeam" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.add.controller.addTeamController">
+   <children>
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+         <image>
+            <Image url="@../../images/Soccer-Stadium.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label layoutX="303.0" layoutY="33.0" prefHeight="33.0" prefWidth="139.0" text="Add Team" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="teamId" alignment="CENTER" layoutX="274.0" layoutY="86.0" prefHeight="26.0" prefWidth="172.0" promptText="Team's ID" />
+      <TextField fx:id="teamName" alignment="CENTER" layoutX="274.0" layoutY="126.0" prefHeight="26.0" prefWidth="172.0" promptText="Team's name" />
+      <TextField fx:id="teamValue" alignment="CENTER" layoutX="274.0" layoutY="165.0" prefHeight="26.0" prefWidth="172.0" promptText="Team's value" />
+      <ComboBox fx:id="teamLevel" layoutX="274.0" layoutY="240.0" prefHeight="26.0" prefWidth="172.0" promptText="Choose team's level:" />
+      <Button fx:id="pushToAdd" layoutX="166.0" layoutY="336.0" mnemonicParsing="false" onAction="#addTeam" prefHeight="33.0" prefWidth="172.0" text="Add Team" />
+      <ComboBox fx:id="teamStadiumId" layoutX="274.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" promptText="Team's Stadium" />
+      <Button fx:id="clearButton" layoutX="381.0" layoutY="336.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
+      <Label fx:id="labelSuccess" layoutX="239.0" layoutY="286.0" prefHeight="33.0" prefWidth="267.0" textFill="#017c87">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

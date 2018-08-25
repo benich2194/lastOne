@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="recepMenu" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.menus.controller.receptionistMenuAdminController">
+   <children>
+      <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
+         <image>
+            <Image url="@../../Soccer-Stadium.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="addRecep" layoutX="241.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToAddRecep" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Add Receptionist" />
+      <Button fx:id="removeRecep" layoutX="239.0" layoutY="365.0" mnemonicParsing="false" onAction="#goToRemoveRecep" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Remove Receptionist" />
+      <Button fx:id="modRecep" layoutX="239.0" layoutY="182.0" mnemonicParsing="false" onAction="#goToModifyRecep" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Modify Receptionist" />
+      <Label layoutX="253.0" layoutY="28.0" prefHeight="44.0" prefWidth="228.0" style="-fx-opacity: 0.7;" text="Receptionist Menu" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewRecep" layoutX="239.0" layoutY="275.0" mnemonicParsing="false" onAction="#goToViewRecep" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="View Receptionists" />
+      <Button layoutX="239.0" layoutY="451.0" mnemonicParsing="false" onAction="#goToRemoveFromStadium" prefHeight="54.0" prefWidth="221.0" stylesheets="@Design.css" text="Remove From Stadium" />
+   </children>
+</AnchorPane>

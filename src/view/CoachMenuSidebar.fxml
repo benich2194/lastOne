@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CoachMenuSidebarController">
+
+   <children>
+      <ImageView fitHeight="732.0" fitWidth="976.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../main.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToAddPlayerToTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Add Player To Team">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToModifyPlayerInTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Modify Player In Team">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+
+            <Button mnemonicParsing="false" onAction="#removePlayerFromTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Remove Players From Team">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToAddTOFIRSTTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Add Player to First Team">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+
+            <Button mnemonicParsing="false" onAction="#goToChangeFirstTeam" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Replace First Team Players">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToViewPlayers" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="View Players">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" styleClass="loginTextField" text="Queries">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToGSPM" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Super Player Maker">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToASPM" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="All Super Players">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToMPP" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Most Popular Position">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToMFT" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Most Favored Team">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToTWLHC" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Team With Largest Home Crowd">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToFPOBHT" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="First Players of Best Home Team">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children>
+      </VBox>
+      <FlowPane fx:id="menupane" layoutX="240.0" layoutY="43.0" prefHeight="582.0" prefWidth="700.0" />
+      <Button fx:id="logout" layoutX="73.0" layoutY="518.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="26.0" prefWidth="108.0" style="-fx-opacity: 0.8;" text="Logout" />
+   </children>
+</AnchorPane>

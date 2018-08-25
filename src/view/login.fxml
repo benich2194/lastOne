@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="login" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginController">
+   <children>
+      <ImageView>
+         <image>
+            <Image url="@../../JVL-Login.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="600.0" prefWidth="800.0" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField fx:id="email" blendMode="MULTIPLY" layoutX="227.0" layoutY="169.0" prefHeight="38.0" prefWidth="353.0" styleClass="loginTextField" stylesheets="@application.css">
+               <effect>
+                  <Reflection />
+               </effect>
+            </TextField>
+            <PasswordField fx:id="password" blendMode="MULTIPLY" layoutX="227.0" layoutY="262.0" prefHeight="48.0" prefWidth="353.0" />
+            <Button fx:id="SignIn" blendMode="MULTIPLY" layoutX="225.0" layoutY="353.0" mnemonicParsing="false" onAction="#GoToMenu" prefHeight="38.0" prefWidth="353.0" />
+            <Button fx:id="SignUp" blendMode="MULTIPLY" layoutX="227.0" layoutY="469.0" mnemonicParsing="false" onAction="#register" prefHeight="38.0" prefWidth="353.0" textFill="#ebe4e417" />
+            <ImageView fx:id="exitImage" fitHeight="48.0" fitWidth="44.0" layoutX="742.0" layoutY="14.0" onMouseClicked="#ExitProgram" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/exit.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
