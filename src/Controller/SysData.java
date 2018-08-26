@@ -655,6 +655,7 @@ public class SysData implements Serializable {
 	 */
 	public boolean removeSubscription(int subscriptionId) {
 		int flag=0;
+		ArrayList<Subscription> subToRemove=new ArrayList<Subscription>();
 		if (subscriptionId < 0) {// if id is less than 0, return false
 			return false;
 		}
@@ -664,6 +665,7 @@ public class SysData implements Serializable {
 				for (Subscription s : r.getSubscriptions()) {
 					if (s != null) {
 						if (s.getId() == subscriptionId) {
+							subToRemove.add(s);
 							r.removeSubscription(new Subscription(subscriptionId));
 							flag=1;
 					}

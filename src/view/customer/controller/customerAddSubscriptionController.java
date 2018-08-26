@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -38,6 +39,12 @@ public class customerAddSubscriptionController {
 
     @FXML
     private ComboBox<E_Periods> periodList;
+    
+    @FXML
+    private Label labelSuccess;
+    
+    @FXML
+    private Button clearButton;
 
     @FXML
     void addSubscriptionToCustomer(ActionEvent event) throws MissingInputException, ObjectExistsException {
@@ -52,15 +59,17 @@ public class customerAddSubscriptionController {
 			if(startDate.getValue()==null) {
 				throw new MissingInputException("start date");
 			}
+			Receptionist r=recepList.getSelectionModel().getSelectedItem();
 	    	java.sql.Date work=java.sql.Date.valueOf(startDate.getValue());
-	    	if(recepList.getSelectionModel().getSelectedItem()==null||periodList.getSelectionModel().getSelectedItem()==null) {
-	    		throw new ListNotSelectedException();
+	    	E_Periods p=periodList.getSelectionModel().getSelectedItem();
+	    	if(r==null)
+	    		throw new ListNotSelectedException("Please choose a receptionist");
+	    			if(p==null) {
+	    		throw new ListNotSelectedException("Please choose period");
 	    	}
 	    	if(recepList.getSelectionModel().getSelectedItem()!=null) {
 	    		if(SysData.getInstance().addSubscriptionToCustomer(id, SysData.getInstance().getUserCustomer(), recepList.getSelectionModel().getSelectedItem().getId(), periodList.getSelectionModel().getSelectedItem(), work)) {
-	    			alert.setHeaderText("Added Subscription to Customer.");
-	        		alert.setContentText("Subscription was added to Customer successfully.");
-	        		alert.show();
+	    			labelSuccess.setText("subscription "+id+" was added succesfully!");
 	    		}
 	    		else {
 	    			alert.setHeaderText("failed to add Subscription to Customer.");
@@ -82,10 +91,18 @@ public class customerAddSubscriptionController {
     		
     	}
     	//refreshes list
-    	recepList.getItems().removeAll(recepList.getItems());
-    	if(SysData.getInstance().getReceptionists().size()>0) {
-    		recepList.getItems().addAll(SysData.getInstance().getReceptionists().values());
+		startDate.valueProperty().set(null);
+		subId.setText("");
+		recepList.getItems().removeAll(recepList.getItems());
+		if(SysData.getInstance().getReceptionists().values().size()>0) {
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null&&r.getWorkingStadium()!=null) {
+    				recepList.getItems().add(r);
+    			}
+    		}
     	}
+		periodList.getItems().removeAll(periodList.getItems());
+		periodList.getItems().addAll(E_Periods.values());
     }
     /**
      * initializes lists and defines textfield
@@ -100,5 +117,25 @@ public class customerAddSubscriptionController {
 		        	subId.setText(newValue.replaceAll("[^\\d]", ""));
 		        }
 		    });
+    }
+    /**
+     * clears form
+     * @param event clear button is pressed
+     */
+    @FXML
+    void clearForm(ActionEvent event) {
+    	startDate.valueProperty().set(null);
+		subId.setText("");
+		labelSuccess.setText("");
+		recepList.getItems().removeAll(recepList.getItems());
+		if(SysData.getInstance().getReceptionists().values().size()>0) {
+    		for(Receptionist r:SysData.getInstance().getReceptionists().values()) {
+    			if(r!=null&&r.getWorkingStadium()!=null) {
+    				recepList.getItems().add(r);
+    			}
+    		}
+    	}
+		periodList.getItems().removeAll(periodList.getItems());
+		periodList.getItems().addAll(E_Periods.values());
     }
 }

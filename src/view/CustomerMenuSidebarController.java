@@ -52,7 +52,10 @@ public class CustomerMenuSidebarController implements Initializable{
     void goToViewSubscriptions(ActionEvent event) {
     	loadUI(NameToWindow.CUSTOMER_VIEWSUB);
     }
-
+    @FXML
+    void goToRemoveSubscription(ActionEvent event) {
+    	loadUI(NameToWindow.CUSTOMER_REMOVESUB);
+    }
     @FXML
     void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();

@@ -35,6 +35,7 @@ public enum NameToWindow {
 	REMOVE_TROPHY("remove/removeTrophy"),
 	REMOVE_SUB("remove/removeSub"),
 	REMOVE_COACH("remove/removeCoach"),
+	
 	//Disconnections: ------ In view.connection folder:---------
 	REMOVE_CUSFROMMATCH("connection/removeCusFromMatch"),
 	REMOVE_COACHFROMTEAM("connection/removeCoachFromTeam"),
@@ -106,6 +107,7 @@ public enum NameToWindow {
 	CUSTOMER_ADDSUB("customer/customerAddSubscription"),
 	CUSTOMER_JOINMATCH("customer/customerJoinMatch"),
 	CUSTOMER_VIEWSUB("customer/customerViewSubscriptions"),
+	CUSTOMER_REMOVESUB("customer/customerRemoveSubscription"),
 	
 	/*------------QUERIES-------------------------------------------------*/
 	QUERY_GETMAC("queries/getMAC"),
