@@ -16,15 +16,26 @@
    <children>
       <ImageView fitHeight="590.0" fitWidth="701.0" style="-fx-opacity: 0.2;">
          <image>
-            <Image url="@../../Soccer-Stadium.jpg" />
+            <Image url="@../../../bin/images/Soccer-Stadium.jpg" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label layoutX="233.0" layoutY="37.0" style="-fx-opacity: 0.8;" text="View My Subscriptions" textFill="WHITE">
+      <Label layoutX="233.0" layoutY="29.0" style="-fx-opacity: 0.8;" text="View My Subscriptions" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <ListView fx:id="listSubs" layoutX="53.0" layoutY="87.0" prefHeight="398.0" prefWidth="599.0" style="-fx-opacity: 0.71;" />
+      <ListView fx:id="listSubs" layoutX="53.0" layoutY="87.0" onMouseClicked="#showRowDetails" prefHeight="284.0" prefWidth="599.0" style="-fx-opacity: 0.71;" />
+      <ListView fx:id="matchlist" layoutX="53.0" layoutY="411.0" prefHeight="160.0" prefWidth="599.0" style="-fx-opacity: .7;" />
+      <Label layoutX="57.0" layoutY="389.0" style="-fx-opacity: 0.8;" text="Matches:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="69.0" style="-fx-opacity: 0.7;" text="Double click a subscription to see the matches it contains:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
