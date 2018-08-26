@@ -24,17 +24,18 @@
          </font>
       </Label>
       <ComboBox fx:id="subList" layoutX="124.0" layoutY="99.0" onAction="#showDP" prefHeight="33.0" prefWidth="437.0" promptText="Select subscription to modify:" />
-      <Label fx:id="datelbl" layoutX="121.0" layoutY="194.0" text="Please select a new Date:">
+      <Label fx:id="datelbl" layoutX="145.0" layoutY="194.0" text="Please select a new Date:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <DatePicker fx:id="datepicker" layoutX="294.0" layoutY="189.0" onAction="#hidelbl" />
-      <Label fx:id="lblMessage" layoutX="173.0" layoutY="279.0" prefHeight="33.0" prefWidth="390.0" textFill="#0d718d">
+      <DatePicker fx:id="datepicker" layoutX="323.0" layoutY="189.0" onAction="#hidelbl" />
+      <Label fx:id="lblMessage" layoutX="171.0" layoutY="295.0" prefHeight="33.0" prefWidth="390.0" textFill="#0d718d">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
       <Button fx:id="buttonModify" layoutX="278.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="43.0" prefWidth="140.0" text="Modify" />
+      <ComboBox fx:id="periodpicker" layoutX="259.0" layoutY="247.0" onAction="#hidelbl" prefHeight="26.0" prefWidth="184.0" promptText="Select new Period" />
    </children>
 </AnchorPane>

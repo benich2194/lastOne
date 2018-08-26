@@ -16,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import utils.E_Periods;
 import view.WindowManager;
 
 public class modifySubscriptionController {
@@ -40,6 +41,9 @@ public class modifySubscriptionController {
 
     @FXML
     private Label datelbl;
+    
+    @FXML
+    private ComboBox<E_Periods> periodpicker;
 
     //Data members used to save logged-in Receptionist's info
 	private Integer recepID = Integer.parseInt(SysData.getInstance().getUserRecep());
@@ -50,6 +54,8 @@ public class modifySubscriptionController {
      */
     public void initialize() {
     	subList.getItems().clear();
+    	periodpicker.getItems().clear();
+    	periodpicker.getItems().addAll(E_Periods.values());
     	ArrayList<Subscription> subsAll = new ArrayList<Subscription>();
 
     	if(!rc.getSubscriptions().isEmpty()) {
@@ -62,6 +68,7 @@ public class modifySubscriptionController {
     	buttonModify.setVisible(false);
     	datelbl.setVisible(false);
     	datepicker.setVisible(false);
+    	periodpicker.setVisible(false);
     }
     
     @FXML
@@ -72,6 +79,7 @@ public class modifySubscriptionController {
     	buttonModify.setVisible(true);
     	datelbl.setVisible(true);
     	datepicker.setVisible(true);
+    	periodpicker.setVisible(true);
     }
     
     @FXML
@@ -86,16 +94,30 @@ public class modifySubscriptionController {
 				throw new ListNotSelectedException();
 			}
 			else {
-					if(datepicker.getValue()==null)
-						throw new MissingInputException("Please choose a Date");
-					else if ((datepicker.getValue()!=null)){
+					if(datepicker.getValue()==null && periodpicker.getSelectionModel().isEmpty())
+						throw new MissingInputException("Date And/Or Period");
+					else {
+						if (datepicker.getValue()!=null && periodpicker.getSelectionModel().isEmpty()){
 						java.sql.Date datepick = java.sql.Date.valueOf(datepicker.getValue());
 						subList.getSelectionModel().getSelectedItem().setStartDate(datepick);
-						lblMessage.setText("Successfully modified Subscription!");
+						lblMessage.setText("Successfully modified Subscriptions Date!");
 						initialize();
-					}
-					else
-						lblMessage.setText("Unable to Modify Subscription.");
+						}
+						else if(datepicker.getValue()!=null && !periodpicker.getSelectionModel().isEmpty()){
+							java.sql.Date datepick = java.sql.Date.valueOf(datepicker.getValue());
+							E_Periods p = periodpicker.getSelectionModel().getSelectedItem();
+							subList.getSelectionModel().getSelectedItem().setStartDate(datepick);
+							subList.getSelectionModel().getSelectedItem().setPeriod(p);
+							lblMessage.setText("Successfully modified Subscription Date & Period!");
+							initialize();
+						}
+						else if(datepicker.getValue()==null && !periodpicker.getSelectionModel().isEmpty()){
+							E_Periods p = periodpicker.getSelectionModel().getSelectedItem();
+							subList.getSelectionModel().getSelectedItem().setPeriod(p);
+							lblMessage.setText("Successfully modified Subscription Period!");
+							initialize();
+						}
+					} //else
 			}
 		}catch(ListNotSelectedException e) {
 			
