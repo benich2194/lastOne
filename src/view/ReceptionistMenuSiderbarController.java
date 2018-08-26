@@ -72,7 +72,7 @@ public class ReceptionistMenuSiderbarController implements Initializable{
 
     @FXML
     void goToViewCustomers(ActionEvent event) {
-    	loadUI("viewCustomer");
+    	loadUI(NameToWindow.VIEW_CUSTOMER);
     }
 
     @FXML
@@ -104,6 +104,10 @@ public class ReceptionistMenuSiderbarController implements Initializable{
     @FXML
     void goToFPBHT(ActionEvent event) {
     	loadUI(NameToWindow.QUERY_GETFPOBHT);
+    }
+    @FXML
+    void goToRemoveCustomerFromMatch(ActionEvent event) {
+    	loadUI(NameToWindow.REMOVE_CUSFROMMATCH);
     }
 
     @FXML

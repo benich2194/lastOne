@@ -52,6 +52,9 @@ public class cusToMatchController {
     		if(m==null) {
         		throw new ListNotSelectedException("choose match:");
         	}
+    		if(m.getCrowd().containsKey(c)) {
+    			throw new ObjectExistsException("customer is already in match");
+    		}
     		if(SysData.getInstance().addCustomerToMatch(c.getId(), m.getId())) {
     			labelSuccess.setText("added customer "+c.getId()+" to match "+m.getId()+" succesfully!");
     		}

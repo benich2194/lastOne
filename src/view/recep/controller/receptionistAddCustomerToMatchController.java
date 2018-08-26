@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +37,9 @@ public class receptionistAddCustomerToMatchController {
     @FXML
     private ListView<Match> matchList;
     
+    @FXML
+    private Label labelSuccess;
+    
     //Receptionist can add customers who he sold subscriptions to, to a match
     private ArrayList<Customer> myList;
     
@@ -44,75 +48,52 @@ public class receptionistAddCustomerToMatchController {
     	Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Customer to Match");
 		alert.setHeaderText("");
-		try {
-			if(matchList.getSelectionModel().getSelectedItem()==null||customerList.getSelectionModel().getSelectedItem()==null) {
-				throw new ListNotSelectedException();
-			}
-		if(SysData.getInstance().getMatchs().get(matchList.getSelectionModel().getSelectedItem().getId()).getCrowd().containsKey(customerList.getSelectionModel().getSelectedItem())) {
-			alert.setHeaderText("Unable to add Customer To Match.");
-    		alert.setContentText("Customer exists in match.");
-    		alert.show();
-		}
-    	else {
-	    	if(SysData.getInstance().addCustomerToMatch(customerList.getSelectionModel().getSelectedItem().getId(), matchList.getSelectionModel().getSelectedItem().getId())) {
-	    		alert.setHeaderText("Added Customer to Match");
-	    		alert.setContentText("Added Customer to Match successfully.");
-	    		alert.show();
-	    	}
-	    	else {
-	    	}
+    	Customer c=customerList.getSelectionModel().getSelectedItem();
+    	Match m=matchList.getSelectionModel().getSelectedItem();
+    	try {
+    		if(c==null) {
+        		throw new ListNotSelectedException("choose customer");
+        	}
+    		if(m==null) {
+        		throw new ListNotSelectedException("choose match:");
+        	}
+    		if(m.getCrowd().containsKey(c)) {
+    			throw new ObjectExistsException("customer is already in match");
+    		}
+    		if(SysData.getInstance().addCustomerToMatch(c.getId(), m.getId())) {
+    			labelSuccess.setText("added customer "+c.getId()+" to match "+m.getId()+" succesfully!");
+    		}
+    		else {
+    		}
+    		
+    	}catch(ListNotSelectedException e) {
+    		
+    	}catch(NoValidSubscriptionException e) {
+    		
+    	}catch(ObjectExistsException e) {
+    		
+    	}catch(ObjectNotExistException e) {
+    		
     	}
-		customerList.getItems().removeAll(customerList.getItems());//refreshes list
-		matchList.getItems().removeAll(matchList.getItems());
-		if(SysData.getInstance().getCustomers()!=null) {
+    	//refreshes boxes
+    	customerList.getItems().removeAll(customerList.getItems());
+    	matchList.getItems().removeAll(matchList.getItems());
+    	if(SysData.getInstance().getCustomers()!=null) {
     		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
     	}
-    	Receptionist r=SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
-    	for(Match m:SysData.getInstance().getMatchs().values()) {
-    		if(m!=null) {
-    			if(m.getHomeTeam()!=null&&m.getHomeTeam().getStadium()!=null) {
-    				if(m.getHomeTeam().getStadium().getReceptionists().contains(r)) {
-    					matchList.getItems().add(m);
-    				}
-    			}
-    		}
+    	if(SysData.getInstance().getMatchs()!=null) {
+    		matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
     	}
-		
-    }catch(ListNotSelectedException e){
-    	
-    }catch(NoValidSubscriptionException e) {
-    	
-    }catch(ObjectNotExistException e) {
-    	
-    }
     }
     /**
      * initializes lists
      */
     public void initialize() {
-    	myList = new ArrayList<Customer>();
-    	
-    	Receptionist r=SysData.getInstance().getReceptionists().get(Integer.parseInt(SysData.getInstance().getUserRecep()));
-    	
-    	//Creates List of customers that belong to the Receptionist
-    	for(Subscription s: r.getSubscriptions())
-    		if(s!=null && s.getCustomer()!=null)
-    			myList.add(s.getCustomer());
-    	
-    	if(myList!=null) {
-	        ObservableList<Customer> customersSoldSubTo = FXCollections.observableArrayList(myList);
-	        customerList.setItems(customersSoldSubTo);
+    	if(SysData.getInstance().getCustomers()!=null) {
+    		customerList.getItems().addAll(SysData.getInstance().getCustomers().values());
     	}
-    	
-    	
-    	for(Match m:SysData.getInstance().getMatchs().values()) {
-    		if(m!=null) {
-    			if(m.getHomeTeam()!=null&&m.getHomeTeam().getStadium()!=null) {
-    				if(m.getHomeTeam().getStadium().getReceptionists().contains(r)) {
-    					matchList.getItems().add(m);
-    				}
-    			}
-    		}
+    	if(SysData.getInstance().getMatchs()!=null) {
+    		matchList.getItems().addAll(SysData.getInstance().getMatchs().values());
     	}
     }
 
