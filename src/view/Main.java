@@ -1,24 +1,13 @@
 package view;
 	
 import javafx.application.Application;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import Controller.Logger;
 import Controller.SysData;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
-
-
 
 public class Main extends Application {
 	
@@ -44,7 +33,7 @@ public class Main extends Application {
 	public static void main(String[] args) throws Exception {
 		
 		Logger.initializeMyFileWriter();
-		Logger.log("asd");
+		Logger.log("Welcome");
 		SysData.deserialize();
 		launch(args);
 		SysData.getInstance().setUserCoach(null);
