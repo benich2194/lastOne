@@ -32,11 +32,16 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <GridPane fx:id="gridpane" layoutX="288.0" layoutY="203.0" prefHeight="314.0" prefWidth="209.0">
+      <GridPane fx:id="gridpane" layoutX="85.0" layoutY="203.0" prefHeight="314.0" prefWidth="411.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -51,7 +56,7 @@
         </rowConstraints>
       </GridPane>
       <ComboBox fx:id="cbTeam" layoutX="191.0" layoutY="73.0" onAction="#showPlayerList" prefHeight="26.0" prefWidth="351.0" promptText="Please choose a team:" />
-      <ListView fx:id="listplayers" layoutX="568.0" layoutY="166.0" onMouseClicked="#chosenPlayer" prefHeight="385.0" prefWidth="126.0" style="-fx-opacity: 0.75;" />
+      <ListView fx:id="listplayers" layoutX="568.0" layoutY="166.0" onMouseClicked="#chosenPlayer" prefHeight="172.0" prefWidth="126.0" style="-fx-opacity: 0.75;" />
       <Label fx:id="lblFP" layoutX="14.0" layoutY="142.0" style="-fx-opacity: 0.80;" text="Field Preview:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -67,5 +72,21 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Label layoutX="56.0" layoutY="174.0" prefHeight="23.0" prefWidth="475.0" style="-fx-opacity: 0.201;" text="         1      2      3      4      5     6      7      8      9     10      " textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="instLbl" layoutX="571.0" layoutY="349.0" style="-fx-opacity: 0.80;" text="Instructions:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="instText" layoutX="569.0" layoutY="367.0" prefHeight="183.0" prefWidth="126.0" style="-fx-background-color: #f7e896; -fx-opacity: 0.7;" text="Place the players&#10;according to their&#10;position.&#10;GoalKeeper -&#10;Column 1&#10;Defender - &#10;Column 1-4&#10;MidFielder - &#10;Column 5-7&#10;Attacker -&#10;Col  6-10&#10;">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="clear" layoutX="299.0" layoutY="129.0" mnemonicParsing="false" onAction="#clearField" prefHeight="26.0" prefWidth="126.0" text="Start Over" />
    </children>
 </AnchorPane>
