@@ -1,5 +1,8 @@
 package view.coach.controller;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import Controller.SysData;
 import Model.Coach;
 import Model.Player;
@@ -23,6 +26,9 @@ public class coachViewPlayerController {
 
     @FXML
     private ListView<Player> playerListView;
+    
+    @FXML
+    private ListView<Player> firstplysList;
 
 	private Integer coachID = Integer.parseInt(SysData.getInstance().getUserCoach());
 	private Coach ch = SysData.getInstance().getCoachs().get(coachID);
@@ -34,6 +40,17 @@ public class coachViewPlayerController {
     	{
     		ObservableList<Player> playersOnTeam = FXCollections.observableArrayList(t.getPlayers().keySet());
     		playerListView.setItems(playersOnTeam);
+    		
+        	//Make a list of first team players on selected team
+        	ArrayList<Player> plys = new ArrayList<Player>();
+        	for(Map.Entry<Player,Boolean> entry: t.getPlayers().entrySet()) {
+        		if(entry.getValue()) //If he's value is true (then hes a first team player) add him to 'plys'
+        			plys.add(entry.getKey());
+        	}
+            
+            ObservableList<Player> firstTeamplayers = FXCollections.observableArrayList(plys);
+            if(!firstTeamplayers.isEmpty())
+            	firstplysList.setItems(firstTeamplayers);
     	}
         
     }

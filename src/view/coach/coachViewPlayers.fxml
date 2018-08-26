@@ -25,6 +25,17 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ListView fx:id="playerListView" layoutX="31.0" layoutY="87.0" prefHeight="437.0" prefWidth="636.0" style="-fx-opacity: 0.71;" />
+      <ListView fx:id="playerListView" layoutX="31.0" layoutY="100.0" prefHeight="264.0" prefWidth="636.0" style="-fx-opacity: 0.71;" />
+      <Label layoutX="38.0" layoutY="390.0" style="-fx-opacity: 0.8;" text="First Team Players:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="77.0" style="-fx-opacity: 0.8;" text="All Players:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ListView fx:id="firstplysList" layoutX="33.0" layoutY="419.0" prefHeight="142.0" prefWidth="636.0" style="-fx-opacity: 0.71;" />
    </children>
 </AnchorPane>
