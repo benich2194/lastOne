@@ -139,6 +139,15 @@ public class removeStadiumController {
     				s.removeReceptionist(r);
     			}
     		}
+    		for(Match m:s.getMatches()) {
+    			if(m!=null) {
+    				for(Customer c:SysData.getInstance().getCustomers().values()) {
+    					if(c!=null) {
+    						c.removeMatch(m);
+    					}
+    				}
+    			}
+    		}
     		ArrayList<Trophy> troDel=new ArrayList<Trophy>();
     		for(Trophy tr:SysData.getInstance().getTrophies()) {
     			if(tr!=null&&tr.getOwner() instanceof Stadium&&tr.getOwner().equals(s)) {
