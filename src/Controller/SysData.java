@@ -654,35 +654,49 @@ public class SysData implements Serializable {
 	 * @return
 	 */
 	public boolean removeSubscription(int subscriptionId) {
-		int flag=0;
-		ArrayList<Subscription> subToRemove=new ArrayList<Subscription>();
-		if (subscriptionId < 0) {// if id is less than 0, return false
-			return false;
-		}
-		for (Receptionist r : receptionists.values()) {// checks if there is a receptionist that sold the subscription
-														// to verify its existence, returns false if does not exist
-			if (r != null) {
-				for (Subscription s : r.getSubscriptions()) {
-					if (s != null) {
-						if (s.getId() == subscriptionId) {
-							subToRemove.add(s);
-							r.removeSubscription(new Subscription(subscriptionId));
-							flag=1;
-					}
-				}
-			}
-		}
-		}
-		for (Customer c : customers.values()) {// if a customer has the subscription, remove it and raise flag to tell
-												// it was removed from one of them if existed
-			if (c != null) {
-				if (c.getSubscriptions().contains(new Subscription(subscriptionId))) {
-					c.removeSubscription(new Subscription(subscriptionId));
-					flag=1;
-				}
-			}
-			if (flag == 1) {// returns true if the subscription was removed from a customer
-				return true;
+//		int flag=0;
+//		if (subscriptionId < 0) {// if id is less than 0, return false
+//			return false;
+//		}
+//		for (Receptionist r : receptionists.values()) {// checks if there is a receptionist that sold the subscription
+//														// to verify its existence, returns false if does not exist
+//			if (r != null) {
+//				for (Subscription s : r.getSubscriptions()) {
+//					if (s != null) {
+//						if (s.getId() == subscriptionId) {
+//							subToRemove.add(s);
+//							r.removeSubscription(new Subscription(subscriptionId));
+//							flag=1;
+//					}
+//				}
+//			}
+//		}
+//		}
+//		for (Customer c : customers.values()) {// if a customer has the subscription, remove it and raise flag to tell
+//												// it was removed from one of them if existed
+//			if (c != null) {
+//				if (c.getSubscriptions().contains(new Subscription(subscriptionId))) {
+//					c.removeSubscription(new Subscription(subscriptionId));
+//					flag=1;
+//				}
+//			}
+//			if (flag == 1) {// returns true if the subscription was removed from a customer
+//				return true;
+//			}
+//		}
+//		return false;
+		if (subscriptionId > 0) {
+			Subscription subscription = new Subscription(subscriptionId);
+			for (Customer c : customers.values()) {
+				for (Subscription s : c.getSubscriptions()) 
+					if (s.equals(subscription)) 
+						subscription = s;
+			
+				if (subscription == null) 
+					return false;
+				
+				if (c.removeSubscription(subscription)) 
+					return true;
 			}
 		}
 		return false;

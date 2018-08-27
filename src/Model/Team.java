@@ -220,44 +220,22 @@ public class Team implements Serializable {
 	 * @throws MaximumReachedException 
 	 */
 	public boolean replacePlayerOfFirstTeam(Player oldPlayer, Player newPlayer) throws ObjectExistsException, MaximumReachedException {
-		if (oldPlayer == null || newPlayer == null || !players.containsKey(oldPlayer) || players.get(oldPlayer)) {// if
-																													// one
-																													// of
-																													// the
-																													// players
-																													// is
-																													// null
-																													// or
-																													// old
-																													// player
-																													// does
-																													// not
-																													// exist
-																													// or
-																													// new
-																													// player
-																													// exists
-																													// already
-																													// or
-																													// player
-																													// is
-																													// already
-																													// a
-																													// first
-																													// team
-																													// player,
-																													// retur
-																													// nfalse
-			return false;
-		}
-		if (!removePlayer(oldPlayer)) {// remove him from team, if failed return false
-			return false;
-		}
-		if (!addPlayerToFirstTeam(newPlayer)) {// add him as first team player, if failed add him as regular player
-			addPlayer(oldPlayer);
-			return false;
-		}
-		return true;// returns true if succesful
+		boolean isFound = false;
+		if (newPlayer != null &&
+				players.containsKey(newPlayer) &&
+				!players.get(newPlayer))
+			isFound = true;
+
+		if (oldPlayer != null &&
+				players.containsKey(oldPlayer) &&
+				players.get(oldPlayer) &&
+				isFound)
+
+			if (players.put(oldPlayer, false)
+					&& !players.put(newPlayer, true))
+				return true;
+
+		return false;
 	}
 
 	/**

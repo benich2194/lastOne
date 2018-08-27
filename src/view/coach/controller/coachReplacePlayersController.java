@@ -67,8 +67,8 @@ public class coachReplacePlayersController {
 			if (f == null) {
 				throw new ListNotSelectedException("Please choose first team player:");
 			}
-			if (t != null && t.replacePlayerOfFirstTeam(p, f)) {
-				labelSuccess.setText("player " + " and player " + " were replaced succesfully!");
+			if (t != null && t.replacePlayerOfFirstTeam(f, p)) {
+				labelSuccess.setText("player "+p.getId()+ " and player "+f.getId()+ " were replaced succesfully!");
 			} else {
 				alert.setHeaderText("Failed to replace players");
 				alert.setContentText("Failed to replace players in team.");
