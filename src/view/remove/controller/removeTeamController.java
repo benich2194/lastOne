@@ -105,6 +105,13 @@ public class removeTeamController {
 					matchDel.add(m);
 				}
 			}
+			for(Match m:t.getMatches()) {
+				if(m!=null) {
+					m.getHomeTeam().getStadium().removeMatch(m);
+					SysData.getInstance().getMatchs().remove(m.getId());
+					
+				}
+			}
 			for(Match m:matchDel) {
 				if(m!=null) {
 					SysData.getInstance().getMatchs().remove(m.getId());

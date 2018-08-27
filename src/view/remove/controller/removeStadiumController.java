@@ -119,7 +119,6 @@ public class removeStadiumController {
 					}
 				}
 			}
-			
     		if(s.getMatches()!=null) {//remove matches from team that belongs to stadium
     			for(Match m:s.getMatches()) {
     				SysData.getInstance().getMatchs().remove(m.getId());
@@ -148,6 +147,11 @@ public class removeStadiumController {
     		}
     		for(Trophy tr:troDel) {
     			SysData.getInstance().getTrophies().remove(tr);
+    		}
+    		for(Team t:s.getTeams()) {
+    			if(t!=null) {
+    				SysData.getInstance().getTeams().remove(t.getId());
+    			}
     		}
         	if(s!=null) {
         		SysData.getInstance().getStadiums().remove(s.getId());

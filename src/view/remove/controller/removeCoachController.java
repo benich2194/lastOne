@@ -5,6 +5,7 @@ import java.io.IOException;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Model.Coach;
+import Model.Trophy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -63,6 +64,15 @@ public class removeCoachController {
         		alert.show();
         	}
         	else {
+        		Trophy t=null;
+        		for(Trophy tr:SysData.getInstance().getTrophies()) {
+        			if(tr!=null&&tr.getOwner() instanceof Coach&&tr.getOwner().equals(c)) {
+        				t=tr;
+        			}
+        		}
+        		if(t!=null) {
+        			SysData.getInstance().getTrophies().remove(t);
+        		}
     	    	SysData.getInstance().getCoachs().remove(c.getId());
     	    	if(!SysData.getInstance().getCoachs().containsKey(c.getId())) {
     	    		labelSuccess.setText("removed coach "+c.getId()+" succesfully!");
