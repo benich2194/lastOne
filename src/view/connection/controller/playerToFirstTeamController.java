@@ -100,12 +100,12 @@ public class playerToFirstTeamController {
     void showTeamPlayers(MouseEvent event) {
     	//If there are players on the team
     	playerList.getItems().removeAll(playerList.getItems());
-    	if(!teamList.getSelectionModel().getSelectedItem().getPlayers().keySet().isEmpty())
+    	/*if(!teamList.getSelectionModel().getSelectedItem().getPlayers().keySet().isEmpty())
     		for(Player p:teamList.getSelectionModel().getSelectedItem().getPlayers().keySet()) {
     			if(p!=null&&teamList.getSelectionModel().getSelectedItem().getPlayers().get(p)==false) {
     				playerList.getItems().add(p);
     			}
-    		}
+    		}*/
     	for(Player p:SysData.getInstance().getPlayers().values()) {
     		if(p!=null&&p.getCurrentTeam()==null&&!teamList.getSelectionModel().getSelectedItem().getPlayers().containsKey(p)) {
     			playerList.getItems().add(p);
