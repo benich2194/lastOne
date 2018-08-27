@@ -55,7 +55,7 @@ public class removeSubController {
 		alert.setHeaderText("");
 		try {
 			if(subList.getSelectionModel().getSelectedItem()==null) {
-				throw new ListNotSelectedException();
+				throw new ListNotSelectedException("Please choose a subscription");
 			}
 			Subscription s=subList.getSelectionModel().getSelectedItem();
 			if(SysData.getInstance().removeSubscription(s.getId())) {
