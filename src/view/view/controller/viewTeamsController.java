@@ -51,6 +51,9 @@ public class viewTeamsController {
     @FXML
     void showDetails(MouseEvent event) {
     	Team clicked = listViewTeams.getSelectionModel().getSelectedItem();
+    	teamPlayersList.getItems().clear();
+    	teamPlayersListFirst.getItems().clear();
+    	teamsMatches.getItems().clear();
     	showRowDetails(clicked);
     }
     
