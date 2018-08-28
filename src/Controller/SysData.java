@@ -463,40 +463,33 @@ public class SysData implements Serializable {
 	 * @throws ObjectExistsException 
 	 */
 	public boolean addPlayerToTeamFirstPlayers(int playerId, int teamId) throws MaximumReachedException, ObjectExistsException {
-		if (players.get(playerId) == null || teams.get(teamId) == null) {// if player or team does not exist, return
-			// false
-			return false;
-		}
-		int counter = 0;
-		for (boolean b : teams.get(teamId).getPlayers().values()) {// counts how many first team players
-			if (b == true) {
-				counter++;
+	try {
+		if (playerId > 0 && teamId > 0) {
+			if (players.containsKey(playerId) && teams.containsKey(teamId)) {
+				Player player = players.get(playerId);
+				Team team = teams.get(teamId);
+				int counter =0;
+				for(Boolean b:team.getPlayers().values()) {
+					if(b==true)
+						counter++;
+				}
+				if(counter==utils.Constants.NUM_OF_FIRST_TEAM_PLAYERS) {
+					throw new MaximumReachedException("reached first players limit");
+				}
+				if (player.getCurrentTeam() != null) {
+					if (!player.getCurrentTeam().equals(team)) {
+						throw new ObjectExistsException("player already exists in team as first player");
+					}
+					return team.addPlayerToFirstTeam(player);
+				}
 			}
 		}
-		if (counter == Constants.NUM_OF_FIRST_TEAM_PLAYERS) {// if maximum first team players has reached, return false
-			throw new MaximumReachedException("maximum first players in team has reached its limit");
-		}
-		if (players.get(playerId).getCurrentTeam() != null
-				&& players.get(playerId).getCurrentTeam().equals(teams.get(teamId))
-				&& teams.get(teamId).getPlayers().get(players.get(playerId)) == false) {// if player already exist but
-			// not as first team player,
-			// replace him and re add him as
-			// first team player
-			if (!teams.get(teamId).replacePlayerOfFirstTeam(players.get(playerId), players.get(playerId))) {
-				return false;
-			}
-			return true;
-		}
-		if (players.get(playerId).getCurrentTeam() != null) {// if player already has a team and it is not this team,
-// cannot add him so return false
-			return false;
-		}
-		if (!teams.get(teamId).addPlayerToFirstTeam(players.get(playerId))) {// if cannot add player to first team
-			// players, return false
-			return false;
-		}
-		players.get(playerId).setCurrentTeam(teams.get(teamId));
-		return true;
+		return false;
+	}catch(MaximumReachedException e) {
+		
+	}
+	return false;
+		
 	}// ~ END OF addCoachToTeam
 
 	/**
