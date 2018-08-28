@@ -41,6 +41,7 @@ public enum NameToWindow {
 	REMOVE_COACHFROMTEAM("connection/removeCoachFromTeam"),
 	REMOVE_PLAYERFROMTEAM("connection/removePlayerFromTeam"),
 	REMOVE_RECEPFROMSTADI("connection/removeRecepFromStadium"),
+	REMOVE_PLAYERFROMFIRST("connection/removePlayerFromFirstTeam"),
 	
 	/*------------VIEW-------------------------------------------------*/
 	VIEW_TEAM("view/viewTeams"),
@@ -101,6 +102,7 @@ public enum NameToWindow {
 	COACH_PLYSTOFIRSTTEAM("coach/coachplayerToFirstTeam"),
 	COACH_VIEWPL("coach/coachViewPlayers"),
 	COACH_ADDPLTOTEAM("coach/coachAddPlayerToTeam"),
+	COACH_REMOVEFROMFIRST("coach/coachRemovePlayerFromFirstTeam"),
 	
 	/*------------CUSTOMER LOGIN SCREEN-----------------------------------------*/
 

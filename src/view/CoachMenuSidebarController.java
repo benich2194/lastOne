@@ -22,19 +22,18 @@ public class CoachMenuSidebarController implements Initializable {
 	private FlowPane menupane;
 
 	@FXML
-    private Button logout;
-	
+	private Button logout;
+
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		WindowManager.setContentPane(this.menupane);
 
 	}
 
-    public void loadUI(NameToWindow ui)
-    {
-    	WindowManager.openWindow(ui);
-    }
-    
+	public void loadUI(NameToWindow ui) {
+		WindowManager.openWindow(ui);
+	}
+
 	@FXML
 	void goToAddPlayerToTeam(ActionEvent event) {
 		loadUI(NameToWindow.COACH_ADDPLTOTEAM);
@@ -50,60 +49,64 @@ public class CoachMenuSidebarController implements Initializable {
 		loadUI(NameToWindow.COACH_MODIFPLAYERS);
 	}
 
+	@FXML
+	void goToAddTOFIRSTTeam(ActionEvent event) {
+		loadUI(NameToWindow.COACH_PLYSTOFIRSTTEAM);
+	}
 
-    @FXML
-    void goToAddTOFIRSTTeam(ActionEvent event) {
-    	loadUI(NameToWindow.COACH_PLYSTOFIRSTTEAM);
-    }
-    
 	@FXML
 	void goToViewPlayers(ActionEvent event) {
 		loadUI(NameToWindow.COACH_VIEWPL);
 	}
 
 	@FXML
+	void goToRemovePlayersFromFirstTeam(ActionEvent event) {
+		loadUI(NameToWindow.COACH_REMOVEFROMFIRST);
+	}
+
+	@FXML
 	void removePlayerFromTeam(ActionEvent event) {
 		loadUI(NameToWindow.COACH_REMOVEPL);
 	}
-	
+
 	@FXML
-    void goToGSPM(ActionEvent event) {
+	void goToGSPM(ActionEvent event) {
 		loadUI(NameToWindow.QUERY_GETSPM);
-    }
+	}
 
-    @FXML
-    void goToASPM(ActionEvent event) {
-    	loadUI(NameToWindow.QUERY_GETALLSPM);
-    }
+	@FXML
+	void goToASPM(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_GETALLSPM);
+	}
 
-    @FXML
-    void goToMPP(ActionEvent event) {
-    	loadUI(NameToWindow.QUERY_GETMPP);
-    }
+	@FXML
+	void goToMPP(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_GETMPP);
+	}
 
-    @FXML
-    void goToMFT(ActionEvent event) {
-    	loadUI(NameToWindow.QUERY_MFT);
-    }
+	@FXML
+	void goToMFT(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_MFT);
+	}
 
-    @FXML
-    void goToTWLHC(ActionEvent event) {
-    	loadUI(NameToWindow.QUERY_GETTWLHC);
-    }
+	@FXML
+	void goToTWLHC(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_GETTWLHC);
+	}
 
-    @FXML
-    void goToFPOBHT(ActionEvent event) {
-    	loadUI(NameToWindow.QUERY_GETFPOBHT);
-    }
+	@FXML
+	void goToFPOBHT(ActionEvent event) {
+		loadUI(NameToWindow.QUERY_GETFPOBHT);
+	}
 
-    @FXML
-    void GoToLogin(ActionEvent event) throws IOException {
+	@FXML
+	void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();
-		
+
 		SysData.getInstance().setUserCoach(null);
 		SysData.getInstance().setUserCustomer(null);
 		SysData.getInstance().setUserRecep(null);
-		
+
 		stage.close();
 		FXMLLoader load = new FXMLLoader(getClass().getResource("/view/login.fxml"));
 		Stage primaryStage = new Stage();
@@ -111,6 +114,6 @@ public class CoachMenuSidebarController implements Initializable {
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-    }
-    
+	}
+
 }

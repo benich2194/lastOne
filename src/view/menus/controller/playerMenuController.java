@@ -31,6 +31,9 @@ public class playerMenuController {
     
     @FXML
     private Button sortFTPButton;
+    
+    @FXML
+    private Button removeFirst;
 
     @FXML
     void goToAddPlayer(ActionEvent event) throws IOException {
@@ -64,6 +67,11 @@ public class playerMenuController {
     @FXML
     void goToRemovePlayerFromTeam(ActionEvent event) {
     	WindowManager.openWindow(NameToWindow.REMOVE_PLAYERFROMTEAM);
+    }
+    
+    @FXML
+    void goToRemovePlayerFromFirstTeam(ActionEvent event) {
+    	WindowManager.openWindow(NameToWindow.REMOVE_PLAYERFROMFIRST);
     }
 
 }
