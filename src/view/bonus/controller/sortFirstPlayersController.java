@@ -1,7 +1,6 @@
 package view.bonus.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,12 +28,7 @@ import javafx.scene.text.Text;
 import utils.NameToWindow;
 import view.WindowManager;
 
-public class sortFirstPlayersController implements Serializable{
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -5761684584457140645L;
+public class sortFirstPlayersController{
     //-------------------------Data Members-----------------------------------------------
 	@FXML
     private ComboBox<Team> cbTeam;
@@ -82,9 +76,6 @@ public class sortFirstPlayersController implements Serializable{
     //Player and his position
     private HashMap<Player, Integer> onChosenTeam;
     
-    //Hashmap that saves the teams placed on the grid and loads them on click
-    private HashMap<Team, HashMap<Player, Integer>> teamGridsSaved;
-    
   //Make a list of first team players on selected team
 	private ArrayList<Player> plys;
     
@@ -96,8 +87,7 @@ public class sortFirstPlayersController implements Serializable{
     	cbTeam.getItems().clear();	
     	
     	//Saves players on current team that were placed on the board & their place: row|column
-    	onChosenTeam = new HashMap<Player, Integer>();
-    	teamGridsSaved = new HashMap<Team, HashMap<Player, Integer>>();
+    	onChosenTeam = new HashMap<Player, Integer>();   	
     	
     	plys = new ArrayList<Player>();
     	
@@ -140,7 +130,7 @@ public class sortFirstPlayersController implements Serializable{
         int row, column;
         
         //Literate over players that need to be manually added to the grid
-        Iterator<Map.Entry<Player, Integer>> it = teamGridsSaved.get(chosen).entrySet().iterator();
+        Iterator<Map.Entry<Player, Integer>> it = SysData.getInstance().getSavedTeamGrids().get(chosen).entrySet().iterator();
 		while (it.hasNext()) {
 		    Map.Entry<Player, Integer> pair = it.next();
 		    //If first player list doesnt contain a player that used to be on grid, remove him
@@ -274,8 +264,9 @@ public class sortFirstPlayersController implements Serializable{
     		Team chosen = cbTeam.getSelectionModel().getSelectedItem();
     		
     		//Saves player positioning on field for the specific team
-    		teamGridsSaved.put(chosen, onChosenTeam);
-
+    		if(chosen!=null && onChosenTeam!=null) {
+    			SysData.getInstance().getSavedTeamGrids().put(chosen, onChosenTeam);
+    		}
     	}
     	else
     	{
@@ -289,28 +280,30 @@ public class sortFirstPlayersController implements Serializable{
     	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
     	
         //If the chosen team has been saved in the past, load the grid
-        if(teamGridsSaved.containsKey(chosen)) {
-        	//First check that all the previously placed players still exist
-        	System.out.println("why does it not go in this if?????");
-        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
-        	for(HashMap<Player,Integer> hm:teamGridsSaved.values()) {
-        		if(hm!=null) {
-        			for(Player p:hm.keySet()) {
-        				if(p!=null) {
-        					copy.put(p, hm.get(p));
-        				}
-        			}
-        		}
+    	if(SysData.getInstance().getSavedTeamGrids()!=null) {
+	        if(SysData.getInstance().getSavedTeamGrids().containsKey(chosen)) {
+	        	//First check that all the previously placed players still exist
+	        	System.out.println("why does it not go in this if?????");
+	        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
+	        	for(HashMap<Player,Integer> hm:SysData.getInstance().getSavedTeamGrids().values()) {
+	        		if(hm!=null) {
+	        			for(Player p:hm.keySet()) {
+	        				if(p!=null) {
+	        					copy.put(p, hm.get(p));
+	        				}
+	        			}
+	        		}
+	        	}
+	    		Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
+	    		while (it.hasNext()) {
+	    		    Map.Entry<Player, Integer> pair = it.next();
+	    		    //If first player list doesnt contain a player that used to be on grid, remove him
+	    		    if(!plys.contains(pair.getKey()))
+	    		    		copy.remove(pair.getKey());
+	    		}
+	    		SysData.getInstance().getSavedTeamGrids().put(chosen, copy); // updated
+	    		loadGrid(chosen);
         	}
-    		Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
-    		while (it.hasNext()) {
-    		    Map.Entry<Player, Integer> pair = it.next();
-    		    //If first player list doesnt contain a player that used to be on grid, remove him
-    		    if(!plys.contains(pair.getKey()))
-    		    		copy.remove(pair.getKey());
-    		}
-    		teamGridsSaved.put(chosen, copy); // updated
-    		loadGrid(chosen);
         }
         
     	cbTeam.setVisible(false); //Don't display team combobox

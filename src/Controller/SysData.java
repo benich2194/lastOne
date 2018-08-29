@@ -44,6 +44,9 @@ public class SysData implements Serializable {
 	private String userCoach;
 	private String userRecep;
 	private String userCustomer;
+	
+	//Hashmap that saves the teams placed on the grid and loads them on click
+    private HashMap<Team, HashMap<Player, Integer>> teamGridsSaved;
 
 	// -------------------------------Constructors------------------------------
 	private SysData() {
@@ -55,6 +58,7 @@ public class SysData implements Serializable {
 		customers = new HashMap<>();
 		matches = new HashMap<>();
 		trophies = new HashSet<>();
+		teamGridsSaved = new HashMap<Team, HashMap<Player, Integer>>();
 
 	}
 
@@ -81,6 +85,10 @@ public class SysData implements Serializable {
 
 	public HashMap<String, Customer> getCustomers() {
 		return customers;
+	}
+	
+	public HashMap<Team, HashMap<Player, Integer>> getSavedTeamGrids() {
+		return teamGridsSaved;
 	}
 
 	public String getUserCoach() {
