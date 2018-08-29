@@ -117,7 +117,7 @@ public class sortFirstPlayersController {
     	StackPane pane = new StackPane();
     	
         pane.setOnMousePressed(e -> {
-        	 System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
+        	// System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
             //Text field that displays the player's id
             Text tx = new Text();
             
@@ -145,14 +145,15 @@ public class sortFirstPlayersController {
                 		  if(colIndex == column && rowIndex == row)
                 			  result.setVisible(true);
                 		  else {
-                		    gridpane.getChildren().remove(result);
+                		    StackPane st = (StackPane) result;  
+                		    st.getChildren().clear();
                 		    onChosenTeam.remove(pl);
                 		  }
                 	}
                 	 
                 } // end of if player is on the grid
                
-				
+			//Defines how the players can be sorted on the grid, according to their position	
             switch(pl.getPosition()) {
             	case GOAlKEEPER:  if(colIndex==0 && rowIndex==3) {
 									tx.setText(Integer.toString(pl.getId()));
@@ -216,6 +217,7 @@ public class sortFirstPlayersController {
     @FXML
     void clearField(ActionEvent event) throws IOException{
     	WindowManager.openWindow(NameToWindow.SORT_FTPADMIN);
+    	lblInst.setVisible(false);
     }
 
 
@@ -232,8 +234,10 @@ public class sortFirstPlayersController {
     	}
     	
     	//Check that there are first team players
-    	if(plys.isEmpty())
+    	if(plys.isEmpty()) {
     		lblInst.setText("There are no First Team Players on Chosen Team.");
+    		lblInst.setVisible(true);
+    	}
     	else {
     		listplayers.getItems().addAll(plys);
     		
