@@ -292,8 +292,16 @@ public class sortFirstPlayersController implements Serializable{
         if(teamGridsSaved.containsKey(chosen)) {
         	//First check that all the previously placed players still exist
         	System.out.println("why does it not go in this if?????");
-        	
-        	HashMap<Player, Integer> copy = (HashMap<Player, Integer>) teamGridsSaved.values();
+        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
+        	for(HashMap<Player,Integer> hm:teamGridsSaved.values()) {
+        		if(hm!=null) {
+        			for(Player p:hm.keySet()) {
+        				if(p!=null) {
+        					copy.put(p, hm.get(p));
+        				}
+        			}
+        		}
+        	}
     		Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
     		while (it.hasNext()) {
     		    Map.Entry<Player, Integer> pair = it.next();
