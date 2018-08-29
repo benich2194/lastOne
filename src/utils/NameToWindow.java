@@ -4,6 +4,8 @@ package utils;
 
 public enum NameToWindow {
 
+	WELCOMESCREEN("welcome"),
+	
 	/*------------ADD-------------------------------------------------*/
 	ADD_TEAM("add/addTeam"),
 	ADD_CUSTOMER("add/addCustomer"),
