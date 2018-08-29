@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -25,10 +26,18 @@
       </ImageView>
       <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Coach">
+            <Button mnemonicParsing="false" onAction="#GoToHomePage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="⌂">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToCoachPage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Coach">
                <effect>
                   <Glow />
                </effect>

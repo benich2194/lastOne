@@ -27,6 +27,7 @@ public class CoachMenuSidebarController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		WindowManager.setContentPane(this.menupane);
+		loadUI(NameToWindow.WELCOMESCREEN);
 
 	}
 

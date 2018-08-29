@@ -32,6 +32,7 @@ public class AdminMenuController implements Initializable{
 		
 	}
 	
+	
     public void loadUI(NameToWindow ui)
     {
     	WindowManager.openWindow(ui);
@@ -40,6 +41,12 @@ public class AdminMenuController implements Initializable{
     public FlowPane getMenupane() {
 		return menupane;
 	}
+    
+	@FXML
+    private void GoToHomePage(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+	
 	@FXML
     private void GoToCoachPage(ActionEvent event) {
     	loadUI(NameToWindow.MENU_COACH);
