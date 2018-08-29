@@ -26,6 +26,8 @@ import Exceptions.ObjectNotExistException;
  */
 @SuppressWarnings("rawtypes")
 public class SysData implements Serializable {
+
+
 	/**
 	 * 
 	 */
@@ -87,8 +89,12 @@ public class SysData implements Serializable {
 		return customers;
 	}
 	
-	public HashMap<Team, HashMap<Player, Integer>> getSavedTeamGrids() {
+	public HashMap<Team, HashMap<Player, Integer>> getTeamGridsSaved() {
 		return teamGridsSaved;
+	}
+
+	public void setTeamGridsSaved(HashMap<Team, HashMap<Player, Integer>> teamGridsSaved) {
+		this.teamGridsSaved = teamGridsSaved;
 	}
 
 	public String getUserCoach() {

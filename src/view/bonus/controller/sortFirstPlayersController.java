@@ -130,7 +130,7 @@ public class sortFirstPlayersController{
         int row, column;
         
         //Literate over players that need to be manually added to the grid
-        Iterator<Map.Entry<Player, Integer>> it = SysData.getInstance().getSavedTeamGrids().get(chosen).entrySet().iterator();
+        Iterator<Map.Entry<Player, Integer>> it = SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet().iterator();
 		while (it.hasNext()) {
 		    Map.Entry<Player, Integer> pair = it.next();
 		    //If first player list doesnt contain a player that used to be on grid, remove him
@@ -265,7 +265,17 @@ public class sortFirstPlayersController{
     		
     		//Saves player positioning on field for the specific team
     		if(chosen!=null && onChosenTeam!=null) {
-    			SysData.getInstance().getSavedTeamGrids().put(chosen, onChosenTeam);
+    				if(SysData.getInstance().getTeamGridsSaved()==null) {
+    					HashMap<Team,HashMap<Player,Integer>> hm=new HashMap<>();
+    					hm.put(chosen, onChosenTeam);
+    					SysData.getInstance().setTeamGridsSaved(hm);
+    					
+    				}
+    				else {
+    					SysData.getInstance().getTeamGridsSaved().put(chosen, onChosenTeam);
+    				}
+    				
+    			
     		}
     	}
     	else
@@ -280,12 +290,12 @@ public class sortFirstPlayersController{
     	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
     	
         //If the chosen team has been saved in the past, load the grid
-    	if(SysData.getInstance().getSavedTeamGrids()!=null) {
-	        if(SysData.getInstance().getSavedTeamGrids().containsKey(chosen)) {
+    	if(SysData.getInstance().getTeamGridsSaved()!=null) {
+	        if(SysData.getInstance().getTeamGridsSaved().containsKey(chosen)) {
 	        	//First check that all the previously placed players still exist
 	        	System.out.println("why does it not go in this if?????");
 	        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
-	        	for(HashMap<Player,Integer> hm:SysData.getInstance().getSavedTeamGrids().values()) {
+	        	for(HashMap<Player,Integer> hm:SysData.getInstance().getTeamGridsSaved().values()) {
 	        		if(hm!=null) {
 	        			for(Player p:hm.keySet()) {
 	        				if(p!=null) {
@@ -294,14 +304,24 @@ public class sortFirstPlayersController{
 	        			}
 	        		}
 	        	}
-	    		Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
+	        	ArrayList<Player> playerToRemove=new ArrayList<Player>();
+	        	for(Player p:copy.keySet()) {
+	        		if(!plys.contains(p)) {
+	        			playerToRemove.add(p);
+	        		}
+	        	}
+	        	for(Player p:playerToRemove) {
+	        		copy.remove(p);
+	        	}
+	        	//your old code, causes an exception
+	    		/*Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
 	    		while (it.hasNext()) {
 	    		    Map.Entry<Player, Integer> pair = it.next();
 	    		    //If first player list doesnt contain a player that used to be on grid, remove him
 	    		    if(!plys.contains(pair.getKey()))
 	    		    		copy.remove(pair.getKey());
-	    		}
-	    		SysData.getInstance().getSavedTeamGrids().put(chosen, copy); // updated
+	    		}*/
+	    		SysData.getInstance().getTeamGridsSaved().put(chosen, copy); // updated
 	    		loadGrid(chosen);
         	}
         }
