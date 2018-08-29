@@ -1,10 +1,8 @@
 package view.bonus.controller;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import Controller.SysData;
 import Model.Player;
@@ -29,14 +27,9 @@ import javafx.scene.text.Text;
 import utils.NameToWindow;
 import view.WindowManager;
 
-public class sortFirstPlayersController implements Serializable{
+public class sortFirstPlayersControllerCOPY {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -5761684584457140645L;
-    //-------------------------Data Members-----------------------------------------------
-	@FXML
+    @FXML
     private ComboBox<Team> cbTeam;
 
     @FXML
@@ -53,9 +46,6 @@ public class sortFirstPlayersController implements Serializable{
 
     @FXML
     private Button back;
-    
-    @FXML
-    private Button saveButton;
 
     @FXML
     private Button clear;
@@ -79,11 +69,7 @@ public class sortFirstPlayersController implements Serializable{
 
     private Player pl;
     
-    //Player and his position
     private HashMap<Player, Integer> onChosenTeam;
-    
-    //Hashmap that saves the teams placed on the grid and loads them on click
-    private HashMap<Team, HashMap<Player, Integer>> teamGridsSaved;
     
   //Make a list of first team players on selected team
 	private ArrayList<Player> plys;
@@ -93,11 +79,10 @@ public class sortFirstPlayersController implements Serializable{
      */
     public void initialize() {    
         pl=null;
-    	cbTeam.getItems().clear();	
+    	cbTeam.getItems().clear();
     	
     	//Saves players on current team that were placed on the board & their place: row|column
     	onChosenTeam = new HashMap<Player, Integer>();
-    	teamGridsSaved = new HashMap<Team, HashMap<Player, Integer>>();
     	
     	plys = new ArrayList<Player>();
     	
@@ -113,7 +98,6 @@ public class sortFirstPlayersController implements Serializable{
     	gridpane.setVisible(false);
     	instLbl.setVisible(false);
     	instText.setVisible(false);
-    	saveButton.setVisible(false);
     	
     	source = new ImageView("images/splayer.png");
         source.setFitWidth(45);
@@ -126,46 +110,16 @@ public class sortFirstPlayersController implements Serializable{
             for (int j = 0; j < numRows; j++) {
                 addPane(i, j);
             }
-        }	
+        }
     }
     
-    private void loadGrid(Team chosen) {
-		// Loads a team who's players positioning was saved on the field
-    	StackPane pane = new StackPane();
-    	source = new ImageView("images/splayer.png");
-        source.setFitWidth(45);
-        source.setFitHeight(45);  
-        source.setUserData(pl);       
-        Text tx = new Text();
-        int row, column;
-        
-        //Literate over players that need to be manually added to the grid
-        Iterator<Map.Entry<Player, Integer>> it = teamGridsSaved.get(chosen).entrySet().iterator();
-		while (it.hasNext()) {
-		    Map.Entry<Player, Integer> pair = it.next();
-		    //If first player list doesnt contain a player that used to be on grid, remove him
-		    Player pl = pair.getKey();
-		    column = pair.getValue()/10;
-		    row = pair.getValue()%10;
-		
-			tx.setText(Integer.toString(pl.getId()));
-			tx.setFont(Font.font(null, 9.7));
-			pane.getChildren().clear();
-			pane.getChildren().add(tx);
-			pane.getChildren().add(source);
-			pane.setAlignment(Pos.BOTTOM_RIGHT);
-		
-			gridpane.add(pane, column, row);
-		}
-	}
-
-	private void addPane(int colIndex, int rowIndex) {
+    private void addPane(int colIndex, int rowIndex) {
     	StackPane pane = new StackPane();
     	
         pane.setOnMousePressed(e -> {
         	// System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
             //Text field that displays the player's id
-        	Text tx = new Text();
+            Text tx = new Text();
             
             if(pl!=null) { // If a player was chosen
                 
@@ -266,47 +220,14 @@ public class sortFirstPlayersController implements Serializable{
     	lblInst.setVisible(false);
     }
 
-    @FXML
-    void saveField(ActionEvent event) throws IOException{
-    	//Check if there are players on the field
-    	if(!onChosenTeam.isEmpty()) {
-    		//Chosen team in combobox
-    		Team chosen = cbTeam.getSelectionModel().getSelectedItem();
-    		
-    		//Saves player positioning on field for the specific team
-    		teamGridsSaved.put(chosen, onChosenTeam);
 
-    	}
-    	else
-    	{
-    		lblInst.setText("No players on field. Please place the players before saving.");
-    	}
-    }
-    
     @FXML
     void showPlayerList(ActionEvent event) {
     	listplayers.getItems().clear();
-    	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
     	
-        //If the chosen team has been saved in the past, load the grid
-        if(teamGridsSaved.containsKey(chosen)) {
-        	//First check that all the previously placed players still exist
-        	System.out.println("why does it not go in this if?????");
-        	
-        	HashMap<Player, Integer> copy = (HashMap<Player, Integer>) teamGridsSaved.values();
-    		Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
-    		while (it.hasNext()) {
-    		    Map.Entry<Player, Integer> pair = it.next();
-    		    //If first player list doesnt contain a player that used to be on grid, remove him
-    		    if(!plys.contains(pair.getKey()))
-    		    		copy.remove(pair.getKey());
-    		}
-    		teamGridsSaved.put(chosen, copy); // updated
-    		loadGrid(chosen);
-        }
-        
-    	cbTeam.setVisible(false); //Don't display team combobox
-        
+    	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
+    	cbTeam.setVisible(false);
+    	
     	for(Map.Entry<Player,Boolean> entry: chosen.getPlayers().entrySet()) {
     		if(entry.getValue()) //If he's value is true (then hes a first team player) add him to 'plys'
     			plys.add(entry.getKey());
@@ -329,17 +250,12 @@ public class sortFirstPlayersController implements Serializable{
 	    	gridpane.setVisible(true);
 	    	instLbl.setVisible(true);
 	    	instText.setVisible(true);
-	    	saveButton.setVisible(true);
-	    	
     	}
-    	
     }
 
     @FXML
     void chosenPlayer(MouseEvent event) {
     	pl = listplayers.getSelectionModel().getSelectedItem();
-    	
-
     }
 
 
