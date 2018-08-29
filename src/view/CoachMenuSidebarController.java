@@ -36,6 +36,11 @@ public class CoachMenuSidebarController implements Initializable {
 	}
 
 	@FXML
+    private void GoToHomePage(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+	
+	@FXML
 	void goToAddPlayerToTeam(ActionEvent event) {
 		loadUI(NameToWindow.COACH_ADDPLTOTEAM);
 	}

@@ -34,10 +34,11 @@ public class ReceptionistMenuSiderbarController implements Initializable{
     {
     	WindowManager.openWindow(ui);
     }
-    
-	public void loadUI(String ui) {
-		WindowManager.openWindow(ui);
-	}
+	
+	@FXML
+    private void GoToHomePage(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
 	
     @FXML
     void goToAddCustomer(ActionEvent event) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -25,6 +26,14 @@
       </ImageView>
       <VBox layoutX="36.0" layoutY="43.0" prefHeight="452.0" prefWidth="182.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#GoToHomePage" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="⌂">
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
             <Button mnemonicParsing="false" onAction="#goToViewSubscriptions" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Subscriptions &amp; Matches">
                <VBox.margin>
                   <Insets />

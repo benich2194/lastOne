@@ -39,6 +39,12 @@ public class CustomerMenuSidebarController implements Initializable{
     public FlowPane getMenupane() {
 		return menupane;
 	}
+    
+	@FXML
+    private void GoToHomePage(ActionEvent event) {
+    	loadUI(NameToWindow.WELCOMESCREEN);
+    }
+	
     @FXML
     void goToAddSubscription(ActionEvent event) {
     	loadUI(NameToWindow.CUSTOMER_ADDSUB);
