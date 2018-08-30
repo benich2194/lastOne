@@ -82,9 +82,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="instText" layoutX="569.0" layoutY="367.0" prefHeight="183.0" prefWidth="126.0" style="-fx-background-color: #f7e896; -fx-opacity: 0.7;" text="Place the players&#10;according to their&#10;position.&#10;GoalKeeper -&#10;Column 1&#10;Defender - &#10;Column 1-4&#10;MidFielder - &#10;Column 5-7&#10;Attacker -&#10;Col  6-10&#10;">
+      <TextArea fx:id="instText" layoutX="569.0" layoutY="367.0" prefHeight="183.0" prefWidth="126.0" style="-fx-background-color: #f7e896; -fx-opacity: 0.7;" text="Place the players&#10;according to their&#10;position. Positions are&#10;visible in the list above.&#10;GoalKeeper -&#10;Column 1&#10;Defender - &#10;Column 1 - 4&#10;MidFielder - &#10;Column 5 - 7&#10;Attacker -&#10;Col  6 - 10&#10;To Remove:&#10;Select Player, and&#10;double click a spot&#10;they can't be on,&#10;on the grid. Then&#10;press save.">
          <font>
-            <Font name="Arial" size="12.0" />
+            <Font name="Arial Bold Italic" size="10.5" />
          </font>
       </TextArea>
       <Button fx:id="clear" layoutX="299.0" layoutY="129.0" mnemonicParsing="false" onAction="#clearField" prefHeight="26.0" prefWidth="126.0" text="Start Over" />

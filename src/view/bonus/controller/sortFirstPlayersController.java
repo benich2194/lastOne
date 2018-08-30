@@ -3,7 +3,6 @@ package view.bonus.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import Controller.SysData;
 import Model.Player;
@@ -29,7 +28,8 @@ import utils.NameToWindow;
 import view.WindowManager;
 
 public class sortFirstPlayersController{
-    //-------------------------Data Members-----------------------------------------------
+
+	//-------------------------Data Members-----------------------------------------------
 	@FXML
     private ComboBox<Team> cbTeam;
 
@@ -121,33 +121,43 @@ public class sortFirstPlayersController{
     
     private void loadGrid(Team chosen) {
 		// Loads a team who's players positioning was saved on the field
-    	StackPane pane = new StackPane();
     	source = new ImageView("images/splayer.png");
         source.setFitWidth(45);
         source.setFitHeight(45);  
         source.setUserData(pl);       
         Text tx = new Text();
         int row, column;
+        StackPane st;
         
         //Literate over players that need to be manually added to the grid
-        Iterator<Map.Entry<Player, Integer>> it = SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet().iterator();
-		while (it.hasNext()) {
-		    Map.Entry<Player, Integer> pair = it.next();
-		    //If first player list doesnt contain a player that used to be on grid, remove him
-		    Player pl = pair.getKey();
-		    column = pair.getValue()/10;
-		    row = pair.getValue()%10;
-		
-			tx.setText(Integer.toString(pl.getId()));
-			tx.setFont(Font.font(null, 9.7));
-			pane.getChildren().clear();
-			pane.getChildren().add(tx);
-			pane.getChildren().add(source);
-			pane.setAlignment(Pos.BOTTOM_RIGHT);
-		
-			gridpane.add(pane, column, row);
-		}
-	}
+    	for(Map.Entry<Player,Integer> hm:SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet()) {
+    		if(hm!=null) {
+    			Player pl = hm.getKey();
+    		    column = hm.getValue()/10;
+    		    row = hm.getValue()%10;
+    			tx.setText(Integer.toString(pl.getId()));
+    			tx.setFont(Font.font(null, 9.7));
+
+	           	 Node result = null;
+	           	 ObservableList<Node> childrens = gridpane.getChildren();
+	           	 for(Node node : childrens) {
+	           	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	           	            result = node;
+	           	            break;
+	           	        }
+	           	  }
+	           	st = (StackPane) result;  
+    		    st.getChildren().clear();
+    			st.getChildren().add(tx);
+    			st.getChildren().add(source);
+    			st.setAlignment(Pos.BOTTOM_RIGHT);
+				String place = Integer.toString(column) + Integer.toString(row);
+				onChosenTeam.put(pl, Integer.parseInt(place));
+
+    		} //if
+    	}	//for
+    }
+
 
 	private void addPane(int colIndex, int rowIndex) {
     	StackPane pane = new StackPane();
@@ -266,7 +276,7 @@ public class sortFirstPlayersController{
     		//Saves player positioning on field for the specific team
     		if(chosen!=null && onChosenTeam!=null) {
     				if(SysData.getInstance().getTeamGridsSaved()==null) {
-    					HashMap<Team,HashMap<Player,Integer>> hm=new HashMap<>();
+    					HashMap<Team,HashMap<Player,Integer>> hm=new HashMap<Team,HashMap<Player,Integer>>();
     					hm.put(chosen, onChosenTeam);
     					SysData.getInstance().setTeamGridsSaved(hm);
     					
@@ -274,7 +284,7 @@ public class sortFirstPlayersController{
     				else {
     					SysData.getInstance().getTeamGridsSaved().put(chosen, onChosenTeam);
     				}
-    				
+    				lblInst.setText("Field was saved for Team ID "+chosen.getId());
     			
     		}
     	}
@@ -288,12 +298,17 @@ public class sortFirstPlayersController{
     void showPlayerList(ActionEvent event) {
     	listplayers.getItems().clear();
     	Team chosen = cbTeam.getSelectionModel().getSelectedItem();
+    	for(Map.Entry<Player,Boolean> entry: chosen.getPlayers().entrySet()) {
+    		if(entry.getValue()) //If he's value is true (then hes a first team player) add him to 'plys'
+    			plys.add(entry.getKey());
+    	}
     	
         //If the chosen team has been saved in the past, load the grid
     	if(SysData.getInstance().getTeamGridsSaved()!=null) {
 	        if(SysData.getInstance().getTeamGridsSaved().containsKey(chosen)) {
 	        	//First check that all the previously placed players still exist
-	        	System.out.println("why does it not go in this if?????");
+	        	
+	        	//Make a copy of the teams inner hashmap, which holds players and positions on the grid
 	        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
 	        	for(HashMap<Player,Integer> hm:SysData.getInstance().getTeamGridsSaved().values()) {
 	        		if(hm!=null) {
@@ -304,6 +319,7 @@ public class sortFirstPlayersController{
 	        			}
 	        		}
 	        	}
+	        	
 	        	ArrayList<Player> playerToRemove=new ArrayList<Player>();
 	        	for(Player p:copy.keySet()) {
 	        		if(!plys.contains(p)) {
@@ -313,25 +329,15 @@ public class sortFirstPlayersController{
 	        	for(Player p:playerToRemove) {
 	        		copy.remove(p);
 	        	}
-	        	//your old code, causes an exception
-	    		/*Iterator<Map.Entry<Player, Integer>> it = copy.entrySet().iterator();
-	    		while (it.hasNext()) {
-	    		    Map.Entry<Player, Integer> pair = it.next();
-	    		    //If first player list doesnt contain a player that used to be on grid, remove him
-	    		    if(!plys.contains(pair.getKey()))
-	    		    		copy.remove(pair.getKey());
-	    		}*/
-	    		SysData.getInstance().getTeamGridsSaved().put(chosen, copy); // updated
+
+	    		SysData.getInstance().getTeamGridsSaved().put(chosen, copy); // updated grid to be loaded
+
 	    		loadGrid(chosen);
         	}
         }
         
     	cbTeam.setVisible(false); //Don't display team combobox
-        
-    	for(Map.Entry<Player,Boolean> entry: chosen.getPlayers().entrySet()) {
-    		if(entry.getValue()) //If he's value is true (then hes a first team player) add him to 'plys'
-    			plys.add(entry.getKey());
-    	}
+       
     	
     	//Check that there are first team players
     	if(plys.isEmpty()) {
@@ -358,8 +364,7 @@ public class sortFirstPlayersController{
 
     @FXML
     void chosenPlayer(MouseEvent event) {
-    	pl = listplayers.getSelectionModel().getSelectedItem();
-    	
+    	pl = listplayers.getSelectionModel().getSelectedItem();	
 
     }
 
