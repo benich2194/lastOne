@@ -129,35 +129,35 @@ public class sortFirstPlayersController{
         int row, column;
         StackPane st;
         
-        //Literate over players that need to be manually added to the grid
-    	for(Map.Entry<Player,Integer> hm:SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet()) {
+        //Literate over players that need to be manually added to the grid and add them
+    	for(Map.Entry<Player,Integer> hm : SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet()) {
     		if(hm!=null) {
+    			//Gets every player in the hm and it's value for row and column
     			Player pl = hm.getKey();
     		    column = hm.getValue()/10;
     		    row = hm.getValue()%10;
+    		    //Text used to show the players ID on the grid
     			tx.setText(Integer.toString(pl.getId()));
     			tx.setFont(Font.font(null, 9.7));
 
-	           	 Node result = null;
+	           	 //Node result = null;
 	           	 ObservableList<Node> childrens = gridpane.getChildren();
+	           	 //Find the pane in the grid using node, and then add the player to specific spot
 	           	 for(Node node : childrens) {
 	           	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
-	           	            result = node;
+	           	            //st = ((StackPane) node);  
+	           	        	((StackPane) node).getChildren().clear();
+	           	        	((StackPane) node).getChildren().add(tx); //Adds ID
+	           	        	((StackPane) node).getChildren().add(source); //Adds Player Image
+	           	        	((StackPane) node).setAlignment(Pos.BOTTOM_RIGHT);
+							String place = Integer.toString(column) + Integer.toString(row);
+							onChosenTeam.put(pl, Integer.parseInt(place));
 	           	            break;
-	           	        }
-	           	  }
-	           	st = (StackPane) result;  
-    		    st.getChildren().clear();
-    			st.getChildren().add(tx);
-    			st.getChildren().add(source);
-    			st.setAlignment(Pos.BOTTOM_RIGHT);
-				String place = Integer.toString(column) + Integer.toString(row);
-				onChosenTeam.put(pl, Integer.parseInt(place));
-
-    		} //if
-    	}	//for
+	           	        } //if
+	           	 }//for
+    		}//if hm is not null
+    	} //for
     }
-
 
 	private void addPane(int colIndex, int rowIndex) {
     	StackPane pane = new StackPane();
