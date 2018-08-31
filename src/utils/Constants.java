@@ -32,7 +32,8 @@ public final class Constants {
 	/**
 	 * The maximum of an array capacity for players in a team
 	 */
-	public static final int MAX_PLAYERS_FOR_TEAM = 7;
+	//Used to be 7, changed to 18 in order to test the Bonus
+	public static final int MAX_PLAYERS_FOR_TEAM = 18;
 
 	/**
 	 * The minimum of an array capacity for teams of coach
@@ -52,7 +53,8 @@ public final class Constants {
 	/**
 	 * The number of first players in a team
 	 */
-	public static final int NUM_OF_FIRST_TEAM_PLAYERS = 4;
+	//Used to be 4, changed to 11 Inorder to test the Bonus
+	public static final int NUM_OF_FIRST_TEAM_PLAYERS = 11;
 
 	/**
 	 * The standard size of an ID number

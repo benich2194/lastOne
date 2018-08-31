@@ -3,6 +3,7 @@ package view.bonus.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import Controller.SysData;
 import Model.Player;
@@ -119,7 +120,7 @@ public class sortFirstPlayersController{
         }	
     }
     
-    private void loadGrid(Team chosen) {
+    private void loadGrid(Team chosen, HashMap<Player, Integer> copy) {
 		// Loads a team who's players positioning was saved on the field
     	source = new ImageView("images/splayer.png");
         source.setFitWidth(45);
@@ -129,35 +130,35 @@ public class sortFirstPlayersController{
         int row, column;
         StackPane st;
         
-        //Literate over players that need to be manually added to the grid and add them
-    	for(Map.Entry<Player,Integer> hm : SysData.getInstance().getTeamGridsSaved().get(chosen).entrySet()) {
+        //Literate over players that need to be manually added to the grid
+    	for(Map.Entry<Player,Integer> hm: copy.entrySet()) {
     		if(hm!=null) {
-    			//Gets every player in the hm and it's value for row and column
     			Player pl = hm.getKey();
     		    column = hm.getValue()/10;
     		    row = hm.getValue()%10;
-    		    //Text used to show the players ID on the grid
     			tx.setText(Integer.toString(pl.getId()));
     			tx.setFont(Font.font(null, 9.7));
 
-	           	 //Node result = null;
+	           	 Node result = null;
 	           	 ObservableList<Node> childrens = gridpane.getChildren();
-	           	 //Find the pane in the grid using node, and then add the player to specific spot
 	           	 for(Node node : childrens) {
 	           	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
-	           	            //st = ((StackPane) node);  
-	           	        	((StackPane) node).getChildren().clear();
-	           	        	((StackPane) node).getChildren().add(tx); //Adds ID
-	           	        	((StackPane) node).getChildren().add(source); //Adds Player Image
-	           	        	((StackPane) node).setAlignment(Pos.BOTTOM_RIGHT);
-							String place = Integer.toString(column) + Integer.toString(row);
-							onChosenTeam.put(pl, Integer.parseInt(place));
+	           	            result = node;
 	           	            break;
-	           	        } //if
-	           	 }//for
-    		}//if hm is not null
-    	} //for
+	           	        }
+	           	  }
+	           	st = (StackPane) result;  	           	
+    		    st.getChildren().clear();
+    		    st.getChildren().add(tx);
+    			st.getChildren().add(source);
+    			st.setAlignment(Pos.BOTTOM_RIGHT);
+				String place = Integer.toString(column) + Integer.toString(row);
+				onChosenTeam.put(pl, Integer.parseInt(place));
+				
+    		} //if
+    	}	//for
     }
+
 
 	private void addPane(int colIndex, int rowIndex) {
     	StackPane pane = new StackPane();
@@ -309,7 +310,7 @@ public class sortFirstPlayersController{
 	        	//First check that all the previously placed players still exist
 	        	
 	        	//Make a copy of the teams inner hashmap, which holds players and positions on the grid
-	        	HashMap<Player, Integer> copy = new HashMap<Player,Integer>();
+	        	LinkedHashMap<Player, Integer> copy = new LinkedHashMap<Player,Integer>();
 	        	for(HashMap<Player,Integer> hm:SysData.getInstance().getTeamGridsSaved().values()) {
 	        		if(hm!=null) {
 	        			for(Player p:hm.keySet()) {
@@ -329,10 +330,16 @@ public class sortFirstPlayersController{
 	        	for(Player p:playerToRemove) {
 	        		copy.remove(p);
 	        	}
+	    		
+	    		while(!copy.isEmpty()) {
+	    			loadGrid(chosen, copy);
+	    			//Remove the last player in copy
+	    			Player ent = (Player) copy.keySet().toArray()[copy.size() -1];
+	    			copy.remove(ent);
+	    		}
+	    		
+	    		SysData.getInstance().getTeamGridsSaved().put(chosen, onChosenTeam); // updated grid to be loaded
 
-	    		SysData.getInstance().getTeamGridsSaved().put(chosen, copy); // updated grid to be loaded
-
-	    		loadGrid(chosen);
         	}
         }
         
