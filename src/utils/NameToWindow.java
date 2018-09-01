@@ -79,14 +79,7 @@ public enum NameToWindow {
 	
 	/*------------BONUS-------------------------------------------------*/
 	SORT_FTPADMIN("bonus/sortFirstPlayers"),
-	
-	/*------------MAIN LOGIN SCREENS-------------------------------------------*/
-	
-	//NOT DONE YET
-	ADMIN_LOGIN("menus/teamMenu"),
-	COACH_LOGIN("menus/customerMenuAdmin"),
-	CUSTOMER_LOGIN("menus/matchMenu"),
-	RECEPTIONIST_LOGIN("menus/playerMenu"),
+	SORT_FTPCOACH("coach/sortFirstPlayers"),
 	
 	/*------------RECEPTIONIST LOGIN SCREEN--------------------------------------*/
 

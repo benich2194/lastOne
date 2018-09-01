@@ -82,13 +82,15 @@
                   <Glow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToRemovePlayersFromFirstTeam" prefHeight="26.0" prefWidth="188.0" styleClass="menuButton" text="Remove Players From First Team">
+            <Button mnemonicParsing="false" onAction="#goToRemovePlayersFromFirstTeam" prefHeight="26.0" prefWidth="188.0" styleClass="menuButton" text="Remove Players From FT">
                <effect>
                   <Glow />
                </effect>
-               <font>
-                  <Font size="11.0" />
-               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToSortPlayers" prefHeight="26.0" prefWidth="195.0" styleClass="menuButton" text="Sort First Team Players">
+               <effect>
+                  <Glow />
+               </effect>
             </Button>
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" styleClass="loginTextField" text="Queries">
                <VBox.margin>

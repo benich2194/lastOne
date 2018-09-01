@@ -69,6 +69,11 @@ public class CoachMenuSidebarController implements Initializable {
 	void goToRemovePlayersFromFirstTeam(ActionEvent event) {
 		loadUI(NameToWindow.COACH_REMOVEFROMFIRST);
 	}
+	
+	@FXML
+	void goToSortPlayers(ActionEvent event) {
+		loadUI(NameToWindow.SORT_FTPCOACH);
+	}
 
 	@FXML
 	void removePlayerFromTeam(ActionEvent event) {
