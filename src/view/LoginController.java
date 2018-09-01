@@ -79,16 +79,14 @@ public class LoginController extends Main {
 		alert.setTitle("Login");
 		alert.setHeaderText("");
 		String user = email.getText();
-		String pass = password.getText();
-		try {//if one of the fields is empty, throw missing input exception
-			if(user.equals("")||pass.equals("")) {
-				throw new MissingInputException();
-			}
-		}catch(MissingInputException e){
-			
-		}
-		
+		String pass = password.getText();	
 		try {
+			if(user.isEmpty()) {
+				throw new MissingInputException("Please enter a username");
+			}
+			if(pass.isEmpty()) {
+				throw new MissingInputException("please enter a password");
+			}
 			if (user.equals("Admin") && pass.equals("Admin")) {//if admin has enterred, open a menu accordingly
 
 				Stage stage = (Stage) login.getScene().getWindow();
@@ -127,6 +125,7 @@ public class LoginController extends Main {
 							primaryStage.setScene(scene);
 							primaryStage.show();
 						}
+						throw new InvalidInputException("Wrong password");
 					}
 				}
 
@@ -178,6 +177,10 @@ public class LoginController extends Main {
 			}
 		}catch(NumberFormatException e) {//catch exception if trying to convert string to integer
 			new InvalidInputException("numbers only in this field please");
+		}catch(InvalidInputException e) {
+			
+		}catch(MissingInputException e) {
+			
 		}
 
 	}
