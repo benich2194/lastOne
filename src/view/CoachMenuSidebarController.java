@@ -109,7 +109,10 @@ public class CoachMenuSidebarController implements Initializable {
 	void goToFPOBHT(ActionEvent event) {
 		loadUI(NameToWindow.QUERY_GETFPOBHT);
 	}
-
+    @FXML
+    void goToChange(ActionEvent event) {
+    	loadUI(NameToWindow.COACH_CHANGEPASSWORD);
+    }
 	@FXML
 	void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();

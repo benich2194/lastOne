@@ -3,6 +3,7 @@ package view.modify.controller;
 import Controller.SysData;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MissingInputException;
+import Exceptions.ObjectExistsException;
 import Model.Coach;
 import Model.Customer;
 import Model.Receptionist;
@@ -60,7 +61,7 @@ public class modifyPasswordController {
     }
 
     @FXML
-    void goToChange(ActionEvent event) throws ListNotSelectedException, MissingInputException{
+    void goToChange(ActionEvent event) throws ListNotSelectedException, MissingInputException, ObjectExistsException{
     	try {
     		Object o=userList.getSelectionModel().getSelectedItem();
         	if(o==null)
@@ -70,14 +71,23 @@ public class modifyPasswordController {
         	}
         	String password=newPass.getText();
         	if(o instanceof Receptionist) {
+        		if(((Receptionist)o).getPassword().equals(password)){
+        			throw new ObjectExistsException("Please enter a different password, this is already the password");
+        		}
         		((Receptionist)o).setPassword(password);
         		labelSuccess.setText("Password changed succesfully to Receptionist "+((Receptionist)o).getId());
 			}
 			else if(o instanceof Customer) {
+				if(((Customer)o).getPassword().equals(password)){
+        			throw new ObjectExistsException("Please enter a different password, this is already the password");
+        		}
 				((Customer)o).setPassword(password);
         		labelSuccess.setText("Password changed succesfully to Customer "+((Customer)o).getId());
 			}
 			else {
+				if(((Coach)o).getPassword().equals(password)){
+        			throw new ObjectExistsException("Please enter a different password, this is already the password");
+        		}
 				((Coach)o).setPassword(password);
 	    		labelSuccess.setText("Password changed succesfully to Coach "+((Coach)o).getId());
 			}
@@ -85,6 +95,8 @@ public class modifyPasswordController {
     	}catch(ListNotSelectedException e) {
     		
     	}catch(MissingInputException e) {
+    		
+    	}catch(ObjectExistsException e) {
     		
     	}
     	

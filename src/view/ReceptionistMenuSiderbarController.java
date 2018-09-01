@@ -110,7 +110,10 @@ public class ReceptionistMenuSiderbarController implements Initializable{
     void goToRemoveCustomerFromMatch(ActionEvent event) {
     	loadUI(NameToWindow.REMOVE_CUSFROMMATCH);
     }
-
+    @FXML
+    void goToChangePassword(ActionEvent event) {
+    	loadUI(NameToWindow.RECEP_CHANGEPASSWORD);
+    }
     @FXML
     void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();

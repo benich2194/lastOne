@@ -79,5 +79,9 @@ public class CustomerMenuSidebarController implements Initializable{
 		primaryStage.setScene(scene);
 		primaryStage.show();
     }
+    @FXML
+    void goToChangePassword(ActionEvent event) {
+    	loadUI(NameToWindow.CUSTOMER_CHANGEPASSWORD);
+    }
     
 }

@@ -91,6 +91,7 @@ public enum NameToWindow {
 	RECEP_ADDSUBTOCUST("recep/receptionistAddSubToCustomer"),
 	RECEP_REMOVESUB("recep/receptionistRemoveSubscription"),
 	RECEP_SUBVIEW("recep/receptionistSubView"),
+	RECEP_CHANGEPASSWORD("recep/receptionistChangePassword"),
 	
 	/*------------COACH LOGIN SCREEN-------------------------------------------*/
 
@@ -101,6 +102,7 @@ public enum NameToWindow {
 	COACH_VIEWPL("coach/coachViewPlayers"),
 	COACH_ADDPLTOTEAM("coach/coachAddPlayerToTeam"),
 	COACH_REMOVEFROMFIRST("coach/coachRemovePlayerFromFirstTeam"),
+	COACH_CHANGEPASSWORD("coach/coachChangePassword"),
 	
 	/*------------CUSTOMER LOGIN SCREEN-----------------------------------------*/
 
@@ -108,6 +110,7 @@ public enum NameToWindow {
 	CUSTOMER_JOINMATCH("customer/customerJoinMatch"),
 	CUSTOMER_VIEWSUB("customer/customerViewSubscriptions"),
 	CUSTOMER_REMOVESUB("customer/customerRemoveSubscription"),
+	CUSTOMER_CHANGEPASSWORD("customer/customerChangePassword"),
 	
 	/*------------QUERIES-------------------------------------------------*/
 	QUERY_GETMAC("queries/getMAC"),
