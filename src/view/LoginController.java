@@ -7,7 +7,6 @@ import Exceptions.InvalidInputException;
 import Exceptions.MissingInputException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -16,8 +15,6 @@ import utils.Constants;
 import view.menus.controller.trophyMenuController;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -187,14 +184,12 @@ public class LoginController extends Main {
 
 	@FXML
 	void register(ActionEvent event) throws IOException {
-		Stage stage = (Stage) SignIn.getScene().getWindow();
-		stage.close();
-		FXMLLoader load = new FXMLLoader(getClass().getResource("/view/signUP.fxml"));
-		Stage primaryStage = new Stage();
-		Parent root = load.load();
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Login");
+		alert.setHeaderText("");
+		alert.setHeaderText("Forgot Password?");
+		alert.setContentText("To reset your password, Please contact us at Admin@JavaLeague.com. Thank you!");
+		alert.show();
 	}
 
 }
