@@ -20,7 +20,7 @@ public class passwordMenuController {
 
     @FXML
     void goToChangePassword(ActionEvent event) {
-    	
+    	WindowManager.openWindow(NameToWindow.MODIFY_PASSWORD);
     }
 
     @FXML

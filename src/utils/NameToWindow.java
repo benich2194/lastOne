@@ -26,6 +26,7 @@ public enum NameToWindow {
 	MODIFY_TROPHY("modify/modifyTrophy"),
 	MODIFY_COACH("modify/modifyCoach"),
 	MODIFY_SUB("modify/modifySubscription"),
+	MODIFY_PASSWORD("modify/modifyPassword"),
 	
 	/*------------REMOVE-------------------------------------------------*/
 	REMOVE_TEAM("remove/removeTeam"),

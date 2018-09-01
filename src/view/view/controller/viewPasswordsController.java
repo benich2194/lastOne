@@ -63,7 +63,10 @@ public class viewPasswordsController {
 		}
 		pass.setEditable(false);
 	}
-
+	/**
+	 * this function shows passwords of selected user
+	 * @param event user is selected from list
+	 */
 	@FXML
 	void showPassword(ActionEvent event) {
 		if(userList.getSelectionModel().getSelectedItem()!=null) {
