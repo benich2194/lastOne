@@ -134,15 +134,18 @@ public class SysData implements Serializable {
 			instance = new SysData();
 		return instance;
 	}
-
+	/**
+	 * serialize method
+	 * @return sysdata instance
+	 * @throws IOException file exception
+	 */
 	public boolean serialize() throws IOException {
 		FileOutputStream fileOut = null;
 		ObjectOutputStream out = null;
 		try {
-			fileOut = new FileOutputStream("SysData.ser");
+			fileOut = new FileOutputStream("JavaLeague.ser");
 			out = new ObjectOutputStream(fileOut);
 			out.writeObject(instance);
-			System.out.println("Serialized data is saved in the project folder as SysData.ser");
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -156,20 +159,23 @@ public class SysData implements Serializable {
 			}
 		}
 	}
-
+	/**
+	 * deserialize method
+	 * @return SysData instance
+	 * @throws IOException if cannot locate file
+	 */
 	public static SysData deserialize() throws IOException {
 
-		SysData recovered = null;
 		FileInputStream fileIn = null;
 		ObjectInputStream in = null;
 		try {
-			fileIn = new FileInputStream("SysData.ser");
+			fileIn = new FileInputStream("JavaLeague.ser");
 			in = new ObjectInputStream(fileIn);
 			instance = (SysData) in.readObject();
 			return instance;
 
 		} catch (IOException E) {
-			System.out.println("The file SysData.ser was not found");
+			System.out.println("cannot find JavaLeague.ser");
 			return null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -431,8 +437,9 @@ public class SysData implements Serializable {
 	 * @return true if the player was added successfully to team, false otherwise
 	 * @throws ObjectExistsException
 	 * @throws MaximumReachedException 
+	 * @throws InvalidInputException 
 	 */
-	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException, MaximumReachedException {
+	public boolean addPlayerToTeam(int playerId, int teamId) throws ObjectExistsException, MaximumReachedException, InvalidInputException {
 		if (!players.containsKey(playerId) || !teams.containsKey(teamId)) {// if player or team does not exist, return
 			// false
 			return false;
@@ -456,7 +463,7 @@ public class SysData implements Serializable {
 			return true;
 		} else {// if player does not have a team, add him.if failed ,return false
 			if (!teams.get(teamId).addPlayer(players.get(playerId))) {
-				return false;
+				throw new InvalidInputException("Cannot add player to team. either already exists or because compares seniority");
 			}
 			players.get(playerId).setCurrentTeam(teams.get(teamId));// set player's current team to this team and return
 			// true

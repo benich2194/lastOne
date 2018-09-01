@@ -1,6 +1,7 @@
 package view.connection.controller;
 
 import Controller.SysData;
+import Exceptions.InvalidInputException;
 import Exceptions.ListNotSelectedException;
 import Exceptions.MaximumReachedException;
 import Exceptions.ObjectExistsException;
@@ -45,9 +46,10 @@ public class playerToTeamController {
 	 * @throws ListNotSelectedException
 	 * @throws ObjectExistsException
 	 * @throws MaximumReachedException 
+	 * @throws InvalidInputException 
 	 */
 	@FXML
-	void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException,ObjectExistsException, MaximumReachedException {
+	void addPlayerToTeam(ActionEvent event) throws ListNotSelectedException,ObjectExistsException, MaximumReachedException, InvalidInputException {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Player To Team");
 		alert.setHeaderText("");
@@ -92,6 +94,8 @@ public class playerToTeamController {
 		}catch(ObjectExistsException e) {
 			
 		}catch(MaximumReachedException e) {
+			
+		}catch(InvalidInputException e) {
 			
 		}
 

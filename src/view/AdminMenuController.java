@@ -100,7 +100,10 @@ public class AdminMenuController implements Initializable{
     void goToQueries(ActionEvent event) {
     	loadUI(NameToWindow.QUERIES);
     }
-
+    @FXML
+    void goToPassword(ActionEvent event) {
+    	loadUI(NameToWindow.MENU_PASSWORD);
+    }
     @FXML
     void GoToLogin(ActionEvent event) throws IOException {
 		Stage stage = (Stage) menupane.getScene().getWindow();

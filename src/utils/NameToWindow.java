@@ -55,6 +55,7 @@ public enum NameToWindow {
 	VIEW_SUB("view/viewAllSubscriptions"),
 	VIEW_COACH("view/viewCoach"),
 	VIEW_MATCHES("view/viewAllMatches"),
+	VIEW_PASSWORD("view/viewPasswords"),
 	
 	/*------------CONNECT-------------------------------------------------*/
 	CONNECT_COACHTOTEAM("connection/coachToTeam"),
@@ -75,6 +76,7 @@ public enum NameToWindow {
 	MENU_SUB("menus/subscriptionMenu"),
 	MENU_COACH("menus/coachModif"),
 	MENU_CONNECTION("menus/connectionMenu"),
+	MENU_PASSWORD("menus/passwordMenu"),
 	QUERIES("menus/queries"),
 	
 	/*------------BONUS-------------------------------------------------*/

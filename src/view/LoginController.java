@@ -89,7 +89,7 @@ public class LoginController extends Main {
 		}
 		
 		try {
-			if (user.equals("admin") && pass.equals("admin")) {//if admin has enterred, open a menu accordingly
+			if (user.equals("Admin") && pass.equals("Admin")) {//if admin has enterred, open a menu accordingly
 
 				Stage stage = (Stage) login.getScene().getWindow();
 				stage.close();

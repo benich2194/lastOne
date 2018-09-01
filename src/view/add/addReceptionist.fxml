@@ -40,6 +40,6 @@
          </font>
       </Label>
       <Button fx:id="clearButton" layoutX="394.0" layoutY="496.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
-      <PasswordField fx:id="recepPassword" alignment="CENTER" layoutX="272.0" layoutY="384.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
+      <PasswordField fx:id="recepPassword" alignment="CENTER" layoutX="270.0" layoutY="383.0" prefHeight="26.0" prefWidth="181.0" promptText="Password" stylesheets="@../Design.css" />
    </children>
 </AnchorPane>

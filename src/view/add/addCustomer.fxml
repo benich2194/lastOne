@@ -42,6 +42,6 @@
       </Label>
       <Button fx:id="clearButton" layoutX="400.0" layoutY="540.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="33.0" prefWidth="172.0" text="Clear" />
       <ComboBox fx:id="favTeam" layoutX="272.0" layoutY="285.0" prefHeight="26.0" prefWidth="174.0" promptText="Favorite Team:" />
-      <PasswordField fx:id="cusPassword" alignment="CENTER" layoutX="272.0" layoutY="456.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
+      <PasswordField fx:id="cusPassword" alignment="CENTER" layoutX="270.0" layoutY="456.0" prefHeight="26.0" prefWidth="181.0" promptText="Password" stylesheets="@../Design.css" />
    </children>
 </AnchorPane>
