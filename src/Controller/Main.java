@@ -1,4 +1,4 @@
-package view;
+package Controller;
 	
 import javafx.application.Application;
 import Controller.Logger;
@@ -8,17 +8,16 @@ import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
-
 public class Main extends Application {
 	
 	
 	public void start(Stage primaryStage) {
 		try {
 			
-			Pane root = (Pane)FXMLLoader.load(getClass().getResource("login.fxml"));
+			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 			Scene scene = new Scene(root,800,600);
 			
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();

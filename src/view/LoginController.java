@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 
-public class LoginController extends Main {
+public class LoginController {
 	/**
 	 * class fields
 	 */
